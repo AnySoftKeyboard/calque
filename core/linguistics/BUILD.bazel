@@ -1,1 +1,20 @@
+load("@rules_kotlin//kotlin:jvm.bzl", "kt_jvm_library", "kt_jvm_test")
+
 package(default_visibility = ["//visibility:public"])
+
+kt_jvm_library(
+    name = "linguistics",
+    srcs = glob(["src/main/kotlin/**/*.kt"]),
+    visibility = ["//visibility:public"],
+)
+
+kt_jvm_test(
+    name = "cognate_detector_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/linguistics/CognateDetectorTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.linguistics.CognateDetectorTest",
+    deps = [
+        ":linguistics",
+        "@maven//:junit_junit",
+    ],
+)
