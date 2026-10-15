@@ -1,16 +1,16 @@
 """Linter aspects for Calque."""
 
 load("@aspect_rules_lint//lint:buildifier.bzl", "lint_buildifier_aspect")
-load("@aspect_rules_lint//lint:ktlint.bzl", "lint_ktlint_aspect")
 load("@aspect_rules_lint//lint:lint_test.bzl", "lint_test")
+load("//tools/lint:detekt.bzl", "lint_detekt_aspect")
 
-ktlint = lint_ktlint_aspect(
-    binary = Label("@com_github_pinterest_ktlint//file"),
-    editorconfig = Label("//:.editorconfig"),
-    baseline_file = Label("//:ktlint-baseline.xml"),
+detekt = lint_detekt_aspect(
+    binary = Label("//tools/lint:detekt"),
+    config = Label("//:detekt.yml"),
+    args = ["--build-upon-default-config"],
 )
 
-ktlint_test = lint_test(aspect = ktlint)
+detekt_test = lint_test(aspect = detekt)
 
 buildifier = lint_buildifier_aspect(
     binary = Label("@buildifier_prebuilt//:buildifier"),

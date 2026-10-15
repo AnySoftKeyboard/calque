@@ -14,6 +14,7 @@ bazel_dep(name = "buildifier_prebuilt", version = "10.1.0", dev_dependency = Tru
 maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
 maven.install(
     artifacts = [
+        "io.gitlab.arturbosch.detekt:detekt-cli:1.23.8",
         "junit:junit:4.13.2",
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0",
         "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.11.0",
@@ -27,11 +28,7 @@ maven.install(
 )
 use_repo(maven, "maven")
 
-# Lint & Format tools
+# Formatting tools
 format_tools = use_extension("@aspect_rules_lint//format:extensions.bzl", "tools")
 format_tools.ktfmt()
 use_repo(format_tools, "ktfmt")
-
-lint_tools = use_extension("@aspect_rules_lint//lint:extensions.bzl", "tools")
-lint_tools.ktlint()
-use_repo(lint_tools, "com_github_pinterest_ktlint")
