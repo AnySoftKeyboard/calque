@@ -1,0 +1,7 @@
+# Calque Bazel Configuration
+
+# Output and UI
+common --color=yes
+
+# Test options
+test --test_output=errors
