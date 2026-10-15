@@ -1,0 +1,24 @@
+load("@aspect_rules_lint//format:defs.bzl", "format_multirun")
+load("@rules_java//java:defs.bzl", "java_binary")
+
+package(default_visibility = ["//visibility:public"])
+
+java_binary(
+    name = "ktfmt",
+    main_class = "com.facebook.ktfmt.cli.Main",
+    runtime_deps = ["@ktfmt//jar"],
+)
+
+format_multirun(
+    name = "format",
+    kotlin = ":ktfmt",
+    kotlin_check_args = [
+        "--kotlinlang-style",
+        "--set-exit-if-changed",
+        "--dry-run",
+    ],
+    kotlin_fix_args = ["--kotlinlang-style"],
+    shell = "@aspect_rules_lint//format:shfmt",
+    starlark = "@buildifier_prebuilt//:buildifier",
+    visibility = ["//visibility:public"],
+)

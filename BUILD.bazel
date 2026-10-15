@@ -1,0 +1,16 @@
+package(default_visibility = ["//visibility:public"])
+
+exports_files([
+    ".editorconfig",
+    "ktlint-baseline.xml",
+])
+
+alias(
+    name = "format",
+    actual = "//tools/format:format",
+)
+
+alias(
+    name = "format.check",
+    actual = "//tools/format:format.check",
+)

@@ -1,0 +1,37 @@
+module(
+    name = "calque",
+    version = "0.0.1",
+)
+
+bazel_dep(name = "rules_jvm_external", version = "7.2")
+bazel_dep(name = "rules_kotlin", version = "2.4.20")
+bazel_dep(name = "rules_java", version = "9.9.0")
+bazel_dep(name = "aspect_rules_lint", version = "2.9.1")
+
+bazel_dep(name = "buildifier_prebuilt", version = "10.1.0", dev_dependency = True)
+
+# Maven dependencies
+maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+maven.install(
+    artifacts = [
+        "junit:junit:4.13.2",
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0",
+        "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.11.0",
+        "org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0",
+        "org.xerial:sqlite-jdbc:3.53.4.0",
+    ],
+    known_contributing_modules = ["protobuf"],
+    repositories = [
+        "https://repo1.maven.org/maven2",
+    ],
+)
+use_repo(maven, "maven")
+
+# Lint & Format tools
+format_tools = use_extension("@aspect_rules_lint//format:extensions.bzl", "tools")
+format_tools.ktfmt()
+use_repo(format_tools, "ktfmt")
+
+lint_tools = use_extension("@aspect_rules_lint//lint:extensions.bzl", "tools")
+lint_tools.ktlint()
+use_repo(lint_tools, "com_github_pinterest_ktlint")

@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Bazel
+        uses: bazel-contrib/setup-bazel@0.19.1
+        with:
+          bazelisk-cache: true
+          repository-cache: true
+
+      - name: Check formatting
+        run: bazelisk run //:format.check
+
+      - name: Lint all targets
+        run: bazelisk build --config=lint //...
+
+      - name: Build all targets
+        run: bazelisk build //...
+
+      - name: Test all targets
+        run: bazelisk test //...
