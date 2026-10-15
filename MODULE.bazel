@@ -5,7 +5,12 @@ module(
 
 bazel_dep(name = "rules_jvm_external", version = "7.2")
 bazel_dep(name = "rules_kotlin", version = "2.4.20")
+bazel_dep(name = "rules_java", version = "9.9.0")
+bazel_dep(name = "aspect_rules_lint", version = "2.9.1")
 
+bazel_dep(name = "buildifier_prebuilt", version = "10.1.0", dev_dependency = True)
+
+# Maven dependencies
 maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
 maven.install(
     artifacts = [
@@ -21,3 +26,12 @@ maven.install(
     ],
 )
 use_repo(maven, "maven")
+
+# Lint & Format tools
+format_tools = use_extension("@aspect_rules_lint//format:extensions.bzl", "tools")
+format_tools.ktfmt()
+use_repo(format_tools, "ktfmt")
+
+lint_tools = use_extension("@aspect_rules_lint//lint:extensions.bzl", "tools")
+lint_tools.ktlint()
+use_repo(lint_tools, "com_github_pinterest_ktlint")
