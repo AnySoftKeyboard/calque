@@ -1,1 +1,9 @@
+load("@rules_java//java:defs.bzl", "java_binary")
+
 package(default_visibility = ["//visibility:public"])
+
+java_binary(
+    name = "detekt",
+    main_class = "io.gitlab.arturbosch.detekt.cli.Main",
+    runtime_deps = ["@maven//:io_gitlab_arturbosch_detekt_detekt_cli"],
+)

@@ -327,31 +327,6 @@
   },
   "selectedYankedVersions": {},
   "moduleExtensions": {
-    "@@aspect_rules_lint+//lint:extensions.bzl%tools": {
-      "general": {
-        "bzlTransitiveDigest": "k+PotYT27HSYOmBun4tKiWAAs8wB3PCA7RYFEy4+X5s=",
-        "usagesDigest": "opYHLwQPC9jQE7ozr+3snzwNPRn/iDnmUsL7UL0UTlY=",
-        "recordedInputs": [
-          "REPO_MAPPING:aspect_rules_lint+,aspect_rules_lint aspect_rules_lint+",
-          "REPO_MAPPING:aspect_rules_lint+,aspect_tools_telemetry_report aspect_tools_telemetry++telemetry+aspect_tools_telemetry_report",
-          "REPO_MAPPING:aspect_rules_lint+,bazel_features bazel_features+",
-          "REPO_MAPPING:aspect_rules_lint+,bazel_lib bazel_lib+",
-          "REPO_MAPPING:aspect_rules_lint+,bazel_tools bazel_tools",
-          "REPO_MAPPING:bazel_features+,bazel_features_globals bazel_features++version_extension+bazel_features_globals",
-          "REPO_MAPPING:bazel_features+,bazel_features_version bazel_features++version_extension+bazel_features_version"
-        ],
-        "generatedRepoSpecs": {
-          "com_github_pinterest_ktlint": {
-            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
-            "attributes": {
-              "sha256": "2e28cf46c27d38076bf63beeba0bdef6a845688d6c5dccd26505ce876094eb92",
-              "url": "https://github.com/pinterest/ktlint/releases/download/1.2.1/ktlint",
-              "executable": true
-            }
-          }
-        }
-      }
-    },
     "@@aspect_tools_telemetry+//:extension.bzl%telemetry": {
       "general": {
         "bzlTransitiveDigest": "XVKR7Fz0TpsBTBIjxfUrpsRKdh9a5XZHQEJmfRGJOD8=",

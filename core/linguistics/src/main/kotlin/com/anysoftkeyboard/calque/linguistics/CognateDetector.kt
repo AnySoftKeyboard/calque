@@ -12,6 +12,12 @@ import kotlin.math.min
  * Levenshtein distance on word stems.
  */
 object CognateDetector {
+    private const val MIN_WORD_LENGTH = 2
+    private const val MIN_EXACT_MATCH_LENGTH = 3
+    private const val MIN_STEM_LENGTH = 2
+    private const val MIN_FUZZY_STEM_LENGTH = 3
+    private const val MAX_FUZZY_DISTANCE = 1
+
     /** Suffix conversion pairs between Spanish and English. */
     private val SUFFIX_MAP: List<Pair<String, String>> =
         listOf(
@@ -60,7 +66,7 @@ object CognateDetector {
      */
     fun detectCognate(spanishWord: String, englishGloss: String): Boolean {
         val es = normalize(spanishWord)
-        if (es.length <= 2) return false
+        if (es.length <= MIN_WORD_LENGTH) return false
 
         val candidates = extractCandidateWords(englishGloss)
         if (candidates.isEmpty()) return false
@@ -73,38 +79,32 @@ object CognateDetector {
         val es = normalize(spanishWord)
         val en = normalize(englishWord)
 
-        if (es.length <= 2 || en.length <= 2) return false
+        if (es.length <= MIN_WORD_LENGTH || en.length <= MIN_WORD_LENGTH) return false
 
         // Direct identical match for words > 3 characters (e.g. "natural" == "natural")
-        if (es.length > 3 && es == en) {
+        if (es.length > MIN_EXACT_MATCH_LENGTH && es == en) {
             return true
         }
 
         // Direct match after accent normalization (e.g. "café" -> "cafe")
         val esUnaccented = stripAccents(es)
-        if (esUnaccented.length > 3 && esUnaccented == en) {
+        if (esUnaccented.length > MIN_EXACT_MATCH_LENGTH && esUnaccented == en) {
             return true
         }
 
         // Suffix mapping and stem comparison
-        for ((esSuffix, enSuffix) in SUFFIX_MAP) {
+        return SUFFIX_MAP.any { (esSuffix, enSuffix) ->
             if (es.endsWith(esSuffix) && en.endsWith(enSuffix)) {
                 val esStem = stripAccents(es.removeSuffix(esSuffix))
                 val enStem = en.removeSuffix(enSuffix)
 
-                // Exact match on short stems (e.g. "nación" -> "na" == "nation" -> "na")
-                if (esStem == enStem && esStem.length >= 2) {
-                    return true
-                }
-
-                // Levenshtein distance <= 1 for stems of length >= 3
-                if (esStem.length >= 3 && levenshteinDistance(esStem, enStem) <= 1) {
-                    return true
-                }
+                (esStem == enStem && esStem.length >= MIN_STEM_LENGTH) ||
+                    (esStem.length >= MIN_FUZZY_STEM_LENGTH &&
+                        levenshteinDistance(esStem, enStem) <= MAX_FUZZY_DISTANCE)
+            } else {
+                false
             }
         }
-
-        return false
     }
 
     /** Normalizes a word by lowercasing and trimming whitespace and non-letter edge characters. */
@@ -138,7 +138,7 @@ object CognateDetector {
             val words = WORD_TOKEN_REGEX.findAll(withoutParticle).map { it.value }
             for (word in words) {
                 val normalized = normalize(word)
-                if (normalized.length >= 2 && normalized !in result) {
+                if (normalized.length >= MIN_WORD_LENGTH && normalized !in result) {
                     result.add(normalized)
                 }
             }
