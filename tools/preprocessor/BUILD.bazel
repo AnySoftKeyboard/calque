@@ -1,1 +1,37 @@
+load("@rules_kotlin//kotlin:jvm.bzl", "kt_jvm_binary", "kt_jvm_library", "kt_jvm_test")
+
 package(default_visibility = ["//visibility:public"])
+
+kt_jvm_library(
+    name = "preprocessor_lib",
+    srcs = glob(["src/main/kotlin/**/*.kt"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//core/linguistics",
+        "@maven//:org_jetbrains_kotlinx_kotlinx_serialization_json",
+        "@maven//:org_xerial_sqlite_jdbc",
+    ],
+)
+
+kt_jvm_binary(
+    name = "preprocessor",
+    main_class = "com.anysoftkeyboard.calque.preprocessor.MainKt",
+    visibility = ["//visibility:public"],
+    runtime_deps = [
+        ":preprocessor_lib",
+    ],
+)
+
+kt_jvm_test(
+    name = "preprocessor_test",
+    size = "small",
+    srcs = glob(["src/test/kotlin/**/*.kt"]),
+    test_class = "com.anysoftkeyboard.calque.preprocessor.PreprocessorTest",
+    deps = [
+        ":preprocessor_lib",
+        "//core/linguistics",
+        "@maven//:junit_junit",
+        "@maven//:org_jetbrains_kotlinx_kotlinx_serialization_json",
+        "@maven//:org_xerial_sqlite_jdbc",
+    ],
+)
