@@ -18,3 +18,14 @@ kt_jvm_test(
         "@maven//:junit_junit",
     ],
 )
+
+kt_jvm_test(
+    name = "sentence_scorer_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/linguistics/SentenceScorerTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.linguistics.SentenceScorerTest",
+    deps = [
+        ":linguistics",
+        "@maven//:junit_junit",
+    ],
+)
