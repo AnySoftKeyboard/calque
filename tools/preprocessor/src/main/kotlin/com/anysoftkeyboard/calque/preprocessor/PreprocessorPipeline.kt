@@ -9,6 +9,7 @@ data class PipelineConfig(
     val kaikkiFile: File? = null,
     val sublexFile: File? = null,
     val falseCognatesFile: File? = null,
+    val curatedLessonsFile: File? = null,
     val tatoebaFile: File? = null,
     val cognateRulesFile: File? = null,
 )
@@ -36,7 +37,7 @@ class PreprocessorPipeline(private val config: PipelineConfig) {
         val sublexFrequencies = loadSublexFrequencies()
         val dictCount = processKaikki(database, sublexFrequencies)
         val falseCognatesCount = processFalseCognates(database)
-        val lessonsCount = processLessons(database)
+        val lessonsCount = processCuratedLessons(database) + processTatoeba(database)
         val rulesCount = processRules(database)
 
         return PipelineSummary(
@@ -67,7 +68,13 @@ class PreprocessorPipeline(private val config: PipelineConfig) {
         return FileInputStream(file).use { FalseCognatesExpander.expand(it, database) }
     }
 
-    private fun processLessons(database: SeedDatabase): Int {
+    private fun processCuratedLessons(database: SeedDatabase): Int {
+        val file = config.curatedLessonsFile
+        if (file == null || !file.exists()) return 0
+        return FileInputStream(file).use { CuratedLessonsProcessor.processLessons(it, database) }
+    }
+
+    private fun processTatoeba(database: SeedDatabase): Int {
         val file = config.tatoebaFile
         if (file == null || !file.exists()) return 0
         return FileInputStream(file).use { TatoebaProcessor.processSentences(it, database) }

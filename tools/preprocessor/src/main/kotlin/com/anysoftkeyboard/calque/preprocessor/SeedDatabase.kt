@@ -19,20 +19,6 @@ class SeedDatabase(private val connection: Connection) : AutoCloseable {
         DatabaseBinders.createTables(connection)
     }
 
-    private inline fun executeTransaction(action: () -> Unit) {
-        val prevAutoCommit = connection.autoCommit
-        connection.autoCommit = false
-        try {
-            action()
-            connection.commit()
-        } catch (e: SQLException) {
-            connection.rollback()
-            throw e
-        } finally {
-            connection.autoCommit = prevAutoCommit
-        }
-    }
-
     /** Inserts a batch of dictionary rows inside a single transaction. */
     fun insertDictionaryBatch(entries: Collection<DictionaryRow>) {
         if (entries.isEmpty()) return
@@ -44,7 +30,7 @@ class SeedDatabase(private val connection: Connection) : AutoCloseable {
             """
                 .trimIndent()
 
-        executeTransaction {
+        DatabaseBinders.executeTransaction(connection) {
             connection.prepareStatement(sql).use { pstmt ->
                 for (entry in entries) {
                     DatabaseBinders.bindDictionaryRow(pstmt, entry)
@@ -97,7 +83,7 @@ class SeedDatabase(private val connection: Connection) : AutoCloseable {
             """
                 .trimIndent()
 
-        executeTransaction {
+        DatabaseBinders.executeTransaction(connection) {
             connection.prepareStatement(sql).use { pstmt ->
                 for (entry in entries) {
                     DatabaseBinders.bindFalseCognateRow(pstmt, entry)
@@ -140,7 +126,7 @@ class SeedDatabase(private val connection: Connection) : AutoCloseable {
             """
                 .trimIndent()
 
-        executeTransaction {
+        DatabaseBinders.executeTransaction(connection) {
             connection.prepareStatement(sql).use { pstmt ->
                 for (entry in entries) {
                     DatabaseBinders.bindCuratedLessonRow(pstmt, entry)
@@ -149,6 +135,26 @@ class SeedDatabase(private val connection: Connection) : AutoCloseable {
                 pstmt.executeBatch()
             }
         }
+    }
+
+    /** Queries all curated lessons ordered by level and sequence_order. */
+    fun queryCuratedLessons(): List<CuratedLessonRow> {
+        val sql =
+            """
+            SELECT lesson_id, level, sequence_order, title, target_concept, content_json
+            FROM curated_lessons
+            ORDER BY level ASC, sequence_order ASC
+            """
+                .trimIndent()
+        val lessons = mutableListOf<CuratedLessonRow>()
+        connection.createStatement().use { stmt ->
+            stmt.executeQuery(sql).use { rs ->
+                while (rs.next()) {
+                    lessons.add(DatabaseBinders.mapCuratedLessonRow(rs))
+                }
+            }
+        }
+        return lessons
     }
 
     /** Inserts a batch of cognate rules. */
@@ -162,7 +168,7 @@ class SeedDatabase(private val connection: Connection) : AutoCloseable {
             """
                 .trimIndent()
 
-        executeTransaction {
+        DatabaseBinders.executeTransaction(connection) {
             connection.prepareStatement(sql).use { pstmt ->
                 for (entry in entries) {
                     DatabaseBinders.bindCognateRuleRow(pstmt, entry)
@@ -243,6 +249,20 @@ internal object DatabaseBinders {
     private const val PARAM_RULE_GENDER = 4
     private const val PARAM_RULE_SPELLING = 5
     private const val PARAM_RULE_EXAMPLES = 6
+
+    inline fun executeTransaction(connection: Connection, action: () -> Unit) {
+        val prevAutoCommit = connection.autoCommit
+        connection.autoCommit = false
+        try {
+            action()
+            connection.commit()
+        } catch (e: SQLException) {
+            connection.rollback()
+            throw e
+        } finally {
+            connection.autoCommit = prevAutoCommit
+        }
+    }
 
     fun createTables(connection: Connection) {
         val statements =
@@ -365,6 +385,17 @@ internal object DatabaseBinders {
         pstmt.setString(PARAM_LESSON_TITLE, entry.title)
         pstmt.setString(PARAM_LESSON_CONCEPT, entry.targetConcept)
         pstmt.setString(PARAM_LESSON_CONTENT, entry.contentJson)
+    }
+
+    fun mapCuratedLessonRow(rs: ResultSet): CuratedLessonRow {
+        return CuratedLessonRow(
+            lessonId = rs.getString("lesson_id"),
+            level = rs.getInt("level"),
+            sequenceOrder = rs.getInt("sequence_order"),
+            title = rs.getString("title"),
+            targetConcept = rs.getString("target_concept"),
+            contentJson = rs.getString("content_json"),
+        )
     }
 
     fun bindCognateRuleRow(pstmt: PreparedStatement, entry: CognateRuleRow) {
