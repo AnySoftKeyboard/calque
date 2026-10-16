@@ -26,6 +26,9 @@ kt_jvm_test(
     name = "preprocessor_test",
     size = "small",
     srcs = glob(["src/test/kotlin/**/*.kt"]),
+    data = [
+        "//data/seeds:cognate_rules_seed.json",
+    ],
     test_class = "com.anysoftkeyboard.calque.preprocessor.PreprocessorTest",
     deps = [
         ":preprocessor_lib",
