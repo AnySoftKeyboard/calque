@@ -46,6 +46,20 @@ data class CuratedLessonRow(
     val contentJson: String,
 )
 
+/** Represents a single token in an interlinear word-for-word literal gloss. */
+data class InterlinearGlossToken(
+    val es: String,
+    val en: String,
+)
+
+/** Represents a structured sentence inside a curated lesson's `content_json`. */
+data class LessonSentence(
+    val sentenceEs: String,
+    val translationEn: String,
+    val interlinearGloss: List<InterlinearGlossToken>,
+    val grammarCallout: String?,
+)
+
 /** Model for the cognate_rules seed table. */
 data class CognateRuleRow(
     val ruleId: String,

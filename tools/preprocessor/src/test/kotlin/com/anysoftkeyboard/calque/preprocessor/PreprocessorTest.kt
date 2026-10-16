@@ -220,6 +220,45 @@ class PreprocessorTest {
     }
 
     @Test
+    fun curatedLessonsSeed_isValidAndPopulatesProgressionLevels() {
+        val seedFile = File("data/seeds/curated_lessons_seed.json")
+        assertTrue("Expected seed file at ${seedFile.path}", seedFile.exists())
+
+        SeedDatabase.open().use { db ->
+            val insertedCount =
+                FileInputStream(seedFile).use { stream ->
+                    CuratedLessonsProcessor.processLessons(stream, db)
+                }
+            assertEquals(8, insertedCount)
+
+            val lessons = db.queryCuratedLessons()
+            assertEquals(8, lessons.size)
+            assertEquals(setOf(0, 1, 2), lessons.map { it.level }.toSet())
+
+            val sentenceZeroLesson = lessons.first { it.lessonId == "lvl0_00_cognate_unlock" }
+            val sentenceZeroItems =
+                CuratedLessonsProcessor.parseLessonSentences(sentenceZeroLesson.contentJson)
+            assertEquals(
+                "El hotel moderno es excelente.",
+                sentenceZeroItems.first().sentenceEs,
+            )
+
+            for (lesson in lessons) {
+                assertFalse(lesson.title.isBlank())
+                assertFalse(lesson.targetConcept.isBlank())
+                val sentences = CuratedLessonsProcessor.parseLessonSentences(lesson.contentJson)
+                assertTrue(sentences.isNotEmpty())
+                for (sentence in sentences) {
+                    assertFalse(sentence.sentenceEs.isBlank())
+                    assertFalse(sentence.translationEn.isBlank())
+                    assertTrue(sentence.interlinearGloss.isNotEmpty())
+                    assertFalse(sentence.grammarCallout.isNullOrBlank())
+                }
+            }
+        }
+    }
+
+    @Test
     fun cognateRulesProcessor_insertsRules() {
         val inMemoryDb = SeedDatabase.open()
         inMemoryDb.use { db ->
@@ -328,6 +367,7 @@ class PreprocessorTest {
         kaikkiFile.writeText("$sampleKaikki\n", StandardCharsets.UTF_8)
 
         val falseCognatesSeedFile = File("data/seeds/false_cognates_seed.json")
+        val curatedLessonsSeedFile = File("data/seeds/curated_lessons_seed.json")
         val cognateRulesSeedFile = File("data/seeds/cognate_rules_seed.json")
 
         val config =
@@ -336,6 +376,7 @@ class PreprocessorTest {
                 kaikkiFile = kaikkiFile,
                 sublexFile = sublexFile,
                 falseCognatesFile = falseCognatesSeedFile,
+                curatedLessonsFile = curatedLessonsSeedFile,
                 cognateRulesFile = cognateRulesSeedFile,
             )
 
@@ -346,6 +387,7 @@ class PreprocessorTest {
         assertTrue(summary.dictionaryRows >= 2)
         // 25 base lemmas + "carpetas" plural from Kaikki = 26 rows
         assertEquals(26, summary.falseCognateRows)
+        assertEquals(8, summary.curatedLessonRows)
         assertEquals(12, summary.cognateRuleRows)
 
         tempDir.deleteRecursively()

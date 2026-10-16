@@ -14,11 +14,12 @@ fun main(args: Array<String>) {
             Usage: preprocessor --db <output-path-to-seed.db> [options]
 
             Options:
-              --kaikki <path>          Path to Kaikki Spanish JSONL dump
-              --sublex <path>          Path to SUBTLEX-ESP frequency file
-              --false-cognates <path>  Path to false_cognates_seed.json
-              --tatoeba <path>         Path to Tatoeba Spanish-English TSV file
-              --cognate-rules <path>   Path to cognate_rules_seed.json
+              --kaikki <path>           Path to Kaikki Spanish JSONL dump
+              --sublex <path>           Path to SUBTLEX-ESP frequency file
+              --false-cognates <path>   Path to false_cognates_seed.json
+              --curated-lessons <path>  Path to curated_lessons_seed.json
+              --tatoeba <path>          Path to Tatoeba Spanish-English TSV file
+              --cognate-rules <path>    Path to cognate_rules_seed.json
             """
                 .trimIndent(),
         )
@@ -31,6 +32,7 @@ fun main(args: Array<String>) {
             kaikkiFile = options["--kaikki"]?.let { File(it) },
             sublexFile = options["--sublex"]?.let { File(it) },
             falseCognatesFile = options["--false-cognates"]?.let { File(it) },
+            curatedLessonsFile = options["--curated-lessons"]?.let { File(it) },
             tatoebaFile = options["--tatoeba"]?.let { File(it) },
             cognateRulesFile = options["--cognate-rules"]?.let { File(it) },
         )
