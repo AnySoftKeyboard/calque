@@ -1,10 +1,14 @@
 package com.anysoftkeyboard.calque.preprocessor
 
+import com.anysoftkeyboard.calque.linguistics.CognateDetector
 import java.io.File
+import java.io.FileInputStream
 import java.nio.charset.StandardCharsets
 import kotlin.io.path.createTempDirectory
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
@@ -173,6 +177,76 @@ class PreprocessorTest {
 
             val rulesCount = CognateRulesProcessor.processRules(rulesJson.byteInputStream(), db)
             assertEquals(1, rulesCount)
+
+            val storedRules = db.queryCognateRules()
+            assertEquals(1, storedRules.size)
+            assertEquals("tion_to_cion", storedRules[0].ruleId)
+            val examples = CognateRulesProcessor.parseExamples(storedRules[0].examplesJson)
+            assertEquals(2, examples.size)
+            assertEquals(CognateRuleExample("action", "acción"), examples[0])
+        }
+    }
+
+    @Test
+    fun curatedCognateRulesSeed_isValidAndAlignedWithCognateDetector() {
+        val seedFile = File("data/seeds/cognate_rules_seed.json")
+        assertTrue(
+            "Expected seed file at ${seedFile.path}",
+            seedFile.exists(),
+        )
+
+        SeedDatabase.open().use { db ->
+            val insertedCount =
+                FileInputStream(seedFile).use { stream ->
+                    CognateRulesProcessor.processRules(stream, db)
+                }
+            assertEquals(12, insertedCount)
+
+            val rules = db.queryCognateRules()
+            assertEquals(12, rules.size)
+
+            val ruleIds = rules.map { it.ruleId }.toSet()
+            val expectedIds =
+                setOf(
+                    "tion_to_cion",
+                    "sion_to_sion",
+                    "ty_to_dad",
+                    "ly_to_mente",
+                    "ous_to_oso",
+                    "ic_to_ico",
+                    "al_to_al",
+                    "ct_to_cto",
+                    "nce_to_ncia",
+                    "ary_to_ario",
+                    "ive_to_ivo",
+                    "ble_to_ble",
+                )
+            assertEquals(expectedIds, ruleIds)
+
+            val adverbRule = rules.first { it.ruleId == "ly_to_mente" }
+            assertNull(adverbRule.genderRule)
+
+            val nounRule = rules.first { it.ruleId == "tion_to_cion" }
+            assertEquals("Always feminine (la)", nounRule.genderRule)
+
+            for (rule in rules) {
+                assertTrue(rule.englishSuffix.startsWith("-"))
+                assertTrue(rule.spanishSuffix.startsWith("-"))
+                assertFalse(rule.spellingNote.isBlank())
+
+                val examples = CognateRulesProcessor.parseExamples(rule.examplesJson)
+                assertTrue(
+                    "Rule ${rule.ruleId} should have 5..10 examples, found ${examples.size}",
+                    examples.size in 5..10,
+                )
+
+                for (example in examples) {
+                    assertTrue(
+                        "Expected (${example.spanish}, ${example.english}) in ${rule.ruleId} to match CognateDetector",
+                        CognateDetector.matchesCognate(example.spanish, example.english),
+                    )
+                }
+            }
         }
     }
 
@@ -210,12 +284,15 @@ class PreprocessorTest {
             StandardCharsets.UTF_8,
         )
 
+        val cognateRulesSeedFile = File("data/seeds/cognate_rules_seed.json")
+
         val config =
             PipelineConfig(
                 dbFile = dbFile,
                 kaikkiFile = kaikkiFile,
                 sublexFile = sublexFile,
                 falseCognatesFile = fcFile,
+                cognateRulesFile = cognateRulesSeedFile,
             )
 
         val pipeline = PreprocessorPipeline(config)
@@ -224,6 +301,7 @@ class PreprocessorTest {
         assertTrue(dbFile.exists())
         assertTrue(summary.dictionaryRows >= 2)
         assertEquals(2, summary.falseCognateRows)
+        assertEquals(12, summary.cognateRuleRows)
 
         tempDir.deleteRecursively()
     }

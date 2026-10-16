@@ -210,6 +210,26 @@ class SeedDatabase(private val connection: Connection) : AutoCloseable {
         }
     }
 
+    /** Queries all cognate rules stored in the database. */
+    fun queryCognateRules(): List<CognateRuleRow> {
+        val sql =
+            """
+            SELECT rule_id, english_suffix, spanish_suffix, gender_rule, spelling_note, examples_json
+            FROM cognate_rules
+            ORDER BY rowid ASC
+            """
+                .trimIndent()
+        val rules = mutableListOf<CognateRuleRow>()
+        connection.createStatement().use { stmt ->
+            stmt.executeQuery(sql).use { rs ->
+                while (rs.next()) {
+                    rules.add(DatabaseBinders.mapCognateRuleRow(rs))
+                }
+            }
+        }
+        return rules
+    }
+
     override fun close() {
         connection.close()
     }
@@ -323,5 +343,16 @@ internal object DatabaseBinders {
         }
         pstmt.setString(PARAM_RULE_SPELLING, entry.spellingNote)
         pstmt.setString(PARAM_RULE_EXAMPLES, entry.examplesJson)
+    }
+
+    fun mapCognateRuleRow(rs: ResultSet): CognateRuleRow {
+        return CognateRuleRow(
+            ruleId = rs.getString("rule_id"),
+            englishSuffix = rs.getString("english_suffix"),
+            spanishSuffix = rs.getString("spanish_suffix"),
+            genderRule = rs.getString("gender_rule"),
+            spellingNote = rs.getString("spelling_note"),
+            examplesJson = rs.getString("examples_json"),
+        )
     }
 }

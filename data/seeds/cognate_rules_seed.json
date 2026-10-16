@@ -1,0 +1,434 @@
+[
+  {
+    "rule_id": "tion_to_cion",
+    "english_suffix": "-tion",
+    "spanish_suffix": "-ción",
+    "gender_rule": "Always feminine (la)",
+    "spelling_note": "Replace -tion with -ción (written accent on the o). Double consonants like -tt- or -mm- simplify to a single consonant.",
+    "examples": [
+      {
+        "english": "nation",
+        "spanish": "nación"
+      },
+      {
+        "english": "information",
+        "spanish": "información"
+      },
+      {
+        "english": "situation",
+        "spanish": "situación"
+      },
+      {
+        "english": "conversation",
+        "spanish": "conversación"
+      },
+      {
+        "english": "attention",
+        "spanish": "atención"
+      },
+      {
+        "english": "communication",
+        "spanish": "comunicación"
+      },
+      {
+        "english": "education",
+        "spanish": "educación"
+      }
+    ]
+  },
+  {
+    "rule_id": "sion_to_sion",
+    "english_suffix": "-sion",
+    "spanish_suffix": "-sión",
+    "gender_rule": "Always feminine (la)",
+    "spelling_note": "Keep -sion and add a written accent on the o (-sión). English double -ss- becomes a single -s-.",
+    "examples": [
+      {
+        "english": "version",
+        "spanish": "versión"
+      },
+      {
+        "english": "decision",
+        "spanish": "decisión"
+      },
+      {
+        "english": "vision",
+        "spanish": "visión"
+      },
+      {
+        "english": "confusion",
+        "spanish": "confusión"
+      },
+      {
+        "english": "expression",
+        "spanish": "expresión"
+      },
+      {
+        "english": "impression",
+        "spanish": "impresión"
+      },
+      {
+        "english": "conclusion",
+        "spanish": "conclusión"
+      }
+    ]
+  },
+  {
+    "rule_id": "ty_to_dad",
+    "english_suffix": "-ty",
+    "spanish_suffix": "-dad",
+    "gender_rule": "Always feminine (la)",
+    "spelling_note": "Abstract nouns ending in -ty (usually -ity) map to -dad (-idad) with stress on the final syllable.",
+    "examples": [
+      {
+        "english": "university",
+        "spanish": "universidad"
+      },
+      {
+        "english": "activity",
+        "spanish": "actividad"
+      },
+      {
+        "english": "reality",
+        "spanish": "realidad"
+      },
+      {
+        "english": "capacity",
+        "spanish": "capacidad"
+      },
+      {
+        "english": "identity",
+        "spanish": "identidad"
+      },
+      {
+        "english": "curiosity",
+        "spanish": "curiosidad"
+      },
+      {
+        "english": "opportunity",
+        "spanish": "oportunidad"
+      }
+    ]
+  },
+  {
+    "rule_id": "ly_to_mente",
+    "english_suffix": "-ly",
+    "spanish_suffix": "-mente",
+    "gender_rule": null,
+    "spelling_note": "Attach -mente to the feminine singular form of the adjective (or directly to invariable adjectives ending in -al or -e). Any written accent on the base adjective is preserved.",
+    "examples": [
+      {
+        "english": "naturally",
+        "spanish": "naturalmente"
+      },
+      {
+        "english": "totally",
+        "spanish": "totalmente"
+      },
+      {
+        "english": "finally",
+        "spanish": "finalmente"
+      },
+      {
+        "english": "rapidly",
+        "spanish": "rápidamente"
+      },
+      {
+        "english": "exactly",
+        "spanish": "exactamente"
+      },
+      {
+        "english": "completely",
+        "spanish": "completamente"
+      },
+      {
+        "english": "constantly",
+        "spanish": "constantemente"
+      }
+    ]
+  },
+  {
+    "rule_id": "ous_to_oso",
+    "english_suffix": "-ous",
+    "spanish_suffix": "-oso",
+    "gender_rule": "Matches noun gender (-oso masculine, -osa feminine)",
+    "spelling_note": "Replace -ous with -oso (or -osa for feminine nouns).",
+    "examples": [
+      {
+        "english": "famous",
+        "spanish": "famoso"
+      },
+      {
+        "english": "curious",
+        "spanish": "curioso"
+      },
+      {
+        "english": "generous",
+        "spanish": "generoso"
+      },
+      {
+        "english": "mysterious",
+        "spanish": "misterioso"
+      },
+      {
+        "english": "furious",
+        "spanish": "furioso"
+      },
+      {
+        "english": "ambitious",
+        "spanish": "ambicioso"
+      },
+      {
+        "english": "delicious",
+        "spanish": "delicioso"
+      }
+    ]
+  },
+  {
+    "rule_id": "ic_to_ico",
+    "english_suffix": "-ic",
+    "spanish_suffix": "-ico",
+    "gender_rule": "Matches noun gender (-ico masculine, -ica feminine)",
+    "spelling_note": "Add -o or -a to -ic and place a written accent on the preceding vowel (esdrújula stress pattern).",
+    "examples": [
+      {
+        "english": "public",
+        "spanish": "público"
+      },
+      {
+        "english": "basic",
+        "spanish": "básico"
+      },
+      {
+        "english": "fantastic",
+        "spanish": "fantástico"
+      },
+      {
+        "english": "classic",
+        "spanish": "clásico"
+      },
+      {
+        "english": "romantic",
+        "spanish": "romántico"
+      },
+      {
+        "english": "electric",
+        "spanish": "eléctrico"
+      },
+      {
+        "english": "historic",
+        "spanish": "histórico"
+      }
+    ]
+  },
+  {
+    "rule_id": "al_to_al",
+    "english_suffix": "-al",
+    "spanish_suffix": "-al",
+    "gender_rule": "Invariable for gender in singular (el/la); plural adds -es (-ales)",
+    "spelling_note": "Spelling is often identical to English, but spoken stress shifts to the final syllable (-al).",
+    "examples": [
+      {
+        "english": "natural",
+        "spanish": "natural"
+      },
+      {
+        "english": "original",
+        "spanish": "original"
+      },
+      {
+        "english": "central",
+        "spanish": "central"
+      },
+      {
+        "english": "normal",
+        "spanish": "normal"
+      },
+      {
+        "english": "cultural",
+        "spanish": "cultural"
+      },
+      {
+        "english": "personal",
+        "spanish": "personal"
+      },
+      {
+        "english": "general",
+        "spanish": "general"
+      }
+    ]
+  },
+  {
+    "rule_id": "ct_to_cto",
+    "english_suffix": "-ct",
+    "spanish_suffix": "-cto",
+    "gender_rule": "Masculine (el) for nouns; matches gender (-cto/-cta) for adjectives",
+    "spelling_note": "Spanish words do not end in -ct; add -o (or -a for feminine adjectives).",
+    "examples": [
+      {
+        "english": "exact",
+        "spanish": "exacto"
+      },
+      {
+        "english": "perfect",
+        "spanish": "perfecto"
+      },
+      {
+        "english": "direct",
+        "spanish": "directo"
+      },
+      {
+        "english": "product",
+        "spanish": "producto"
+      },
+      {
+        "english": "contact",
+        "spanish": "contacto"
+      },
+      {
+        "english": "conflict",
+        "spanish": "conflicto"
+      },
+      {
+        "english": "correct",
+        "spanish": "correcto"
+      }
+    ]
+  },
+  {
+    "rule_id": "nce_to_ncia",
+    "english_suffix": "-nce",
+    "spanish_suffix": "-ncia",
+    "gender_rule": "Always feminine (la)",
+    "spelling_note": "English -ance and -ence map directly to -ancia and -encia.",
+    "examples": [
+      {
+        "english": "distance",
+        "spanish": "distancia"
+      },
+      {
+        "english": "importance",
+        "spanish": "importancia"
+      },
+      {
+        "english": "difference",
+        "spanish": "diferencia"
+      },
+      {
+        "english": "experience",
+        "spanish": "experiencia"
+      },
+      {
+        "english": "patience",
+        "spanish": "paciencia"
+      },
+      {
+        "english": "presence",
+        "spanish": "presencia"
+      },
+      {
+        "english": "influence",
+        "spanish": "influencia"
+      }
+    ]
+  },
+  {
+    "rule_id": "ary_to_ario",
+    "english_suffix": "-ary",
+    "spanish_suffix": "-ario",
+    "gender_rule": "Masculine (el) for nouns; matches gender (-ario/-aria) for adjectives",
+    "spelling_note": "Replace -ary with -ario (or -aria). Double consonants like -ss- or -cc- simplify or shift to -cc-.",
+    "examples": [
+      {
+        "english": "necessary",
+        "spanish": "necesario"
+      },
+      {
+        "english": "ordinary",
+        "spanish": "ordinario"
+      },
+      {
+        "english": "dictionary",
+        "spanish": "diccionario"
+      },
+      {
+        "english": "vocabulary",
+        "spanish": "vocabulario"
+      },
+      {
+        "english": "primary",
+        "spanish": "primario"
+      },
+      {
+        "english": "contrary",
+        "spanish": "contrario"
+      }
+    ]
+  },
+  {
+    "rule_id": "ive_to_ivo",
+    "english_suffix": "-ive",
+    "spanish_suffix": "-ivo",
+    "gender_rule": "Matches noun gender (-ivo masculine, -iva feminine)",
+    "spelling_note": "Replace -ive with -ivo (or -iva). Double consonants like -ff- simplify to a single -f-.",
+    "examples": [
+      {
+        "english": "active",
+        "spanish": "activo"
+      },
+      {
+        "english": "positive",
+        "spanish": "positivo"
+      },
+      {
+        "english": "negative",
+        "spanish": "negativo"
+      },
+      {
+        "english": "creative",
+        "spanish": "creativo"
+      },
+      {
+        "english": "exclusive",
+        "spanish": "exclusivo"
+      },
+      {
+        "english": "effective",
+        "spanish": "efectivo"
+      }
+    ]
+  },
+  {
+    "rule_id": "ble_to_ble",
+    "english_suffix": "-ble",
+    "spanish_suffix": "-ble",
+    "gender_rule": "Invariable for gender in singular; plural adds -s (-bles)",
+    "spelling_note": "Adjectives ending in -able and -ible keep the same suffix in Spanish, dropping double consonants like -ss-.",
+    "examples": [
+      {
+        "english": "possible",
+        "spanish": "posible"
+      },
+      {
+        "english": "visible",
+        "spanish": "visible"
+      },
+      {
+        "english": "flexible",
+        "spanish": "flexible"
+      },
+      {
+        "english": "probable",
+        "spanish": "probable"
+      },
+      {
+        "english": "notable",
+        "spanish": "notable"
+      },
+      {
+        "english": "terrible",
+        "spanish": "terrible"
+      }
+    ]
+  }
+]

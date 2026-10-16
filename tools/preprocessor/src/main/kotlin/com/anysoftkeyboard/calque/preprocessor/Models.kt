@@ -55,3 +55,9 @@ data class CognateRuleRow(
     val spellingNote: String,
     val examplesJson: String,
 )
+
+/** Represents a single English-to-Spanish word pair in a cognate transformation rule. */
+data class CognateRuleExample(
+    val english: String,
+    val spanish: String,
+)
