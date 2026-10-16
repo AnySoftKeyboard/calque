@@ -16,65 +16,7 @@ import java.sql.Types
 class SeedDatabase(private val connection: Connection) : AutoCloseable {
 
     init {
-        createTables()
-    }
-
-    private fun createTables() {
-        val statements =
-            listOf(
-                """
-                CREATE TABLE IF NOT EXISTS dictionary (
-                    surface_form TEXT PRIMARY KEY,
-                    lemma TEXT NOT NULL,
-                    pos TEXT NOT NULL,
-                    grammar_info TEXT,
-                    english_gloss TEXT NOT NULL,
-                    is_cognate INTEGER NOT NULL,
-                    frequency_rank INTEGER
-                )
-                """,
-                "CREATE INDEX IF NOT EXISTS idx_dictionary_lemma ON dictionary(lemma)",
-                """
-                CREATE TABLE IF NOT EXISTS false_cognates (
-                    surface_form TEXT PRIMARY KEY,
-                    lemma TEXT NOT NULL,
-                    apparent_english TEXT NOT NULL,
-                    actual_english TEXT NOT NULL,
-                    real_spanish_for_apparent TEXT NOT NULL,
-                    severity TEXT NOT NULL,
-                    disambiguation_tip TEXT NOT NULL,
-                    example_es TEXT NOT NULL,
-                    example_en TEXT NOT NULL
-                )
-                """,
-                "CREATE INDEX IF NOT EXISTS idx_false_cognates_lemma ON false_cognates(lemma)",
-                """
-                CREATE TABLE IF NOT EXISTS curated_lessons (
-                    lesson_id TEXT PRIMARY KEY,
-                    level INTEGER NOT NULL,
-                    sequence_order INTEGER NOT NULL,
-                    title TEXT NOT NULL,
-                    target_concept TEXT NOT NULL,
-                    content_json TEXT NOT NULL
-                )
-                """,
-                "CREATE INDEX IF NOT EXISTS idx_curated_lessons_level ON curated_lessons(level)",
-                """
-                CREATE TABLE IF NOT EXISTS cognate_rules (
-                    rule_id TEXT PRIMARY KEY,
-                    english_suffix TEXT NOT NULL,
-                    spanish_suffix TEXT NOT NULL,
-                    gender_rule TEXT,
-                    spelling_note TEXT NOT NULL,
-                    examples_json TEXT NOT NULL
-                )
-                """,
-            )
-        connection.createStatement().use { stmt ->
-            for (sql in statements) {
-                stmt.execute(sql.trimIndent())
-            }
-        }
+        DatabaseBinders.createTables(connection)
     }
 
     private inline fun executeTransaction(action: () -> Unit) {
@@ -164,6 +106,27 @@ class SeedDatabase(private val connection: Connection) : AutoCloseable {
                 pstmt.executeBatch()
             }
         }
+    }
+
+    /** Queries all false cognate rows stored in the database. */
+    fun queryFalseCognates(): List<FalseCognateRow> {
+        val sql =
+            """
+            SELECT surface_form, lemma, apparent_english, actual_english, real_spanish_for_apparent,
+                   severity, disambiguation_tip, example_es, example_en
+            FROM false_cognates
+            ORDER BY rowid ASC
+            """
+                .trimIndent()
+        val rows = mutableListOf<FalseCognateRow>()
+        connection.createStatement().use { stmt ->
+            stmt.executeQuery(sql).use { rs ->
+                while (rs.next()) {
+                    rows.add(DatabaseBinders.mapFalseCognateRow(rs))
+                }
+            }
+        }
+        return rows
     }
 
     /** Inserts a batch of curated lessons. */
@@ -281,6 +244,64 @@ internal object DatabaseBinders {
     private const val PARAM_RULE_SPELLING = 5
     private const val PARAM_RULE_EXAMPLES = 6
 
+    fun createTables(connection: Connection) {
+        val statements =
+            listOf(
+                """
+                CREATE TABLE IF NOT EXISTS dictionary (
+                    surface_form TEXT PRIMARY KEY,
+                    lemma TEXT NOT NULL,
+                    pos TEXT NOT NULL,
+                    grammar_info TEXT,
+                    english_gloss TEXT NOT NULL,
+                    is_cognate INTEGER NOT NULL,
+                    frequency_rank INTEGER
+                )
+                """,
+                "CREATE INDEX IF NOT EXISTS idx_dictionary_lemma ON dictionary(lemma)",
+                """
+                CREATE TABLE IF NOT EXISTS false_cognates (
+                    surface_form TEXT PRIMARY KEY,
+                    lemma TEXT NOT NULL,
+                    apparent_english TEXT NOT NULL,
+                    actual_english TEXT NOT NULL,
+                    real_spanish_for_apparent TEXT NOT NULL,
+                    severity TEXT NOT NULL,
+                    disambiguation_tip TEXT NOT NULL,
+                    example_es TEXT NOT NULL,
+                    example_en TEXT NOT NULL
+                )
+                """,
+                "CREATE INDEX IF NOT EXISTS idx_false_cognates_lemma ON false_cognates(lemma)",
+                """
+                CREATE TABLE IF NOT EXISTS curated_lessons (
+                    lesson_id TEXT PRIMARY KEY,
+                    level INTEGER NOT NULL,
+                    sequence_order INTEGER NOT NULL,
+                    title TEXT NOT NULL,
+                    target_concept TEXT NOT NULL,
+                    content_json TEXT NOT NULL
+                )
+                """,
+                "CREATE INDEX IF NOT EXISTS idx_curated_lessons_level ON curated_lessons(level)",
+                """
+                CREATE TABLE IF NOT EXISTS cognate_rules (
+                    rule_id TEXT PRIMARY KEY,
+                    english_suffix TEXT NOT NULL,
+                    spanish_suffix TEXT NOT NULL,
+                    gender_rule TEXT,
+                    spelling_note TEXT NOT NULL,
+                    examples_json TEXT NOT NULL
+                )
+                """,
+            )
+        connection.createStatement().use { stmt ->
+            for (sql in statements) {
+                stmt.execute(sql.trimIndent())
+            }
+        }
+    }
+
     fun bindDictionaryRow(pstmt: PreparedStatement, entry: DictionaryRow) {
         pstmt.setString(PARAM_DICT_SURFACE, entry.surfaceForm)
         pstmt.setString(PARAM_DICT_LEMMA, entry.lemma)
@@ -321,6 +342,20 @@ internal object DatabaseBinders {
         pstmt.setString(PARAM_FC_TIP, entry.disambiguationTip)
         pstmt.setString(PARAM_FC_EX_ES, entry.exampleEs)
         pstmt.setString(PARAM_FC_EX_EN, entry.exampleEn)
+    }
+
+    fun mapFalseCognateRow(rs: ResultSet): FalseCognateRow {
+        return FalseCognateRow(
+            surfaceForm = rs.getString("surface_form"),
+            lemma = rs.getString("lemma"),
+            apparentEnglish = rs.getString("apparent_english"),
+            actualEnglish = rs.getString("actual_english"),
+            realSpanishForApparent = rs.getString("real_spanish_for_apparent"),
+            severity = rs.getString("severity"),
+            disambiguationTip = rs.getString("disambiguation_tip"),
+            exampleEs = rs.getString("example_es"),
+            exampleEn = rs.getString("example_en"),
+        )
     }
 
     fun bindCuratedLessonRow(pstmt: PreparedStatement, entry: CuratedLessonRow) {

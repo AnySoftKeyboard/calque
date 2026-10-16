@@ -1,0 +1,252 @@
+[
+  {
+    "lemma": "éxito",
+    "apparent_english": "exit",
+    "actual_english": "success / hit",
+    "real_spanish_for_apparent": "salida",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "Think of a 'successful exit' from a startup: éxito means success, while salida is the physical door out.",
+    "example_es": "El proyecto fue un gran éxito para todo el equipo.",
+    "example_en": "The project was a great success for the whole team."
+  },
+  {
+    "lemma": "carpeta",
+    "apparent_english": "carpet",
+    "actual_english": "folder / binder",
+    "real_spanish_for_apparent": "alfombra",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "You file papers inside a carpeta on your desk and walk on an alfombra on the floor.",
+    "example_es": "Guarda los documentos importantes en la carpeta azul.",
+    "example_en": "Keep the important documents in the blue folder."
+  },
+  {
+    "lemma": "embarazada",
+    "apparent_english": "embarrassed",
+    "actual_english": "pregnant",
+    "real_spanish_for_apparent": "avergonzado",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "Embarazada means carrying a baby (pregnant); to say you feel embarrassed, use avergonzado or tener vergüenza.",
+    "example_es": "Mi hermana está embarazada de seis meses.",
+    "example_en": "My sister is six months pregnant."
+  },
+  {
+    "lemma": "soportar",
+    "apparent_english": "to support",
+    "actual_english": "to tolerate / endure / stand",
+    "real_spanish_for_apparent": "apoyar",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "Soportar is bearing a heavy burden ('I can't stand it'); to back or help someone is apoyar.",
+    "example_es": "Elena no soporta el ruido de la calle por la noche.",
+    "example_en": "Elena cannot stand the noise from the street at night."
+  },
+  {
+    "lemma": "realizar",
+    "apparent_english": "to realize (notice)",
+    "actual_english": "to carry out / accomplish / fulfill",
+    "real_spanish_for_apparent": "darse cuenta de",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "Realizar means to make something real by doing it; realizing a fact in your mind is darse cuenta de.",
+    "example_es": "Los investigadores realizaron un estudio muy completo.",
+    "example_en": "The researchers carried out a very thorough study."
+  },
+  {
+    "lemma": "actualmente",
+    "apparent_english": "actually (in fact)",
+    "actual_english": "currently / nowadays",
+    "real_spanish_for_apparent": "en realidad",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "Link actual and actualmente to 'at the current moment' (like French actuellement), not 'in fact'.",
+    "example_es": "Actualmente vivimos en el centro de Madrid.",
+    "example_en": "Currently we live in downtown Madrid."
+  },
+  {
+    "lemma": "actual",
+    "apparent_english": "actual (real)",
+    "actual_english": "current / present-day",
+    "real_spanish_for_apparent": "real / verdadero",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "El presidente actual is the current president, not the 'real' one.",
+    "example_es": "La situación actual requiere mucha paciencia.",
+    "example_en": "The current situation requires a lot of patience."
+  },
+  {
+    "lemma": "asistir",
+    "apparent_english": "to assist (help)",
+    "actual_english": "to attend / be present at",
+    "real_spanish_for_apparent": "ayudar",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "When you asistir a una reunión, you merely show up and attend; ayudar is to help.",
+    "example_es": "Más de cien personas asistieron a la conferencia.",
+    "example_en": "More than a hundred people attended the conference."
+  },
+  {
+    "lemma": "largo",
+    "apparent_english": "large",
+    "actual_english": "long",
+    "real_spanish_for_apparent": "grande",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "Largo measures length (long), whereas grande measures overall size (large/big).",
+    "example_es": "Fue un viaje muy largo en tren.",
+    "example_en": "It was a very long trip by train."
+  },
+  {
+    "lemma": "librería",
+    "apparent_english": "library",
+    "actual_english": "bookstore",
+    "real_spanish_for_apparent": "biblioteca",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "Ends in -ería like panadería (bakery)—a shop where you buy libros (books). Borrow books at a biblioteca.",
+    "example_es": "Compré esta novela en la librería del barrio.",
+    "example_en": "I bought this novel at the neighborhood bookstore."
+  },
+  {
+    "lemma": "lectura",
+    "apparent_english": "lecture",
+    "actual_english": "reading",
+    "real_spanish_for_apparent": "conferencia / clase",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "Connected to leer (to read) and lector (reader): lectura is the act or passage of reading.",
+    "example_es": "La lectura diaria mejora el vocabulario rápidamente.",
+    "example_en": "Daily reading improves vocabulary rapidly."
+  },
+  {
+    "lemma": "sensible",
+    "apparent_english": "sensible (practical)",
+    "actual_english": "sensitive",
+    "real_spanish_for_apparent": "sensato",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "Una persona sensible feels emotions deeply (sensitive); a level-headed, practical person is sensata.",
+    "example_es": "Tiene la piel muy sensible al sol.",
+    "example_en": "She has skin that is very sensitive to the sun."
+  },
+  {
+    "lemma": "recordar",
+    "apparent_english": "to record",
+    "actual_english": "to remember / recall",
+    "real_spanish_for_apparent": "grabar",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "From Latin cor (heart): recordar is bringing something back to heart (remembering); recording audio is grabar.",
+    "example_es": "No recuerdo el nombre de aquella calle.",
+    "example_en": "I do not remember the name of that street."
+  },
+  {
+    "lemma": "delito",
+    "apparent_english": "delight",
+    "actual_english": "crime / offense",
+    "real_spanish_for_apparent": "deleite / placer",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "Cousin of English 'delinquent' and 'delict': un delito is a legal offense or crime.",
+    "example_es": "El juez declaró que aquello era un delito grave.",
+    "example_en": "The judge declared that it was a serious crime."
+  },
+  {
+    "lemma": "suceso",
+    "apparent_english": "success",
+    "actual_english": "event / incident / happening",
+    "real_spanish_for_apparent": "éxito",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "Think of 'what succeeded/followed in time': un suceso is simply an event (or news incident), while éxito is success.",
+    "example_es": "El periódico publicó todos los detalles del suceso.",
+    "example_en": "The newspaper published all the details of the event."
+  },
+  {
+    "lemma": "pretender",
+    "apparent_english": "to pretend (make believe)",
+    "actual_english": "to intend / aim / seek to",
+    "real_spanish_for_apparent": "fingir",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "Pretender is serious ambition (what you aim or intend to do); faking or pretending is fingir.",
+    "example_es": "El autor pretende explicar la historia con claridad.",
+    "example_en": "The author intends to explain the history clearly."
+  },
+  {
+    "lemma": "constipado",
+    "apparent_english": "constipated",
+    "actual_english": "having a common cold / congested",
+    "real_spanish_for_apparent": "estreñido",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "Estar constipado refers to nasal congestion from a head cold, not digestive trouble.",
+    "example_es": "Estoy un poco constipado por el cambio de clima.",
+    "example_en": "I have a bit of a cold from the change in weather."
+  },
+  {
+    "lemma": "fábrica",
+    "apparent_english": "fabric",
+    "actual_english": "factory / plant",
+    "real_spanish_for_apparent": "tela",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "Where things are 'fabricated' (manufactured): fábrica is a factory, while cloth fabric is tela.",
+    "example_es": "La fábrica produce automóviles eléctricos.",
+    "example_en": "The factory produces electric cars."
+  },
+  {
+    "lemma": "pariente",
+    "apparent_english": "parent",
+    "actual_english": "relative (uncle, cousin, etc.)",
+    "real_spanish_for_apparent": "padre / madre (padres)",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "Parientes are extended family relatives; only your mother and father are tus padres.",
+    "example_es": "Todos mis parientes vinieron a la boda.",
+    "example_en": "All my relatives came to the wedding."
+  },
+  {
+    "lemma": "sopa",
+    "apparent_english": "soap",
+    "actual_english": "soup",
+    "real_spanish_for_apparent": "jabón",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "You eat sopa with a spoon and wash your hands with jabón.",
+    "example_es": "Pedimos una sopa caliente para la cena.",
+    "example_en": "We ordered a hot soup for dinner."
+  },
+  {
+    "lemma": "compromiso",
+    "apparent_english": "compromise (mutual concession)",
+    "actual_english": "commitment / obligation / appointment",
+    "real_spanish_for_apparent": "acuerdo mutuo",
+    "severity": "MILD_NUANCE",
+    "disambiguation_tip": "Usually means a binding commitment, social obligation, or engagement rather than meeting halfway.",
+    "example_es": "No puedo ir porque tengo otro compromiso esta tarde.",
+    "example_en": "I cannot go because I have another commitment this afternoon."
+  },
+  {
+    "lemma": "educado",
+    "apparent_english": "educated (formally schooled)",
+    "actual_english": "polite / well-mannered",
+    "real_spanish_for_apparent": "instruido / culto",
+    "severity": "MILD_NUANCE",
+    "disambiguation_tip": "Refers to upbringing and courtesy at home (polite); academic schooling is culto or con estudios.",
+    "example_es": "El camarero fue muy amable y educado con nosotros.",
+    "example_en": "The waiter was very kind and polite with us."
+  },
+  {
+    "lemma": "molestar",
+    "apparent_english": "to molest",
+    "actual_english": "to bother / annoy / inconvenience",
+    "real_spanish_for_apparent": "acosar / agredir",
+    "severity": "MILD_NUANCE",
+    "disambiguation_tip": "An everyday, mild word meaning to bother or disturb ('Perdón por molestar' = 'Sorry to bother you').",
+    "example_es": "Disculpa, ¿te molesta si abro la ventana?",
+    "example_en": "Excuse me, does it bother you if I open the window?"
+  },
+  {
+    "lemma": "discutir",
+    "apparent_english": "to discuss calmly",
+    "actual_english": "to argue / debate heatedly",
+    "real_spanish_for_apparent": "hablar de / conversar",
+    "severity": "MILD_NUANCE",
+    "disambiguation_tip": "In everyday Spanish, discutir carries much more heat (arguing or clashing) than a neutral English 'discussion'.",
+    "example_es": "Los vecinos discutieron durante horas por el ruido.",
+    "example_en": "The neighbors argued for hours over the noise."
+  },
+  {
+    "lemma": "introducir",
+    "apparent_english": "to introduce (a person)",
+    "actual_english": "to insert / put in / bring in",
+    "real_spanish_for_apparent": "presentar",
+    "severity": "MILD_NUANCE",
+    "disambiguation_tip": "You introducir a key into a lock or a password into a form, but you presentar a friend to another person.",
+    "example_es": "Introduzca su contraseña para continuar.",
+    "example_en": "Enter your password to continue."
+  }
+]
