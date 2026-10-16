@@ -29,3 +29,36 @@ kt_jvm_test(
         "@maven//:junit_junit",
     ],
 )
+
+kt_jvm_test(
+    name = "clitic_deconstructor_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/linguistics/CliticDeconstructorTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.linguistics.CliticDeconstructorTest",
+    deps = [
+        ":linguistics",
+        "@maven//:junit_junit",
+    ],
+)
+
+kt_jvm_test(
+    name = "number_converter_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/linguistics/NumberConverterTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.linguistics.NumberConverterTest",
+    deps = [
+        ":linguistics",
+        "@maven//:junit_junit",
+    ],
+)
+
+kt_jvm_test(
+    name = "reader_enricher_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/linguistics/ReaderEnricherTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.linguistics.ReaderEnricherTest",
+    deps = [
+        ":linguistics",
+        "@maven//:junit_junit",
+    ],
+)
