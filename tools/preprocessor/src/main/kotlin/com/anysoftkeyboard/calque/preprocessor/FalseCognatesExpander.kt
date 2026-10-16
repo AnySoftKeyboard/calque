@@ -5,6 +5,8 @@ import java.io.InputStreamReader
 import java.nio.charset.StandardCharsets
 import java.util.Locale
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.contentOrNull
 import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
@@ -55,32 +57,28 @@ object FalseCognatesExpander {
     fun parseSeeds(inputStream: InputStream): List<FalseCognateSeed> {
         val jsonText = InputStreamReader(inputStream, StandardCharsets.UTF_8).use { it.readText() }
         val array = Json.parseToJsonElement(jsonText).jsonArray
-        val seeds = mutableListOf<FalseCognateSeed>()
+        return array.mapNotNull { parseSeedElement(it.jsonObject) }
+    }
 
-        for (elem in array) {
-            val obj = elem.jsonObject
-            val lemma = obj["lemma"]?.jsonPrimitive?.content ?: continue
-            val apparentEnglish = obj["apparent_english"]?.jsonPrimitive?.content.orEmpty()
-            val actualEnglish = obj["actual_english"]?.jsonPrimitive?.content.orEmpty()
-            val realSpanish = obj["real_spanish_for_apparent"]?.jsonPrimitive?.content.orEmpty()
-            val severity = obj["severity"]?.jsonPrimitive?.content ?: "HIGH_RISK"
-            val tip = obj["disambiguation_tip"]?.jsonPrimitive?.content.orEmpty()
-            val exampleEs = obj["example_es"]?.jsonPrimitive?.content.orEmpty()
-            val exampleEn = obj["example_en"]?.jsonPrimitive?.content.orEmpty()
+    private fun parseSeedElement(obj: JsonObject): FalseCognateSeed? {
+        val lemma = obj["lemma"]?.jsonPrimitive?.contentOrNull ?: return null
+        val apparentEnglish = obj["apparent_english"]?.jsonPrimitive?.contentOrNull.orEmpty()
+        val actualEnglish = obj["actual_english"]?.jsonPrimitive?.contentOrNull.orEmpty()
+        val realSpanish = obj["real_spanish_for_apparent"]?.jsonPrimitive?.contentOrNull.orEmpty()
+        val severity = obj["severity"]?.jsonPrimitive?.contentOrNull ?: "HIGH_RISK"
+        val tip = obj["disambiguation_tip"]?.jsonPrimitive?.contentOrNull.orEmpty()
+        val exampleEs = obj["example_es"]?.jsonPrimitive?.contentOrNull.orEmpty()
+        val exampleEn = obj["example_en"]?.jsonPrimitive?.contentOrNull.orEmpty()
 
-            seeds.add(
-                FalseCognateSeed(
-                    lemma = lemma,
-                    apparentEnglish = apparentEnglish,
-                    actualEnglish = actualEnglish,
-                    realSpanishForApparent = realSpanish,
-                    severity = severity,
-                    disambiguationTip = tip,
-                    exampleEs = exampleEs,
-                    exampleEn = exampleEn,
-                ),
-            )
-        }
-        return seeds
+        return FalseCognateSeed(
+            lemma = lemma,
+            apparentEnglish = apparentEnglish,
+            actualEnglish = actualEnglish,
+            realSpanishForApparent = realSpanish,
+            severity = severity,
+            disambiguationTip = tip,
+            exampleEs = exampleEs,
+            exampleEn = exampleEn,
+        )
     }
 }

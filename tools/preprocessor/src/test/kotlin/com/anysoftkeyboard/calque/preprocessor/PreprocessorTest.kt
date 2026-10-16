@@ -122,6 +122,69 @@ class PreprocessorTest {
     }
 
     @Test
+    fun curatedFalseCognatesSeed_hasValidFourPartCardMetadata() {
+        val seedFile = File("data/seeds/false_cognates_seed.json")
+        assertTrue("Expected seed file at ${seedFile.path}", seedFile.exists())
+
+        val seeds = FileInputStream(seedFile).use { FalseCognatesExpander.parseSeeds(it) }
+        assertEquals(25, seeds.size)
+
+        val lemmas = seeds.map { it.lemma }.toSet()
+        assertEquals(seeds.size, lemmas.size)
+        val coreLemmas = setOf("éxito", "carpeta", "embarazada", "soportar", "realizar")
+        assertTrue(lemmas.containsAll(coreLemmas))
+
+        val validSeverities = setOf("HIGH_RISK", "MILD_NUANCE")
+        assertTrue(seeds.any { it.severity == "HIGH_RISK" })
+        assertTrue(seeds.any { it.severity == "MILD_NUANCE" })
+
+        for (seed in seeds) {
+            assertFalse(seed.lemma.isBlank())
+            assertFalse(seed.apparentEnglish.isBlank())
+            assertFalse(seed.actualEnglish.isBlank())
+            assertFalse(seed.realSpanishForApparent.isBlank())
+            assertTrue(seed.severity in validSeverities)
+            assertFalse(seed.disambiguationTip.isBlank())
+            assertFalse(seed.exampleEs.isBlank())
+            assertFalse(seed.exampleEn.isBlank())
+        }
+    }
+
+    @Test
+    fun curatedFalseCognatesSeed_expandsInflectionsIntoDatabase() {
+        val seedFile = File("data/seeds/false_cognates_seed.json")
+        SeedDatabase.open().use { db ->
+            db.insertDictionaryBatch(
+                listOf(
+                    DictionaryRow(
+                        "soporta",
+                        "soportar",
+                        "verb",
+                        "3rd sg. present",
+                        "tolerates",
+                        false,
+                        400,
+                    ),
+                    DictionaryRow("carpetas", "carpeta", "noun", "plural", "folders", false, 500),
+                ),
+            )
+
+            val expandedCount =
+                FileInputStream(seedFile).use { stream -> FalseCognatesExpander.expand(stream, db) }
+            // 25 base lemmas + 2 inflected dictionary forms ("soporta", "carpetas") = 27 rows
+            assertEquals(27, expandedCount)
+
+            val storedRows = db.queryFalseCognates()
+            assertEquals(27, storedRows.size)
+            val surfaceMap = storedRows.associateBy { it.surfaceForm }
+            assertEquals("soportar", surfaceMap["soporta"]?.lemma)
+            assertEquals("carpeta", surfaceMap["carpetas"]?.lemma)
+            assertEquals("HIGH_RISK", surfaceMap["éxito"]?.severity)
+            assertEquals("MILD_NUANCE", surfaceMap["compromiso"]?.severity)
+        }
+    }
+
+    @Test
     fun tatoebaProcessor_scoresAndBucketsSentences() {
         val inMemoryDb = SeedDatabase.open()
         inMemoryDb.use { db ->
@@ -264,26 +327,7 @@ class PreprocessorTest {
         val kaikkiFile = File(tempDir, "kaikki.jsonl")
         kaikkiFile.writeText("$sampleKaikki\n", StandardCharsets.UTF_8)
 
-        val fcFile = File(tempDir, "false_cognates.json")
-        fcFile.writeText(
-            """
-            [
-              {
-                "lemma": "carpeta",
-                "apparent_english": "carpet",
-                "actual_english": "folder",
-                "real_spanish_for_apparent": "alfombra",
-                "severity": "HIGH_RISK",
-                "disambiguation_tip": "A folder, not a carpet.",
-                "example_es": "Mi carpeta.",
-                "example_en": "My folder."
-              }
-            ]
-            """
-                .trimIndent(),
-            StandardCharsets.UTF_8,
-        )
-
+        val falseCognatesSeedFile = File("data/seeds/false_cognates_seed.json")
         val cognateRulesSeedFile = File("data/seeds/cognate_rules_seed.json")
 
         val config =
@@ -291,7 +335,7 @@ class PreprocessorTest {
                 dbFile = dbFile,
                 kaikkiFile = kaikkiFile,
                 sublexFile = sublexFile,
-                falseCognatesFile = fcFile,
+                falseCognatesFile = falseCognatesSeedFile,
                 cognateRulesFile = cognateRulesSeedFile,
             )
 
@@ -300,7 +344,8 @@ class PreprocessorTest {
 
         assertTrue(dbFile.exists())
         assertTrue(summary.dictionaryRows >= 2)
-        assertEquals(2, summary.falseCognateRows)
+        // 25 base lemmas + "carpetas" plural from Kaikki = 26 rows
+        assertEquals(26, summary.falseCognateRows)
         assertEquals(12, summary.cognateRuleRows)
 
         tempDir.deleteRecursively()
