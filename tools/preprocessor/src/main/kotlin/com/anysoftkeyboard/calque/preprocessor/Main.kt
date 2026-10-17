@@ -7,34 +7,23 @@ import kotlin.system.exitProcess
 fun main(args: Array<String>) {
     val options = parseCommandLineArgs(args)
 
-    val dbPath = options["--db"]
-    if (dbPath == null) {
-        System.err.println(
-            """
-            Usage: preprocessor --db <output-path-to-seed.db> [options]
-
-            Options:
-              --kaikki <path>           Path to Kaikki Spanish JSONL dump
-              --sublex <path>           Path to SUBTLEX-ESP frequency file
-              --false-cognates <path>   Path to false_cognates_seed.json
-              --curated-lessons <path>  Path to curated_lessons_seed.json
-              --tatoeba <path>          Path to Tatoeba Spanish-English TSV file
-              --cognate-rules <path>    Path to cognate_rules_seed.json
-            """
-                .trimIndent(),
-        )
-        exitProcess(1)
+    val rawDbPath = options["--db"]
+    if (rawDbPath == null) {
+        printUsageAndExit()
+        return
     }
 
+    val dbFile = resolveFile(rawDbPath) ?: File(rawDbPath)
     val config =
         PipelineConfig(
-            dbFile = File(dbPath),
-            kaikkiFile = options["--kaikki"]?.let { File(it) },
-            sublexFile = options["--sublex"]?.let { File(it) },
-            falseCognatesFile = options["--false-cognates"]?.let { File(it) },
-            curatedLessonsFile = options["--curated-lessons"]?.let { File(it) },
-            tatoebaFile = options["--tatoeba"]?.let { File(it) },
-            cognateRulesFile = options["--cognate-rules"]?.let { File(it) },
+            dbFile = dbFile,
+            kaikkiFile = resolveFile(options["--kaikki"]),
+            sublexFile = resolveFile(options["--sublex"]),
+            dictionarySeedFile = resolveFile(options["--dictionary-seed"]),
+            falseCognatesFile = resolveFile(options["--false-cognates"]),
+            curatedLessonsFile = resolveFile(options["--curated-lessons"]),
+            tatoebaFile = resolveFile(options["--tatoeba"]),
+            cognateRulesFile = resolveFile(options["--cognate-rules"]),
         )
 
     println("Starting Calque Data Ingestion Pipeline...")
@@ -50,6 +39,33 @@ fun main(args: Array<String>) {
     println("  - False cognate forms expanded: ${summary.falseCognateRows}")
     println("  - Curated lesson sentences accepted: ${summary.curatedLessonRows}")
     println("  - Cognate transformer rules seeded: ${summary.cognateRuleRows}")
+}
+
+private fun printUsageAndExit() {
+    System.err.println(
+        """
+        Usage: preprocessor --db <output-path-to-seed.db> [options]
+
+        Options:
+          --kaikki <path>           Path to Kaikki Spanish JSONL dump
+          --sublex <path>           Path to SUBTLEX-ESP frequency file
+          --dictionary-seed <path>  Path to dictionary_seed.json
+          --false-cognates <path>   Path to false_cognates_seed.json
+          --curated-lessons <path>  Path to curated_lessons_seed.json
+          --tatoeba <path>          Path to Tatoeba Spanish-English TSV file
+          --cognate-rules <path>    Path to cognate_rules_seed.json
+        """
+            .trimIndent(),
+    )
+    exitProcess(1)
+}
+
+private fun resolveFile(path: String?): File? {
+    if (path == null) return null
+    val file = File(path)
+    if (file.isAbsolute) return file
+    val workingDir = System.getenv("BUILD_WORKING_DIRECTORY")
+    return if (workingDir != null) File(workingDir, path) else file
 }
 
 private fun parseCommandLineArgs(args: Array<String>): Map<String, String> {
