@@ -1,0 +1,81 @@
+load("@rules_kotlin//kotlin:jvm.bzl", "kt_jvm_library", "kt_jvm_test")
+
+package(default_visibility = ["//visibility:public"])
+
+kt_jvm_library(
+    name = "data",
+    srcs = glob(["src/main/kotlin/**/*.kt"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//core/linguistics",
+        "@maven//:org_jetbrains_kotlinx_kotlinx_serialization_json",
+        "@maven//:org_xerial_sqlite_jdbc",
+    ],
+)
+
+kt_jvm_test(
+    name = "seed_database_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/data/seed/SeedDatabaseTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.data.seed.SeedDatabaseTest",
+    deps = [
+        ":data",
+        "//core/linguistics",
+        "@maven//:junit_junit",
+        "@maven//:org_xerial_sqlite_jdbc",
+    ],
+)
+
+kt_jvm_test(
+    name = "seed_dictionary_repository_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/data/seed/SeedDictionaryRepositoryTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.data.seed.SeedDictionaryRepositoryTest",
+    deps = [
+        ":data",
+        "//core/linguistics",
+        "@maven//:junit_junit",
+        "@maven//:org_xerial_sqlite_jdbc",
+    ],
+)
+
+kt_jvm_test(
+    name = "seed_false_cognates_repository_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/data/seed/SeedFalseCognatesRepositoryTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.data.seed.SeedFalseCognatesRepositoryTest",
+    deps = [
+        ":data",
+        "//core/linguistics",
+        "@maven//:junit_junit",
+        "@maven//:org_xerial_sqlite_jdbc",
+    ],
+)
+
+kt_jvm_test(
+    name = "seed_curated_lessons_repository_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/data/seed/SeedCuratedLessonsRepositoryTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.data.seed.SeedCuratedLessonsRepositoryTest",
+    deps = [
+        ":data",
+        "//core/linguistics",
+        "@maven//:junit_junit",
+        "@maven//:org_jetbrains_kotlinx_kotlinx_serialization_json",
+        "@maven//:org_xerial_sqlite_jdbc",
+    ],
+)
+
+kt_jvm_test(
+    name = "seed_cognate_rules_repository_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/data/seed/SeedCognateRulesRepositoryTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.data.seed.SeedCognateRulesRepositoryTest",
+    deps = [
+        ":data",
+        "//core/linguistics",
+        "@maven//:junit_junit",
+        "@maven//:org_jetbrains_kotlinx_kotlinx_serialization_json",
+        "@maven//:org_xerial_sqlite_jdbc",
+    ],
+)
