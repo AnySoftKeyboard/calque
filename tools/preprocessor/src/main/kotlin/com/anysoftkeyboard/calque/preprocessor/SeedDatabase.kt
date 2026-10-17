@@ -13,7 +13,7 @@ import java.sql.Types
  *
  * Implements the table schemas defined in docs/DATA.md.
  */
-class SeedDatabase(private val connection: Connection) : AutoCloseable {
+class SeedDatabase(internal val connection: Connection) : AutoCloseable {
 
     init {
         DatabaseBinders.createTables(connection)

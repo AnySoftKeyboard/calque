@@ -13,6 +13,7 @@ kt_jvm_library(
 
 kt_jvm_test(
     name = "seed_database_test",
+    size = "small",
     srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/data/seed/SeedDatabaseTest.kt"],
     test_class = "com.anysoftkeyboard.calque.data.seed.SeedDatabaseTest",
     deps = [
@@ -23,6 +24,7 @@ kt_jvm_test(
 
 kt_jvm_test(
     name = "seed_dictionary_repository_test",
+    size = "small",
     srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/data/seed/SeedDictionaryRepositoryTest.kt"],
     test_class = "com.anysoftkeyboard.calque.data.seed.SeedDictionaryRepositoryTest",
     deps = [
@@ -34,6 +36,7 @@ kt_jvm_test(
 
 kt_jvm_test(
     name = "seed_false_cognates_repository_test",
+    size = "small",
     srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/data/seed/SeedFalseCognatesRepositoryTest.kt"],
     test_class = "com.anysoftkeyboard.calque.data.seed.SeedFalseCognatesRepositoryTest",
     deps = [
@@ -45,6 +48,7 @@ kt_jvm_test(
 
 kt_jvm_test(
     name = "seed_curated_lessons_repository_test",
+    size = "small",
     srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/data/seed/SeedCuratedLessonsRepositoryTest.kt"],
     test_class = "com.anysoftkeyboard.calque.data.seed.SeedCuratedLessonsRepositoryTest",
     deps = [
@@ -55,6 +59,7 @@ kt_jvm_test(
 
 kt_jvm_test(
     name = "seed_cognate_rules_repository_test",
+    size = "small",
     srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/data/seed/SeedCognateRulesRepositoryTest.kt"],
     test_class = "com.anysoftkeyboard.calque.data.seed.SeedCognateRulesRepositoryTest",
     deps = [
@@ -64,7 +69,22 @@ kt_jvm_test(
 )
 
 kt_jvm_test(
+    name = "packaged_seed_asset_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/data/seed/PackagedSeedAssetTest.kt"],
+    data = [
+        "//app:seed_db_asset",
+    ],
+    test_class = "com.anysoftkeyboard.calque.data.seed.PackagedSeedAssetTest",
+    deps = [
+        ":data",
+        "@maven//:junit_junit",
+    ],
+)
+
+kt_jvm_test(
     name = "user_database_test",
+    size = "small",
     srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/data/user/UserDatabaseTest.kt"],
     test_class = "com.anysoftkeyboard.calque.data.user.UserDatabaseTest",
     deps = [
@@ -75,6 +95,7 @@ kt_jvm_test(
 
 kt_jvm_test(
     name = "user_word_state_repository_test",
+    size = "small",
     srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/data/user/UserWordStateRepositoryTest.kt"],
     test_class = "com.anysoftkeyboard.calque.data.user.UserWordStateRepositoryTest",
     deps = [
@@ -86,6 +107,7 @@ kt_jvm_test(
 
 kt_jvm_test(
     name = "user_custom_text_repository_test",
+    size = "small",
     srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/data/user/UserCustomTextRepositoryTest.kt"],
     test_class = "com.anysoftkeyboard.calque.data.user.UserCustomTextRepositoryTest",
     deps = [
@@ -96,6 +118,7 @@ kt_jvm_test(
 
 kt_jvm_test(
     name = "calque_word_lookup_provider_test",
+    size = "small",
     srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/data/CalqueWordLookupProviderTest.kt"],
     test_class = "com.anysoftkeyboard.calque.data.CalqueWordLookupProviderTest",
     deps = [

@@ -200,7 +200,7 @@ class PreprocessorTest {
                         "base",
                         "fantastic",
                         true,
-                        300
+                        300,
                     ),
                 ),
             )
@@ -353,6 +353,59 @@ class PreprocessorTest {
     }
 
     @Test
+    fun dictionarySeedProcessor_parsesAndInsertsEntries() {
+        val inMemoryDb = SeedDatabase.open()
+        inMemoryDb.use { db ->
+            val sampleJson =
+                """
+                [
+                  {
+                    "surface_form": "hotel",
+                    "lemma": "hotel",
+                    "pos": "noun",
+                    "grammar_info": "masc. sing.",
+                    "english_gloss": "hotel",
+                    "is_cognate": true,
+                    "frequency_rank": 500
+                  }
+                ]
+                """
+                    .trimIndent()
+
+            val count =
+                DictionarySeedProcessor.processDictionarySeed(sampleJson.byteInputStream(), db)
+            assertEquals(1, count)
+
+            val hotel = db.lookupWord("hotel")
+            assertNotNull(hotel)
+            assertTrue(hotel?.isCognate == true)
+            assertEquals(500, hotel?.frequencyRank)
+        }
+    }
+
+    @Test
+    fun curatedDictionarySeed_isValidAndPopulatesDatabase() {
+        val seedFile = File("data/seeds/dictionary_seed.json")
+        assertTrue("Expected seed file at ${seedFile.path}", seedFile.exists())
+
+        SeedDatabase.open().use { db ->
+            val insertedCount =
+                FileInputStream(seedFile).use { stream ->
+                    DictionarySeedProcessor.processDictionarySeed(stream, db)
+                }
+            assertTrue("Expected >= 100 entries, found $insertedCount", insertedCount >= 100)
+
+            val hotelInfo = db.lookupWord("hotel")
+            assertNotNull(hotelInfo)
+            assertTrue(hotelInfo?.isCognate == true)
+
+            val esInfo = db.lookupWord("es")
+            assertNotNull(esInfo)
+            assertEquals("3rd sing. present", esInfo?.grammar)
+        }
+    }
+
+    @Test
     fun pipeline_executesEndToEndSuccessfully() {
         val tempDir = createTempDirectory("calque_pipeline_test").toFile()
         val dbFile = File(tempDir, "seed.db")
@@ -366,6 +419,7 @@ class PreprocessorTest {
         val kaikkiFile = File(tempDir, "kaikki.jsonl")
         kaikkiFile.writeText("$sampleKaikki\n", StandardCharsets.UTF_8)
 
+        val dictionarySeedFile = File("data/seeds/dictionary_seed.json")
         val falseCognatesSeedFile = File("data/seeds/false_cognates_seed.json")
         val curatedLessonsSeedFile = File("data/seeds/curated_lessons_seed.json")
         val cognateRulesSeedFile = File("data/seeds/cognate_rules_seed.json")
@@ -375,6 +429,7 @@ class PreprocessorTest {
                 dbFile = dbFile,
                 kaikkiFile = kaikkiFile,
                 sublexFile = sublexFile,
+                dictionarySeedFile = dictionarySeedFile,
                 falseCognatesFile = falseCognatesSeedFile,
                 curatedLessonsFile = curatedLessonsSeedFile,
                 cognateRulesFile = cognateRulesSeedFile,
@@ -384,9 +439,9 @@ class PreprocessorTest {
         val summary = pipeline.execute()
 
         assertTrue(dbFile.exists())
-        assertTrue(summary.dictionaryRows >= 2)
-        // 25 base lemmas + "carpetas" plural from Kaikki = 26 rows
-        assertEquals(26, summary.falseCognateRows)
+        assertTrue(summary.dictionaryRows >= 100)
+        // 25 base lemmas + "carpetas" plural from Kaikki/dictionary = at least 26 rows
+        assertTrue(summary.falseCognateRows >= 26)
         assertEquals(8, summary.curatedLessonRows)
         assertEquals(12, summary.cognateRuleRows)
 
