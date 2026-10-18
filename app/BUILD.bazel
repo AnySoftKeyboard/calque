@@ -1,3 +1,6 @@
+load("@rules_android//rules:rules.bzl", "android_binary")
+load("@rules_kotlin//kotlin:android.bzl", "kt_android_library", "kt_android_local_test")
+
 package(default_visibility = ["//visibility:public"])
 
 exports_files([
@@ -7,4 +10,81 @@ exports_files([
 filegroup(
     name = "seed_db_asset",
     srcs = ["src/main/assets/databases/seed.db"],
+)
+
+kt_android_library(
+    name = "app_lib",
+    srcs = glob(["src/main/kotlin/**/*.kt"]),
+    custom_package = "com.anysoftkeyboard.calque",
+    manifest = "src/main/AndroidManifest.xml",
+    resource_files = glob(["src/main/res/**"]),
+    deps = [
+        "//core/data",
+        "//core/linguistics",
+        "//core/reader",
+        "//core/toolbox",
+        "@maven//:org_jetbrains_kotlinx_kotlinx_coroutines_core",
+    ],
+)
+
+android_binary(
+    name = "app",
+    assets = glob(["src/main/assets/**"]),
+    assets_dir = "src/main/assets",
+    custom_package = "com.anysoftkeyboard.calque",
+    manifest = "src/main/AndroidManifest.xml",
+    manifest_values = {
+        "applicationId": "com.anysoftkeyboard.calque",
+        "minSdkVersion": "26",
+        "targetSdkVersion": "35",
+        "versionCode": "1",
+        "versionName": "0.0.1",
+    },
+    deps = [
+        ":app_lib",
+    ],
+)
+
+kt_android_local_test(
+    name = "nav_state_manager_test",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/ui/nav/NavStateManagerTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.ui.nav.NavStateManagerTest",
+    deps = [
+        ":app_lib",
+        "@maven//:junit_junit",
+    ],
+)
+
+kt_android_local_test(
+    name = "calque_colors_test",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/ui/theme/CalqueColorsTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.ui.theme.CalqueColorsTest",
+    deps = [
+        ":app_lib",
+        "@maven//:junit_junit",
+    ],
+)
+
+kt_android_local_test(
+    name = "default_app_container_test",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/di/DefaultAppContainerTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.di.DefaultAppContainerTest",
+    deps = [
+        ":app_lib",
+        "//core/linguistics",
+        "//core/reader",
+        "@maven//:junit_junit",
+    ],
+)
+
+kt_android_local_test(
+    name = "in_memory_repositories_test",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/di/InMemoryRepositoriesTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.di.InMemoryRepositoriesTest",
+    deps = [
+        ":app_lib",
+        "//core/data",
+        "//core/linguistics",
+        "@maven//:junit_junit",
+    ],
 )
