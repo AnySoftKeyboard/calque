@@ -6,10 +6,12 @@ import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.anysoftkeyboard.calque.di.AppContainer
 import com.anysoftkeyboard.calque.ui.nav.NavDestination
+import com.anysoftkeyboard.calque.ui.reader.ReaderView
 import com.anysoftkeyboard.calque.ui.theme.CalqueColors
 
 /** Main activity hosting the primary navigation shell of Calque. */
@@ -18,7 +20,9 @@ class MainActivity : Activity() {
     private lateinit var appContainer: AppContainer
     private lateinit var titleView: TextView
     private lateinit var subtitleView: TextView
-    private lateinit var contentView: TextView
+    private lateinit var contentContainer: FrameLayout
+    private lateinit var placeholderView: TextView
+    private lateinit var readerView: ReaderView
     private val tabViews = mutableMapOf<NavDestination, TextView>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +51,14 @@ class MainActivity : Activity() {
         updateDestination(appContainer.navStateManager.currentDestination)
     }
 
+    @Suppress("DEPRECATION", "OVERRIDE_DEPRECATION")
+    override fun onBackPressed() {
+        if (readerView.handleBackPressed()) {
+            return
+        }
+        super.onBackPressed()
+    }
+
     private fun createHeader(): View {
         return LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
@@ -72,23 +84,37 @@ class MainActivity : Activity() {
     }
 
     private fun createContentArea(): View {
-        val container =
-            LinearLayout(this).apply {
-                orientation = LinearLayout.VERTICAL
-                gravity = Gravity.CENTER
-                setPadding(dp(24), dp(24), dp(24), dp(24))
+        contentContainer =
+            FrameLayout(this).apply {
                 layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f)
             }
 
-        contentView =
+        readerView =
+            ReaderView(this, appContainer).apply {
+                layoutParams =
+                    FrameLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                    )
+            }
+        contentContainer.addView(readerView)
+
+        placeholderView =
             TextView(this).apply {
                 textSize = 16f
                 typeface = Typeface.SERIF
                 gravity = Gravity.CENTER
+                setPadding(dp(24), dp(24), dp(24), dp(24))
                 setTextColor(CalqueColors.Light.textPrimary)
+                layoutParams =
+                    FrameLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                    )
             }
-        container.addView(contentView)
-        return container
+        contentContainer.addView(placeholderView)
+
+        return contentContainer
     }
 
     private fun createBottomNav(): View {
@@ -127,7 +153,15 @@ class MainActivity : Activity() {
         val titleText = getString(R.string.app_name) + " — " + destination.title
         titleView.text = titleText
         subtitleView.text = destination.subtitle
-        contentView.text = buildDestinationContent(destination)
+
+        if (destination == NavDestination.READER) {
+            readerView.visibility = View.VISIBLE
+            placeholderView.visibility = View.GONE
+        } else {
+            readerView.visibility = View.GONE
+            placeholderView.visibility = View.VISIBLE
+            placeholderView.text = buildDestinationContent(destination)
+        }
 
         for ((dest, tab) in tabViews) {
             val isSelected = dest == destination
@@ -144,9 +178,7 @@ class MainActivity : Activity() {
 
     private fun buildDestinationContent(destination: NavDestination): String {
         return when (destination) {
-            NavDestination.READER ->
-                "Welcome to Calque.\n\nSelect a text from your vault or curated lessons " +
-                    "to start reading with live interlinear glosses."
+            NavDestination.READER -> ""
             NavDestination.TOOLBOX ->
                 "Toolbox Toys:\n\n• False Friend Radar\n• Word Transformer\n• " +
                     "Tense Shifter\n• Number Odometer\n• Clitic Surgery"
@@ -154,7 +186,5 @@ class MainActivity : Activity() {
         }
     }
 
-    private fun dp(value: Int): Int {
-        return (value * resources.displayMetrics.density).toInt()
-    }
+    private fun dp(value: Int): Int = (value * resources.displayMetrics.density).toInt()
 }

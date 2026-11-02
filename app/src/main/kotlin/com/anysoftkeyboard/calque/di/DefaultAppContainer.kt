@@ -24,11 +24,12 @@ import java.io.InputStream
 import java.sql.Connection
 
 /** Default implementation of [AppContainer] managing database connections and engine lifecycle. */
-class DefaultAppContainer(
+open class DefaultAppContainer(
     databaseDir: File? = null,
     assetProvider: ((String) -> InputStream?)? = null,
     seedConnectionSupplier: (() -> Connection)? = null,
     userConnectionSupplier: (() -> Connection)? = null,
+    curatedLessons: CuratedLessonsRepository? = null,
 ) : AppContainer {
 
     private val seedDatabase: SeedDatabase? =
@@ -43,7 +44,7 @@ class DefaultAppContainer(
         seedDatabase?.falseCognates ?: InMemoryFalseCognatesRepository()
 
     override val curatedLessonsRepository: CuratedLessonsRepository =
-        seedDatabase?.curatedLessons ?: InMemoryCuratedLessonsRepository()
+        curatedLessons ?: seedDatabase?.curatedLessons ?: InMemoryCuratedLessonsRepository()
 
     override val cognateRulesRepository: CognateRulesRepository =
         seedDatabase?.cognateRules ?: InMemoryCognateRulesRepository()
