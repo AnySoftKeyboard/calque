@@ -1,0 +1,336 @@
+[
+  {
+    "lesson_id": "lvl0_00_cognate_unlock",
+    "level": 0,
+    "sequence_order": 0,
+    "title": "The Cognate Unlock & Vowel Soundboard",
+    "target_concept": "Recognize shared Latin roots and steady five-vowel Spanish pronunciation in your very first sentences.",
+    "content": {
+      "sentences": [
+        {
+          "sentence_es": "El hotel moderno es excelente.",
+          "translation_en": "The modern hotel is excellent.",
+          "interlinear_gloss": [
+            { "es": "El", "en": "the" },
+            { "es": "hotel", "en": "hotel" },
+            { "es": "moderno", "en": "modern" },
+            { "es": "es", "en": "is" },
+            { "es": "excelente", "en": "excellent" }
+          ],
+          "grammar_callout": "Four of these five words are transparent cognates. Only 'el' (the) and 'es' (is) are structural glue."
+        },
+        {
+          "sentence_es": "La música clásica es fantástica.",
+          "translation_en": "Classical music is fantastic.",
+          "interlinear_gloss": [
+            { "es": "La", "en": "the" },
+            { "es": "música", "en": "music" },
+            { "es": "clásica", "en": "classical" },
+            { "es": "es", "en": "is" },
+            { "es": "fantástica", "en": "fantastic" }
+          ],
+          "grammar_callout": "Spanish uses 'la' before general feminine nouns like 'la música' even when English omits 'the'."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_id": "lvl0_01_svo_cognates",
+    "level": 0,
+    "sequence_order": 1,
+    "title": "Basic Subject-Verb-Object with Cognates",
+    "target_concept": "Decode standard Subject-Verb-Object clauses where suffix bridges (-ción, -dad) unlock the nouns.",
+    "content": {
+      "sentences": [
+        {
+          "sentence_es": "El profesor explica la situación.",
+          "translation_en": "The professor explains the situation.",
+          "interlinear_gloss": [
+            { "es": "El", "en": "the" },
+            { "es": "profesor", "en": "professor" },
+            { "es": "explica", "en": "explains" },
+            { "es": "la", "en": "the" },
+            { "es": "situación", "en": "situation" }
+          ],
+          "grammar_callout": "The suffix -ción always maps to English -tion and is always feminine (la situación)."
+        },
+        {
+          "sentence_es": "La universidad organiza una conferencia internacional.",
+          "translation_en": "The university organizes an international conference.",
+          "interlinear_gloss": [
+            { "es": "La", "en": "the" },
+            { "es": "universidad", "en": "university" },
+            { "es": "organiza", "en": "organizes" },
+            { "es": "una", "en": "an" },
+            { "es": "conferencia", "en": "conference" },
+            { "es": "internacional", "en": "international" }
+          ],
+          "grammar_callout": "English -ty maps to -dad (universidad) and -nce maps to -ncia (conferencia)."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_id": "lvl0_02_adjectives_after_nouns",
+    "level": 0,
+    "sequence_order": 2,
+    "title": "Adjectives After Nouns",
+    "target_concept": "Spanish names the thing first and describes it second: Noun + Adjective.",
+    "content": {
+      "sentences": [
+        {
+          "sentence_es": "El director presenta un proyecto importante.",
+          "translation_en": "The director presents an important project.",
+          "interlinear_gloss": [
+            { "es": "El", "en": "the" },
+            { "es": "director", "en": "director" },
+            { "es": "presenta", "en": "presents" },
+            { "es": "un", "en": "a" },
+            { "es": "proyecto", "en": "project" },
+            { "es": "importante", "en": "important" }
+          ],
+          "grammar_callout": "Read 'un proyecto importante' as a single unit: first see the noun (project), then apply the modifier (important)."
+        },
+        {
+          "sentence_es": "Las soluciones posibles requieren paciencia.",
+          "translation_en": "The possible solutions require patience.",
+          "interlinear_gloss": [
+            { "es": "Las", "en": "the (pl.)" },
+            { "es": "soluciones", "en": "solutions" },
+            { "es": "posibles", "en": "possible (pl.)" },
+            { "es": "requieren", "en": "require" },
+            { "es": "paciencia", "en": "patience" }
+          ],
+          "grammar_callout": "Adjectives also echo plural endings: 'soluciones' (plural) pulls 'posibles' into the plural."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_id": "lvl0_03_negation_and_questions",
+    "level": 0,
+    "sequence_order": 3,
+    "title": "Negation & Question Markers",
+    "target_concept": "Place 'no' directly before the verb to negate, and use inverted '¿' as an early heads-up for questions.",
+    "content": {
+      "sentences": [
+        {
+          "sentence_es": "El sistema no funciona correctamente.",
+          "translation_en": "The system does not work properly.",
+          "interlinear_gloss": [
+            { "es": "El", "en": "the" },
+            { "es": "sistema", "en": "system" },
+            { "es": "no", "en": "not" },
+            { "es": "funciona", "en": "functions / works" },
+            { "es": "correctamente", "en": "correctly" }
+          ],
+          "grammar_callout": "Spanish has no dummy auxiliary like 'does'. Simply put 'no' immediately before the action verb."
+        },
+        {
+          "sentence_es": "¿Necesita el equipo más información?",
+          "translation_en": "Does the team need more information?",
+          "interlinear_gloss": [
+            { "es": "¿Necesita", "en": "needs?" },
+            { "es": "el", "en": "the" },
+            { "es": "equipo", "en": "team" },
+            { "es": "más", "en": "more" },
+            { "es": "información?", "en": "information?" }
+          ],
+          "grammar_callout": "The opening '¿' tells your internal reading voice to adopt question intonation before you even reach the first word."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_id": "lvl0_04_omitted_subjects",
+    "level": 0,
+    "sequence_order": 4,
+    "title": "Omitted Subjects (Verb Endings as Pronouns)",
+    "target_concept": "Spanish drops subject pronouns ('I', 'we', 'they') because the verb ending already reveals who is acting.",
+    "content": {
+      "sentences": [
+        {
+          "sentence_es": "Buscamos una oportunidad diferente.",
+          "translation_en": "We are looking for a different opportunity.",
+          "interlinear_gloss": [
+            { "es": "Buscamos", "en": "we look for" },
+            { "es": "una", "en": "a" },
+            { "es": "oportunidad", "en": "opportunity" },
+            { "es": "diferente", "en": "different" }
+          ],
+          "grammar_callout": "The ending '-mos' always means 'we' (nosotros). Also note that 'buscar' includes the 'for' inside the verb itself."
+        },
+        {
+          "sentence_es": "Prefieren estudiar en la biblioteca central.",
+          "translation_en": "They prefer to study in the central library.",
+          "interlinear_gloss": [
+            { "es": "Prefieren", "en": "they prefer" },
+            { "es": "estudiar", "en": "to study" },
+            { "es": "en", "en": "in" },
+            { "es": "la", "en": "the" },
+            { "es": "biblioteca", "en": "library" },
+            { "es": "central", "en": "central" }
+          ],
+          "grammar_callout": "A verb ending in '-n' (-an / -en) signals a plural 'they' (or plural 'you')."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_id": "lvl0_05_clitic_object_pronouns",
+    "level": 0,
+    "sequence_order": 5,
+    "title": "Clitic Object Pronouns",
+    "target_concept": "Short object pronouns (lo, la, le, se, me) appear right before conjugated verbs or fuse onto the end of infinitives and gerunds.",
+    "content": {
+      "sentences": [
+        {
+          "sentence_es": "El médico lo recomienda totalmente.",
+          "translation_en": "The doctor totally recommends it.",
+          "interlinear_gloss": [
+            { "es": "El", "en": "the" },
+            { "es": "médico", "en": "doctor" },
+            { "es": "lo", "en": "it" },
+            { "es": "recomienda", "en": "recommends" },
+            { "es": "totalmente", "en": "totally" }
+          ],
+          "grammar_callout": "With conjugated verbs, 'lo' (it/him) jumps ahead of the verb: literally 'The doctor it recommends'."
+        },
+        {
+          "sentence_es": "Queremos explicárselo con calma.",
+          "translation_en": "We want to explain it to him calmly.",
+          "interlinear_gloss": [
+            { "es": "Queremos", "en": "we want" },
+            { "es": "explicárselo", "en": "to explain + to him/her + it" },
+            { "es": "con", "en": "with" },
+            { "es": "calma", "en": "calm" }
+          ],
+          "grammar_callout": "Pronoun Surgery: 'explicárselo' unpacks into 'explicar' (to explain) + 'se' (to him/her/them) + 'lo' (it)."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_id": "lvl1_01_el_problema_en_la_oficina",
+    "level": 1,
+    "sequence_order": 1,
+    "title": "El Problema en la Oficina",
+    "target_concept": "Read a connected present-tense micro-story combining false cognates (soportar, carpeta) and clitic pronouns.",
+    "content": {
+      "sentences": [
+        {
+          "sentence_es": "Actualmente Marco trabaja en una oficina muy activa.",
+          "translation_en": "Currently Marco works in a very busy office.",
+          "interlinear_gloss": [
+            { "es": "Actualmente", "en": "currently" },
+            { "es": "Marco", "en": "Marco" },
+            { "es": "trabaja", "en": "works" },
+            { "es": "en", "en": "in" },
+            { "es": "una", "en": "an" },
+            { "es": "oficina", "en": "office" },
+            { "es": "muy", "en": "very" },
+            { "es": "activa", "en": "active / busy" }
+          ],
+          "grammar_callout": "Trap alert: 'Actualmente' means 'currently', not 'actually'."
+        },
+        {
+          "sentence_es": "Guarda todos los contratos importantes en una carpeta azul.",
+          "translation_en": "He keeps all the important contracts in a blue folder.",
+          "interlinear_gloss": [
+            { "es": "Guarda", "en": "he keeps" },
+            { "es": "todos", "en": "all" },
+            { "es": "los", "en": "the" },
+            { "es": "contratos", "en": "contracts" },
+            { "es": "importantes", "en": "important" },
+            { "es": "en", "en": "in" },
+            { "es": "una", "en": "a" },
+            { "es": "carpeta", "en": "folder" },
+            { "es": "azul", "en": "blue" }
+          ],
+          "grammar_callout": "Trap alert: 'carpeta' is a desk folder or binder, never a floor carpet."
+        },
+        {
+          "sentence_es": "Elena no soporta el ruido y decide explicárselo al director.",
+          "translation_en": "Elena cannot stand the noise and decides to explain it to the director.",
+          "interlinear_gloss": [
+            { "es": "Elena", "en": "Elena" },
+            { "es": "no", "en": "not" },
+            { "es": "soporta", "en": "tolerates / stands" },
+            { "es": "el", "en": "the" },
+            { "es": "ruido", "en": "noise" },
+            { "es": "y", "en": "and" },
+            { "es": "decide", "en": "decides" },
+            { "es": "explicárselo", "en": "to explain + to him + it" },
+            { "es": "al", "en": "to the" },
+            { "es": "director", "en": "director" }
+          ],
+          "grammar_callout": "Combines the false friend 'soporta' (tolerates) with the compound clitic verb 'explicárselo' (explicar + se + lo)."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_id": "lvl2_01_el_misterio_de_la_libreria",
+    "level": 2,
+    "sequence_order": 1,
+    "title": "El Misterio de la Librería",
+    "target_concept": "Navigate past-tense narrative contrasts (ongoing imperfecto vs. completed pretérito) in a short story.",
+    "content": {
+      "sentences": [
+        {
+          "sentence_es": "Llovía intensamente cuando Clara entró en la pequeña librería del barrio.",
+          "translation_en": "It was raining heavily when Clara walked into the small neighborhood bookstore.",
+          "interlinear_gloss": [
+            { "es": "Llovía", "en": "it was raining" },
+            { "es": "intensamente", "en": "intensely / heavily" },
+            { "es": "cuando", "en": "when" },
+            { "es": "Clara", "en": "Clara" },
+            { "es": "entró", "en": "entered" },
+            { "es": "en", "en": "in / into" },
+            { "es": "la", "en": "the" },
+            { "es": "pequeña", "en": "small" },
+            { "es": "librería", "en": "bookstore" },
+            { "es": "del", "en": "of the" },
+            { "es": "barrio", "en": "neighborhood" }
+          ],
+          "grammar_callout": "'Llovía' (-ía imperfecto) paints the ongoing background weather, while 'entró' (-ó pretérito) marks the single completed action."
+        },
+        {
+          "sentence_es": "Buscaba una novela histórica pero encontró una carta antigua entre las páginas.",
+          "translation_en": "She was looking for a historical novel, but she found an old letter between the pages.",
+          "interlinear_gloss": [
+            { "es": "Buscaba", "en": "she was looking for" },
+            { "es": "una", "en": "a" },
+            { "es": "novela", "en": "novel" },
+            { "es": "histórica", "en": "historical" },
+            { "es": "pero", "en": "but" },
+            { "es": "encontró", "en": "she found" },
+            { "es": "una", "en": "an" },
+            { "es": "carta", "en": "letter" },
+            { "es": "antigua", "en": "old / ancient" },
+            { "es": "entre", "en": "between" },
+            { "es": "las", "en": "the" },
+            { "es": "páginas", "en": "pages" }
+          ],
+          "grammar_callout": "Again, '-aba' (buscaba = was looking for) sets the ongoing intention interrupted by '-ó' (encontró = found)."
+        },
+        {
+          "sentence_es": "La lectura del documento reveló un secreto familiar extraordinario.",
+          "translation_en": "Reading the document revealed an extraordinary family secret.",
+          "interlinear_gloss": [
+            { "es": "La", "en": "the" },
+            { "es": "lectura", "en": "reading" },
+            { "es": "del", "en": "of the" },
+            { "es": "documento", "en": "document" },
+            { "es": "reveló", "en": "revealed" },
+            { "es": "un", "en": "an" },
+            { "es": "secreto", "en": "secret" },
+            { "es": "familiar", "en": "family" },
+            { "es": "extraordinario", "en": "extraordinary" }
+          ],
+          "grammar_callout": "Trap alert: 'lectura' means 'reading' (not lecture), and 'familiar' as an adjective means 'related to family' (not just well-known)."
+        }
+      ]
+    }
+  }
+]

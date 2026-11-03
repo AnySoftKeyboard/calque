@@ -13,13 +13,258 @@ import java.sql.Types
  *
  * Implements the table schemas defined in docs/DATA.md.
  */
-class SeedDatabase(private val connection: Connection) : AutoCloseable {
+class SeedDatabase(internal val connection: Connection) : AutoCloseable {
 
     init {
-        createTables()
+        DatabaseBinders.createTables(connection)
     }
 
-    private fun createTables() {
+    /** Inserts a batch of dictionary rows inside a single transaction. */
+    fun insertDictionaryBatch(entries: Collection<DictionaryRow>) {
+        if (entries.isEmpty()) return
+        val sql =
+            """
+            INSERT OR REPLACE INTO dictionary (
+                surface_form, lemma, pos, grammar_info, english_gloss, is_cognate, frequency_rank
+            ) VALUES (?, ?, ?, ?, ?, ?, ?)
+            """
+                .trimIndent()
+
+        DatabaseBinders.executeTransaction(connection) {
+            connection.prepareStatement(sql).use { pstmt ->
+                for (entry in entries) {
+                    DatabaseBinders.bindDictionaryRow(pstmt, entry)
+                    pstmt.addBatch()
+                }
+                pstmt.executeBatch()
+            }
+        }
+    }
+
+    /** Queries all surface forms registered for a given lemma. */
+    fun querySurfacesForLemma(lemma: String): List<String> {
+        val sql = "SELECT surface_form FROM dictionary WHERE lemma = ?"
+        val surfaces = mutableListOf<String>()
+        connection.prepareStatement(sql).use { pstmt ->
+            pstmt.setString(PARAM_QUERY_LEMMA, lemma)
+            pstmt.executeQuery().use { rs ->
+                while (rs.next()) {
+                    surfaces.add(rs.getString("surface_form"))
+                }
+            }
+        }
+        return surfaces
+    }
+
+    /** Looks up word properties from the dictionary table for sentence scoring. */
+    fun lookupWord(surfaceForm: String): ScoredWordInfo? {
+        val sql =
+            "SELECT is_cognate, frequency_rank, grammar_info FROM dictionary WHERE surface_form = ? LIMIT 1"
+        connection.prepareStatement(sql).use { pstmt ->
+            pstmt.setString(PARAM_LOOKUP_SURFACE, surfaceForm)
+            pstmt.executeQuery().use { rs ->
+                if (rs.next()) {
+                    return DatabaseBinders.mapWordInfo(rs)
+                }
+            }
+        }
+        return null
+    }
+
+    /** Inserts a batch of false cognate rows inside a transaction. */
+    fun insertFalseCognatesBatch(entries: Collection<FalseCognateRow>) {
+        if (entries.isEmpty()) return
+        val sql =
+            """
+            INSERT OR REPLACE INTO false_cognates (
+                surface_form, lemma, apparent_english, actual_english, real_spanish_for_apparent,
+                severity, disambiguation_tip, example_es, example_en
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """
+                .trimIndent()
+
+        DatabaseBinders.executeTransaction(connection) {
+            connection.prepareStatement(sql).use { pstmt ->
+                for (entry in entries) {
+                    DatabaseBinders.bindFalseCognateRow(pstmt, entry)
+                    pstmt.addBatch()
+                }
+                pstmt.executeBatch()
+            }
+        }
+    }
+
+    /** Queries all false cognate rows stored in the database. */
+    fun queryFalseCognates(): List<FalseCognateRow> {
+        val sql =
+            """
+            SELECT surface_form, lemma, apparent_english, actual_english, real_spanish_for_apparent,
+                   severity, disambiguation_tip, example_es, example_en
+            FROM false_cognates
+            ORDER BY rowid ASC
+            """
+                .trimIndent()
+        val rows = mutableListOf<FalseCognateRow>()
+        connection.createStatement().use { stmt ->
+            stmt.executeQuery(sql).use { rs ->
+                while (rs.next()) {
+                    rows.add(DatabaseBinders.mapFalseCognateRow(rs))
+                }
+            }
+        }
+        return rows
+    }
+
+    /** Inserts a batch of curated lessons. */
+    fun insertCuratedLessonsBatch(entries: Collection<CuratedLessonRow>) {
+        if (entries.isEmpty()) return
+        val sql =
+            """
+            INSERT OR REPLACE INTO curated_lessons (
+                lesson_id, level, sequence_order, title, target_concept, content_json
+            ) VALUES (?, ?, ?, ?, ?, ?)
+            """
+                .trimIndent()
+
+        DatabaseBinders.executeTransaction(connection) {
+            connection.prepareStatement(sql).use { pstmt ->
+                for (entry in entries) {
+                    DatabaseBinders.bindCuratedLessonRow(pstmt, entry)
+                    pstmt.addBatch()
+                }
+                pstmt.executeBatch()
+            }
+        }
+    }
+
+    /** Queries all curated lessons ordered by level and sequence_order. */
+    fun queryCuratedLessons(): List<CuratedLessonRow> {
+        val sql =
+            """
+            SELECT lesson_id, level, sequence_order, title, target_concept, content_json
+            FROM curated_lessons
+            ORDER BY level ASC, sequence_order ASC
+            """
+                .trimIndent()
+        val lessons = mutableListOf<CuratedLessonRow>()
+        connection.createStatement().use { stmt ->
+            stmt.executeQuery(sql).use { rs ->
+                while (rs.next()) {
+                    lessons.add(DatabaseBinders.mapCuratedLessonRow(rs))
+                }
+            }
+        }
+        return lessons
+    }
+
+    /** Inserts a batch of cognate rules. */
+    fun insertCognateRulesBatch(entries: Collection<CognateRuleRow>) {
+        if (entries.isEmpty()) return
+        val sql =
+            """
+            INSERT OR REPLACE INTO cognate_rules (
+                rule_id, english_suffix, spanish_suffix, gender_rule, spelling_note, examples_json
+            ) VALUES (?, ?, ?, ?, ?, ?)
+            """
+                .trimIndent()
+
+        DatabaseBinders.executeTransaction(connection) {
+            connection.prepareStatement(sql).use { pstmt ->
+                for (entry in entries) {
+                    DatabaseBinders.bindCognateRuleRow(pstmt, entry)
+                    pstmt.addBatch()
+                }
+                pstmt.executeBatch()
+            }
+        }
+    }
+
+    /** Queries all cognate rules stored in the database. */
+    fun queryCognateRules(): List<CognateRuleRow> {
+        val sql =
+            """
+            SELECT rule_id, english_suffix, spanish_suffix, gender_rule, spelling_note, examples_json
+            FROM cognate_rules
+            ORDER BY rowid ASC
+            """
+                .trimIndent()
+        val rules = mutableListOf<CognateRuleRow>()
+        connection.createStatement().use { stmt ->
+            stmt.executeQuery(sql).use { rs ->
+                while (rs.next()) {
+                    rules.add(DatabaseBinders.mapCognateRuleRow(rs))
+                }
+            }
+        }
+        return rules
+    }
+
+    override fun close() {
+        connection.close()
+    }
+
+    companion object {
+        const val COGNATE_FLAG_TRUE = 1
+
+        private const val PARAM_QUERY_LEMMA = 1
+        private const val PARAM_LOOKUP_SURFACE = 1
+
+        /** Connects to an SQLite database at [jdbcUrl] or creates an in-memory database. */
+        fun open(jdbcUrl: String = "jdbc:sqlite::memory:"): SeedDatabase {
+            val conn = DriverManager.getConnection(jdbcUrl)
+            return SeedDatabase(conn)
+        }
+    }
+}
+
+internal object DatabaseBinders {
+    private const val PARAM_DICT_SURFACE = 1
+    private const val PARAM_DICT_LEMMA = 2
+    private const val PARAM_DICT_POS = 3
+    private const val PARAM_DICT_GRAMMAR = 4
+    private const val PARAM_DICT_GLOSS = 5
+    private const val PARAM_DICT_COGNATE = 6
+    private const val PARAM_DICT_FREQ = 7
+
+    private const val PARAM_FC_SURFACE = 1
+    private const val PARAM_FC_LEMMA = 2
+    private const val PARAM_FC_APPARENT = 3
+    private const val PARAM_FC_ACTUAL = 4
+    private const val PARAM_FC_REAL_SPANISH = 5
+    private const val PARAM_FC_SEVERITY = 6
+    private const val PARAM_FC_TIP = 7
+    private const val PARAM_FC_EX_ES = 8
+    private const val PARAM_FC_EX_EN = 9
+
+    private const val PARAM_LESSON_ID = 1
+    private const val PARAM_LESSON_LEVEL = 2
+    private const val PARAM_LESSON_SEQ = 3
+    private const val PARAM_LESSON_TITLE = 4
+    private const val PARAM_LESSON_CONCEPT = 5
+    private const val PARAM_LESSON_CONTENT = 6
+
+    private const val PARAM_RULE_ID = 1
+    private const val PARAM_RULE_EN_SUFFIX = 2
+    private const val PARAM_RULE_ES_SUFFIX = 3
+    private const val PARAM_RULE_GENDER = 4
+    private const val PARAM_RULE_SPELLING = 5
+    private const val PARAM_RULE_EXAMPLES = 6
+
+    inline fun executeTransaction(connection: Connection, action: () -> Unit) {
+        val prevAutoCommit = connection.autoCommit
+        connection.autoCommit = false
+        try {
+            action()
+            connection.commit()
+        } catch (e: SQLException) {
+            connection.rollback()
+            throw e
+        } finally {
+            connection.autoCommit = prevAutoCommit
+        }
+    }
+
+    fun createTables(connection: Connection) {
         val statements =
             listOf(
                 """
@@ -77,190 +322,6 @@ class SeedDatabase(private val connection: Connection) : AutoCloseable {
         }
     }
 
-    private inline fun executeTransaction(action: () -> Unit) {
-        val prevAutoCommit = connection.autoCommit
-        connection.autoCommit = false
-        try {
-            action()
-            connection.commit()
-        } catch (e: SQLException) {
-            connection.rollback()
-            throw e
-        } finally {
-            connection.autoCommit = prevAutoCommit
-        }
-    }
-
-    /** Inserts a batch of dictionary rows inside a single transaction. */
-    fun insertDictionaryBatch(entries: Collection<DictionaryRow>) {
-        if (entries.isEmpty()) return
-        val sql =
-            """
-            INSERT OR REPLACE INTO dictionary (
-                surface_form, lemma, pos, grammar_info, english_gloss, is_cognate, frequency_rank
-            ) VALUES (?, ?, ?, ?, ?, ?, ?)
-            """
-                .trimIndent()
-
-        executeTransaction {
-            connection.prepareStatement(sql).use { pstmt ->
-                for (entry in entries) {
-                    DatabaseBinders.bindDictionaryRow(pstmt, entry)
-                    pstmt.addBatch()
-                }
-                pstmt.executeBatch()
-            }
-        }
-    }
-
-    /** Queries all surface forms registered for a given lemma. */
-    fun querySurfacesForLemma(lemma: String): List<String> {
-        val sql = "SELECT surface_form FROM dictionary WHERE lemma = ?"
-        val surfaces = mutableListOf<String>()
-        connection.prepareStatement(sql).use { pstmt ->
-            pstmt.setString(PARAM_QUERY_LEMMA, lemma)
-            pstmt.executeQuery().use { rs ->
-                while (rs.next()) {
-                    surfaces.add(rs.getString("surface_form"))
-                }
-            }
-        }
-        return surfaces
-    }
-
-    /** Looks up word properties from the dictionary table for sentence scoring. */
-    fun lookupWord(surfaceForm: String): ScoredWordInfo? {
-        val sql =
-            "SELECT is_cognate, frequency_rank, grammar_info FROM dictionary WHERE surface_form = ? LIMIT 1"
-        connection.prepareStatement(sql).use { pstmt ->
-            pstmt.setString(PARAM_LOOKUP_SURFACE, surfaceForm)
-            pstmt.executeQuery().use { rs ->
-                if (rs.next()) {
-                    return DatabaseBinders.mapWordInfo(rs)
-                }
-            }
-        }
-        return null
-    }
-
-    /** Inserts a batch of false cognate rows inside a transaction. */
-    fun insertFalseCognatesBatch(entries: Collection<FalseCognateRow>) {
-        if (entries.isEmpty()) return
-        val sql =
-            """
-            INSERT OR REPLACE INTO false_cognates (
-                surface_form, lemma, apparent_english, actual_english, real_spanish_for_apparent,
-                severity, disambiguation_tip, example_es, example_en
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """
-                .trimIndent()
-
-        executeTransaction {
-            connection.prepareStatement(sql).use { pstmt ->
-                for (entry in entries) {
-                    DatabaseBinders.bindFalseCognateRow(pstmt, entry)
-                    pstmt.addBatch()
-                }
-                pstmt.executeBatch()
-            }
-        }
-    }
-
-    /** Inserts a batch of curated lessons. */
-    fun insertCuratedLessonsBatch(entries: Collection<CuratedLessonRow>) {
-        if (entries.isEmpty()) return
-        val sql =
-            """
-            INSERT OR REPLACE INTO curated_lessons (
-                lesson_id, level, sequence_order, title, target_concept, content_json
-            ) VALUES (?, ?, ?, ?, ?, ?)
-            """
-                .trimIndent()
-
-        executeTransaction {
-            connection.prepareStatement(sql).use { pstmt ->
-                for (entry in entries) {
-                    DatabaseBinders.bindCuratedLessonRow(pstmt, entry)
-                    pstmt.addBatch()
-                }
-                pstmt.executeBatch()
-            }
-        }
-    }
-
-    /** Inserts a batch of cognate rules. */
-    fun insertCognateRulesBatch(entries: Collection<CognateRuleRow>) {
-        if (entries.isEmpty()) return
-        val sql =
-            """
-            INSERT OR REPLACE INTO cognate_rules (
-                rule_id, english_suffix, spanish_suffix, gender_rule, spelling_note, examples_json
-            ) VALUES (?, ?, ?, ?, ?, ?)
-            """
-                .trimIndent()
-
-        executeTransaction {
-            connection.prepareStatement(sql).use { pstmt ->
-                for (entry in entries) {
-                    DatabaseBinders.bindCognateRuleRow(pstmt, entry)
-                    pstmt.addBatch()
-                }
-                pstmt.executeBatch()
-            }
-        }
-    }
-
-    override fun close() {
-        connection.close()
-    }
-
-    companion object {
-        const val COGNATE_FLAG_TRUE = 1
-
-        private const val PARAM_QUERY_LEMMA = 1
-        private const val PARAM_LOOKUP_SURFACE = 1
-
-        /** Connects to an SQLite database at [jdbcUrl] or creates an in-memory database. */
-        fun open(jdbcUrl: String = "jdbc:sqlite::memory:"): SeedDatabase {
-            val conn = DriverManager.getConnection(jdbcUrl)
-            return SeedDatabase(conn)
-        }
-    }
-}
-
-internal object DatabaseBinders {
-    private const val PARAM_DICT_SURFACE = 1
-    private const val PARAM_DICT_LEMMA = 2
-    private const val PARAM_DICT_POS = 3
-    private const val PARAM_DICT_GRAMMAR = 4
-    private const val PARAM_DICT_GLOSS = 5
-    private const val PARAM_DICT_COGNATE = 6
-    private const val PARAM_DICT_FREQ = 7
-
-    private const val PARAM_FC_SURFACE = 1
-    private const val PARAM_FC_LEMMA = 2
-    private const val PARAM_FC_APPARENT = 3
-    private const val PARAM_FC_ACTUAL = 4
-    private const val PARAM_FC_REAL_SPANISH = 5
-    private const val PARAM_FC_SEVERITY = 6
-    private const val PARAM_FC_TIP = 7
-    private const val PARAM_FC_EX_ES = 8
-    private const val PARAM_FC_EX_EN = 9
-
-    private const val PARAM_LESSON_ID = 1
-    private const val PARAM_LESSON_LEVEL = 2
-    private const val PARAM_LESSON_SEQ = 3
-    private const val PARAM_LESSON_TITLE = 4
-    private const val PARAM_LESSON_CONCEPT = 5
-    private const val PARAM_LESSON_CONTENT = 6
-
-    private const val PARAM_RULE_ID = 1
-    private const val PARAM_RULE_EN_SUFFIX = 2
-    private const val PARAM_RULE_ES_SUFFIX = 3
-    private const val PARAM_RULE_GENDER = 4
-    private const val PARAM_RULE_SPELLING = 5
-    private const val PARAM_RULE_EXAMPLES = 6
-
     fun bindDictionaryRow(pstmt: PreparedStatement, entry: DictionaryRow) {
         pstmt.setString(PARAM_DICT_SURFACE, entry.surfaceForm)
         pstmt.setString(PARAM_DICT_LEMMA, entry.lemma)
@@ -303,6 +364,20 @@ internal object DatabaseBinders {
         pstmt.setString(PARAM_FC_EX_EN, entry.exampleEn)
     }
 
+    fun mapFalseCognateRow(rs: ResultSet): FalseCognateRow {
+        return FalseCognateRow(
+            surfaceForm = rs.getString("surface_form"),
+            lemma = rs.getString("lemma"),
+            apparentEnglish = rs.getString("apparent_english"),
+            actualEnglish = rs.getString("actual_english"),
+            realSpanishForApparent = rs.getString("real_spanish_for_apparent"),
+            severity = rs.getString("severity"),
+            disambiguationTip = rs.getString("disambiguation_tip"),
+            exampleEs = rs.getString("example_es"),
+            exampleEn = rs.getString("example_en"),
+        )
+    }
+
     fun bindCuratedLessonRow(pstmt: PreparedStatement, entry: CuratedLessonRow) {
         pstmt.setString(PARAM_LESSON_ID, entry.lessonId)
         pstmt.setInt(PARAM_LESSON_LEVEL, entry.level)
@@ -310,6 +385,17 @@ internal object DatabaseBinders {
         pstmt.setString(PARAM_LESSON_TITLE, entry.title)
         pstmt.setString(PARAM_LESSON_CONCEPT, entry.targetConcept)
         pstmt.setString(PARAM_LESSON_CONTENT, entry.contentJson)
+    }
+
+    fun mapCuratedLessonRow(rs: ResultSet): CuratedLessonRow {
+        return CuratedLessonRow(
+            lessonId = rs.getString("lesson_id"),
+            level = rs.getInt("level"),
+            sequenceOrder = rs.getInt("sequence_order"),
+            title = rs.getString("title"),
+            targetConcept = rs.getString("target_concept"),
+            contentJson = rs.getString("content_json"),
+        )
     }
 
     fun bindCognateRuleRow(pstmt: PreparedStatement, entry: CognateRuleRow) {
@@ -323,5 +409,16 @@ internal object DatabaseBinders {
         }
         pstmt.setString(PARAM_RULE_SPELLING, entry.spellingNote)
         pstmt.setString(PARAM_RULE_EXAMPLES, entry.examplesJson)
+    }
+
+    fun mapCognateRuleRow(rs: ResultSet): CognateRuleRow {
+        return CognateRuleRow(
+            ruleId = rs.getString("rule_id"),
+            englishSuffix = rs.getString("english_suffix"),
+            spanishSuffix = rs.getString("spanish_suffix"),
+            genderRule = rs.getString("gender_rule"),
+            spellingNote = rs.getString("spelling_note"),
+            examplesJson = rs.getString("examples_json"),
+        )
     }
 }

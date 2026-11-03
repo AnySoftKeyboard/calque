@@ -8,7 +8,9 @@ data class PipelineConfig(
     val dbFile: File,
     val kaikkiFile: File? = null,
     val sublexFile: File? = null,
+    val dictionarySeedFile: File? = null,
     val falseCognatesFile: File? = null,
+    val curatedLessonsFile: File? = null,
     val tatoebaFile: File? = null,
     val cognateRulesFile: File? = null,
 )
@@ -34,10 +36,13 @@ class PreprocessorPipeline(private val config: PipelineConfig) {
     /** Executes the pipeline stages on an already opened [SeedDatabase]. */
     fun executeWithDatabase(database: SeedDatabase): PipelineSummary {
         val sublexFrequencies = loadSublexFrequencies()
-        val dictCount = processKaikki(database, sublexFrequencies)
+        val dictSeedCount = processDictionarySeed(database)
+        val kaikkiCount = processKaikki(database, sublexFrequencies)
+        val dictCount = dictSeedCount + kaikkiCount
         val falseCognatesCount = processFalseCognates(database)
-        val lessonsCount = processLessons(database)
+        val lessonsCount = processCuratedLessons(database) + processTatoeba(database)
         val rulesCount = processRules(database)
+        database.optimize()
 
         return PipelineSummary(
             dictionaryRows = dictCount,
@@ -51,6 +56,14 @@ class PreprocessorPipeline(private val config: PipelineConfig) {
         val file = config.sublexFile
         if (file == null || !file.exists()) return emptyMap()
         return FileInputStream(file).use { SublexReader.readFrequencies(it) }
+    }
+
+    private fun processDictionarySeed(database: SeedDatabase): Long {
+        val file = config.dictionarySeedFile
+        if (file == null || !file.exists()) return 0L
+        return FileInputStream(file).use {
+            DictionarySeedProcessor.processDictionarySeed(it, database).toLong()
+        }
     }
 
     private fun processKaikki(database: SeedDatabase, sublexFrequencies: Map<String, Int>): Long {
@@ -67,7 +80,13 @@ class PreprocessorPipeline(private val config: PipelineConfig) {
         return FileInputStream(file).use { FalseCognatesExpander.expand(it, database) }
     }
 
-    private fun processLessons(database: SeedDatabase): Int {
+    private fun processCuratedLessons(database: SeedDatabase): Int {
+        val file = config.curatedLessonsFile
+        if (file == null || !file.exists()) return 0
+        return FileInputStream(file).use { CuratedLessonsProcessor.processLessons(it, database) }
+    }
+
+    private fun processTatoeba(database: SeedDatabase): Int {
         val file = config.tatoebaFile
         if (file == null || !file.exists()) return 0
         return FileInputStream(file).use { TatoebaProcessor.processSentences(it, database) }

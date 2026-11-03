@@ -1,0 +1,11 @@
+{
+  "$schema": "https://t3.codes/schema/t3.json",
+  "defaultThreadEnvMode": "local",
+  "scripts": [
+    {
+      "name": "Build APK",
+      "command": "zsh -c 'bazelisk build //app:app && mkdir -p outputs && cp -f bazel-bin/app/app.apk outputs/ && echo && echo \"Download APK:\" && curl -s -F \"file=@outputs/app.apk\" https://temp.sh/upload && echo'",
+      "icon": "build"
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+load("@rules_kotlin//kotlin:jvm.bzl", "kt_jvm_library", "kt_jvm_test")
+
+package(default_visibility = ["//visibility:public"])
+
+kt_jvm_library(
+    name = "toolbox",
+    srcs = glob(["src/main/kotlin/**/*.kt"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//core/data",
+        "//core/linguistics",
+    ],
+)
+
+kt_jvm_test(
+    name = "trap_detector_engine_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/toolbox/TrapDetectorEngineTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.toolbox.TrapDetectorEngineTest",
+    deps = [
+        ":toolbox",
+        "//core/data",
+        "@maven//:junit_junit",
+    ],
+)
+
+kt_jvm_test(
+    name = "word_transformer_engine_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/toolbox/WordTransformerEngineTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.toolbox.WordTransformerEngineTest",
+    deps = [
+        ":toolbox",
+        "//core/data",
+        "@maven//:junit_junit",
+    ],
+)
+
+kt_jvm_test(
+    name = "tense_shifter_engine_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/toolbox/TenseShifterEngineTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.toolbox.TenseShifterEngineTest",
+    deps = [
+        ":toolbox",
+        "@maven//:junit_junit",
+    ],
+)
+
+kt_jvm_test(
+    name = "number_odometer_engine_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/toolbox/NumberOdometerEngineTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.toolbox.NumberOdometerEngineTest",
+    deps = [
+        ":toolbox",
+        "@maven//:junit_junit",
+    ],
+)
+
+kt_jvm_test(
+    name = "clitic_surgery_engine_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/toolbox/CliticSurgeryEngineTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.toolbox.CliticSurgeryEngineTest",
+    deps = [
+        ":toolbox",
+        "//core/linguistics",
+        "@maven//:junit_junit",
+    ],
+)
+
+kt_jvm_test(
+    name = "omni_bar_engine_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/toolbox/OmniBarEngineTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.toolbox.OmniBarEngineTest",
+    deps = [
+        ":toolbox",
+        "//core/data",
+        "//core/linguistics",
+        "@maven//:junit_junit",
+    ],
+)

@@ -1,0 +1,1568 @@
+[
+  {
+    "surface_form": "el",
+    "lemma": "el",
+    "pos": "article",
+    "grammar_info": "masc. sing.",
+    "english_gloss": "the",
+    "is_cognate": false,
+    "frequency_rank": 1
+  },
+  {
+    "surface_form": "la",
+    "lemma": "el",
+    "pos": "article",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "the",
+    "is_cognate": false,
+    "frequency_rank": 2
+  },
+  {
+    "surface_form": "de",
+    "lemma": "de",
+    "pos": "prep",
+    "grammar_info": null,
+    "english_gloss": "of / from",
+    "is_cognate": false,
+    "frequency_rank": 3
+  },
+  {
+    "surface_form": "que",
+    "lemma": "que",
+    "pos": "conj",
+    "grammar_info": null,
+    "english_gloss": "that / which",
+    "is_cognate": false,
+    "frequency_rank": 4
+  },
+  {
+    "surface_form": "y",
+    "lemma": "y",
+    "pos": "conj",
+    "grammar_info": null,
+    "english_gloss": "and",
+    "is_cognate": false,
+    "frequency_rank": 5
+  },
+  {
+    "surface_form": "a",
+    "lemma": "a",
+    "pos": "prep",
+    "grammar_info": null,
+    "english_gloss": "to / at",
+    "is_cognate": false,
+    "frequency_rank": 6
+  },
+  {
+    "surface_form": "en",
+    "lemma": "en",
+    "pos": "prep",
+    "grammar_info": null,
+    "english_gloss": "in / on / at",
+    "is_cognate": false,
+    "frequency_rank": 7
+  },
+  {
+    "surface_form": "un",
+    "lemma": "uno",
+    "pos": "article",
+    "grammar_info": "masc. sing.",
+    "english_gloss": "a / an",
+    "is_cognate": false,
+    "frequency_rank": 8
+  },
+  {
+    "surface_form": "una",
+    "lemma": "uno",
+    "pos": "article",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "a / an",
+    "is_cognate": false,
+    "frequency_rank": 9
+  },
+  {
+    "surface_form": "ser",
+    "lemma": "ser",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to be",
+    "is_cognate": false,
+    "frequency_rank": 10
+  },
+  {
+    "surface_form": "es",
+    "lemma": "ser",
+    "pos": "verb",
+    "grammar_info": "3rd sing. present",
+    "english_gloss": "is",
+    "is_cognate": false,
+    "frequency_rank": 11
+  },
+  {
+    "surface_form": "son",
+    "lemma": "ser",
+    "pos": "verb",
+    "grammar_info": "3rd pl. present",
+    "english_gloss": "are",
+    "is_cognate": false,
+    "frequency_rank": 12
+  },
+  {
+    "surface_form": "era",
+    "lemma": "ser",
+    "pos": "verb",
+    "grammar_info": "1st/3rd sing. imperfect",
+    "english_gloss": "was",
+    "is_cognate": false,
+    "frequency_rank": 13
+  },
+  {
+    "surface_form": "fue",
+    "lemma": "ser",
+    "pos": "verb",
+    "grammar_info": "3rd sing. preterite",
+    "english_gloss": "was",
+    "is_cognate": false,
+    "frequency_rank": 14
+  },
+  {
+    "surface_form": "se",
+    "lemma": "se",
+    "pos": "pron",
+    "grammar_info": "reflexive / indirect",
+    "english_gloss": "himself / herself / to him / to her",
+    "is_cognate": false,
+    "frequency_rank": 15
+  },
+  {
+    "surface_form": "no",
+    "lemma": "no",
+    "pos": "adv",
+    "grammar_info": null,
+    "english_gloss": "no / not",
+    "is_cognate": true,
+    "frequency_rank": 16
+  },
+  {
+    "surface_form": "haber",
+    "lemma": "haber",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to have (auxiliary) / to exist",
+    "is_cognate": false,
+    "frequency_rank": 17
+  },
+  {
+    "surface_form": "hay",
+    "lemma": "haber",
+    "pos": "verb",
+    "grammar_info": "present impersonal",
+    "english_gloss": "there is / there are",
+    "is_cognate": false,
+    "frequency_rank": 18
+  },
+  {
+    "surface_form": "por",
+    "lemma": "por",
+    "pos": "prep",
+    "grammar_info": null,
+    "english_gloss": "for / by / through",
+    "is_cognate": false,
+    "frequency_rank": 19
+  },
+  {
+    "surface_form": "con",
+    "lemma": "con",
+    "pos": "prep",
+    "grammar_info": null,
+    "english_gloss": "with",
+    "is_cognate": false,
+    "frequency_rank": 20
+  },
+  {
+    "surface_form": "para",
+    "lemma": "para",
+    "pos": "prep",
+    "grammar_info": null,
+    "english_gloss": "for / in order to",
+    "is_cognate": false,
+    "frequency_rank": 21
+  },
+  {
+    "surface_form": "como",
+    "lemma": "como",
+    "pos": "conj",
+    "grammar_info": null,
+    "english_gloss": "like / as",
+    "is_cognate": false,
+    "frequency_rank": 22
+  },
+  {
+    "surface_form": "estar",
+    "lemma": "estar",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to be (state/location)",
+    "is_cognate": false,
+    "frequency_rank": 23
+  },
+  {
+    "surface_form": "está",
+    "lemma": "estar",
+    "pos": "verb",
+    "grammar_info": "3rd sing. present",
+    "english_gloss": "is",
+    "is_cognate": false,
+    "frequency_rank": 24
+  },
+  {
+    "surface_form": "están",
+    "lemma": "estar",
+    "pos": "verb",
+    "grammar_info": "3rd pl. present",
+    "english_gloss": "are",
+    "is_cognate": false,
+    "frequency_rank": 25
+  },
+  {
+    "surface_form": "tener",
+    "lemma": "tener",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to have",
+    "is_cognate": false,
+    "frequency_rank": 26
+  },
+  {
+    "surface_form": "tiene",
+    "lemma": "tener",
+    "pos": "verb",
+    "grammar_info": "3rd sing. present",
+    "english_gloss": "has",
+    "is_cognate": false,
+    "frequency_rank": 27
+  },
+  {
+    "surface_form": "tienen",
+    "lemma": "tener",
+    "pos": "verb",
+    "grammar_info": "3rd pl. present",
+    "english_gloss": "have",
+    "is_cognate": false,
+    "frequency_rank": 28
+  },
+  {
+    "surface_form": "le",
+    "lemma": "él",
+    "pos": "pron",
+    "grammar_info": "3rd sing. indirect object",
+    "english_gloss": "to him / to her",
+    "is_cognate": false,
+    "frequency_rank": 29
+  },
+  {
+    "surface_form": "lo",
+    "lemma": "él",
+    "pos": "pron",
+    "grammar_info": "3rd masc. sing. direct object",
+    "english_gloss": "it / him",
+    "is_cognate": false,
+    "frequency_rank": 30
+  },
+  {
+    "surface_form": "los",
+    "lemma": "el",
+    "pos": "article",
+    "grammar_info": "masc. pl.",
+    "english_gloss": "the",
+    "is_cognate": false,
+    "frequency_rank": 31
+  },
+  {
+    "surface_form": "las",
+    "lemma": "el",
+    "pos": "article",
+    "grammar_info": "fem. pl.",
+    "english_gloss": "the",
+    "is_cognate": false,
+    "frequency_rank": 32
+  },
+  {
+    "surface_form": "su",
+    "lemma": "su",
+    "pos": "adj",
+    "grammar_info": "possessive sing.",
+    "english_gloss": "his / her / their",
+    "is_cognate": false,
+    "frequency_rank": 33
+  },
+  {
+    "surface_form": "sus",
+    "lemma": "su",
+    "pos": "adj",
+    "grammar_info": "possessive pl.",
+    "english_gloss": "his / her / their",
+    "is_cognate": false,
+    "frequency_rank": 34
+  },
+  {
+    "surface_form": "pero",
+    "lemma": "pero",
+    "pos": "conj",
+    "grammar_info": null,
+    "english_gloss": "but",
+    "is_cognate": false,
+    "frequency_rank": 35
+  },
+  {
+    "surface_form": "más",
+    "lemma": "más",
+    "pos": "adv",
+    "grammar_info": null,
+    "english_gloss": "more",
+    "is_cognate": false,
+    "frequency_rank": 36
+  },
+  {
+    "surface_form": "hacer",
+    "lemma": "hacer",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to do / to make",
+    "is_cognate": false,
+    "frequency_rank": 37
+  },
+  {
+    "surface_form": "hace",
+    "lemma": "hacer",
+    "pos": "verb",
+    "grammar_info": "3rd sing. present",
+    "english_gloss": "does / makes",
+    "is_cognate": false,
+    "frequency_rank": 38
+  },
+  {
+    "surface_form": "o",
+    "lemma": "o",
+    "pos": "conj",
+    "grammar_info": null,
+    "english_gloss": "or",
+    "is_cognate": false,
+    "frequency_rank": 39
+  },
+  {
+    "surface_form": "poder",
+    "lemma": "poder",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to be able to / can",
+    "is_cognate": false,
+    "frequency_rank": 40
+  },
+  {
+    "surface_form": "puede",
+    "lemma": "poder",
+    "pos": "verb",
+    "grammar_info": "3rd sing. present",
+    "english_gloss": "can / is able to",
+    "is_cognate": false,
+    "frequency_rank": 41
+  },
+  {
+    "surface_form": "decir",
+    "lemma": "decir",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to say / to tell",
+    "is_cognate": false,
+    "frequency_rank": 42
+  },
+  {
+    "surface_form": "dice",
+    "lemma": "decir",
+    "pos": "verb",
+    "grammar_info": "3rd sing. present",
+    "english_gloss": "says",
+    "is_cognate": false,
+    "frequency_rank": 43
+  },
+  {
+    "surface_form": "este",
+    "lemma": "este",
+    "pos": "adj",
+    "grammar_info": "demonstrative masc. sing.",
+    "english_gloss": "this",
+    "is_cognate": false,
+    "frequency_rank": 44
+  },
+  {
+    "surface_form": "esta",
+    "lemma": "este",
+    "pos": "adj",
+    "grammar_info": "demonstrative fem. sing.",
+    "english_gloss": "this",
+    "is_cognate": false,
+    "frequency_rank": 45
+  },
+  {
+    "surface_form": "ir",
+    "lemma": "ir",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to go",
+    "is_cognate": false,
+    "frequency_rank": 46
+  },
+  {
+    "surface_form": "va",
+    "lemma": "ir",
+    "pos": "verb",
+    "grammar_info": "3rd sing. present",
+    "english_gloss": "goes / is going",
+    "is_cognate": false,
+    "frequency_rank": 47
+  },
+  {
+    "surface_form": "van",
+    "lemma": "ir",
+    "pos": "verb",
+    "grammar_info": "3rd pl. present",
+    "english_gloss": "go / are going",
+    "is_cognate": false,
+    "frequency_rank": 48
+  },
+  {
+    "surface_form": "otro",
+    "lemma": "otro",
+    "pos": "adj",
+    "grammar_info": "masc. sing.",
+    "english_gloss": "other / another",
+    "is_cognate": false,
+    "frequency_rank": 49
+  },
+  {
+    "surface_form": "otra",
+    "lemma": "otro",
+    "pos": "adj",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "other / another",
+    "is_cognate": false,
+    "frequency_rank": 50
+  },
+  {
+    "surface_form": "al",
+    "lemma": "a el",
+    "pos": "prep",
+    "grammar_info": "contraction a + el",
+    "english_gloss": "to the",
+    "is_cognate": false,
+    "frequency_rank": 51
+  },
+  {
+    "surface_form": "del",
+    "lemma": "de el",
+    "pos": "prep",
+    "grammar_info": "contraction de + el",
+    "english_gloss": "of the",
+    "is_cognate": false,
+    "frequency_rank": 52
+  },
+  {
+    "surface_form": "cuando",
+    "lemma": "cuando",
+    "pos": "conj",
+    "grammar_info": null,
+    "english_gloss": "when",
+    "is_cognate": false,
+    "frequency_rank": 53
+  },
+  {
+    "surface_form": "muy",
+    "lemma": "muy",
+    "pos": "adv",
+    "grammar_info": null,
+    "english_gloss": "very",
+    "is_cognate": false,
+    "frequency_rank": 54
+  },
+  {
+    "surface_form": "sin",
+    "lemma": "sin",
+    "pos": "prep",
+    "grammar_info": null,
+    "english_gloss": "without",
+    "is_cognate": false,
+    "frequency_rank": 55
+  },
+  {
+    "surface_form": "sobre",
+    "lemma": "sobre",
+    "pos": "prep",
+    "grammar_info": null,
+    "english_gloss": "on / about",
+    "is_cognate": false,
+    "frequency_rank": 56
+  },
+  {
+    "surface_form": "entre",
+    "lemma": "entre",
+    "pos": "prep",
+    "grammar_info": null,
+    "english_gloss": "between / among",
+    "is_cognate": false,
+    "frequency_rank": 57
+  },
+  {
+    "surface_form": "también",
+    "lemma": "también",
+    "pos": "adv",
+    "grammar_info": null,
+    "english_gloss": "also / too",
+    "is_cognate": false,
+    "frequency_rank": 58
+  },
+  {
+    "surface_form": "me",
+    "lemma": "yo",
+    "pos": "pron",
+    "grammar_info": "1st sing. object",
+    "english_gloss": "me / to me",
+    "is_cognate": true,
+    "frequency_rank": 59
+  },
+  {
+    "surface_form": "te",
+    "lemma": "tú",
+    "pos": "pron",
+    "grammar_info": "2nd sing. object",
+    "english_gloss": "you / to you",
+    "is_cognate": false,
+    "frequency_rank": 60
+  },
+  {
+    "surface_form": "nos",
+    "lemma": "nosotros",
+    "pos": "pron",
+    "grammar_info": "1st pl. object",
+    "english_gloss": "us / to us",
+    "is_cognate": false,
+    "frequency_rank": 61
+  },
+  {
+    "surface_form": "hotel",
+    "lemma": "hotel",
+    "pos": "noun",
+    "grammar_info": "masc. sing.",
+    "english_gloss": "hotel",
+    "is_cognate": true,
+    "frequency_rank": 450
+  },
+  {
+    "surface_form": "moderno",
+    "lemma": "moderno",
+    "pos": "adj",
+    "grammar_info": "masc. sing.",
+    "english_gloss": "modern",
+    "is_cognate": true,
+    "frequency_rank": 600
+  },
+  {
+    "surface_form": "moderna",
+    "lemma": "moderno",
+    "pos": "adj",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "modern",
+    "is_cognate": true,
+    "frequency_rank": 610
+  },
+  {
+    "surface_form": "excelente",
+    "lemma": "excelente",
+    "pos": "adj",
+    "grammar_info": "sing.",
+    "english_gloss": "excellent",
+    "is_cognate": true,
+    "frequency_rank": 700
+  },
+  {
+    "surface_form": "música",
+    "lemma": "música",
+    "pos": "noun",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "music",
+    "is_cognate": true,
+    "frequency_rank": 250
+  },
+  {
+    "surface_form": "clásica",
+    "lemma": "clásico",
+    "pos": "adj",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "classical",
+    "is_cognate": true,
+    "frequency_rank": 800
+  },
+  {
+    "surface_form": "clásico",
+    "lemma": "clásico",
+    "pos": "adj",
+    "grammar_info": "masc. sing.",
+    "english_gloss": "classic",
+    "is_cognate": true,
+    "frequency_rank": 790
+  },
+  {
+    "surface_form": "fantástica",
+    "lemma": "fantástico",
+    "pos": "adj",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "fantastic",
+    "is_cognate": true,
+    "frequency_rank": 950
+  },
+  {
+    "surface_form": "fantástico",
+    "lemma": "fantástico",
+    "pos": "adj",
+    "grammar_info": "masc. sing.",
+    "english_gloss": "fantastic",
+    "is_cognate": true,
+    "frequency_rank": 940
+  },
+  {
+    "surface_form": "profesor",
+    "lemma": "profesor",
+    "pos": "noun",
+    "grammar_info": "masc. sing.",
+    "english_gloss": "professor / teacher",
+    "is_cognate": true,
+    "frequency_rank": 400
+  },
+  {
+    "surface_form": "profesora",
+    "lemma": "profesor",
+    "pos": "noun",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "professor / teacher",
+    "is_cognate": true,
+    "frequency_rank": 420
+  },
+  {
+    "surface_form": "explicar",
+    "lemma": "explicar",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to explain",
+    "is_cognate": true,
+    "frequency_rank": 320
+  },
+  {
+    "surface_form": "explica",
+    "lemma": "explicar",
+    "pos": "verb",
+    "grammar_info": "3rd sing. present",
+    "english_gloss": "explains",
+    "is_cognate": true,
+    "frequency_rank": 325
+  },
+  {
+    "surface_form": "situación",
+    "lemma": "situación",
+    "pos": "noun",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "situation",
+    "is_cognate": true,
+    "frequency_rank": 180
+  },
+  {
+    "surface_form": "universidad",
+    "lemma": "universidad",
+    "pos": "noun",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "university",
+    "is_cognate": true,
+    "frequency_rank": 350
+  },
+  {
+    "surface_form": "organizar",
+    "lemma": "organizar",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to organize",
+    "is_cognate": true,
+    "frequency_rank": 650
+  },
+  {
+    "surface_form": "organiza",
+    "lemma": "organizar",
+    "pos": "verb",
+    "grammar_info": "3rd sing. present",
+    "english_gloss": "organizes",
+    "is_cognate": true,
+    "frequency_rank": 655
+  },
+  {
+    "surface_form": "conferencia",
+    "lemma": "conferencia",
+    "pos": "noun",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "conference",
+    "is_cognate": true,
+    "frequency_rank": 820
+  },
+  {
+    "surface_form": "internacional",
+    "lemma": "internacional",
+    "pos": "adj",
+    "grammar_info": "sing.",
+    "english_gloss": "international",
+    "is_cognate": true,
+    "frequency_rank": 410
+  },
+  {
+    "surface_form": "director",
+    "lemma": "director",
+    "pos": "noun",
+    "grammar_info": "masc. sing.",
+    "english_gloss": "director",
+    "is_cognate": true,
+    "frequency_rank": 380
+  },
+  {
+    "surface_form": "directora",
+    "lemma": "director",
+    "pos": "noun",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "director",
+    "is_cognate": true,
+    "frequency_rank": 390
+  },
+  {
+    "surface_form": "presentar",
+    "lemma": "presentar",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to present",
+    "is_cognate": true,
+    "frequency_rank": 340
+  },
+  {
+    "surface_form": "presenta",
+    "lemma": "presentar",
+    "pos": "verb",
+    "grammar_info": "3rd sing. present",
+    "english_gloss": "presents",
+    "is_cognate": true,
+    "frequency_rank": 345
+  },
+  {
+    "surface_form": "proyecto",
+    "lemma": "proyecto",
+    "pos": "noun",
+    "grammar_info": "masc. sing.",
+    "english_gloss": "project",
+    "is_cognate": true,
+    "frequency_rank": 310
+  },
+  {
+    "surface_form": "importante",
+    "lemma": "importante",
+    "pos": "adj",
+    "grammar_info": "sing.",
+    "english_gloss": "important",
+    "is_cognate": true,
+    "frequency_rank": 160
+  },
+  {
+    "surface_form": "importantes",
+    "lemma": "importante",
+    "pos": "adj",
+    "grammar_info": "plural",
+    "english_gloss": "important",
+    "is_cognate": true,
+    "frequency_rank": 165
+  },
+  {
+    "surface_form": "solución",
+    "lemma": "solución",
+    "pos": "noun",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "solution",
+    "is_cognate": true,
+    "frequency_rank": 520
+  },
+  {
+    "surface_form": "soluciones",
+    "lemma": "solución",
+    "pos": "noun",
+    "grammar_info": "fem. pl.",
+    "english_gloss": "solutions",
+    "is_cognate": true,
+    "frequency_rank": 525
+  },
+  {
+    "surface_form": "posible",
+    "lemma": "posible",
+    "pos": "adj",
+    "grammar_info": "sing.",
+    "english_gloss": "possible",
+    "is_cognate": true,
+    "frequency_rank": 210
+  },
+  {
+    "surface_form": "posibles",
+    "lemma": "posible",
+    "pos": "adj",
+    "grammar_info": "plural",
+    "english_gloss": "possible",
+    "is_cognate": true,
+    "frequency_rank": 215
+  },
+  {
+    "surface_form": "requerir",
+    "lemma": "requerir",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to require",
+    "is_cognate": true,
+    "frequency_rank": 730
+  },
+  {
+    "surface_form": "requieren",
+    "lemma": "requerir",
+    "pos": "verb",
+    "grammar_info": "3rd pl. present",
+    "english_gloss": "require",
+    "is_cognate": true,
+    "frequency_rank": 735
+  },
+  {
+    "surface_form": "paciencia",
+    "lemma": "paciencia",
+    "pos": "noun",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "patience",
+    "is_cognate": true,
+    "frequency_rank": 680
+  },
+  {
+    "surface_form": "sistema",
+    "lemma": "sistema",
+    "pos": "noun",
+    "grammar_info": "masc. sing.",
+    "english_gloss": "system",
+    "is_cognate": true,
+    "frequency_rank": 270
+  },
+  {
+    "surface_form": "funcionar",
+    "lemma": "funcionar",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to function / to work",
+    "is_cognate": true,
+    "frequency_rank": 490
+  },
+  {
+    "surface_form": "funciona",
+    "lemma": "funcionar",
+    "pos": "verb",
+    "grammar_info": "3rd sing. present",
+    "english_gloss": "functions / works",
+    "is_cognate": true,
+    "frequency_rank": 495
+  },
+  {
+    "surface_form": "correctamente",
+    "lemma": "correcto",
+    "pos": "adv",
+    "grammar_info": null,
+    "english_gloss": "correctly",
+    "is_cognate": true,
+    "frequency_rank": 780
+  },
+  {
+    "surface_form": "necesitar",
+    "lemma": "necesitar",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to need",
+    "is_cognate": false,
+    "frequency_rank": 190
+  },
+  {
+    "surface_form": "necesita",
+    "lemma": "necesitar",
+    "pos": "verb",
+    "grammar_info": "3rd sing. present",
+    "english_gloss": "needs",
+    "is_cognate": false,
+    "frequency_rank": 195
+  },
+  {
+    "surface_form": "equipo",
+    "lemma": "equipo",
+    "pos": "noun",
+    "grammar_info": "masc. sing.",
+    "english_gloss": "team / equipment",
+    "is_cognate": false,
+    "frequency_rank": 330
+  },
+  {
+    "surface_form": "información",
+    "lemma": "información",
+    "pos": "noun",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "information",
+    "is_cognate": true,
+    "frequency_rank": 220
+  },
+  {
+    "surface_form": "buscar",
+    "lemma": "buscar",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to look for / to search",
+    "is_cognate": false,
+    "frequency_rank": 240
+  },
+  {
+    "surface_form": "buscamos",
+    "lemma": "buscar",
+    "pos": "verb",
+    "grammar_info": "1st pl. present",
+    "english_gloss": "we look for",
+    "is_cognate": false,
+    "frequency_rank": 245
+  },
+  {
+    "surface_form": "buscaba",
+    "lemma": "buscar",
+    "pos": "verb",
+    "grammar_info": "1st/3rd sing. imperfect",
+    "english_gloss": "was looking for",
+    "is_cognate": false,
+    "frequency_rank": 248
+  },
+  {
+    "surface_form": "oportunidad",
+    "lemma": "oportunidad",
+    "pos": "noun",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "opportunity",
+    "is_cognate": true,
+    "frequency_rank": 360
+  },
+  {
+    "surface_form": "diferente",
+    "lemma": "diferente",
+    "pos": "adj",
+    "grammar_info": "sing.",
+    "english_gloss": "different",
+    "is_cognate": true,
+    "frequency_rank": 280
+  },
+  {
+    "surface_form": "preferir",
+    "lemma": "preferir",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to prefer",
+    "is_cognate": true,
+    "frequency_rank": 580
+  },
+  {
+    "surface_form": "prefieren",
+    "lemma": "preferir",
+    "pos": "verb",
+    "grammar_info": "3rd pl. present",
+    "english_gloss": "they prefer",
+    "is_cognate": true,
+    "frequency_rank": 585
+  },
+  {
+    "surface_form": "estudiar",
+    "lemma": "estudiar",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to study",
+    "is_cognate": true,
+    "frequency_rank": 470
+  },
+  {
+    "surface_form": "biblioteca",
+    "lemma": "biblioteca",
+    "pos": "noun",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "library",
+    "is_cognate": false,
+    "frequency_rank": 850
+  },
+  {
+    "surface_form": "central",
+    "lemma": "central",
+    "pos": "adj",
+    "grammar_info": "sing.",
+    "english_gloss": "central",
+    "is_cognate": true,
+    "frequency_rank": 510
+  },
+  {
+    "surface_form": "médico",
+    "lemma": "médico",
+    "pos": "noun",
+    "grammar_info": "masc. sing.",
+    "english_gloss": "doctor / physician",
+    "is_cognate": false,
+    "frequency_rank": 440
+  },
+  {
+    "surface_form": "recomendar",
+    "lemma": "recomendar",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to recommend",
+    "is_cognate": true,
+    "frequency_rank": 720
+  },
+  {
+    "surface_form": "recomienda",
+    "lemma": "recomendar",
+    "pos": "verb",
+    "grammar_info": "3rd sing. present",
+    "english_gloss": "recommends",
+    "is_cognate": true,
+    "frequency_rank": 725
+  },
+  {
+    "surface_form": "totalmente",
+    "lemma": "total",
+    "pos": "adv",
+    "grammar_info": null,
+    "english_gloss": "totally",
+    "is_cognate": true,
+    "frequency_rank": 640
+  },
+  {
+    "surface_form": "querer",
+    "lemma": "querer",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to want",
+    "is_cognate": false,
+    "frequency_rank": 80
+  },
+  {
+    "surface_form": "queremos",
+    "lemma": "querer",
+    "pos": "verb",
+    "grammar_info": "1st pl. present",
+    "english_gloss": "we want",
+    "is_cognate": false,
+    "frequency_rank": 85
+  },
+  {
+    "surface_form": "calma",
+    "lemma": "calma",
+    "pos": "noun",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "calm",
+    "is_cognate": true,
+    "frequency_rank": 760
+  },
+  {
+    "surface_form": "trabajar",
+    "lemma": "trabajar",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to work",
+    "is_cognate": false,
+    "frequency_rank": 260
+  },
+  {
+    "surface_form": "trabaja",
+    "lemma": "trabajar",
+    "pos": "verb",
+    "grammar_info": "3rd sing. present",
+    "english_gloss": "works",
+    "is_cognate": false,
+    "frequency_rank": 265
+  },
+  {
+    "surface_form": "oficina",
+    "lemma": "oficina",
+    "pos": "noun",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "office",
+    "is_cognate": false,
+    "frequency_rank": 430
+  },
+  {
+    "surface_form": "activo",
+    "lemma": "activo",
+    "pos": "adj",
+    "grammar_info": "masc. sing.",
+    "english_gloss": "active",
+    "is_cognate": true,
+    "frequency_rank": 870
+  },
+  {
+    "surface_form": "activa",
+    "lemma": "activo",
+    "pos": "adj",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "active",
+    "is_cognate": true,
+    "frequency_rank": 875
+  },
+  {
+    "surface_form": "guardar",
+    "lemma": "guardar",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to keep / to save",
+    "is_cognate": false,
+    "frequency_rank": 540
+  },
+  {
+    "surface_form": "guarda",
+    "lemma": "guardar",
+    "pos": "verb",
+    "grammar_info": "3rd sing. present",
+    "english_gloss": "keeps / saves",
+    "is_cognate": false,
+    "frequency_rank": 545
+  },
+  {
+    "surface_form": "todos",
+    "lemma": "todo",
+    "pos": "adj",
+    "grammar_info": "masc. pl.",
+    "english_gloss": "all",
+    "is_cognate": false,
+    "frequency_rank": 70
+  },
+  {
+    "surface_form": "contrato",
+    "lemma": "contrato",
+    "pos": "noun",
+    "grammar_info": "masc. sing.",
+    "english_gloss": "contract",
+    "is_cognate": true,
+    "frequency_rank": 630
+  },
+  {
+    "surface_form": "contratos",
+    "lemma": "contrato",
+    "pos": "noun",
+    "grammar_info": "masc. pl.",
+    "english_gloss": "contracts",
+    "is_cognate": true,
+    "frequency_rank": 635
+  },
+  {
+    "surface_form": "azul",
+    "lemma": "azul",
+    "pos": "adj",
+    "grammar_info": "sing.",
+    "english_gloss": "blue",
+    "is_cognate": false,
+    "frequency_rank": 810
+  },
+  {
+    "surface_form": "ruido",
+    "lemma": "ruido",
+    "pos": "noun",
+    "grammar_info": "masc. sing.",
+    "english_gloss": "noise",
+    "is_cognate": false,
+    "frequency_rank": 740
+  },
+  {
+    "surface_form": "decidir",
+    "lemma": "decidir",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to decide",
+    "is_cognate": true,
+    "frequency_rank": 370
+  },
+  {
+    "surface_form": "decide",
+    "lemma": "decidir",
+    "pos": "verb",
+    "grammar_info": "3rd sing. present",
+    "english_gloss": "decides",
+    "is_cognate": true,
+    "frequency_rank": 375
+  },
+  {
+    "surface_form": "llover",
+    "lemma": "llover",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to rain",
+    "is_cognate": false,
+    "frequency_rank": 920
+  },
+  {
+    "surface_form": "llovía",
+    "lemma": "llover",
+    "pos": "verb",
+    "grammar_info": "3rd sing. imperfect",
+    "english_gloss": "it was raining",
+    "is_cognate": false,
+    "frequency_rank": 925
+  },
+  {
+    "surface_form": "intensamente",
+    "lemma": "intenso",
+    "pos": "adv",
+    "grammar_info": null,
+    "english_gloss": "intensely",
+    "is_cognate": true,
+    "frequency_rank": 960
+  },
+  {
+    "surface_form": "entrar",
+    "lemma": "entrar",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to enter",
+    "is_cognate": true,
+    "frequency_rank": 290
+  },
+  {
+    "surface_form": "entró",
+    "lemma": "entrar",
+    "pos": "verb",
+    "grammar_info": "3rd sing. preterite",
+    "english_gloss": "entered",
+    "is_cognate": true,
+    "frequency_rank": 295
+  },
+  {
+    "surface_form": "pequeño",
+    "lemma": "pequeño",
+    "pos": "adj",
+    "grammar_info": "masc. sing.",
+    "english_gloss": "small",
+    "is_cognate": false,
+    "frequency_rank": 200
+  },
+  {
+    "surface_form": "pequeña",
+    "lemma": "pequeño",
+    "pos": "adj",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "small",
+    "is_cognate": false,
+    "frequency_rank": 205
+  },
+  {
+    "surface_form": "barrio",
+    "lemma": "barrio",
+    "pos": "noun",
+    "grammar_info": "masc. sing.",
+    "english_gloss": "neighborhood",
+    "is_cognate": false,
+    "frequency_rank": 660
+  },
+  {
+    "surface_form": "novela",
+    "lemma": "novela",
+    "pos": "noun",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "novel",
+    "is_cognate": true,
+    "frequency_rank": 770
+  },
+  {
+    "surface_form": "histórico",
+    "lemma": "histórico",
+    "pos": "adj",
+    "grammar_info": "masc. sing.",
+    "english_gloss": "historical",
+    "is_cognate": true,
+    "frequency_rank": 690
+  },
+  {
+    "surface_form": "histórica",
+    "lemma": "histórico",
+    "pos": "adj",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "historical",
+    "is_cognate": true,
+    "frequency_rank": 695
+  },
+  {
+    "surface_form": "encontrar",
+    "lemma": "encontrar",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to find",
+    "is_cognate": false,
+    "frequency_rank": 140
+  },
+  {
+    "surface_form": "encontró",
+    "lemma": "encontrar",
+    "pos": "verb",
+    "grammar_info": "3rd sing. preterite",
+    "english_gloss": "found",
+    "is_cognate": false,
+    "frequency_rank": 145
+  },
+  {
+    "surface_form": "carta",
+    "lemma": "carta",
+    "pos": "noun",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "letter / card",
+    "is_cognate": false,
+    "frequency_rank": 480
+  },
+  {
+    "surface_form": "antiguo",
+    "lemma": "antiguo",
+    "pos": "adj",
+    "grammar_info": "masc. sing.",
+    "english_gloss": "ancient / antique",
+    "is_cognate": false,
+    "frequency_rank": 590
+  },
+  {
+    "surface_form": "antigua",
+    "lemma": "antiguo",
+    "pos": "adj",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "ancient / antique",
+    "is_cognate": false,
+    "frequency_rank": 595
+  },
+  {
+    "surface_form": "página",
+    "lemma": "página",
+    "pos": "noun",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "page",
+    "is_cognate": true,
+    "frequency_rank": 710
+  },
+  {
+    "surface_form": "páginas",
+    "lemma": "página",
+    "pos": "noun",
+    "grammar_info": "fem. pl.",
+    "english_gloss": "pages",
+    "is_cognate": true,
+    "frequency_rank": 715
+  },
+  {
+    "surface_form": "lectura",
+    "lemma": "lectura",
+    "pos": "noun",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "reading",
+    "is_cognate": false,
+    "frequency_rank": 890
+  },
+  {
+    "surface_form": "documento",
+    "lemma": "documento",
+    "pos": "noun",
+    "grammar_info": "masc. sing.",
+    "english_gloss": "document",
+    "is_cognate": true,
+    "frequency_rank": 530
+  },
+  {
+    "surface_form": "revelar",
+    "lemma": "revelar",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to reveal",
+    "is_cognate": true,
+    "frequency_rank": 840
+  },
+  {
+    "surface_form": "reveló",
+    "lemma": "revelar",
+    "pos": "verb",
+    "grammar_info": "3rd sing. preterite",
+    "english_gloss": "revealed",
+    "is_cognate": true,
+    "frequency_rank": 845
+  },
+  {
+    "surface_form": "secreto",
+    "lemma": "secreto",
+    "pos": "noun",
+    "grammar_info": "masc. sing.",
+    "english_gloss": "secret",
+    "is_cognate": true,
+    "frequency_rank": 620
+  },
+  {
+    "surface_form": "familiar",
+    "lemma": "familiar",
+    "pos": "adj",
+    "grammar_info": "sing.",
+    "english_gloss": "family / familiar",
+    "is_cognate": true,
+    "frequency_rank": 570
+  },
+  {
+    "surface_form": "extraordinario",
+    "lemma": "extraordinario",
+    "pos": "adj",
+    "grammar_info": "masc. sing.",
+    "english_gloss": "extraordinary",
+    "is_cognate": true,
+    "frequency_rank": 980
+  },
+  {
+    "surface_form": "éxito",
+    "lemma": "éxito",
+    "pos": "noun",
+    "grammar_info": "masc. sing.",
+    "english_gloss": "success",
+    "is_cognate": false,
+    "frequency_rank": 460
+  },
+  {
+    "surface_form": "éxitos",
+    "lemma": "éxito",
+    "pos": "noun",
+    "grammar_info": "masc. pl.",
+    "english_gloss": "successes",
+    "is_cognate": false,
+    "frequency_rank": 465
+  },
+  {
+    "surface_form": "carpeta",
+    "lemma": "carpeta",
+    "pos": "noun",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "folder",
+    "is_cognate": false,
+    "frequency_rank": 910
+  },
+  {
+    "surface_form": "carpetas",
+    "lemma": "carpeta",
+    "pos": "noun",
+    "grammar_info": "fem. pl.",
+    "english_gloss": "folders",
+    "is_cognate": false,
+    "frequency_rank": 915
+  },
+  {
+    "surface_form": "soportar",
+    "lemma": "soportar",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to tolerate / to endure",
+    "is_cognate": false,
+    "frequency_rank": 830
+  },
+  {
+    "surface_form": "soporta",
+    "lemma": "soportar",
+    "pos": "verb",
+    "grammar_info": "3rd sing. present",
+    "english_gloss": "tolerates / stands",
+    "is_cognate": false,
+    "frequency_rank": 835
+  },
+  {
+    "surface_form": "embarazada",
+    "lemma": "embarazada",
+    "pos": "adj",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "pregnant",
+    "is_cognate": false,
+    "frequency_rank": 930
+  },
+  {
+    "surface_form": "actualmente",
+    "lemma": "actual",
+    "pos": "adv",
+    "grammar_info": null,
+    "english_gloss": "currently",
+    "is_cognate": false,
+    "frequency_rank": 505
+  },
+  {
+    "surface_form": "realizar",
+    "lemma": "realizar",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to carry out / to fulfill",
+    "is_cognate": false,
+    "frequency_rank": 300
+  },
+  {
+    "surface_form": "realizan",
+    "lemma": "realizar",
+    "pos": "verb",
+    "grammar_info": "3rd pl. present",
+    "english_gloss": "carry out / fulfill",
+    "is_cognate": false,
+    "frequency_rank": 305
+  },
+  {
+    "surface_form": "sensible",
+    "lemma": "sensible",
+    "pos": "adj",
+    "grammar_info": "sing.",
+    "english_gloss": "sensitive",
+    "is_cognate": false,
+    "frequency_rank": 860
+  },
+  {
+    "surface_form": "asistir",
+    "lemma": "asistir",
+    "pos": "verb",
+    "grammar_info": "infinitive",
+    "english_gloss": "to attend",
+    "is_cognate": false,
+    "frequency_rank": 670
+  },
+  {
+    "surface_form": "asiste",
+    "lemma": "asistir",
+    "pos": "verb",
+    "grammar_info": "3rd sing. present",
+    "english_gloss": "attends",
+    "is_cognate": false,
+    "frequency_rank": 675
+  },
+  {
+    "surface_form": "librería",
+    "lemma": "librería",
+    "pos": "noun",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "bookstore",
+    "is_cognate": false,
+    "frequency_rank": 970
+  },
+  {
+    "surface_form": "noticia",
+    "lemma": "noticia",
+    "pos": "noun",
+    "grammar_info": "fem. sing.",
+    "english_gloss": "news item",
+    "is_cognate": false,
+    "frequency_rank": 550
+  },
+  {
+    "surface_form": "noticias",
+    "lemma": "noticia",
+    "pos": "noun",
+    "grammar_info": "fem. pl.",
+    "english_gloss": "news",
+    "is_cognate": false,
+    "frequency_rank": 555
+  }
+]

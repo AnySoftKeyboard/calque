@@ -1,0 +1,51 @@
+load("@rules_kotlin//kotlin:jvm.bzl", "kt_jvm_library", "kt_jvm_test")
+
+package(default_visibility = ["//visibility:public"])
+
+kt_jvm_library(
+    name = "reader",
+    srcs = glob(["src/main/kotlin/**/*.kt"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//core/data",
+        "//core/linguistics",
+        "//core/toolbox",
+    ],
+)
+
+kt_jvm_test(
+    name = "sentence_segmenter_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/reader/SentenceSegmenterTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.reader.SentenceSegmenterTest",
+    deps = [
+        ":reader",
+        "@maven//:junit_junit",
+    ],
+)
+
+kt_jvm_test(
+    name = "interlinear_aligner_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/reader/InterlinearAlignerTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.reader.InterlinearAlignerTest",
+    deps = [
+        ":reader",
+        "//core/data",
+        "//core/linguistics",
+        "@maven//:junit_junit",
+    ],
+)
+
+kt_jvm_test(
+    name = "reader_session_engine_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/reader/ReaderSessionEngineTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.reader.ReaderSessionEngineTest",
+    deps = [
+        ":reader",
+        "//core/data",
+        "//core/linguistics",
+        "@maven//:junit_junit",
+    ],
+)

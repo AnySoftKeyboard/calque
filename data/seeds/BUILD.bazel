@@ -1,0 +1,18 @@
+package(default_visibility = ["//visibility:public"])
+
+exports_files([
+    "cognate_rules_seed.json",
+    "curated_lessons_seed.json",
+    "dictionary_seed.json",
+    "false_cognates_seed.json",
+])
+
+filegroup(
+    name = "seed_files",
+    srcs = [
+        "cognate_rules_seed.json",
+        "curated_lessons_seed.json",
+        "dictionary_seed.json",
+        "false_cognates_seed.json",
+    ],
+)

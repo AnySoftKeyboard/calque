@@ -6,3 +6,7 @@ bazel-*
 *.iml
 .vscode/
 .DS_Store
+
+# Build artifacts
+outputs/
+
