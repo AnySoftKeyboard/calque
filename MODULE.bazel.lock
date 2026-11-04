@@ -29,6 +29,7 @@
     "https://bcr.bazel.build/modules/aspect_bazel_lib/1.42.2/MODULE.bazel": "2e0d8ab25c57a14f56ace1c8e881b69050417ff91b2fb7718dc00d201f3c3478",
     "https://bcr.bazel.build/modules/aspect_bazel_lib/2.14.0/MODULE.bazel": "2b31ffcc9bdc8295b2167e07a757dbbc9ac8906e7028e5170a3708cecaac119f",
     "https://bcr.bazel.build/modules/aspect_bazel_lib/2.19.3/MODULE.bazel": "253d739ba126f62a5767d832765b12b59e9f8d2bc88cc1572f4a73e46eb298ca",
+    "https://bcr.bazel.build/modules/aspect_bazel_lib/2.20.0/MODULE.bazel": "c5565bac49e1973227225b441fad1c938d498d83df62dc5da95b2fab0f0626a2",
     "https://bcr.bazel.build/modules/aspect_bazel_lib/2.22.0/MODULE.bazel": "7fe0191f047d4fe4a4a46c1107e2350cbb58a8fc2e10913aa4322d3190dec0bf",
     "https://bcr.bazel.build/modules/aspect_bazel_lib/2.22.0/source.json": "369df5b7f2eae82f200fff95cf1425f90dee90a0d0948122060b48150ff0e224",
     "https://bcr.bazel.build/modules/aspect_bazel_lib/2.8.1/MODULE.bazel": "812d2dd42f65dca362152101fbec418029cc8fd34cbad1a2fde905383d705838",
@@ -84,13 +85,16 @@
     "https://bcr.bazel.build/modules/bazel_skylib/1.8.1/MODULE.bazel": "88ade7293becda963e0e3ea33e7d54d3425127e0a326e0d17da085a5f1f03ff6",
     "https://bcr.bazel.build/modules/bazel_skylib/1.8.2/MODULE.bazel": "69ad6927098316848b34a9142bcc975e018ba27f08c4ff403f50c1b6e646ca67",
     "https://bcr.bazel.build/modules/bazel_skylib/1.8.2/source.json": "34a3c8bcf233b835eb74be9d628899bb32999d3e0eadef1947a0a562a2b16ffb",
+    "https://bcr.bazel.build/modules/bazel_worker_api/0.0.10/MODULE.bazel": "a426df551b40c3997c351d05f00f0d1f86b618ddb646012f1e9c72efce8ed939",
+    "https://bcr.bazel.build/modules/bazel_worker_api/0.0.10/source.json": "7f220d3edfeba5d1f61535fd8400338df74f8bdeb241ebe660534c6926a5a645",
     "https://bcr.bazel.build/modules/bazel_worker_api/0.0.8/MODULE.bazel": "396c1ef53835aafe3d42ce6619080531ee770648303731f16cfaa33fa056bf0c",
-    "https://bcr.bazel.build/modules/bazel_worker_api/0.0.8/source.json": "abaf8ac9d2ab2f47bda9af4c0c080ff7907378888e1f4bc62a0539dd13ba61e8",
+    "https://bcr.bazel.build/modules/bazel_worker_java/0.0.10/MODULE.bazel": "538f21f715cab81c4a43f73e1a91a0c1f8accd9b263dd2a831952805fcfc1a62",
+    "https://bcr.bazel.build/modules/bazel_worker_java/0.0.10/source.json": "1646d3aaf5a4bc0d587ecb33d81e93ea9284ff96f5ef579006a9c054945bbe7a",
     "https://bcr.bazel.build/modules/bazel_worker_java/0.0.8/MODULE.bazel": "e76479eae70bd4e8f5f4c2dfc5d03ab971cfb18750246c7b3f3454c5c2ee6629",
-    "https://bcr.bazel.build/modules/bazel_worker_java/0.0.8/source.json": "9395c4679444bc47bf7e51a710366a4480aa371c6f6bed01868e2fabcf11acec",
     "https://bcr.bazel.build/modules/buildifier_prebuilt/10.1.0/MODULE.bazel": "14a31f06bf9eff863107fe5dfd9ebde3123d8fa57fa9fe3477cff187b67c2972",
     "https://bcr.bazel.build/modules/buildifier_prebuilt/10.1.0/source.json": "984c35566e7637562e96e2ae9fa65a34982a76b612bdff8408c46a85e847eea7",
     "https://bcr.bazel.build/modules/buildifier_prebuilt/6.4.0/MODULE.bazel": "37389c6b5a40c59410b4226d3bb54b08637f393d66e2fa57925c6fcf68e64bf4",
+    "https://bcr.bazel.build/modules/buildifier_prebuilt/7.3.1/MODULE.bazel": "537faf0ad9f5892910074b8e43b4c91c96f1d5d86b6ed04bdbe40cf68aa48b68",
     "https://bcr.bazel.build/modules/buildozer/8.5.1/MODULE.bazel": "a35d9561b3fc5b18797c330793e99e3b834a473d5fbd3d7d7634aafc9bdb6f8f",
     "https://bcr.bazel.build/modules/buildozer/8.5.1/source.json": "e3386e6ff4529f2442800dee47ad28d3e6487f36a1f75ae39ae56c70f0cd2fbd",
     "https://bcr.bazel.build/modules/diff.bzl/0.5.1/MODULE.bazel": "bad8dd444e512b6fcbcd969d6385cd6bc093d4c12e5640fb1f0ace2282f99ef9",
@@ -125,8 +129,7 @@
     "https://bcr.bazel.build/modules/package_metadata/0.0.3/MODULE.bazel": "77890552ecea9e284b5424c9de827a58099348763a4359e975c359a83d4faa83",
     "https://bcr.bazel.build/modules/package_metadata/0.0.5/MODULE.bazel": "ef4f9439e3270fdd6b9fd4dbc3d2f29d13888e44c529a1b243f7a31dfbc2e8e4",
     "https://bcr.bazel.build/modules/package_metadata/0.0.6/MODULE.bazel": "341dab6f417197494517d54c8e557c0baee1de7aec83543a4fbefe57900acb7e",
-    "https://bcr.bazel.build/modules/package_metadata/0.0.7/MODULE.bazel": "7adb03933fc8401f495800cf4eafcff0edc6da0ff55c7db223ef69d19f689486",
-    "https://bcr.bazel.build/modules/package_metadata/0.0.7/source.json": "50639625e937b56115012674c797cca7a05a96b4878c87d803c13dc2b31de8a0",
+    "https://bcr.bazel.build/modules/package_metadata/0.0.6/source.json": "9581d8b22db43550ac75ecc314ee4fa0a33400bfdc77d1317d8af6b18dca7756",
     "https://bcr.bazel.build/modules/platforms/0.0.10/MODULE.bazel": "8cb8efaf200bdeb2150d93e162c40f388529a25852b332cec879373771e48ed5",
     "https://bcr.bazel.build/modules/platforms/0.0.11/MODULE.bazel": "0daefc49732e227caa8bfa834d65dc52e8cc18a2faf80df25e8caea151a9413f",
     "https://bcr.bazel.build/modules/platforms/0.0.4/MODULE.bazel": "9b328e31ee156f53f3c416a64f8491f7eb731742655a47c9eec4703a71644aee",
@@ -152,6 +155,7 @@
     "https://bcr.bazel.build/modules/protobuf/3.19.6/MODULE.bazel": "9233edc5e1f2ee276a60de3eaa47ac4132302ef9643238f23128fea53ea12858",
     "https://bcr.bazel.build/modules/protobuf/31.1/MODULE.bazel": "379a389bb330b7b8c1cdf331cc90bf3e13de5614799b3b52cdb7c6f389f6b38e",
     "https://bcr.bazel.build/modules/protobuf/32.1/MODULE.bazel": "89cd2866a9cb07fee9ff74c41ceace11554f32e0d849de4e23ac55515cfada4d",
+    "https://bcr.bazel.build/modules/protobuf/33.1/MODULE.bazel": "982c8a0cceab4d790076f72b7677faf836b0dfadc2b66a34aab7232116c4ae39",
     "https://bcr.bazel.build/modules/protobuf/33.4/MODULE.bazel": "114775b816b38b6d0ca620450d6b02550c60ceedfdc8d9a229833b34a223dc42",
     "https://bcr.bazel.build/modules/protobuf/33.4/source.json": "555f8686b4c7d6b5ba731fbea13bf656b4bfd9a7ff629c1d9d3f6e1d6155de79",
     "https://bcr.bazel.build/modules/pybind11_bazel/2.11.1/MODULE.bazel": "88af1c246226d87e65be78ed49ecd1e6f5e98648558c14ce99176da041dc378e",
@@ -165,7 +169,8 @@
     "https://bcr.bazel.build/modules/re2/2025-11-05.bcr.1/source.json": "7df1394aabda1c9bc188a302f5d54b1c657924edd04ebc57d2be29dbd7efd141",
     "https://bcr.bazel.build/modules/rules_android/0.1.1/MODULE.bazel": "48809ab0091b07ad0182defb787c4c5328bd3a278938415c00a7b69b50c4d3a8",
     "https://bcr.bazel.build/modules/rules_android/0.7.1/MODULE.bazel": "a806fc382a774252f228a40e3b11b9fcc6276f8778c7fb33e9f72937c6258363",
-    "https://bcr.bazel.build/modules/rules_android/0.7.1/source.json": "151440aed3f0f73a00d4ed5cec5d31f63a6fef9b95d8fab1eb1810150fa525f2",
+    "https://bcr.bazel.build/modules/rules_android/0.7.2/MODULE.bazel": "0862d727582c8d117ac09cd3451b5e93d8b91033f0f13bb61a4a10334958130d",
+    "https://bcr.bazel.build/modules/rules_android/0.7.2/source.json": "bf2dfc8dc72ffd2b58643c9d547f1b7faea4de65aa28ac4894687fa6afa09861",
     "https://bcr.bazel.build/modules/rules_apple/3.16.0/MODULE.bazel": "0d1caf0b8375942ce98ea944be754a18874041e4e0459401d925577624d3a54a",
     "https://bcr.bazel.build/modules/rules_apple/4.1.0/MODULE.bazel": "76e10fd4a48038d3fc7c5dc6e63b7063bbf5304a2e3bd42edda6ec660eebea68",
     "https://bcr.bazel.build/modules/rules_apple/4.1.0/source.json": "8ee81e1708756f81b343a5eb2b2f0b953f1d25c4ab3d4a68dc02754872e80715",
@@ -237,12 +242,10 @@
     "https://bcr.bazel.build/modules/rules_jvm_external/6.3/MODULE.bazel": "c998e060b85f71e00de5ec552019347c8bca255062c990ac02d051bb80a38df0",
     "https://bcr.bazel.build/modules/rules_jvm_external/6.7/MODULE.bazel": "e717beabc4d091ecb2c803c2d341b88590e9116b8bf7947915eeb33aab4f96dd",
     "https://bcr.bazel.build/modules/rules_jvm_external/6.9/MODULE.bazel": "07c5db05527db7744a54fcffd653e1550d40e0540207a7f7e6d0a4de5bef8274",
-    "https://bcr.bazel.build/modules/rules_jvm_external/7.2/MODULE.bazel": "e4f60a972780ca22128d5377d6131b4f9c000854e8bc89e212202676e41e78ce",
-    "https://bcr.bazel.build/modules/rules_jvm_external/7.2/source.json": "b0e87d55b9c5dd01852ad75641e62f16e5bcbaedd40cb43fc2a2738840e678ff",
+    "https://bcr.bazel.build/modules/rules_jvm_external/6.9/source.json": "b12970214f3cc144b26610caeb101fa622d910f1ab3d98f0bae1058edbd00bd4",
     "https://bcr.bazel.build/modules/rules_kotlin/1.9.0/MODULE.bazel": "ef85697305025e5a61f395d4eaede272a5393cee479ace6686dba707de804d59",
     "https://bcr.bazel.build/modules/rules_kotlin/1.9.5/MODULE.bazel": "043a16a572f610558ec2030db3ff0c9938574e7dd9f58bded1bb07c0192ef025",
     "https://bcr.bazel.build/modules/rules_kotlin/1.9.6/MODULE.bazel": "d269a01a18ee74d0335450b10f62c9ed81f2321d7958a2934e44272fe82dcef3",
-    "https://bcr.bazel.build/modules/rules_kotlin/2.4.0/MODULE.bazel": "38dac18bb76c0a47ff60dfcd95c666985cbc46374f28ea4eeb868bdbc58c5bec",
     "https://bcr.bazel.build/modules/rules_kotlin/2.4.20/MODULE.bazel": "27e9ac3a39e3f7623c6d32b5ce5373105584a9d54a73522a80e3b60ddf4545ab",
     "https://bcr.bazel.build/modules/rules_kotlin/2.4.20/source.json": "f73532cc3ac611528baec25cc79c71569cb74a2140ca21a9c3f78ef8b49a6ae7",
     "https://bcr.bazel.build/modules/rules_license/0.0.3/MODULE.bazel": "627e9ab0247f7d1e05736b59dbb1b6871373de5ad31c3011880b4133cafd4bd0",
@@ -252,7 +255,8 @@
     "https://bcr.bazel.build/modules/rules_multirun/0.9.0/MODULE.bazel": "32d628ef586b5b23f67e55886b7bc38913ea4160420d66ae90521dda2ff37df0",
     "https://bcr.bazel.build/modules/rules_multirun/0.9.0/source.json": "e882ba77962fa6c5fe68619e5c7d0374ec9a219fb8d03c42eadaf6d0243771bd",
     "https://bcr.bazel.build/modules/rules_multitool/0.11.0/MODULE.bazel": "8d9dda78d2398e136300d3ef4fbcc89ede7c32c158d8c016fa7d032df41c4aaf",
-    "https://bcr.bazel.build/modules/rules_multitool/0.11.0/source.json": "0b86574a1eaff37c33aafaff095ea16d6ac846beb94ffc74c4fcf626f8f80681",
+    "https://bcr.bazel.build/modules/rules_multitool/1.9.0/MODULE.bazel": "8a042b0dbf35e4aaa94c28ad69efa75c9e673e9ea4bd5c0fb70bab75ef9c636b",
+    "https://bcr.bazel.build/modules/rules_multitool/1.9.0/source.json": "d9a01604a8b5c4a0e9430824dd34ca5b1b3f5b25277b755e8f3ae91f2c9362a3",
     "https://bcr.bazel.build/modules/rules_nodejs/5.8.2/MODULE.bazel": "6bc03c8f37f69401b888023bf511cb6ee4781433b0cb56236b2e55a21e3a026a",
     "https://bcr.bazel.build/modules/rules_nodejs/6.7.3/MODULE.bazel": "c22a48b2a0dbf05a9dc5f83837bbc24c226c1f6e618de3c3a610044c9f336056",
     "https://bcr.bazel.build/modules/rules_nodejs/6.7.3/source.json": "a3f966f4415a8a6545e560ee5449eac95cc633f96429d08e87c87775c72f5e09",
@@ -313,8 +317,6 @@
     "https://bcr.bazel.build/modules/tar.bzl/0.2.1/MODULE.bazel": "52d1c00a80a8cc67acbd01649e83d8dd6a9dc426a6c0b754a04fe8c219c76468",
     "https://bcr.bazel.build/modules/tar.bzl/0.5.1/MODULE.bazel": "7c2eb3dcfc53b0f3d6f9acdfd911ca803eaf92aadf54f8ca6e4c1f3aee288351",
     "https://bcr.bazel.build/modules/tar.bzl/0.5.1/source.json": "deed3094f7cc779ed1d37a68403847b0e38d9dd9d931e03cb90825f3368b515f",
-    "https://bcr.bazel.build/modules/toml.bzl/0.3.0/MODULE.bazel": "5016e5dd1ad2200e119a4b28b2b3935e276c4b480f2fe3e952bea7eeba88f578",
-    "https://bcr.bazel.build/modules/toml.bzl/0.3.0/source.json": "0cf7c878c419b37ddb55f3dd93dd7c0c409bd7c4efacb3da504e0748780b2fa9",
     "https://bcr.bazel.build/modules/upb/0.0.0-20220923-a547704/MODULE.bazel": "7298990c00040a0e2f121f6c32544bab27d4452f80d9ce51349b1a28f3005c43",
     "https://bcr.bazel.build/modules/upb/0.0.0-20230516-61a97ef/MODULE.bazel": "c0df5e35ad55e264160417fd0875932ee3c9dda63d9fccace35ac62f45e1b6f9",
     "https://bcr.bazel.build/modules/yq.bzl/0.1.1/MODULE.bazel": "9039681f9bcb8958ee2c87ffc74bdafba9f4369096a2b5634b88abc0eaefa072",
@@ -418,6 +420,2279 @@
         }
       }
     },
+    "@@mabel+//rules:extensions.bzl%mabel": {
+      "general": {
+        "bzlTransitiveDigest": "C9JBd0XGMlGXpjFrFa4naMQBDDoLzEPxZBRCAXZEPso=",
+        "usagesDigest": "PaRIEGOHgB+NPED5TaUS0ntGKV1K/aCPYNWGMPpufvg=",
+        "recordedInputs": [
+          "REPO_MAPPING:mabel+,bazel_tools bazel_tools",
+          "FILE:@@//maven_install.json 6da9af06442397f2b04e2c2323b10fd5109feabc423ce23a5d0dabd7211033b1",
+          "FILE:@@mabel+//resolver/maven_install.json 878921f485d23d0b8fc7a14e593937af6fafd9efe8d16d8f2dcd67c2e4962690"
+        ],
+        "generatedRepoSpecs": {
+          "dev_drewhamilton_poko__poko_annotations_jvm__0_17_1__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/dev/drewhamilton/poko/poko-annotations-jvm/0.17.1/poko-annotations-jvm-0.17.1.jar"
+              ],
+              "downloaded_file_path": "poko-annotations-jvm-0.17.1.jar",
+              "sha256": "940e6d50445bc6b0ae26ad414ec7b953a3e4e802dc7756cc14d56958bc97cc31"
+            }
+          },
+          "dev_drewhamilton_poko__poko_annotations_jvm__0_17_1": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "dev_drewhamilton_poko__poko_annotations_jvm__0_17_1__jar",
+              "deps": [
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "io_github_davidburstrom_contester__contester_breakpoint__0_2_0__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/io/github/davidburstrom/contester/contester-breakpoint/0.2.0/contester-breakpoint-0.2.0.jar"
+              ],
+              "downloaded_file_path": "contester-breakpoint-0.2.0.jar",
+              "sha256": "672cbebb5d45a72b35dd81fd6127e187451bb6fb7fba35315bbdf2f57cfce835"
+            }
+          },
+          "io_github_davidburstrom_contester__contester_breakpoint__0_2_0": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "io_github_davidburstrom_contester__contester_breakpoint__0_2_0__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "io_github_detekt_sarif4k__sarif4k_jvm__0_6_0__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/io/github/detekt/sarif4k/sarif4k-jvm/0.6.0/sarif4k-jvm-0.6.0.jar"
+              ],
+              "downloaded_file_path": "sarif4k-jvm-0.6.0.jar",
+              "sha256": "b3ac96dd97acba8318dbe26f6a432d6c6db91c46c780805e8928b8103e5763dc"
+            }
+          },
+          "io_github_detekt_sarif4k__sarif4k_jvm__0_6_0": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "io_github_detekt_sarif4k__sarif4k_jvm__0_6_0__jar",
+              "deps": [
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar",
+                "@org_jetbrains_kotlinx__kotlinx_serialization_json_jvm__1_11_0//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_api__1_23_8__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/io/gitlab/arturbosch/detekt/detekt-api/1.23.8/detekt-api-1.23.8.jar"
+              ],
+              "downloaded_file_path": "detekt-api-1.23.8.jar",
+              "sha256": "dd5b84d420904d5c564aab115d36e6290a9d7daf6955923099015618f2b5c83f"
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_api__1_23_8": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "io_gitlab_arturbosch_detekt__detekt_api__1_23_8__jar",
+              "deps": [
+                "@io_gitlab_arturbosch_detekt__detekt_psi_utils__1_23_8//:jar",
+                "@org_jetbrains_kotlin__kotlin_compiler_embeddable__2_0_21//:jar",
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [
+                "@dev_drewhamilton_poko__poko_annotations_jvm__0_17_1//:jar",
+                "@io_gitlab_arturbosch_detekt__detekt_utils__1_23_8//:jar"
+              ],
+              "processor_classes": []
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_cli__1_23_8__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/io/gitlab/arturbosch/detekt/detekt-cli/1.23.8/detekt-cli-1.23.8.jar"
+              ],
+              "downloaded_file_path": "detekt-cli-1.23.8.jar",
+              "sha256": "ead7ccd320bf304cece189438d6a384747c76545a0f880d9c91d5ca5d2d30a63"
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_cli__1_23_8": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "io_gitlab_arturbosch_detekt__detekt_cli__1_23_8__jar",
+              "deps": [
+                "@org_jetbrains_kotlin__kotlin_compiler_embeddable__2_0_21//:jar",
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [
+                "@org_jetbrains_kotlin__kotlin_compiler_embeddable__2_0_21//:jar",
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "runtime_deps": [
+                "@io_gitlab_arturbosch_detekt__detekt_core__1_23_8//:jar",
+                "@io_gitlab_arturbosch_detekt__detekt_parser__1_23_8//:jar",
+                "@io_gitlab_arturbosch_detekt__detekt_rules__1_23_8//:jar",
+                "@io_gitlab_arturbosch_detekt__detekt_tooling__1_23_8//:jar",
+                "@org_jcommander__jcommander__1_85//:jar"
+              ],
+              "processor_classes": []
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_core__1_23_8__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/io/gitlab/arturbosch/detekt/detekt-core/1.23.8/detekt-core-1.23.8.jar"
+              ],
+              "downloaded_file_path": "detekt-core-1.23.8.jar",
+              "sha256": "1981dea8e4e2e8541af2d83e4f8d3581ce647cfe63175b9eb9ac2a07849d74c9"
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_core__1_23_8": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "io_gitlab_arturbosch_detekt__detekt_core__1_23_8__jar",
+              "deps": [
+                "@io_gitlab_arturbosch_detekt__detekt_api__1_23_8//:jar",
+                "@io_gitlab_arturbosch_detekt__detekt_psi_utils__1_23_8//:jar",
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [
+                "@io_gitlab_arturbosch_detekt__detekt_metrics__1_23_8//:jar",
+                "@io_gitlab_arturbosch_detekt__detekt_parser__1_23_8//:jar",
+                "@io_gitlab_arturbosch_detekt__detekt_report_html__1_23_8//:jar",
+                "@io_gitlab_arturbosch_detekt__detekt_report_md__1_23_8//:jar",
+                "@io_gitlab_arturbosch_detekt__detekt_report_sarif__1_23_8//:jar",
+                "@io_gitlab_arturbosch_detekt__detekt_report_txt__1_23_8//:jar",
+                "@io_gitlab_arturbosch_detekt__detekt_report_xml__1_23_8//:jar",
+                "@io_gitlab_arturbosch_detekt__detekt_tooling__1_23_8//:jar",
+                "@io_gitlab_arturbosch_detekt__detekt_utils__1_23_8//:jar",
+                "@org_jetbrains_kotlin__kotlin_reflect__2_0_21//:jar",
+                "@org_snakeyaml__snakeyaml_engine__2_7//:jar"
+              ],
+              "processor_classes": []
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_metrics__1_23_8__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/io/gitlab/arturbosch/detekt/detekt-metrics/1.23.8/detekt-metrics-1.23.8.jar"
+              ],
+              "downloaded_file_path": "detekt-metrics-1.23.8.jar",
+              "sha256": "718e8f71f5872986e4f5cd4887a41e26aa0aeff42e99cf4a42582291b8738cc4"
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_metrics__1_23_8": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "io_gitlab_arturbosch_detekt__detekt_metrics__1_23_8__jar",
+              "deps": [
+                "@io_gitlab_arturbosch_detekt__detekt_api__1_23_8//:jar",
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_parser__1_23_8__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/io/gitlab/arturbosch/detekt/detekt-parser/1.23.8/detekt-parser-1.23.8.jar"
+              ],
+              "downloaded_file_path": "detekt-parser-1.23.8.jar",
+              "sha256": "5cdf45a0172d934d6e7401cd43838e7b954f7adb117eed8358fcae0b177e90e5"
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_parser__1_23_8": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "io_gitlab_arturbosch_detekt__detekt_parser__1_23_8__jar",
+              "deps": [
+                "@io_gitlab_arturbosch_detekt__detekt_psi_utils__1_23_8//:jar",
+                "@org_jetbrains_kotlin__kotlin_compiler_embeddable__2_0_21//:jar",
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [
+                "@io_github_davidburstrom_contester__contester_breakpoint__0_2_0//:jar"
+              ],
+              "processor_classes": []
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_psi_utils__1_23_8__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/io/gitlab/arturbosch/detekt/detekt-psi-utils/1.23.8/detekt-psi-utils-1.23.8.jar"
+              ],
+              "downloaded_file_path": "detekt-psi-utils-1.23.8.jar",
+              "sha256": "9505fa9d4f9a771d256a5d415b5d51ffd7a24e5019f6a60e5a69a12633dcf7ba"
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_psi_utils__1_23_8": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "io_gitlab_arturbosch_detekt__detekt_psi_utils__1_23_8__jar",
+              "deps": [
+                "@org_jetbrains_kotlin__kotlin_compiler_embeddable__2_0_21//:jar",
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_report_html__1_23_8__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/io/gitlab/arturbosch/detekt/detekt-report-html/1.23.8/detekt-report-html-1.23.8.jar"
+              ],
+              "downloaded_file_path": "detekt-report-html-1.23.8.jar",
+              "sha256": "8068a15e07718e3bdbf501ede5f666812fb5f9fb1450db060449534c05e6722a"
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_report_html__1_23_8": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "io_gitlab_arturbosch_detekt__detekt_report_html__1_23_8__jar",
+              "deps": [
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [
+                "@io_gitlab_arturbosch_detekt__detekt_utils__1_23_8//:jar",
+                "@org_jetbrains_kotlinx__kotlinx_html_jvm__0_8_1//:jar"
+              ],
+              "processor_classes": []
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_report_md__1_23_8__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/io/gitlab/arturbosch/detekt/detekt-report-md/1.23.8/detekt-report-md-1.23.8.jar"
+              ],
+              "downloaded_file_path": "detekt-report-md-1.23.8.jar",
+              "sha256": "cc5b90b1476cef99e112162dbcd1db32b040284a768f3c975a49ec0b63980ca3"
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_report_md__1_23_8": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "io_gitlab_arturbosch_detekt__detekt_report_md__1_23_8__jar",
+              "deps": [
+                "@io_gitlab_arturbosch_detekt__detekt_api__1_23_8//:jar",
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [
+                "@io_gitlab_arturbosch_detekt__detekt_metrics__1_23_8//:jar",
+                "@io_gitlab_arturbosch_detekt__detekt_utils__1_23_8//:jar"
+              ],
+              "processor_classes": []
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_report_sarif__1_23_8__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/io/gitlab/arturbosch/detekt/detekt-report-sarif/1.23.8/detekt-report-sarif-1.23.8.jar"
+              ],
+              "downloaded_file_path": "detekt-report-sarif-1.23.8.jar",
+              "sha256": "c9f9221fc57ed1fbd1374de5c4da6c069160f892a71f83b551d3a32c8cbad13d"
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_report_sarif__1_23_8": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "io_gitlab_arturbosch_detekt__detekt_report_sarif__1_23_8__jar",
+              "deps": [
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [
+                "@io_github_detekt_sarif4k__sarif4k_jvm__0_6_0//:jar"
+              ],
+              "processor_classes": []
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_report_txt__1_23_8__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/io/gitlab/arturbosch/detekt/detekt-report-txt/1.23.8/detekt-report-txt-1.23.8.jar"
+              ],
+              "downloaded_file_path": "detekt-report-txt-1.23.8.jar",
+              "sha256": "41e85ca3587abce9a03f8dcb2a67e05fcf59b7518fa016c9350ea73c79f9c54a"
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_report_txt__1_23_8": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "io_gitlab_arturbosch_detekt__detekt_report_txt__1_23_8__jar",
+              "deps": [
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_report_xml__1_23_8__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/io/gitlab/arturbosch/detekt/detekt-report-xml/1.23.8/detekt-report-xml-1.23.8.jar"
+              ],
+              "downloaded_file_path": "detekt-report-xml-1.23.8.jar",
+              "sha256": "d71abaa98890cae8a618839b1309c013dff39c6bd7d0de0b704e6193e027ef09"
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_report_xml__1_23_8": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "io_gitlab_arturbosch_detekt__detekt_report_xml__1_23_8__jar",
+              "deps": [
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_rules_complexity__1_23_8__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/io/gitlab/arturbosch/detekt/detekt-rules-complexity/1.23.8/detekt-rules-complexity-1.23.8.jar"
+              ],
+              "downloaded_file_path": "detekt-rules-complexity-1.23.8.jar",
+              "sha256": "3a169746e38b93eebb8eb7e10dedb06657ca294bc81cf675a735f85b5f371e6e"
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_rules_complexity__1_23_8": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "io_gitlab_arturbosch_detekt__detekt_rules_complexity__1_23_8__jar",
+              "deps": [
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_rules_coroutines__1_23_8__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/io/gitlab/arturbosch/detekt/detekt-rules-coroutines/1.23.8/detekt-rules-coroutines-1.23.8.jar"
+              ],
+              "downloaded_file_path": "detekt-rules-coroutines-1.23.8.jar",
+              "sha256": "afe8c973c17457f714f05795046115188c03f4506903bb25b84da846e2e56816"
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_rules_coroutines__1_23_8": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "io_gitlab_arturbosch_detekt__detekt_rules_coroutines__1_23_8__jar",
+              "deps": [
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_rules_documentation__1_23_8__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/io/gitlab/arturbosch/detekt/detekt-rules-documentation/1.23.8/detekt-rules-documentation-1.23.8.jar"
+              ],
+              "downloaded_file_path": "detekt-rules-documentation-1.23.8.jar",
+              "sha256": "d25367855d8ccd156f283e1cd6de0fd15b8f3e9530a970206f41d619fb4fbdcd"
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_rules_documentation__1_23_8": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "io_gitlab_arturbosch_detekt__detekt_rules_documentation__1_23_8__jar",
+              "deps": [
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_rules_empty__1_23_8__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/io/gitlab/arturbosch/detekt/detekt-rules-empty/1.23.8/detekt-rules-empty-1.23.8.jar"
+              ],
+              "downloaded_file_path": "detekt-rules-empty-1.23.8.jar",
+              "sha256": "888641114789ac43292d44836221565da47a9228f7fb7dfe0c6b3f94e7f58afa"
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_rules_empty__1_23_8": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "io_gitlab_arturbosch_detekt__detekt_rules_empty__1_23_8__jar",
+              "deps": [
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_rules_errorprone__1_23_8__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/io/gitlab/arturbosch/detekt/detekt-rules-errorprone/1.23.8/detekt-rules-errorprone-1.23.8.jar"
+              ],
+              "downloaded_file_path": "detekt-rules-errorprone-1.23.8.jar",
+              "sha256": "fee1ee765168a5896162ebe39b34fa421c0a5b769abc8f150f9e3596912a49c4"
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_rules_errorprone__1_23_8": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "io_gitlab_arturbosch_detekt__detekt_rules_errorprone__1_23_8__jar",
+              "deps": [
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [
+                "@io_gitlab_arturbosch_detekt__detekt_tooling__1_23_8//:jar"
+              ],
+              "processor_classes": []
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_rules_exceptions__1_23_8__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/io/gitlab/arturbosch/detekt/detekt-rules-exceptions/1.23.8/detekt-rules-exceptions-1.23.8.jar"
+              ],
+              "downloaded_file_path": "detekt-rules-exceptions-1.23.8.jar",
+              "sha256": "889ffc72aff0624132e0b10932332c71d24f5bab8f1c10c20bf5ac592ca2caf6"
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_rules_exceptions__1_23_8": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "io_gitlab_arturbosch_detekt__detekt_rules_exceptions__1_23_8__jar",
+              "deps": [
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_rules_naming__1_23_8__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/io/gitlab/arturbosch/detekt/detekt-rules-naming/1.23.8/detekt-rules-naming-1.23.8.jar"
+              ],
+              "downloaded_file_path": "detekt-rules-naming-1.23.8.jar",
+              "sha256": "ed1992b1bdb0494567805b0a8145ce978f46e5ad743e2e83bf84bd5ec661baeb"
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_rules_naming__1_23_8": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "io_gitlab_arturbosch_detekt__detekt_rules_naming__1_23_8__jar",
+              "deps": [
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_rules_performance__1_23_8__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/io/gitlab/arturbosch/detekt/detekt-rules-performance/1.23.8/detekt-rules-performance-1.23.8.jar"
+              ],
+              "downloaded_file_path": "detekt-rules-performance-1.23.8.jar",
+              "sha256": "dbf5e06e2fa18a6cf57ae2621e4274c163bb5bbb351a5db75f724f86f22d436b"
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_rules_performance__1_23_8": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "io_gitlab_arturbosch_detekt__detekt_rules_performance__1_23_8__jar",
+              "deps": [
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_rules_style__1_23_8__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/io/gitlab/arturbosch/detekt/detekt-rules-style/1.23.8/detekt-rules-style-1.23.8.jar"
+              ],
+              "downloaded_file_path": "detekt-rules-style-1.23.8.jar",
+              "sha256": "af2644c226d2ba0679ea86bca52ef90c8d9f64f446efa9d74cbd0e6311b038a8"
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_rules_style__1_23_8": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "io_gitlab_arturbosch_detekt__detekt_rules_style__1_23_8__jar",
+              "deps": [
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_rules__1_23_8__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/io/gitlab/arturbosch/detekt/detekt-rules/1.23.8/detekt-rules-1.23.8.jar"
+              ],
+              "downloaded_file_path": "detekt-rules-1.23.8.jar",
+              "sha256": "a3ee516f3837fbc01d5c3b86f5dc7be7dba81345bfc57c4eb58af12f6923a560"
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_rules__1_23_8": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "io_gitlab_arturbosch_detekt__detekt_rules__1_23_8__jar",
+              "deps": [
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [
+                "@io_gitlab_arturbosch_detekt__detekt_rules_complexity__1_23_8//:jar",
+                "@io_gitlab_arturbosch_detekt__detekt_rules_coroutines__1_23_8//:jar",
+                "@io_gitlab_arturbosch_detekt__detekt_rules_documentation__1_23_8//:jar",
+                "@io_gitlab_arturbosch_detekt__detekt_rules_empty__1_23_8//:jar",
+                "@io_gitlab_arturbosch_detekt__detekt_rules_errorprone__1_23_8//:jar",
+                "@io_gitlab_arturbosch_detekt__detekt_rules_exceptions__1_23_8//:jar",
+                "@io_gitlab_arturbosch_detekt__detekt_rules_naming__1_23_8//:jar",
+                "@io_gitlab_arturbosch_detekt__detekt_rules_performance__1_23_8//:jar",
+                "@io_gitlab_arturbosch_detekt__detekt_rules_style__1_23_8//:jar"
+              ],
+              "processor_classes": []
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_tooling__1_23_8__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/io/gitlab/arturbosch/detekt/detekt-tooling/1.23.8/detekt-tooling-1.23.8.jar"
+              ],
+              "downloaded_file_path": "detekt-tooling-1.23.8.jar",
+              "sha256": "7e93e9a23b478f70128893b06748673f912100b7ef03040d7d0331e26d30d092"
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_tooling__1_23_8": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "io_gitlab_arturbosch_detekt__detekt_tooling__1_23_8__jar",
+              "deps": [
+                "@io_gitlab_arturbosch_detekt__detekt_api__1_23_8//:jar",
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_utils__1_23_8__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/io/gitlab/arturbosch/detekt/detekt-utils/1.23.8/detekt-utils-1.23.8.jar"
+              ],
+              "downloaded_file_path": "detekt-utils-1.23.8.jar",
+              "sha256": "f75fd7e924b9267d9ec661859ca913102de4a8f5895b09685ce10797dc26d056"
+            }
+          },
+          "io_gitlab_arturbosch_detekt__detekt_utils__1_23_8": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "io_gitlab_arturbosch_detekt__detekt_utils__1_23_8__jar",
+              "deps": [
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "junit__junit__4_13_2__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/junit/junit/4.13.2/junit-4.13.2.jar"
+              ],
+              "downloaded_file_path": "junit-4.13.2.jar",
+              "sha256": "8e495b634469d64fb8acfa3495a065cbacc8a0fff55ce1e31007be4c16dc57d3"
+            }
+          },
+          "junit__junit__4_13_2": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "junit__junit__4_13_2__jar",
+              "deps": [
+                "@org_hamcrest__hamcrest_core__1_3//:jar"
+              ],
+              "exports": [
+                "@org_hamcrest__hamcrest_core__1_3//:jar"
+              ],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_hamcrest__hamcrest_core__1_3__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"
+              ],
+              "downloaded_file_path": "hamcrest-core-1.3.jar",
+              "sha256": "66fdef91e9739348df7a096aa384a5685f4e875584cce89386a7a47251c4d8e9"
+            }
+          },
+          "org_hamcrest__hamcrest_core__1_3": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_hamcrest__hamcrest_core__1_3__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_jcommander__jcommander__1_85__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jcommander/jcommander/1.85/jcommander-1.85.jar"
+              ],
+              "downloaded_file_path": "jcommander-1.85.jar",
+              "sha256": "fa7552d2831a2b20778d86851d093edca68fbc0a77f792b6223110e4fae67a70"
+            }
+          },
+          "org_jcommander__jcommander__1_85": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_jcommander__jcommander__1_85__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_jetbrains_intellij_deps__trove4j__1_0_20200330__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/intellij/deps/trove4j/1.0.20200330/trove4j-1.0.20200330.jar"
+              ],
+              "downloaded_file_path": "trove4j-1.0.20200330.jar",
+              "sha256": "c5fd725bffab51846bf3c77db1383c60aaaebfe1b7fe2f00d23fe1b7df0a439d"
+            }
+          },
+          "org_jetbrains_intellij_deps__trove4j__1_0_20200330": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_jetbrains_intellij_deps__trove4j__1_0_20200330__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_jetbrains_kotlin__kotlin_compiler_embeddable__2_0_21__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-compiler-embeddable/2.0.21/kotlin-compiler-embeddable-2.0.21.jar"
+              ],
+              "downloaded_file_path": "kotlin-compiler-embeddable-2.0.21.jar",
+              "sha256": "9fa8cdd1de0dccffe154c997d423ec6b5f53cd6d9177e3a77a9b0de03fb1bc81"
+            }
+          },
+          "org_jetbrains_kotlin__kotlin_compiler_embeddable__2_0_21": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_jetbrains_kotlin__kotlin_compiler_embeddable__2_0_21__jar",
+              "deps": [
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [
+                "@org_jetbrains_intellij_deps__trove4j__1_0_20200330//:jar",
+                "@org_jetbrains_kotlin__kotlin_daemon_embeddable__2_0_21//:jar",
+                "@org_jetbrains_kotlin__kotlin_reflect__2_0_21//:jar",
+                "@org_jetbrains_kotlin__kotlin_script_runtime__2_0_21//:jar",
+                "@org_jetbrains_kotlinx__kotlinx_coroutines_core_jvm__1_11_0//:jar"
+              ],
+              "processor_classes": [
+                "javaslang.match.PatternsProcessor"
+              ]
+            }
+          },
+          "org_jetbrains_kotlin__kotlin_daemon_embeddable__2_0_21__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-daemon-embeddable/2.0.21/kotlin-daemon-embeddable-2.0.21.jar"
+              ],
+              "downloaded_file_path": "kotlin-daemon-embeddable-2.0.21.jar",
+              "sha256": "b1a0a73c5022f8dd05a638c6b76b2bd7361818a1f3860ff2644133b1dd2bdb03"
+            }
+          },
+          "org_jetbrains_kotlin__kotlin_daemon_embeddable__2_0_21": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_jetbrains_kotlin__kotlin_daemon_embeddable__2_0_21__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_jetbrains_kotlin__kotlin_reflect__2_0_21__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-reflect/2.0.21/kotlin-reflect-2.0.21.jar"
+              ],
+              "downloaded_file_path": "kotlin-reflect-2.0.21.jar",
+              "sha256": "3ad2fcad0c09ddc0922debab4444d612144b7b465b75a8bb7587e20ddfafd799"
+            }
+          },
+          "org_jetbrains_kotlin__kotlin_reflect__2_0_21": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_jetbrains_kotlin__kotlin_reflect__2_0_21__jar",
+              "deps": [
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_jetbrains_kotlin__kotlin_script_runtime__2_0_21__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-script-runtime/2.0.21/kotlin-script-runtime-2.0.21.jar"
+              ],
+              "downloaded_file_path": "kotlin-script-runtime-2.0.21.jar",
+              "sha256": "9c111f8d08ade455566272d561921adc2b2cb6b7a4ccee38d9829c5e3a1ca6a3"
+            }
+          },
+          "org_jetbrains_kotlin__kotlin_script_runtime__2_0_21": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_jetbrains_kotlin__kotlin_script_runtime__2_0_21__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_jetbrains_kotlin__kotlin_stdlib_common__1_7_20__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-common/1.7.20/kotlin-stdlib-common-1.7.20.jar"
+              ],
+              "downloaded_file_path": "kotlin-stdlib-common-1.7.20.jar",
+              "sha256": "e0e91962bc0007338bf5b1739f62927ac32d14ba3d827fa608ab4e5351729d5d"
+            }
+          },
+          "org_jetbrains_kotlin__kotlin_stdlib_common__1_7_20": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_jetbrains_kotlin__kotlin_stdlib_common__1_7_20__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_jetbrains_kotlin__kotlin_stdlib_jdk7__1_7_20__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.7.20/kotlin-stdlib-jdk7-1.7.20.jar"
+              ],
+              "downloaded_file_path": "kotlin-stdlib-jdk7-1.7.20.jar",
+              "sha256": "524da3c1a2ad56fd52c4ae2272ef3de421de8d2047ab1c51fc306d351243f2f5"
+            }
+          },
+          "org_jetbrains_kotlin__kotlin_stdlib_jdk7__1_7_20": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_jetbrains_kotlin__kotlin_stdlib_jdk7__1_7_20__jar",
+              "deps": [
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_jetbrains_kotlin__kotlin_stdlib_jdk8__1_7_20__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.7.20/kotlin-stdlib-jdk8-1.7.20.jar"
+              ],
+              "downloaded_file_path": "kotlin-stdlib-jdk8-1.7.20.jar",
+              "sha256": "1da0d306c995945e1f807240ef64b5cd2dd5ac58612afb1a8596143d10b7ded5"
+            }
+          },
+          "org_jetbrains_kotlin__kotlin_stdlib_jdk8__1_7_20": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_jetbrains_kotlin__kotlin_stdlib_jdk8__1_7_20__jar",
+              "deps": [
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar",
+                "@org_jetbrains_kotlin__kotlin_stdlib_jdk7__1_7_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_jetbrains_kotlin__kotlin_stdlib__2_3_20__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.3.20/kotlin-stdlib-2.3.20.jar"
+              ],
+              "downloaded_file_path": "kotlin-stdlib-2.3.20.jar",
+              "sha256": "0ae12504a5040ebaf37703908483420d1a5624dd1d93f357665f8c77c848a01e"
+            }
+          },
+          "org_jetbrains_kotlin__kotlin_stdlib__2_3_20": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_jetbrains_kotlin__kotlin_stdlib__2_3_20__jar",
+              "deps": [
+                "@org_jetbrains__annotations__23_0_0//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_jetbrains_kotlinx__kotlinx_coroutines_core_jvm__1_11_0__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.11.0/kotlinx-coroutines-core-jvm-1.11.0.jar"
+              ],
+              "downloaded_file_path": "kotlinx-coroutines-core-jvm-1.11.0.jar",
+              "sha256": "d1d75aa01dffbb4d1c520e67e4c4e7f5f6174718e7cb4632412503f2f0e604fa"
+            }
+          },
+          "org_jetbrains_kotlinx__kotlinx_coroutines_core_jvm__1_11_0": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_jetbrains_kotlinx__kotlinx_coroutines_core_jvm__1_11_0__jar",
+              "deps": [
+                "@org_jetbrains__annotations__23_0_0//:jar",
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_jetbrains_kotlinx__kotlinx_coroutines_test_jvm__1_11_0__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-test-jvm/1.11.0/kotlinx-coroutines-test-jvm-1.11.0.jar"
+              ],
+              "downloaded_file_path": "kotlinx-coroutines-test-jvm-1.11.0.jar",
+              "sha256": "d4f7ee71da708af4719dceb6d3200c8f9dc5146ea1a812cb628ed53c64196f96"
+            }
+          },
+          "org_jetbrains_kotlinx__kotlinx_coroutines_test_jvm__1_11_0": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_jetbrains_kotlinx__kotlinx_coroutines_test_jvm__1_11_0__jar",
+              "deps": [
+                "@org_jetbrains__annotations__23_0_0//:jar",
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar",
+                "@org_jetbrains_kotlinx__kotlinx_coroutines_core_jvm__1_11_0//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_jetbrains_kotlinx__kotlinx_html_jvm__0_8_1__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-html-jvm/0.8.1/kotlinx-html-jvm-0.8.1.jar"
+              ],
+              "downloaded_file_path": "kotlinx-html-jvm-0.8.1.jar",
+              "sha256": "98bda1c78a5028a134ceb25b63f5c130c89349730d35fd47ef7490b6bf0b63b3"
+            }
+          },
+          "org_jetbrains_kotlinx__kotlinx_html_jvm__0_8_1": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_jetbrains_kotlinx__kotlinx_html_jvm__0_8_1__jar",
+              "deps": [
+                "@org_jetbrains_kotlin__kotlin_stdlib_common__1_7_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [
+                "@org_jetbrains_kotlin__kotlin_stdlib_jdk8__1_7_20//:jar"
+              ],
+              "processor_classes": []
+            }
+          },
+          "org_jetbrains_kotlinx__kotlinx_serialization_core_jvm__1_11_0__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core-jvm/1.11.0/kotlinx-serialization-core-jvm-1.11.0.jar"
+              ],
+              "downloaded_file_path": "kotlinx-serialization-core-jvm-1.11.0.jar",
+              "sha256": "f4a801c647d4351327cd9e1ac4113e2be9ea37a64ab0abae269c25a52e28f35d"
+            }
+          },
+          "org_jetbrains_kotlinx__kotlinx_serialization_core_jvm__1_11_0": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_jetbrains_kotlinx__kotlinx_serialization_core_jvm__1_11_0__jar",
+              "deps": [
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_jetbrains_kotlinx__kotlinx_serialization_json_jvm__1_11_0__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-json-jvm/1.11.0/kotlinx-serialization-json-jvm-1.11.0.jar"
+              ],
+              "downloaded_file_path": "kotlinx-serialization-json-jvm-1.11.0.jar",
+              "sha256": "563a25b4eb5c9128ae9c2479f3d1a5c44dcd176112b91cf03682e906eba5c935"
+            }
+          },
+          "org_jetbrains_kotlinx__kotlinx_serialization_json_jvm__1_11_0": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_jetbrains_kotlinx__kotlinx_serialization_json_jvm__1_11_0__jar",
+              "deps": [
+                "@org_jetbrains_kotlin__kotlin_stdlib__2_3_20//:jar",
+                "@org_jetbrains_kotlinx__kotlinx_serialization_core_jvm__1_11_0//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_jetbrains__annotations__23_0_0__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/annotations/23.0.0/annotations-23.0.0.jar"
+              ],
+              "downloaded_file_path": "annotations-23.0.0.jar",
+              "sha256": "7b0f19724082cbfcbc66e5abea2b9bc92cf08a1ea11e191933ed43801eb3cd05"
+            }
+          },
+          "org_jetbrains__annotations__23_0_0": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_jetbrains__annotations__23_0_0__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_snakeyaml__snakeyaml_engine__2_7__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/snakeyaml/snakeyaml-engine/2.7/snakeyaml-engine-2.7.jar"
+              ],
+              "downloaded_file_path": "snakeyaml-engine-2.7.jar",
+              "sha256": "4053f878c171692aab8782f53a3974f43e55e2b6ed12c3682b36a46968c5ded1"
+            }
+          },
+          "org_snakeyaml__snakeyaml_engine__2_7": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_snakeyaml__snakeyaml_engine__2_7__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_xerial__sqlite_jdbc__3_53_4_0__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/xerial/sqlite-jdbc/3.53.4.0/sqlite-jdbc-3.53.4.0.jar"
+              ],
+              "downloaded_file_path": "sqlite-jdbc-3.53.4.0.jar",
+              "sha256": "bcb1f51e36f940867e83342f9efbf5968ac44a6bef4d397bb4af7b17b45cd2fb"
+            }
+          },
+          "org_xerial__sqlite_jdbc__3_53_4_0": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_xerial__sqlite_jdbc__3_53_4_0__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "maven": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_maven_alias_repo",
+            "attributes": {
+              "artifacts": [
+                "dev.drewhamilton.poko:poko-annotations-jvm:0.17.1|dev_drewhamilton_poko__poko_annotations_jvm__0_17_1|jar|0",
+                "io.github.davidburstrom.contester:contester-breakpoint:0.2.0|io_github_davidburstrom_contester__contester_breakpoint__0_2_0|jar|0",
+                "io.github.detekt.sarif4k:sarif4k-jvm:0.6.0|io_github_detekt_sarif4k__sarif4k_jvm__0_6_0|jar|0",
+                "io.gitlab.arturbosch.detekt:detekt-api:1.23.8|io_gitlab_arturbosch_detekt__detekt_api__1_23_8|jar|0",
+                "io.gitlab.arturbosch.detekt:detekt-cli:1.23.8|io_gitlab_arturbosch_detekt__detekt_cli__1_23_8|jar|0",
+                "io.gitlab.arturbosch.detekt:detekt-core:1.23.8|io_gitlab_arturbosch_detekt__detekt_core__1_23_8|jar|0",
+                "io.gitlab.arturbosch.detekt:detekt-metrics:1.23.8|io_gitlab_arturbosch_detekt__detekt_metrics__1_23_8|jar|0",
+                "io.gitlab.arturbosch.detekt:detekt-parser:1.23.8|io_gitlab_arturbosch_detekt__detekt_parser__1_23_8|jar|0",
+                "io.gitlab.arturbosch.detekt:detekt-psi-utils:1.23.8|io_gitlab_arturbosch_detekt__detekt_psi_utils__1_23_8|jar|0",
+                "io.gitlab.arturbosch.detekt:detekt-report-html:1.23.8|io_gitlab_arturbosch_detekt__detekt_report_html__1_23_8|jar|0",
+                "io.gitlab.arturbosch.detekt:detekt-report-md:1.23.8|io_gitlab_arturbosch_detekt__detekt_report_md__1_23_8|jar|0",
+                "io.gitlab.arturbosch.detekt:detekt-report-sarif:1.23.8|io_gitlab_arturbosch_detekt__detekt_report_sarif__1_23_8|jar|0",
+                "io.gitlab.arturbosch.detekt:detekt-report-txt:1.23.8|io_gitlab_arturbosch_detekt__detekt_report_txt__1_23_8|jar|0",
+                "io.gitlab.arturbosch.detekt:detekt-report-xml:1.23.8|io_gitlab_arturbosch_detekt__detekt_report_xml__1_23_8|jar|0",
+                "io.gitlab.arturbosch.detekt:detekt-rules-complexity:1.23.8|io_gitlab_arturbosch_detekt__detekt_rules_complexity__1_23_8|jar|0",
+                "io.gitlab.arturbosch.detekt:detekt-rules-coroutines:1.23.8|io_gitlab_arturbosch_detekt__detekt_rules_coroutines__1_23_8|jar|0",
+                "io.gitlab.arturbosch.detekt:detekt-rules-documentation:1.23.8|io_gitlab_arturbosch_detekt__detekt_rules_documentation__1_23_8|jar|0",
+                "io.gitlab.arturbosch.detekt:detekt-rules-empty:1.23.8|io_gitlab_arturbosch_detekt__detekt_rules_empty__1_23_8|jar|0",
+                "io.gitlab.arturbosch.detekt:detekt-rules-errorprone:1.23.8|io_gitlab_arturbosch_detekt__detekt_rules_errorprone__1_23_8|jar|0",
+                "io.gitlab.arturbosch.detekt:detekt-rules-exceptions:1.23.8|io_gitlab_arturbosch_detekt__detekt_rules_exceptions__1_23_8|jar|0",
+                "io.gitlab.arturbosch.detekt:detekt-rules-naming:1.23.8|io_gitlab_arturbosch_detekt__detekt_rules_naming__1_23_8|jar|0",
+                "io.gitlab.arturbosch.detekt:detekt-rules-performance:1.23.8|io_gitlab_arturbosch_detekt__detekt_rules_performance__1_23_8|jar|0",
+                "io.gitlab.arturbosch.detekt:detekt-rules-style:1.23.8|io_gitlab_arturbosch_detekt__detekt_rules_style__1_23_8|jar|0",
+                "io.gitlab.arturbosch.detekt:detekt-rules:1.23.8|io_gitlab_arturbosch_detekt__detekt_rules__1_23_8|jar|0",
+                "io.gitlab.arturbosch.detekt:detekt-tooling:1.23.8|io_gitlab_arturbosch_detekt__detekt_tooling__1_23_8|jar|0",
+                "io.gitlab.arturbosch.detekt:detekt-utils:1.23.8|io_gitlab_arturbosch_detekt__detekt_utils__1_23_8|jar|0",
+                "junit:junit:4.13.2|junit__junit__4_13_2|jar|0",
+                "org.hamcrest:hamcrest-core:1.3|org_hamcrest__hamcrest_core__1_3|jar|0",
+                "org.jcommander:jcommander:1.85|org_jcommander__jcommander__1_85|jar|0",
+                "org.jetbrains.intellij.deps:trove4j:1.0.20200330|org_jetbrains_intellij_deps__trove4j__1_0_20200330|jar|0",
+                "org.jetbrains.kotlin:kotlin-compiler-embeddable:2.0.21|org_jetbrains_kotlin__kotlin_compiler_embeddable__2_0_21|processor|1",
+                "org.jetbrains.kotlin:kotlin-daemon-embeddable:2.0.21|org_jetbrains_kotlin__kotlin_daemon_embeddable__2_0_21|jar|0",
+                "org.jetbrains.kotlin:kotlin-reflect:2.0.21|org_jetbrains_kotlin__kotlin_reflect__2_0_21|jar|0",
+                "org.jetbrains.kotlin:kotlin-script-runtime:2.0.21|org_jetbrains_kotlin__kotlin_script_runtime__2_0_21|jar|0",
+                "org.jetbrains.kotlin:kotlin-stdlib-common:1.7.20|org_jetbrains_kotlin__kotlin_stdlib_common__1_7_20|jar|0",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.7.20|org_jetbrains_kotlin__kotlin_stdlib_jdk7__1_7_20|jar|0",
+                "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.20|org_jetbrains_kotlin__kotlin_stdlib_jdk8__1_7_20|jar|0",
+                "org.jetbrains.kotlin:kotlin-stdlib:2.3.20|org_jetbrains_kotlin__kotlin_stdlib__2_3_20|jar|0",
+                "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.11.0|org_jetbrains_kotlinx__kotlinx_coroutines_core_jvm__1_11_0|jar|0",
+                "org.jetbrains.kotlinx:kotlinx-coroutines-test-jvm:1.11.0|org_jetbrains_kotlinx__kotlinx_coroutines_test_jvm__1_11_0|jar|0",
+                "org.jetbrains.kotlinx:kotlinx-html-jvm:0.8.1|org_jetbrains_kotlinx__kotlinx_html_jvm__0_8_1|jar|0",
+                "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.11.0|org_jetbrains_kotlinx__kotlinx_serialization_core_jvm__1_11_0|jar|0",
+                "org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.11.0|org_jetbrains_kotlinx__kotlinx_serialization_json_jvm__1_11_0|jar|0",
+                "org.jetbrains:annotations:23.0.0|org_jetbrains__annotations__23_0_0|jar|0",
+                "org.snakeyaml:snakeyaml-engine:2.7|org_snakeyaml__snakeyaml_engine__2_7|jar|0",
+                "org.xerial:sqlite-jdbc:3.53.4.0|org_xerial__sqlite_jdbc__3_53_4_0|jar|0"
+              ]
+            }
+          },
+          "org_codehaus_plexus__plexus_component_annotations__1_6__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/plexus/plexus-component-annotations/1.6/plexus-component-annotations-1.6.jar"
+              ],
+              "downloaded_file_path": "plexus-component-annotations-1.6.jar",
+              "sha256": "2b3a6ca5f19a9ad490bc233f45e68d3093c8c01b4acc3c1d14bad4ca7c7ff438"
+            }
+          },
+          "org_codehaus_plexus__plexus_component_annotations__1_6": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_codehaus_plexus__plexus_component_annotations__1_6__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_slf4j__jcl_over_slf4j__1_6_2__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/slf4j/jcl-over-slf4j/1.6.2/jcl-over-slf4j-1.6.2.jar"
+              ],
+              "downloaded_file_path": "jcl-over-slf4j-1.6.2.jar",
+              "sha256": "ff95d8cbe80a47f23ba1cbb099b032e98721442f431852db6cf09303816d4b2c"
+            }
+          },
+          "org_slf4j__jcl_over_slf4j__1_6_2": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_slf4j__jcl_over_slf4j__1_6_2__jar",
+              "deps": [
+                "@org_slf4j__slf4j_api__1_7_25//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_eclipse_aether__aether_transport_http__1_1_0__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/eclipse/aether/aether-transport-http/1.1.0/aether-transport-http-1.1.0.jar"
+              ],
+              "downloaded_file_path": "aether-transport-http-1.1.0.jar",
+              "sha256": "9356e876bca03730e8048048a19cc83d9d84ff3ab07c13bfc555023674a3524c"
+            }
+          },
+          "org_eclipse_aether__aether_transport_http__1_1_0": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_eclipse_aether__aether_transport_http__1_1_0__jar",
+              "deps": [
+                "@org_eclipse_aether__aether_util__1_1_0//:jar",
+                "@org_slf4j__jcl_over_slf4j__1_6_2//:jar",
+                "@org_apache_httpcomponents__httpclient__4_5_13//:jar",
+                "@org_eclipse_aether__aether_spi__1_1_0//:jar",
+                "@org_eclipse_aether__aether_api__1_1_0//:jar"
+              ],
+              "exports": [
+                "@org_eclipse_aether__aether_util__1_1_0//:jar",
+                "@org_slf4j__jcl_over_slf4j__1_6_2//:jar",
+                "@org_apache_httpcomponents__httpclient__4_5_13//:jar",
+                "@org_eclipse_aether__aether_spi__1_1_0//:jar",
+                "@org_eclipse_aether__aether_api__1_1_0//:jar"
+              ],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_codehaus_plexus__plexus_utils__3_3_0__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/plexus/plexus-utils/3.3.0/plexus-utils-3.3.0.jar"
+              ],
+              "downloaded_file_path": "plexus-utils-3.3.0.jar",
+              "sha256": "76d174792540e2775af94d03d10fb2d3c776e2cd0ac0ebf427d3e570072bb9ce"
+            }
+          },
+          "org_codehaus_plexus__plexus_utils__3_3_0": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_codehaus_plexus__plexus_utils__3_3_0__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "javax_inject__javax_inject__1__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/javax/inject/javax.inject/1/javax.inject-1.jar"
+              ],
+              "downloaded_file_path": "javax.inject-1.jar",
+              "sha256": "91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff"
+            }
+          },
+          "javax_inject__javax_inject__1": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "javax_inject__javax_inject__1__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "net_bytebuddy__byte_buddy__1_9_3__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/net/bytebuddy/byte-buddy/1.9.3/byte-buddy-1.9.3.jar"
+              ],
+              "downloaded_file_path": "byte-buddy-1.9.3.jar",
+              "sha256": "a27350be602caea67a33d31281496c84c69b5ab34ddc228e9ff2253fc8f9cd31"
+            }
+          },
+          "net_bytebuddy__byte_buddy__1_9_3": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "net_bytebuddy__byte_buddy__1_9_3__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_codehaus_plexus__plexus_interpolation__1_26__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/plexus/plexus-interpolation/1.26/plexus-interpolation-1.26.jar"
+              ],
+              "downloaded_file_path": "plexus-interpolation-1.26.jar",
+              "sha256": "b3b5412ce17889103ea564bcdfcf9fb3dfa540344ffeac6b538a73c9d7182662"
+            }
+          },
+          "org_codehaus_plexus__plexus_interpolation__1_26": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_codehaus_plexus__plexus_interpolation__1_26__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "com_google_code_gson__gson__2_8_5__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/code/gson/gson/2.8.5/gson-2.8.5.jar"
+              ],
+              "downloaded_file_path": "gson-2.8.5.jar",
+              "sha256": "233a0149fc365c9f6edbd683cfe266b19bdc773be98eabdaf6b3c924b48e7d81"
+            }
+          },
+          "com_google_code_gson__gson__2_8_5": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "com_google_code_gson__gson__2_8_5__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_eclipse_aether__aether_transport_classpath__1_1_0__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/eclipse/aether/aether-transport-classpath/1.1.0/aether-transport-classpath-1.1.0.jar"
+              ],
+              "downloaded_file_path": "aether-transport-classpath-1.1.0.jar",
+              "sha256": "036cd51c716d002aeec1adb62f8ba99d1a1efa4d258cc07954576ad599de8bc9"
+            }
+          },
+          "org_eclipse_aether__aether_transport_classpath__1_1_0": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_eclipse_aether__aether_transport_classpath__1_1_0__jar",
+              "deps": [
+                "@org_eclipse_aether__aether_util__1_1_0//:jar",
+                "@org_eclipse_aether__aether_spi__1_1_0//:jar",
+                "@org_eclipse_aether__aether_api__1_1_0//:jar"
+              ],
+              "exports": [
+                "@org_eclipse_aether__aether_util__1_1_0//:jar",
+                "@org_eclipse_aether__aether_spi__1_1_0//:jar",
+                "@org_eclipse_aether__aether_api__1_1_0//:jar"
+              ],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_apache_maven_wagon__wagon_provider_api__1_0__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/wagon/wagon-provider-api/1.0/wagon-provider-api-1.0.jar"
+              ],
+              "downloaded_file_path": "wagon-provider-api-1.0.jar",
+              "sha256": "b28dd1302ac34433d8d1b45fb254e093cd7b47277441af2018c8a3a4d8c1a60d"
+            }
+          },
+          "org_apache_maven_wagon__wagon_provider_api__1_0": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_apache_maven_wagon__wagon_provider_api__1_0__jar",
+              "deps": [
+                "@org_codehaus_plexus__plexus_utils__3_3_0//:jar"
+              ],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_apache_commons__commons_lang3__3_8_1__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1.jar"
+              ],
+              "downloaded_file_path": "commons-lang3-3.8.1.jar",
+              "sha256": "dac807f65b07698ff39b1b07bfef3d87ae3fd46d91bbf8a2bc02b2a831616f68"
+            }
+          },
+          "org_apache_commons__commons_lang3__3_8_1": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_apache_commons__commons_lang3__3_8_1__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "commons_logging__commons_logging__1_2__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2.jar"
+              ],
+              "downloaded_file_path": "commons-logging-1.2.jar",
+              "sha256": "daddea1ea0be0f56978ab3006b8ac92834afeefbd9b7e4e6316fca57df0fa636"
+            }
+          },
+          "commons_logging__commons_logging__1_2": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "commons_logging__commons_logging__1_2__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "junit__junit__4_12__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/junit/junit/4.12/junit-4.12.jar"
+              ],
+              "downloaded_file_path": "junit-4.12.jar",
+              "sha256": "59721f0805e223d84b90677887d9ff567dc534d7c502ca903c0c2b17f05c116a"
+            }
+          },
+          "junit__junit__4_12": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "junit__junit__4_12__jar",
+              "deps": [
+                "@org_hamcrest__hamcrest_core__1_3//:jar"
+              ],
+              "exports": [
+                "@org_hamcrest__hamcrest_core__1_3//:jar"
+              ],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_eclipse_aether__aether_api__1_1_0__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/eclipse/aether/aether-api/1.1.0/aether-api-1.1.0.jar"
+              ],
+              "downloaded_file_path": "aether-api-1.1.0.jar",
+              "sha256": "e196bd5e61c5fc3139fb3d12161b122ce657bab6a34c38f1e338a3aab18992f5"
+            }
+          },
+          "org_eclipse_aether__aether_api__1_1_0": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_eclipse_aether__aether_api__1_1_0__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_apache_httpcomponents__httpclient__4_5_13__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/httpcomponents/httpclient/4.5.13/httpclient-4.5.13.jar"
+              ],
+              "downloaded_file_path": "httpclient-4.5.13.jar",
+              "sha256": "6fe9026a566c6a5001608cf3fc32196641f6c1e5e1986d1037ccdbd5f31ef743"
+            }
+          },
+          "org_apache_httpcomponents__httpclient__4_5_13": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_apache_httpcomponents__httpclient__4_5_13__jar",
+              "deps": [
+                "@org_apache_httpcomponents__httpcore__4_4_13//:jar",
+                "@commons_codec__commons_codec__1_11//:jar",
+                "@commons_logging__commons_logging__1_2//:jar"
+              ],
+              "exports": [
+                "@org_apache_httpcomponents__httpcore__4_4_13//:jar",
+                "@commons_codec__commons_codec__1_11//:jar",
+                "@commons_logging__commons_logging__1_2//:jar"
+              ],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_apache_maven__maven_repository_metadata__3_8_1__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-repository-metadata/3.8.1/maven-repository-metadata-3.8.1.jar"
+              ],
+              "downloaded_file_path": "maven-repository-metadata-3.8.1.jar",
+              "sha256": "ed400ae8d4782e8b865571637c5244e3b79fea4829b8a0870c714c1094f2dda5"
+            }
+          },
+          "org_apache_maven__maven_repository_metadata__3_8_1": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_apache_maven__maven_repository_metadata__3_8_1__jar",
+              "deps": [
+                "@org_codehaus_plexus__plexus_utils__3_3_0//:jar"
+              ],
+              "exports": [
+                "@org_codehaus_plexus__plexus_utils__3_3_0//:jar"
+              ],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "com_google_auto_value__auto_value__1_7__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/auto/value/auto-value/1.7/auto-value-1.7.jar"
+              ],
+              "downloaded_file_path": "auto-value-1.7.jar",
+              "sha256": "b66df6984d5c29f15a6253514c817fb046e8e242efffc79e42c33f2dde0edf41"
+            }
+          },
+          "com_google_auto_value__auto_value__1_7": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "com_google_auto_value__auto_value__1_7__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": [
+                "com.google.auto.value.extension.memoized.processor.MemoizedValidator",
+                "com.google.auto.value.processor.AutoAnnotationProcessor",
+                "com.google.auto.value.processor.AutoOneOfProcessor",
+                "com.google.auto.value.processor.AutoValueBuilderProcessor",
+                "com.google.auto.value.processor.AutoValueProcessor"
+              ]
+            }
+          },
+          "org_eclipse_sisu__org_eclipse_sisu_inject__0_3_4__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/eclipse/sisu/org.eclipse.sisu.inject/0.3.4/org.eclipse.sisu.inject-0.3.4.jar"
+              ],
+              "downloaded_file_path": "org.eclipse.sisu.inject-0.3.4.jar",
+              "sha256": "8c0e6aa7f35593016f2c5e78b604b57f023cdaca3561fe2fe36f2b5dbbae1d16"
+            }
+          },
+          "org_eclipse_sisu__org_eclipse_sisu_inject__0_3_4": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_eclipse_sisu__org_eclipse_sisu_inject__0_3_4__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": [
+                "org.eclipse.sisu.space.SisuIndexAPT6"
+              ]
+            }
+          },
+          "org_mockito__mockito_core__2_23_4__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/mockito/mockito-core/2.23.4/mockito-core-2.23.4.jar"
+              ],
+              "downloaded_file_path": "mockito-core-2.23.4.jar",
+              "sha256": "d77e018b6bc211d78ddcec54bc508732c4677b9a9eb9103793be85441b20bc5d"
+            }
+          },
+          "org_mockito__mockito_core__2_23_4": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_mockito__mockito_core__2_23_4__jar",
+              "deps": [
+                "@net_bytebuddy__byte_buddy_agent__1_9_3//:jar",
+                "@net_bytebuddy__byte_buddy__1_9_3//:jar",
+                "@org_objenesis__objenesis__2_6//:jar"
+              ],
+              "exports": [
+                "@net_bytebuddy__byte_buddy_agent__1_9_3//:jar",
+                "@net_bytebuddy__byte_buddy__1_9_3//:jar",
+                "@org_objenesis__objenesis__2_6//:jar"
+              ],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_eclipse_aether__aether_transport_file__1_1_0__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/eclipse/aether/aether-transport-file/1.1.0/aether-transport-file-1.1.0.jar"
+              ],
+              "downloaded_file_path": "aether-transport-file-1.1.0.jar",
+              "sha256": "e519cd8726d282c03999fb591dbd811eb96b00068ee6c7984035ee98b7f64b91"
+            }
+          },
+          "org_eclipse_aether__aether_transport_file__1_1_0": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_eclipse_aether__aether_transport_file__1_1_0__jar",
+              "deps": [
+                "@org_eclipse_aether__aether_util__1_1_0//:jar",
+                "@org_eclipse_aether__aether_spi__1_1_0//:jar",
+                "@org_eclipse_aether__aether_api__1_1_0//:jar"
+              ],
+              "exports": [
+                "@org_eclipse_aether__aether_util__1_1_0//:jar",
+                "@org_eclipse_aether__aether_spi__1_1_0//:jar",
+                "@org_eclipse_aether__aether_api__1_1_0//:jar"
+              ],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "com_google_guava__listenablefuture__9999_0_empty_to_avoid_conflict_with_guava__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar"
+              ],
+              "downloaded_file_path": "listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar",
+              "sha256": "b372a037d4230aa57fbeffdef30fd6123f9c0c2db85d0aced00c91b974f33f99"
+            }
+          },
+          "com_google_guava__listenablefuture__9999_0_empty_to_avoid_conflict_with_guava": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "com_google_guava__listenablefuture__9999_0_empty_to_avoid_conflict_with_guava__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_apache_httpcomponents__httpcore__4_4_13__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/httpcomponents/httpcore/4.4.13/httpcore-4.4.13.jar"
+              ],
+              "downloaded_file_path": "httpcore-4.4.13.jar",
+              "sha256": "e06e89d40943245fcfa39ec537cdbfce3762aecde8f9c597780d2b00c2b43424"
+            }
+          },
+          "org_apache_httpcomponents__httpcore__4_4_13": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_apache_httpcomponents__httpcore__4_4_13__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_apache_maven__maven_builder_support__3_8_1__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-builder-support/3.8.1/maven-builder-support-3.8.1.jar"
+              ],
+              "downloaded_file_path": "maven-builder-support-3.8.1.jar",
+              "sha256": "04ca8710b375c30bdb78964c24d665b866bc0f096cc2a93c82aa43f9e331c36b"
+            }
+          },
+          "org_apache_maven__maven_builder_support__3_8_1": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_apache_maven__maven_builder_support__3_8_1__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_apache_maven__maven_model_builder__3_8_1__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-model-builder/3.8.1/maven-model-builder-3.8.1.jar"
+              ],
+              "downloaded_file_path": "maven-model-builder-3.8.1.jar",
+              "sha256": "60efee1229626229c13febb6d6c1949120c6ab55ced0e9ce16cd167a0056b8e1"
+            }
+          },
+          "org_apache_maven__maven_model_builder__3_8_1": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_apache_maven__maven_model_builder__3_8_1__jar",
+              "deps": [
+                "@org_apache_maven__maven_artifact__3_8_1//:jar",
+                "@org_codehaus_plexus__plexus_utils__3_3_0//:jar",
+                "@org_apache_maven__maven_builder_support__3_8_1//:jar",
+                "@org_eclipse_sisu__org_eclipse_sisu_inject__0_3_4//:jar",
+                "@javax_inject__javax_inject__1//:jar",
+                "@org_codehaus_plexus__plexus_interpolation__1_26//:jar",
+                "@org_apache_maven__maven_model__3_8_1//:jar"
+              ],
+              "exports": [
+                "@org_apache_maven__maven_artifact__3_8_1//:jar",
+                "@org_codehaus_plexus__plexus_utils__3_3_0//:jar",
+                "@org_apache_maven__maven_builder_support__3_8_1//:jar",
+                "@org_eclipse_sisu__org_eclipse_sisu_inject__0_3_4//:jar",
+                "@javax_inject__javax_inject__1//:jar",
+                "@org_codehaus_plexus__plexus_interpolation__1_26//:jar",
+                "@org_apache_maven__maven_model__3_8_1//:jar"
+              ],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "com_google_guava__guava__27_0_1_jre__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/guava/guava/27.0.1-jre/guava-27.0.1-jre.jar"
+              ],
+              "downloaded_file_path": "guava-27.0.1-jre.jar",
+              "sha256": "e1c814fd04492a27c38e0317eabeaa1b3e950ec8010239e400fe90ad6c9107b4"
+            }
+          },
+          "com_google_guava__guava__27_0_1_jre": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "com_google_guava__guava__27_0_1_jre__jar",
+              "deps": [
+                "@com_google_code_findbugs__jsr305__3_0_2//:jar",
+                "@com_google_guava__listenablefuture__9999_0_empty_to_avoid_conflict_with_guava//:jar",
+                "@org_checkerframework__checker_qual__2_5_2//:jar",
+                "@com_google_errorprone__error_prone_annotations__2_2_0//:jar",
+                "@org_codehaus_mojo__animal_sniffer_annotations__1_17//:jar",
+                "@com_google_guava__failureaccess__1_0_1//:jar",
+                "@com_google_j2objc__j2objc_annotations__1_1//:jar"
+              ],
+              "exports": [
+                "@com_google_code_findbugs__jsr305__3_0_2//:jar",
+                "@com_google_guava__listenablefuture__9999_0_empty_to_avoid_conflict_with_guava//:jar",
+                "@org_checkerframework__checker_qual__2_5_2//:jar",
+                "@com_google_errorprone__error_prone_annotations__2_2_0//:jar",
+                "@org_codehaus_mojo__animal_sniffer_annotations__1_17//:jar",
+                "@com_google_guava__failureaccess__1_0_1//:jar",
+                "@com_google_j2objc__j2objc_annotations__1_1//:jar"
+              ],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_eclipse_aether__aether_transport_wagon__1_1_0__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/eclipse/aether/aether-transport-wagon/1.1.0/aether-transport-wagon-1.1.0.jar"
+              ],
+              "downloaded_file_path": "aether-transport-wagon-1.1.0.jar",
+              "sha256": "c915ea61e451e4137879706f8b79d7d34f8c9ef140cf0e1f09bd8a54a11297f2"
+            }
+          },
+          "org_eclipse_aether__aether_transport_wagon__1_1_0": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_eclipse_aether__aether_transport_wagon__1_1_0__jar",
+              "deps": [
+                "@org_eclipse_aether__aether_util__1_1_0//:jar",
+                "@org_apache_maven_wagon__wagon_provider_api__1_0//:jar",
+                "@org_eclipse_aether__aether_spi__1_1_0//:jar",
+                "@org_eclipse_aether__aether_api__1_1_0//:jar"
+              ],
+              "exports": [
+                "@org_eclipse_aether__aether_util__1_1_0//:jar",
+                "@org_apache_maven_wagon__wagon_provider_api__1_0//:jar",
+                "@org_eclipse_aether__aether_spi__1_1_0//:jar",
+                "@org_eclipse_aether__aether_api__1_1_0//:jar"
+              ],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_eclipse_aether__aether_connector_basic__1_1_0__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/eclipse/aether/aether-connector-basic/1.1.0/aether-connector-basic-1.1.0.jar"
+              ],
+              "downloaded_file_path": "aether-connector-basic-1.1.0.jar",
+              "sha256": "4431d8edf172815349a444a34376aa3229f89952d01bae748f42c5f0b4680d93"
+            }
+          },
+          "org_eclipse_aether__aether_connector_basic__1_1_0": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_eclipse_aether__aether_connector_basic__1_1_0__jar",
+              "deps": [
+                "@org_eclipse_aether__aether_util__1_1_0//:jar",
+                "@org_eclipse_aether__aether_spi__1_1_0//:jar",
+                "@org_eclipse_aether__aether_api__1_1_0//:jar"
+              ],
+              "exports": [
+                "@org_eclipse_aether__aether_util__1_1_0//:jar",
+                "@org_eclipse_aether__aether_spi__1_1_0//:jar",
+                "@org_eclipse_aether__aether_api__1_1_0//:jar"
+              ],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "com_beust__jcommander__1_72__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/com/beust/jcommander/1.72/jcommander-1.72.jar"
+              ],
+              "downloaded_file_path": "jcommander-1.72.jar",
+              "sha256": "e0de160b129b2414087e01fe845609cd55caec6820cfd4d0c90fabcc7bdb8c1e"
+            }
+          },
+          "com_beust__jcommander__1_72": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "com_beust__jcommander__1_72__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_objenesis__objenesis__2_6__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/objenesis/objenesis/2.6/objenesis-2.6.jar"
+              ],
+              "downloaded_file_path": "objenesis-2.6.jar",
+              "sha256": "5e168368fbc250af3c79aa5fef0c3467a2d64e5a7bd74005f25d8399aeb0708d"
+            }
+          },
+          "org_objenesis__objenesis__2_6": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_objenesis__objenesis__2_6__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "com_google_auto_value__auto_value_annotations__1_7__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/auto/value/auto-value-annotations/1.7/auto-value-annotations-1.7.jar"
+              ],
+              "downloaded_file_path": "auto-value-annotations-1.7.jar",
+              "sha256": "b134bab5082e9f49f2b45802573c78e0726e059b645323645da03e328e501f86"
+            }
+          },
+          "com_google_auto_value__auto_value_annotations__1_7": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "com_google_auto_value__auto_value_annotations__1_7__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "com_google_errorprone__error_prone_annotations__2_2_0__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/errorprone/error_prone_annotations/2.2.0/error_prone_annotations-2.2.0.jar"
+              ],
+              "downloaded_file_path": "error_prone_annotations-2.2.0.jar",
+              "sha256": "6ebd22ca1b9d8ec06d41de8d64e0596981d9607b42035f9ed374f9de271a481a"
+            }
+          },
+          "com_google_errorprone__error_prone_annotations__2_2_0": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "com_google_errorprone__error_prone_annotations__2_2_0__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_checkerframework__checker_qual__2_5_2__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/checkerframework/checker-qual/2.5.2/checker-qual-2.5.2.jar"
+              ],
+              "downloaded_file_path": "checker-qual-2.5.2.jar",
+              "sha256": "64b02691c8b9d4e7700f8ee2e742dce7ea2c6e81e662b7522c9ee3bf568c040a"
+            }
+          },
+          "org_checkerframework__checker_qual__2_5_2": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_checkerframework__checker_qual__2_5_2__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "commons_codec__commons_codec__1_11__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/commons-codec/commons-codec/1.11/commons-codec-1.11.jar"
+              ],
+              "downloaded_file_path": "commons-codec-1.11.jar",
+              "sha256": "e599d5318e97aa48f42136a2927e6dfa4e8881dff0e6c8e3109ddbbff51d7b7d"
+            }
+          },
+          "commons_codec__commons_codec__1_11": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "commons_codec__commons_codec__1_11__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "com_google_j2objc__j2objc_annotations__1_1__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar"
+              ],
+              "downloaded_file_path": "j2objc-annotations-1.1.jar",
+              "sha256": "2994a7eb78f2710bd3d3bfb639b2c94e219cedac0d4d084d516e78c16dddecf6"
+            }
+          },
+          "com_google_j2objc__j2objc_annotations__1_1": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "com_google_j2objc__j2objc_annotations__1_1__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_eclipse_aether__aether_impl__1_1_0__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/eclipse/aether/aether-impl/1.1.0/aether-impl-1.1.0.jar"
+              ],
+              "downloaded_file_path": "aether-impl-1.1.0.jar",
+              "sha256": "0bf7dfbbcde79ce0ded7712f191c7ecd28f5a4fa16f4f6bfbfaa7c2f98e5c234"
+            }
+          },
+          "org_eclipse_aether__aether_impl__1_1_0": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_eclipse_aether__aether_impl__1_1_0__jar",
+              "deps": [
+                "@org_eclipse_aether__aether_util__1_1_0//:jar",
+                "@org_eclipse_aether__aether_spi__1_1_0//:jar",
+                "@org_eclipse_aether__aether_api__1_1_0//:jar"
+              ],
+              "exports": [
+                "@org_eclipse_aether__aether_util__1_1_0//:jar",
+                "@org_eclipse_aether__aether_spi__1_1_0//:jar",
+                "@org_eclipse_aether__aether_api__1_1_0//:jar"
+              ],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_slf4j__slf4j_nop__1_7_25__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/slf4j/slf4j-nop/1.7.25/slf4j-nop-1.7.25.jar"
+              ],
+              "downloaded_file_path": "slf4j-nop-1.7.25.jar",
+              "sha256": "6cb127138f41b5a869f9ecdd061ad17799a0e3fe7204600797154eb0432eeb12"
+            }
+          },
+          "org_slf4j__slf4j_nop__1_7_25": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_slf4j__slf4j_nop__1_7_25__jar",
+              "deps": [
+                "@org_slf4j__slf4j_api__1_7_25//:jar"
+              ],
+              "exports": [
+                "@org_slf4j__slf4j_api__1_7_25//:jar"
+              ],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_apache_maven__maven_aether_provider__3_3_9__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-aether-provider/3.3.9/maven-aether-provider-3.3.9.jar"
+              ],
+              "downloaded_file_path": "maven-aether-provider-3.3.9.jar",
+              "sha256": "f46962583d812cd4459a4cc963113b9c52f1f9b169172354693bc9efa0b3e3cb"
+            }
+          },
+          "org_apache_maven__maven_aether_provider__3_3_9": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_apache_maven__maven_aether_provider__3_3_9__jar",
+              "deps": [
+                "@org_apache_maven__maven_model_builder__3_8_1//:jar",
+                "@org_apache_commons__commons_lang3__3_8_1//:jar",
+                "@org_apache_maven__maven_repository_metadata__3_8_1//:jar",
+                "@org_eclipse_aether__aether_impl__1_1_0//:jar",
+                "@org_codehaus_plexus__plexus_component_annotations__1_6//:jar",
+                "@org_eclipse_aether__aether_util__1_1_0//:jar",
+                "@org_codehaus_plexus__plexus_utils__3_3_0//:jar",
+                "@org_eclipse_aether__aether_spi__1_1_0//:jar",
+                "@org_eclipse_aether__aether_api__1_1_0//:jar",
+                "@org_apache_maven__maven_model__3_8_1//:jar"
+              ],
+              "exports": [
+                "@org_apache_maven__maven_model_builder__3_8_1//:jar",
+                "@org_apache_commons__commons_lang3__3_8_1//:jar",
+                "@org_apache_maven__maven_repository_metadata__3_8_1//:jar",
+                "@org_eclipse_aether__aether_impl__1_1_0//:jar",
+                "@org_codehaus_plexus__plexus_component_annotations__1_6//:jar",
+                "@org_eclipse_aether__aether_util__1_1_0//:jar",
+                "@org_codehaus_plexus__plexus_utils__3_3_0//:jar",
+                "@org_eclipse_aether__aether_spi__1_1_0//:jar",
+                "@org_eclipse_aether__aether_api__1_1_0//:jar",
+                "@org_apache_maven__maven_model__3_8_1//:jar"
+              ],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_eclipse_aether__aether_spi__1_1_0__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/eclipse/aether/aether-spi/1.1.0/aether-spi-1.1.0.jar"
+              ],
+              "downloaded_file_path": "aether-spi-1.1.0.jar",
+              "sha256": "dd9e79b759f813269ff15f849c9ebb1999bd7bc988e2b399f7581089fd368acb"
+            }
+          },
+          "org_eclipse_aether__aether_spi__1_1_0": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_eclipse_aether__aether_spi__1_1_0__jar",
+              "deps": [
+                "@org_eclipse_aether__aether_api__1_1_0//:jar"
+              ],
+              "exports": [
+                "@org_eclipse_aether__aether_api__1_1_0//:jar"
+              ],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_slf4j__slf4j_api__1_7_25__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar"
+              ],
+              "downloaded_file_path": "slf4j-api-1.7.25.jar",
+              "sha256": "18c4a0095d5c1da6b817592e767bb23d29dd2f560ad74df75ff3961dbde25b79"
+            }
+          },
+          "org_slf4j__slf4j_api__1_7_25": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_slf4j__slf4j_api__1_7_25__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_eclipse_aether__aether_util__1_1_0__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/eclipse/aether/aether-util/1.1.0/aether-util-1.1.0.jar"
+              ],
+              "downloaded_file_path": "aether-util-1.1.0.jar",
+              "sha256": "556f083dd35fe7f430ac4a7705784191e39df6df89abc31b30cb538f53828d62"
+            }
+          },
+          "org_eclipse_aether__aether_util__1_1_0": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_eclipse_aether__aether_util__1_1_0__jar",
+              "deps": [
+                "@org_eclipse_aether__aether_api__1_1_0//:jar"
+              ],
+              "exports": [
+                "@org_eclipse_aether__aether_api__1_1_0//:jar"
+              ],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "com_google_code_findbugs__jsr305__3_0_2__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar"
+              ],
+              "downloaded_file_path": "jsr305-3.0.2.jar",
+              "sha256": "766ad2a0783f2687962c8ad74ceecc38a28b9f72a2d085ee438b7813e928d0c7"
+            }
+          },
+          "com_google_code_findbugs__jsr305__3_0_2": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "com_google_code_findbugs__jsr305__3_0_2__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "net_bytebuddy__byte_buddy_agent__1_9_3__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/net/bytebuddy/byte-buddy-agent/1.9.3/byte-buddy-agent-1.9.3.jar"
+              ],
+              "downloaded_file_path": "byte-buddy-agent-1.9.3.jar",
+              "sha256": "547288e013a9d1f4a4ce2ab84c24e3edda6e433c7fa6b2c3c3613932671b05b1"
+            }
+          },
+          "net_bytebuddy__byte_buddy_agent__1_9_3": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "net_bytebuddy__byte_buddy_agent__1_9_3__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_apache_maven__maven_artifact__3_8_1__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-artifact/3.8.1/maven-artifact-3.8.1.jar"
+              ],
+              "downloaded_file_path": "maven-artifact-3.8.1.jar",
+              "sha256": "9dbd3db15ac4816471e72981cb06ef90f3ffa8be6628dddf7135f7bd69bee0c0"
+            }
+          },
+          "org_apache_maven__maven_artifact__3_8_1": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_apache_maven__maven_artifact__3_8_1__jar",
+              "deps": [
+                "@org_apache_commons__commons_lang3__3_8_1//:jar",
+                "@org_codehaus_plexus__plexus_utils__3_3_0//:jar"
+              ],
+              "exports": [
+                "@org_apache_commons__commons_lang3__3_8_1//:jar",
+                "@org_codehaus_plexus__plexus_utils__3_3_0//:jar"
+              ],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "com_google_guava__failureaccess__1_0_1__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar"
+              ],
+              "downloaded_file_path": "failureaccess-1.0.1.jar",
+              "sha256": "a171ee4c734dd2da837e4b16be9df4661afab72a41adaf31eb84dfdaf936ca26"
+            }
+          },
+          "com_google_guava__failureaccess__1_0_1": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "com_google_guava__failureaccess__1_0_1__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_codehaus_mojo__animal_sniffer_annotations__1_17__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/mojo/animal-sniffer-annotations/1.17/animal-sniffer-annotations-1.17.jar"
+              ],
+              "downloaded_file_path": "animal-sniffer-annotations-1.17.jar",
+              "sha256": "92654f493ecfec52082e76354f0ebf87648dc3d5cec2e3c3cdb947c016747a53"
+            }
+          },
+          "org_codehaus_mojo__animal_sniffer_annotations__1_17": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_codehaus_mojo__animal_sniffer_annotations__1_17__jar",
+              "deps": [],
+              "exports": [],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "org_apache_maven__maven_model__3_8_1__jar": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-model/3.8.1/maven-model-3.8.1.jar"
+              ],
+              "downloaded_file_path": "maven-model-3.8.1.jar",
+              "sha256": "9e008629cefa5ddc9e5e2628adb467416ced250591e30dea7103f37f513b3b13"
+            }
+          },
+          "org_apache_maven__maven_model__3_8_1": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_jvm_import_repo",
+            "attributes": {
+              "jar_repo": "org_apache_maven__maven_model__3_8_1__jar",
+              "deps": [
+                "@org_codehaus_plexus__plexus_utils__3_3_0//:jar"
+              ],
+              "exports": [
+                "@org_codehaus_plexus__plexus_utils__3_3_0//:jar"
+              ],
+              "runtime_deps": [],
+              "processor_classes": []
+            }
+          },
+          "mvn": {
+            "repoRuleId": "@@mabel+//rules:extensions.bzl%_maven_alias_repo",
+            "attributes": {
+              "artifacts": [
+                "org.codehaus.plexus:plexus-component-annotations:1.6|org_codehaus_plexus__plexus_component_annotations__1_6|jar|0",
+                "org.slf4j:jcl-over-slf4j:1.6.2|org_slf4j__jcl_over_slf4j__1_6_2|jar|0",
+                "org.eclipse.aether:aether-transport-http:1.1.0|org_eclipse_aether__aether_transport_http__1_1_0|jar|0",
+                "org.codehaus.plexus:plexus-utils:3.3.0|org_codehaus_plexus__plexus_utils__3_3_0|jar|0",
+                "javax.inject:javax.inject:1|javax_inject__javax_inject__1|jar|0",
+                "net.bytebuddy:byte-buddy:1.9.3|net_bytebuddy__byte_buddy__1_9_3|jar|0",
+                "org.codehaus.plexus:plexus-interpolation:1.26|org_codehaus_plexus__plexus_interpolation__1_26|jar|0",
+                "com.google.code.gson:gson:2.8.5|com_google_code_gson__gson__2_8_5|jar|0",
+                "org.hamcrest:hamcrest-core:1.3|org_hamcrest__hamcrest_core__1_3|jar|0",
+                "org.eclipse.aether:aether-transport-classpath:1.1.0|org_eclipse_aether__aether_transport_classpath__1_1_0|jar|0",
+                "org.apache.maven.wagon:wagon-provider-api:1.0|org_apache_maven_wagon__wagon_provider_api__1_0|jar|0",
+                "org.apache.commons:commons-lang3:3.8.1|org_apache_commons__commons_lang3__3_8_1|jar|0",
+                "commons-logging:commons-logging:1.2|commons_logging__commons_logging__1_2|jar|0",
+                "junit:junit:4.12|junit__junit__4_12|jar|0",
+                "org.eclipse.aether:aether-api:1.1.0|org_eclipse_aether__aether_api__1_1_0|jar|0",
+                "org.apache.httpcomponents:httpclient:4.5.13|org_apache_httpcomponents__httpclient__4_5_13|jar|0",
+                "org.apache.maven:maven-repository-metadata:3.8.1|org_apache_maven__maven_repository_metadata__3_8_1|jar|0",
+                "com.google.auto.value:auto-value:1.7|com_google_auto_value__auto_value__1_7|processor|5",
+                "org.eclipse.sisu:org.eclipse.sisu.inject:0.3.4|org_eclipse_sisu__org_eclipse_sisu_inject__0_3_4|processor|1",
+                "org.mockito:mockito-core:2.23.4|org_mockito__mockito_core__2_23_4|jar|0",
+                "org.eclipse.aether:aether-transport-file:1.1.0|org_eclipse_aether__aether_transport_file__1_1_0|jar|0",
+                "com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava|com_google_guava__listenablefuture__9999_0_empty_to_avoid_conflict_with_guava|jar|0",
+                "org.apache.httpcomponents:httpcore:4.4.13|org_apache_httpcomponents__httpcore__4_4_13|jar|0",
+                "org.apache.maven:maven-builder-support:3.8.1|org_apache_maven__maven_builder_support__3_8_1|jar|0",
+                "org.apache.maven:maven-model-builder:3.8.1|org_apache_maven__maven_model_builder__3_8_1|jar|0",
+                "com.google.guava:guava:27.0.1-jre|com_google_guava__guava__27_0_1_jre|jar|0",
+                "org.eclipse.aether:aether-transport-wagon:1.1.0|org_eclipse_aether__aether_transport_wagon__1_1_0|jar|0",
+                "org.eclipse.aether:aether-connector-basic:1.1.0|org_eclipse_aether__aether_connector_basic__1_1_0|jar|0",
+                "com.beust:jcommander:1.72|com_beust__jcommander__1_72|jar|0",
+                "org.objenesis:objenesis:2.6|org_objenesis__objenesis__2_6|jar|0",
+                "com.google.auto.value:auto-value-annotations:1.7|com_google_auto_value__auto_value_annotations__1_7|jar|0",
+                "com.google.errorprone:error_prone_annotations:2.2.0|com_google_errorprone__error_prone_annotations__2_2_0|jar|0",
+                "org.checkerframework:checker-qual:2.5.2|org_checkerframework__checker_qual__2_5_2|jar|0",
+                "commons-codec:commons-codec:1.11|commons_codec__commons_codec__1_11|jar|0",
+                "com.google.j2objc:j2objc-annotations:1.1|com_google_j2objc__j2objc_annotations__1_1|jar|0",
+                "org.eclipse.aether:aether-impl:1.1.0|org_eclipse_aether__aether_impl__1_1_0|jar|0",
+                "org.slf4j:slf4j-nop:1.7.25|org_slf4j__slf4j_nop__1_7_25|jar|0",
+                "org.apache.maven:maven-aether-provider:3.3.9|org_apache_maven__maven_aether_provider__3_3_9|jar|0",
+                "org.eclipse.aether:aether-spi:1.1.0|org_eclipse_aether__aether_spi__1_1_0|jar|0",
+                "org.slf4j:slf4j-api:1.7.25|org_slf4j__slf4j_api__1_7_25|jar|0",
+                "org.eclipse.aether:aether-util:1.1.0|org_eclipse_aether__aether_util__1_1_0|jar|0",
+                "com.google.code.findbugs:jsr305:3.0.2|com_google_code_findbugs__jsr305__3_0_2|jar|0",
+                "net.bytebuddy:byte-buddy-agent:1.9.3|net_bytebuddy__byte_buddy_agent__1_9_3|jar|0",
+                "org.apache.maven:maven-artifact:3.8.1|org_apache_maven__maven_artifact__3_8_1|jar|0",
+                "com.google.guava:failureaccess:1.0.1|com_google_guava__failureaccess__1_0_1|jar|0",
+                "org.codehaus.mojo:animal-sniffer-annotations:1.17|org_codehaus_mojo__animal_sniffer_annotations__1_17|jar|0",
+                "org.apache.maven:maven-model:3.8.1|org_apache_maven__maven_model__3_8_1|jar|0"
+              ]
+            }
+          }
+        }
+      }
+    },
     "@@rules_android+//bzlmod_extensions:apksig.bzl%apksig_extension": {
       "general": {
         "bzlTransitiveDigest": "0A8O20aQTIZnt20CyMK1wzktVUyJO1Y3jI6cS1WftKQ=",
@@ -438,8 +2713,8 @@
     },
     "@@rules_android+//bzlmod_extensions:com_android_dex.bzl%com_android_dex_extension": {
       "general": {
-        "bzlTransitiveDigest": "stTLqB1DjqvC1RcosQO9gDBmAlvTegb/9MYDyiRNuFo=",
-        "usagesDigest": "c1Y/KGGjUYCyd8zNIVTUh1bynVXRFz6xGKaSCBpQANM=",
+        "bzlTransitiveDigest": "GjEt0MG4OPUpryd5nPbl/GTi4ihSBLXao0q+3Mmqv8E=",
+        "usagesDigest": "0hluQmaWiWak6sVMP5L4wXhNyIwv9fw0y5JJ8lnPb1c=",
         "recordedInputs": [
           "REPO_MAPPING:rules_android+,bazel_tools bazel_tools"
         ],
@@ -447,8 +2722,11 @@
           "com_android_dex": {
             "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_archive",
             "attributes": {
-              "url": "https://android.googlesource.com/platform/dalvik/+archive/5a81c499a569731e2395f7c8d13c0e0d4e17a2b6.tar.gz",
-              "build_file": "@@rules_android+//bzlmod_extensions:com_android_dex.BUILD"
+              "urls": [
+                "https://mirror.bazel.build/android.googlesource.com/platform/dalvik/+archive/5a81c499a569731e2395f7c8d13c0e0d4e17a2b6.tar.gz"
+              ],
+              "build_file": "@@rules_android+//bzlmod_extensions:com_android_dex.BUILD",
+              "sha256": "86b4848c038bf687fadc812239cb01fb8d1d15cef3125b480a0448360992b95d"
             }
           }
         }
@@ -456,8 +2734,8 @@
     },
     "@@rules_android+//rules/android_sdk_repository:rule.bzl%android_sdk_repository_extension": {
       "general": {
-        "bzlTransitiveDigest": "+rMrzIrv7sImYmkbXJYv+gFpTJQ79X3MpwwMLI2A+oA=",
-        "usagesDigest": "zgA5uAsPhcwVjUYYZRgFN33PbmvzaCqtANDQJ0hT4bA=",
+        "bzlTransitiveDigest": "qHbR00gVzVzkxX+PRtv4UGcUFMtBz7TK9CNYUWH8nIE=",
+        "usagesDigest": "ixWRr054tFD0FxMCtX8RZiLgATaluLRMBmSQX7r8Qas=",
         "recordedInputs": [],
         "generatedRepoSpecs": {
           "androidsdk": {
@@ -480,94 +2758,6 @@
             "attributes": {
               "version": "v1.47.2",
               "sha256": "1b37b75dc0a777a0cba17fa2604bc9906e55bb4c578823d8b7a8fe3fc9fe4439"
-            }
-          }
-        }
-      }
-    },
-    "@@rules_multitool+//multitool:extension.bzl%multitool": {
-      "general": {
-        "bzlTransitiveDigest": "4uKHgxYOLQrrDO/QYI+1ZGbjujszGN6e1EnsCpTjYT8=",
-        "usagesDigest": "SrPW/7S5cPCFU/aBTjncJPBVfspfbKrn+DTtv5DBo1Q=",
-        "recordedInputs": [
-          "REPO_MAPPING:bazel_features+,bazel_features_globals bazel_features++version_extension+bazel_features_globals",
-          "REPO_MAPPING:bazel_features+,bazel_features_version bazel_features++version_extension+bazel_features_version",
-          "REPO_MAPPING:rules_multitool+,bazel_features bazel_features+"
-        ],
-        "generatedRepoSpecs": {
-          "multitool.linux_arm64": {
-            "repoRuleId": "@@rules_multitool+//multitool/private:multitool.bzl%_env_specific_tools",
-            "attributes": {
-              "lockfiles": [
-                "@@aspect_rules_lint+//format:multitool.lock.json",
-                "@@aspect_rules_lint+//lint:multitool.lock.json"
-              ],
-              "os": "linux",
-              "cpu": "arm64"
-            }
-          },
-          "multitool.linux_x86_64": {
-            "repoRuleId": "@@rules_multitool+//multitool/private:multitool.bzl%_env_specific_tools",
-            "attributes": {
-              "lockfiles": [
-                "@@aspect_rules_lint+//format:multitool.lock.json",
-                "@@aspect_rules_lint+//lint:multitool.lock.json"
-              ],
-              "os": "linux",
-              "cpu": "x86_64"
-            }
-          },
-          "multitool.macos_arm64": {
-            "repoRuleId": "@@rules_multitool+//multitool/private:multitool.bzl%_env_specific_tools",
-            "attributes": {
-              "lockfiles": [
-                "@@aspect_rules_lint+//format:multitool.lock.json",
-                "@@aspect_rules_lint+//lint:multitool.lock.json"
-              ],
-              "os": "macos",
-              "cpu": "arm64"
-            }
-          },
-          "multitool.macos_x86_64": {
-            "repoRuleId": "@@rules_multitool+//multitool/private:multitool.bzl%_env_specific_tools",
-            "attributes": {
-              "lockfiles": [
-                "@@aspect_rules_lint+//format:multitool.lock.json",
-                "@@aspect_rules_lint+//lint:multitool.lock.json"
-              ],
-              "os": "macos",
-              "cpu": "x86_64"
-            }
-          },
-          "multitool.windows_arm64": {
-            "repoRuleId": "@@rules_multitool+//multitool/private:multitool.bzl%_env_specific_tools",
-            "attributes": {
-              "lockfiles": [
-                "@@aspect_rules_lint+//format:multitool.lock.json",
-                "@@aspect_rules_lint+//lint:multitool.lock.json"
-              ],
-              "os": "windows",
-              "cpu": "arm64"
-            }
-          },
-          "multitool.windows_x86_64": {
-            "repoRuleId": "@@rules_multitool+//multitool/private:multitool.bzl%_env_specific_tools",
-            "attributes": {
-              "lockfiles": [
-                "@@aspect_rules_lint+//format:multitool.lock.json",
-                "@@aspect_rules_lint+//lint:multitool.lock.json"
-              ],
-              "os": "windows",
-              "cpu": "x86_64"
-            }
-          },
-          "multitool": {
-            "repoRuleId": "@@rules_multitool+//multitool/private:multitool.bzl%_multitool_hub",
-            "attributes": {
-              "lockfiles": [
-                "@@aspect_rules_lint+//format:multitool.lock.json",
-                "@@aspect_rules_lint+//lint:multitool.lock.json"
-              ]
             }
           }
         }

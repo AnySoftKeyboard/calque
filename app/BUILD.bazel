@@ -23,7 +23,7 @@ kt_android_library(
         "//core/linguistics",
         "//core/reader",
         "//core/toolbox",
-        "@maven//:org_jetbrains_kotlinx_kotlinx_coroutines_core",
+        "@maven//org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm",
     ],
 )
 
@@ -51,7 +51,7 @@ kt_android_local_test(
     test_class = "com.anysoftkeyboard.calque.ui.nav.NavStateManagerTest",
     deps = [
         ":app_lib",
-        "@maven//:junit_junit",
+        "@maven//junit/junit",
     ],
 )
 
@@ -61,7 +61,7 @@ kt_android_local_test(
     test_class = "com.anysoftkeyboard.calque.ui.theme.CalqueColorsTest",
     deps = [
         ":app_lib",
-        "@maven//:junit_junit",
+        "@maven//junit/junit",
     ],
 )
 
@@ -73,7 +73,7 @@ kt_android_local_test(
         ":app_lib",
         "//core/linguistics",
         "//core/reader",
-        "@maven//:junit_junit",
+        "@maven//junit/junit",
     ],
 )
 
@@ -85,7 +85,7 @@ kt_android_local_test(
         ":app_lib",
         "//core/data",
         "//core/linguistics",
-        "@maven//:junit_junit",
+        "@maven//junit/junit",
     ],
 )
 
@@ -98,6 +98,6 @@ kt_android_local_test(
         "//core/data",
         "//core/linguistics",
         "//core/reader",
-        "@maven//:junit_junit",
+        "@maven//junit/junit",
     ],
 )

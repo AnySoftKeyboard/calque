@@ -20,7 +20,7 @@ kt_jvm_test(
     test_class = "com.anysoftkeyboard.calque.reader.SentenceSegmenterTest",
     deps = [
         ":reader",
-        "@maven//:junit_junit",
+        "@maven//junit/junit",
     ],
 )
 
@@ -33,7 +33,7 @@ kt_jvm_test(
         ":reader",
         "//core/data",
         "//core/linguistics",
-        "@maven//:junit_junit",
+        "@maven//junit/junit",
     ],
 )
 
@@ -46,6 +46,6 @@ kt_jvm_test(
         ":reader",
         "//core/data",
         "//core/linguistics",
-        "@maven//:junit_junit",
+        "@maven//junit/junit",
     ],
 )

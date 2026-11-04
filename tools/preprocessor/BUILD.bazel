@@ -8,8 +8,8 @@ kt_jvm_library(
     visibility = ["//visibility:public"],
     deps = [
         "//core/linguistics",
-        "@maven//:org_jetbrains_kotlinx_kotlinx_serialization_json",
-        "@maven//:org_xerial_sqlite_jdbc",
+        "@maven//org/jetbrains/kotlinx/kotlinx-serialization-json-jvm",
+        "@maven//org/xerial/sqlite-jdbc",
     ],
 )
 
@@ -36,8 +36,8 @@ kt_jvm_test(
     deps = [
         ":preprocessor_lib",
         "//core/linguistics",
-        "@maven//:junit_junit",
-        "@maven//:org_jetbrains_kotlinx_kotlinx_serialization_json",
-        "@maven//:org_xerial_sqlite_jdbc",
+        "@maven//junit/junit",
+        "@maven//org/jetbrains/kotlinx/kotlinx-serialization-json-jvm",
+        "@maven//org/xerial/sqlite-jdbc",
     ],
 )
