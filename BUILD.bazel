@@ -17,12 +17,48 @@ alias(
     actual = "//tools/format:format.check",
 )
 
+MAVEN_AND_GOOGLE = [
+    "https://repo1.maven.org/maven2/",
+    "https://maven.google.com/",
+]
+
+COMMON_EXCLUDES = [
+    "org.jetbrains.kotlinx:kotlinx-coroutines-core",
+    "org.jetbrains.kotlinx:atomicfu",
+]
+
 mabel_rule(
     name = "maven_deps",
     lockfile_path = "maven_install.json",
     maven_deps = [
+        artifact(
+            "androidx.activity:activity-compose:1.10.0",
+            maven_exclude_deps = COMMON_EXCLUDES,
+            repositories = MAVEN_AND_GOOGLE,
+        ),
+        artifact(
+            "androidx.compose.material3:material3:1.4.0",
+            maven_exclude_deps = COMMON_EXCLUDES,
+            repositories = MAVEN_AND_GOOGLE,
+        ),
+        artifact(
+            "androidx.compose.runtime:runtime:1.8.2",
+            maven_exclude_deps = COMMON_EXCLUDES,
+            repositories = MAVEN_AND_GOOGLE,
+        ),
+        artifact(
+            "androidx.compose.ui:ui:1.8.2",
+            maven_exclude_deps = COMMON_EXCLUDES,
+            repositories = MAVEN_AND_GOOGLE,
+        ),
+        artifact(
+            "androidx.compose.ui:ui-tooling-preview:1.8.2",
+            maven_exclude_deps = COMMON_EXCLUDES,
+            repositories = MAVEN_AND_GOOGLE,
+        ),
         artifact("io.gitlab.arturbosch.detekt:detekt-cli:1.23.8"),
         artifact("junit:junit:4.13.2"),
+        artifact("org.jetbrains.kotlin:kotlin-compose-compiler-plugin-embeddable:2.4.20"),
         artifact("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0"),
         artifact("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.11.0"),
         artifact("org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0"),

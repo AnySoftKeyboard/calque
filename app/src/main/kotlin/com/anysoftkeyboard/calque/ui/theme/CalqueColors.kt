@@ -1,5 +1,8 @@
 package com.anysoftkeyboard.calque.ui.theme
 
+import androidx.compose.runtime.Immutable
+import androidx.compose.ui.graphics.Color
+
 /** Color palette specification defined in docs/DESIGN.md for Calque. */
 data class CalquePalette(
     val background: Int,
@@ -11,6 +14,56 @@ data class CalquePalette(
     val falseCognateAmber: Int,
     val vaultIndigo: Int,
     val border: Int,
+    val isDark: Boolean,
+    val backgroundSecondary: Int = if (isDark) 0xFF1F1E1B.toInt() else 0xFFF3EFE6.toInt(),
+    val surfaceElevated: Int = if (isDark) 0xFF2A2925.toInt() else 0xFFFFFFFF.toInt(),
+    val cognateEmeraldFill: Int = if (isDark) 0xFF133326.toInt() else 0xFFE6F4EE.toInt(),
+    val falseCognateAmberFill: Int = if (isDark) 0xFF3A230A.toInt() else 0xFFFFF3E0.toInt(),
+    val vaultIndigoFill: Int = if (isDark) 0xFF1F2547.toInt() else 0xFFECEFF9.toInt(),
+    val errorCrimson: Int = if (isDark) 0xFFFFB4AB.toInt() else 0xFFBA1A1A.toInt(),
+    val errorCrimsonFill: Int = if (isDark) 0xFF410E0B.toInt() else 0xFFFFDAD6.toInt(),
+) {
+    fun toTokens(): CalqueColorTokens =
+        CalqueColorTokens(
+            background = Color(background),
+            backgroundSecondary = Color(backgroundSecondary),
+            surface = Color(surface),
+            surfaceElevated = Color(surfaceElevated),
+            textPrimary = Color(textPrimary),
+            textSecondary = Color(textSecondary),
+            slateBlueAccent = Color(slateBlueAccent),
+            cognateEmerald = Color(cognateEmerald),
+            cognateEmeraldFill = Color(cognateEmeraldFill),
+            falseCognateAmber = Color(falseCognateAmber),
+            falseCognateAmberFill = Color(falseCognateAmberFill),
+            vaultIndigo = Color(vaultIndigo),
+            vaultIndigoFill = Color(vaultIndigoFill),
+            border = Color(border),
+            errorCrimson = Color(errorCrimson),
+            errorCrimsonFill = Color(errorCrimsonFill),
+            isDark = isDark,
+        )
+}
+
+/** Design system color tokens holding Compose Color instances. */
+@Immutable
+data class CalqueColorTokens(
+    val background: Color,
+    val backgroundSecondary: Color,
+    val surface: Color,
+    val surfaceElevated: Color,
+    val textPrimary: Color,
+    val textSecondary: Color,
+    val slateBlueAccent: Color,
+    val cognateEmerald: Color,
+    val cognateEmeraldFill: Color,
+    val falseCognateAmber: Color,
+    val falseCognateAmberFill: Color,
+    val vaultIndigo: Color,
+    val vaultIndigoFill: Color,
+    val border: Color,
+    val errorCrimson: Color,
+    val errorCrimsonFill: Color,
     val isDark: Boolean,
 )
 
@@ -28,6 +81,13 @@ object CalqueColors {
             vaultIndigo = 0xFF4A55A2.toInt(),
             border = 0xFFE5E0D8.toInt(),
             isDark = false,
+            backgroundSecondary = 0xFFF3EFE6.toInt(),
+            surfaceElevated = 0xFFFFFFFF.toInt(),
+            cognateEmeraldFill = 0xFFE6F4EE.toInt(),
+            falseCognateAmberFill = 0xFFFFF3E0.toInt(),
+            vaultIndigoFill = 0xFFECEFF9.toInt(),
+            errorCrimson = 0xFFBA1A1A.toInt(),
+            errorCrimsonFill = 0xFFFFDAD6.toInt(),
         )
 
     val Dark =
@@ -42,5 +102,12 @@ object CalqueColors {
             vaultIndigo = 0xFF818CF8.toInt(),
             border = 0xFF2E2C29.toInt(),
             isDark = true,
+            backgroundSecondary = 0xFF1F1E1B.toInt(),
+            surfaceElevated = 0xFF2A2925.toInt(),
+            cognateEmeraldFill = 0xFF133326.toInt(),
+            falseCognateAmberFill = 0xFF3A230A.toInt(),
+            vaultIndigoFill = 0xFF1F2547.toInt(),
+            errorCrimson = 0xFFFFB4AB.toInt(),
+            errorCrimsonFill = 0xFF410E0B.toInt(),
         )
 }
