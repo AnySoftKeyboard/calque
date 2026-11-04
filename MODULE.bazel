@@ -3,10 +3,17 @@ module(
     version = "0.0.1",
 )
 
-bazel_dep(name = "rules_jvm_external", version = "7.2")
+bazel_dep(name = "mabel", version = "0.60.0")
+archive_override(
+    module_name = "mabel",
+    integrity = "sha256-jaJvtrPwBTfuOnJiwwl68/W7IgLWiBy5OwifnZwt3Xs=",
+    strip_prefix = "mabel-0.60.0",
+    urls = ["https://github.com/menny/mabel/releases/download/v0.60.0/mabel-0.60.0.tar.gz"],
+)
+
 bazel_dep(name = "rules_kotlin", version = "2.4.20")
 bazel_dep(name = "rules_java", version = "9.9.0")
-bazel_dep(name = "rules_android", version = "0.7.1")
+bazel_dep(name = "rules_android", version = "0.8.0")
 bazel_dep(name = "aspect_rules_lint", version = "2.9.1")
 
 bazel_dep(name = "buildifier_prebuilt", version = "10.1.0", dev_dependency = True)
@@ -27,22 +34,12 @@ use_repo(android_sdk_repository_extension, "androidsdk")
 register_toolchains("@androidsdk//:sdk-toolchain", "@androidsdk//:all")
 
 # Maven dependencies
-maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
-maven.install(
-    artifacts = [
-        "io.gitlab.arturbosch.detekt:detekt-cli:1.23.8",
-        "junit:junit:4.13.2",
-        "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0",
-        "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.11.0",
-        "org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0",
-        "org.xerial:sqlite-jdbc:3.53.4.0",
-    ],
-    known_contributing_modules = ["protobuf"],
-    repositories = [
-        "https://repo1.maven.org/maven2",
-    ],
+mabel = use_extension("@mabel//rules:extensions.bzl", "mabel")
+mabel.install(
+    aliases_repo = "maven",
+    lockfile = "//:maven_install.json",
 )
-use_repo(maven, "maven")
+use_repo(mabel, "maven")
 
 # Formatting tools
 format_tools = use_extension("@aspect_rules_lint//format:extensions.bzl", "tools")

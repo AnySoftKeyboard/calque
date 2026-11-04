@@ -1,3 +1,5 @@
+load("@mabel//rules:mabel.bzl", "artifact", "mabel_rule")
+
 package(default_visibility = ["//visibility:public"])
 
 exports_files([
@@ -13,4 +15,17 @@ alias(
 alias(
     name = "format.check",
     actual = "//tools/format:format.check",
+)
+
+mabel_rule(
+    name = "maven_deps",
+    lockfile_path = "maven_install.json",
+    maven_deps = [
+        artifact("io.gitlab.arturbosch.detekt:detekt-cli:1.23.8"),
+        artifact("junit:junit:4.13.2"),
+        artifact("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0"),
+        artifact("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.11.0"),
+        artifact("org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0"),
+        artifact("org.xerial:sqlite-jdbc:3.53.4.0"),
+    ],
 )

@@ -6,8 +6,8 @@ kt_jvm_library(
     visibility = ["//visibility:public"],
     deps = [
         "//core/linguistics",
-        "@maven//:org_jetbrains_kotlinx_kotlinx_serialization_json",
-        "@maven//:org_xerial_sqlite_jdbc",
+        "@maven//org/jetbrains/kotlinx/kotlinx-serialization-json-jvm",
+        "@maven//org/xerial/sqlite-jdbc",
     ],
 )
 
@@ -18,7 +18,7 @@ kt_jvm_test(
     test_class = "com.anysoftkeyboard.calque.data.seed.SeedDatabaseTest",
     deps = [
         ":data",
-        "@maven//:junit_junit",
+        "@maven//junit/junit",
     ],
 )
 
@@ -30,7 +30,7 @@ kt_jvm_test(
     deps = [
         ":data",
         "//core/linguistics",
-        "@maven//:junit_junit",
+        "@maven//junit/junit",
     ],
 )
 
@@ -42,7 +42,7 @@ kt_jvm_test(
     deps = [
         ":data",
         "//core/linguistics",
-        "@maven//:junit_junit",
+        "@maven//junit/junit",
     ],
 )
 
@@ -53,7 +53,7 @@ kt_jvm_test(
     test_class = "com.anysoftkeyboard.calque.data.seed.SeedCuratedLessonsRepositoryTest",
     deps = [
         ":data",
-        "@maven//:junit_junit",
+        "@maven//junit/junit",
     ],
 )
 
@@ -64,7 +64,7 @@ kt_jvm_test(
     test_class = "com.anysoftkeyboard.calque.data.seed.SeedCognateRulesRepositoryTest",
     deps = [
         ":data",
-        "@maven//:junit_junit",
+        "@maven//junit/junit",
     ],
 )
 
@@ -78,7 +78,7 @@ kt_jvm_test(
     test_class = "com.anysoftkeyboard.calque.data.seed.PackagedSeedAssetTest",
     deps = [
         ":data",
-        "@maven//:junit_junit",
+        "@maven//junit/junit",
     ],
 )
 
@@ -89,7 +89,7 @@ kt_jvm_test(
     test_class = "com.anysoftkeyboard.calque.data.user.UserDatabaseTest",
     deps = [
         ":data",
-        "@maven//:junit_junit",
+        "@maven//junit/junit",
     ],
 )
 
@@ -101,7 +101,7 @@ kt_jvm_test(
     deps = [
         ":data",
         "//core/linguistics",
-        "@maven//:junit_junit",
+        "@maven//junit/junit",
     ],
 )
 
@@ -112,7 +112,7 @@ kt_jvm_test(
     test_class = "com.anysoftkeyboard.calque.data.user.UserCustomTextRepositoryTest",
     deps = [
         ":data",
-        "@maven//:junit_junit",
+        "@maven//junit/junit",
     ],
 )
 
@@ -124,6 +124,6 @@ kt_jvm_test(
     deps = [
         ":data",
         "//core/linguistics",
-        "@maven//:junit_junit",
+        "@maven//junit/junit",
     ],
 )

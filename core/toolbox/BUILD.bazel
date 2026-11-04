@@ -20,7 +20,7 @@ kt_jvm_test(
     deps = [
         ":toolbox",
         "//core/data",
-        "@maven//:junit_junit",
+        "@maven//junit/junit",
     ],
 )
 
@@ -32,7 +32,7 @@ kt_jvm_test(
     deps = [
         ":toolbox",
         "//core/data",
-        "@maven//:junit_junit",
+        "@maven//junit/junit",
     ],
 )
 
@@ -43,7 +43,7 @@ kt_jvm_test(
     test_class = "com.anysoftkeyboard.calque.toolbox.TenseShifterEngineTest",
     deps = [
         ":toolbox",
-        "@maven//:junit_junit",
+        "@maven//junit/junit",
     ],
 )
 
@@ -54,7 +54,7 @@ kt_jvm_test(
     test_class = "com.anysoftkeyboard.calque.toolbox.NumberOdometerEngineTest",
     deps = [
         ":toolbox",
-        "@maven//:junit_junit",
+        "@maven//junit/junit",
     ],
 )
 
@@ -66,7 +66,7 @@ kt_jvm_test(
     deps = [
         ":toolbox",
         "//core/linguistics",
-        "@maven//:junit_junit",
+        "@maven//junit/junit",
     ],
 )
 
@@ -79,6 +79,6 @@ kt_jvm_test(
         ":toolbox",
         "//core/data",
         "//core/linguistics",
-        "@maven//:junit_junit",
+        "@maven//junit/junit",
     ],
 )
