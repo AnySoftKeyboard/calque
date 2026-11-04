@@ -13,7 +13,7 @@ archive_override(
 
 bazel_dep(name = "rules_kotlin", version = "2.4.20")
 bazel_dep(name = "rules_java", version = "9.9.0")
-bazel_dep(name = "rules_android", version = "0.7.2")
+bazel_dep(name = "rules_android", version = "0.8.0")
 bazel_dep(name = "aspect_rules_lint", version = "2.9.1")
 
 bazel_dep(name = "buildifier_prebuilt", version = "10.1.0", dev_dependency = True)
