@@ -2,7 +2,7 @@
 <resources>
     <style name="Theme.Calque" parent="@android:style/Theme.Material.Light.NoActionBar">
         <item name="android:windowBackground">@color/calque_background</item>
-        <item name="android:statusBarColor">@color/calque_surface</item>
-        <item name="android:navigationBarColor">@color/calque_surface</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 </resources>

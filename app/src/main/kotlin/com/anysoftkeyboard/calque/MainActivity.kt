@@ -3,6 +3,7 @@ package com.anysoftkeyboard.calque
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import com.anysoftkeyboard.calque.ui.CalqueApp
 import com.anysoftkeyboard.calque.ui.theme.CalqueTheme
 
@@ -10,6 +11,7 @@ import com.anysoftkeyboard.calque.ui.theme.CalqueTheme
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         val app = application as? CalqueApplication
         val appContainer = app?.appContainer ?: return
