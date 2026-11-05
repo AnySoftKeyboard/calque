@@ -16,3 +16,7 @@ test --test_output=errors
 build:lint --aspects=//tools/lint:linters.bzl%detekt,//tools/lint:linters.bzl%buildifier
 build:lint --output_groups=rules_lint_human
 build:lint --@aspect_rules_lint//lint:fail_on_violation
+
+# Concurrency
+build --jobs=HOST_CPUS*2
+
