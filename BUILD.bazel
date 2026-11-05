@@ -35,4 +35,5 @@ mabel_rule(
         artifact("org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0"),
         artifact("org.xerial:sqlite-jdbc:3.53.4.0"),
     ],
+    tags = ["manual"],
 )
