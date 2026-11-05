@@ -1,0 +1,3 @@
+# Disable remote execution on macOS because Hermetiq execution workers run Linux containers
+build --remote_executor=
+build --jobs=HOST_CPUS*2
