@@ -17,12 +17,21 @@ kt_android_library(
     srcs = glob(["src/main/kotlin/**/*.kt"]),
     custom_package = "com.anysoftkeyboard.calque",
     manifest = "src/main/AndroidManifest.xml",
+    plugins = [
+        "//tools/compose:compose_compiler_plugin",
+    ],
     resource_files = glob(["src/main/res/**"]),
     deps = [
         "//core/data",
         "//core/linguistics",
         "//core/reader",
         "//core/toolbox",
+        "@maven//androidx/activity/activity-compose",
+        "@maven//androidx/compose/foundation/foundation",
+        "@maven//androidx/compose/material3/material3",
+        "@maven//androidx/compose/runtime/runtime",
+        "@maven//androidx/compose/ui/ui",
+        "@maven//androidx/compose/ui/ui-tooling-preview",
         "@maven//org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm",
     ],
 )
@@ -61,6 +70,20 @@ kt_android_local_test(
     test_class = "com.anysoftkeyboard.calque.ui.theme.CalqueColorsTest",
     deps = [
         ":app_lib",
+        "@maven//androidx/compose/ui/ui",
+        "@maven//junit/junit",
+    ],
+)
+
+kt_android_local_test(
+    name = "calque_theme_test",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/ui/theme/CalqueThemeTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.ui.theme.CalqueThemeTest",
+    deps = [
+        ":app_lib",
+        "@maven//androidx/compose/material3/material3",
+        "@maven//androidx/compose/runtime/runtime",
+        "@maven//androidx/compose/ui/ui",
         "@maven//junit/junit",
     ],
 )

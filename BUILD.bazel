@@ -1,4 +1,5 @@
 load("@mabel//rules:mabel.bzl", "artifact", "mabel_rule")
+load("//:g_artifact.bzl", "g_artifact")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -21,11 +22,18 @@ mabel_rule(
     name = "maven_deps",
     lockfile_path = "maven_install.json",
     maven_deps = [
+        g_artifact("androidx.activity:activity-compose:1.10.0"),
+        g_artifact("androidx.compose.material3:material3:1.4.0"),
+        g_artifact("androidx.compose.runtime:runtime:1.8.2"),
+        g_artifact("androidx.compose.ui:ui:1.8.2"),
+        g_artifact("androidx.compose.ui:ui-tooling-preview:1.8.2"),
         artifact("io.gitlab.arturbosch.detekt:detekt-cli:1.23.8"),
         artifact("junit:junit:4.13.2"),
+        artifact("org.jetbrains.kotlin:kotlin-compose-compiler-plugin-embeddable:2.4.20"),
         artifact("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0"),
         artifact("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.11.0"),
         artifact("org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0"),
         artifact("org.xerial:sqlite-jdbc:3.53.4.0"),
     ],
+    tags = ["manual"],
 )

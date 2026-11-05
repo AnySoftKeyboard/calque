@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="calque_background">#141413</color>
+    <color name="calque_surface">#1E1D1B</color>
+    <color name="calque_text_primary">#EAE6DF</color>
+    <color name="calque_text_secondary">#9E9A90</color>
+    <color name="calque_slate_blue">#6B9AC4</color>
+    <color name="calque_alabaster">#141413</color>
+    <color name="calque_ink">#EAE6DF</color>
+</resources>

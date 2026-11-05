@@ -3,17 +3,24 @@ module(
     version = "0.0.1",
 )
 
-bazel_dep(name = "mabel", version = "0.60.0")
+bazel_dep(name = "mabel", version = "0.60.1")
 archive_override(
     module_name = "mabel",
-    integrity = "sha256-jaJvtrPwBTfuOnJiwwl68/W7IgLWiBy5OwifnZwt3Xs=",
-    strip_prefix = "mabel-0.60.0",
-    urls = ["https://github.com/menny/mabel/releases/download/v0.60.0/mabel-0.60.0.tar.gz"],
+    integrity = "sha256-nJs4++X+xOh1Bif3Lbmy1Tu4XnpBn6LxgnvhuWCy9jU=",
+    strip_prefix = "mabel-0.60.1",
+    urls = ["https://github.com/menny/mabel/releases/download/v0.60.1/mabel-0.60.1.tar.gz"],
 )
 
 bazel_dep(name = "rules_kotlin", version = "2.4.20")
 bazel_dep(name = "rules_java", version = "9.9.0")
 bazel_dep(name = "rules_android", version = "0.8.0")
+single_version_override(
+    module_name = "rules_android",
+    patch_strip = 1,
+    patches = ["//patches:rules_android_no_robolectric.patch"],
+    version = "0.8.0",
+)
+
 bazel_dep(name = "aspect_rules_lint", version = "2.9.1")
 
 bazel_dep(name = "buildifier_prebuilt", version = "10.1.0", dev_dependency = True)
