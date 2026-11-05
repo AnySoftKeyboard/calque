@@ -9,9 +9,6 @@ extra_args=()
 # If the helper script file exists on disk, add hermetiq.bazelrc
 if [[ -f "${HELPER_SCRIPT}" ]]; then
     extra_args+=("--bazelrc=${SCRIPT_DIR}/rc/hermetiq.bazelrc")
-    if [[ "$(uname -s)" == "Darwin" ]]; then
-        extra_args+=("--bazelrc=${SCRIPT_DIR}/rc/darwin.bazelrc")
-    fi
 fi
 
 # If in CI, also add ci.bazelrc
