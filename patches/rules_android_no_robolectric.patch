@@ -1,0 +1,119 @@
+diff --git a/MODULE.bazel b/MODULE.bazel
+index 684e8b7..182aa63 100644
+--- a/MODULE.bazel
++++ b/MODULE.bazel
+@@ -20,7 +20,6 @@ bazel_dep(name = "protobuf", version = "33.4", repo_name = "com_google_protobuf"
+ bazel_dep(name = "rules_jvm_external", version = "6.9")
+ bazel_dep(name = "bazel_skylib", version = "1.8.1")
+ bazel_dep(name = "bazel_features", version = "1.48.1")
+-bazel_dep(name = "rules_robolectric", version = "4.14.1.2", repo_name = "robolectric")
+ 
+ register_toolchains("//toolchains/android:all")
+ 
+@@ -106,7 +105,6 @@ maven.install(
+         "com.android.tools:r8:9.3.16",
+         "org.bouncycastle:bcprov-jdk18on:1.77",
+         "org.hamcrest:hamcrest-core:2.2",
+-        "org.robolectric:robolectric:4.14.1",
+         "com.google.flogger:flogger:0.8",
+         "com.google.flogger:flogger-system-backend:0.8",
+         "com.google.guava:guava:32.1.2-jre",
+diff --git a/android/rules.bzl b/android/rules.bzl
+index 8a09c0e..efa51e5 100644
+--- a/android/rules.bzl
++++ b/android/rules.bzl
+@@ -49,10 +49,6 @@ load(
+     "//rules/android_library:rule.bzl",
+     _android_library = "android_library_macro",
+ )
+-load(
+-    "//rules/android_local_test:rule.bzl",
+-    _android_local_test = "android_local_test",
+-)
+ 
+ load(
+     "//rules/android_sdk_repository:rule.bzl",
+@@ -66,7 +62,6 @@ aar_import = _aar_import
+ android_application = _android_application
+ android_binary = _android_binary
+ android_library = _android_library
+-android_local_test = _android_local_test
+ 
+ android_sdk = _android_sdk
+ android_sdk_repository = _android_sdk_repository
+diff --git a/defs.bzl b/defs.bzl
+index 134d7a2..66ce73c 100644
+--- a/defs.bzl
++++ b/defs.bzl
+@@ -23,7 +23,6 @@ load(
+     "go_register_toolchains",
+     "go_rules_dependencies",
+ )
+-load("@robolectric//bazel:robolectric.bzl", "robolectric_repositories")
+ load("@rules_jvm_external//:defs.bzl", "maven_install")
+ load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies")
+ load("@rules_proto//proto:setup.bzl", "rules_proto_setup")
+@@ -94,7 +93,6 @@ def rules_android_workspace():
+             "com.android.tools:r8:9.3.16",
+             "org.bouncycastle:bcprov-jdk18on:1.77",
+             "org.hamcrest:hamcrest-core:2.2",
+-            "org.robolectric:robolectric:4.14.1",
+             "com.google.flogger:flogger:0.8",
+             "com.google.flogger:flogger-system-backend:0.8",
+             "com.google.guava:guava:32.1.2-jre",
+@@ -204,7 +202,6 @@ def rules_android_workspace():
+         sum = "h1:t1ejQyf8utS4GZV/4fM+1gvYucggZkfhb+tMobDxYOE=",
+     )
+ 
+-    robolectric_repositories()
+ 
+     rules_proto_dependencies()
+     rules_proto_toolchains()
+diff --git a/rules/BUILD b/rules/BUILD
+index 1e2f331..fd5d780 100644
+--- a/rules/BUILD
++++ b/rules/BUILD
+@@ -133,7 +133,6 @@ bzl_library(
+         "//rules/android_application:bzl",
+         "//rules/android_binary:bzl",
+         "//rules/android_library:bzl",
+-        "//rules/android_local_test:bzl",
+         "//rules/android_sdk_repository:bzl",
+         "//rules/flags:bzl",
+         "@bazel_skylib//lib:collections",
+diff --git a/rules/android_local_test/attrs.bzl b/rules/android_local_test/attrs.bzl
+index 7abc4c3..6ae5198 100644
+--- a/rules/android_local_test/attrs.bzl
++++ b/rules/android_local_test/attrs.bzl
+@@ -185,7 +185,7 @@ def make_attrs(additional_aspects = [], native_libs_transition = None):
+                       "the file path from this. The actual artifact comes implicitly " +
+                       "from Robolectric.",
+                 allow_single_file = True,
+-                default = "@robolectric//bazel:properties",
++                default = None,
+             ),
+             test_class = attr.string(
+                 doc = """
+diff --git a/rules/rules.bzl b/rules/rules.bzl
+index 8a09c0e..efa51e5 100644
+--- a/rules/rules.bzl
++++ b/rules/rules.bzl
+@@ -49,10 +49,6 @@ load(
+     "//rules/android_library:rule.bzl",
+     _android_library = "android_library_macro",
+ )
+-load(
+-    "//rules/android_local_test:rule.bzl",
+-    _android_local_test = "android_local_test",
+-)
+ 
+ load(
+     "//rules/android_sdk_repository:rule.bzl",
+@@ -66,7 +62,6 @@ aar_import = _aar_import
+ android_application = _android_application
+ android_binary = _android_binary
+ android_library = _android_library
+-android_local_test = _android_local_test
+ 
+ android_sdk = _android_sdk
+ android_sdk_repository = _android_sdk_repository
