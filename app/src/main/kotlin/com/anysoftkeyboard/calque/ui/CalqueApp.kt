@@ -31,8 +31,8 @@ import androidx.compose.ui.unit.sp
 import com.anysoftkeyboard.calque.R
 import com.anysoftkeyboard.calque.di.AppContainer
 import com.anysoftkeyboard.calque.ui.nav.NavDestination
-import com.anysoftkeyboard.calque.ui.reader.ReaderCoordinator
 import com.anysoftkeyboard.calque.ui.reader.ReaderScreen
+import com.anysoftkeyboard.calque.ui.reader.ReaderViewModel
 import com.anysoftkeyboard.calque.ui.theme.CalqueTheme
 
 /** Primary top-level navigation shell for Calque. */
@@ -43,7 +43,7 @@ fun CalqueApp(
 ) {
     val navManager = appContainer.navStateManager
     var currentDestination by remember { mutableStateOf(navManager.currentDestination) }
-    val readerCoordinator = remember { ReaderCoordinator(appContainer) }
+    val readerViewModel = remember { ReaderViewModel(appContainer) }
     val colors = CalqueTheme.colors
 
     DisposableEffect(navManager) {
@@ -69,7 +69,7 @@ fun CalqueApp(
         ) {
             when (currentDestination) {
                 NavDestination.READER -> {
-                    ReaderScreen(coordinator = readerCoordinator)
+                    ReaderScreen(viewModel = readerViewModel)
                 }
                 NavDestination.TOOLBOX -> {
                     PlaceholderScreen(

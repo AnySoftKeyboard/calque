@@ -62,13 +62,21 @@ Use inclusive language when creating variables, functions, class names, stubs, t
 - **NEVER** create large, multi-concept PRs. Break down features into small, scoped, reviewable steps. Use stacked PRs (`gh pr create --base <parent> --head <feature>`).
 - **NEVER** forget to register every created or updated PR with the MCP `link_pull_request` tool (including all layers in a stack).
 
+## Documentation & Standards
+Before writing code or designing features, consult the engineering documentation:
+- **[CODING.md](docs/CODING.md)**: Engineering standards, technical constraints, Room persistence, MVI unidirectional data flow, coroutines, and testing philosophy.
+- **[DATA.md](docs/DATA.md)**: Database schemas (seed.db and user.db), Room entities, and repository contracts.
+- **[PAGES_AND_FLOWS.md](docs/PAGES_AND_FLOWS.md)**: UI screen hierarchy, user flows, and interaction specs.
+- **[INGESTION.md](docs/INGESTION.md)**: Corpus ingestion, dictionary preprocessing, and seed generation.
+- **[DESIGN.md](docs/DESIGN.md)**: Material 3 styling, color palette, and typography.
+
 ## Directory Roles & Architecture
 - `core/linguistics/`: Linguistic algorithms, cognate detection, morphology, phonetic distance, dictionary tokenization.
 - `core/data/`: Database models, SQLite / binary dictionary stores, Trie indexing, file ingestion.
 - `core/domain/`: End-to-end suggestion engine, scoring pipelines, bilingual query dispatcher.
-- `app/`: Android InputMethodService, IME keyboards, configuration UI, Android lifecycle hooks.
+- `app/`: Android application, Jetpack Compose UI, Room database bindings, Android TTS, and on-device AICore integration.
 - `tools/`: Bazel custom aspects (`detekt.bzl`), formatting configs (`ktfmt`, `buildifier`), CI workflows.
-- `docs/`: All architecture and domain documentation (e.g. `docs/INGESTION.md`, `docs/ARCHITECTURE.md`).
+- `docs/`: All architecture, domain, and coding standard documentation.
 
 ## Standard Workflow for New Features
 1. **Branch**: Create a feature branch off the appropriate base branch.

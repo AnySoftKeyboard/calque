@@ -36,13 +36,16 @@ import com.anysoftkeyboard.calque.ui.theme.CalqueTheme
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun ReadingCanvasScreen(
-    session: ReaderSessionEngine,
+    activeSession: ActiveSessionUiState,
+    onSelectToken: (Int) -> Unit,
+    onToggleInterlinear: () -> Unit,
+    onToggleTranslation: () -> Unit,
+    onNextSentence: () -> Unit,
     onCloseSession: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val colors = CalqueTheme.colors
-    val state = session.state
-    val currentSentence = state.currentSentence
+    val currentSentence = activeSession.currentSentence
 
     Column(
         modifier = modifier.fillMaxSize().background(colors.background),
@@ -61,7 +64,7 @@ fun ReadingCanvasScreen(
             ) {
                 Text(
                     text =
-                        "${state.title} (${state.currentSentenceIndex + 1}/${state.sentences.size})",
+                        "${activeSession.title} (${activeSession.currentSentenceIndex + 1}/${activeSession.sentences.size})",
                     fontSize = 15.sp,
                     fontWeight = FontWeight.Bold,
                     color = colors.textSecondary,
@@ -97,9 +100,9 @@ fun ReadingCanvasScreen(
                         for ((i, token) in currentSentence.tokens.withIndex()) {
                             TokenItem(
                                 token = token,
-                                isSelected = i == state.selectedTokenIndex,
-                                showGloss = state.showInterlinear,
-                                onClick = { session.selectToken(i) },
+                                isSelected = i == activeSession.selectedTokenIndex,
+                                showGloss = activeSession.showInterlinear,
+                                onClick = { onSelectToken(i) },
                             )
                         }
                     }
@@ -107,7 +110,7 @@ fun ReadingCanvasScreen(
 
                 // Natural Translation Card
                 val translation = currentSentence.translationEn
-                if (state.showTranslation && translation != null) {
+                if (activeSession.showTranslation && translation != null) {
                     Spacer(modifier = Modifier.height(12.dp))
                     Card(
                         modifier = Modifier.fillMaxWidth(),
@@ -146,7 +149,7 @@ fun ReadingCanvasScreen(
                         modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
                     )
                 }
-            } else if (state.isCompleted) {
+            } else if (activeSession.isCompleted) {
                 // Completion Card
                 Column(
                     modifier = Modifier.fillMaxWidth().padding(vertical = 32.dp),
@@ -179,7 +182,7 @@ fun ReadingCanvasScreen(
                 Box(
                     modifier =
                         Modifier.weight(1f)
-                            .clickable { session.toggleInterlinear() }
+                            .clickable { onToggleInterlinear() }
                             .padding(vertical = 8.dp),
                     contentAlignment = Alignment.Center,
                 ) {
@@ -187,17 +190,18 @@ fun ReadingCanvasScreen(
                         text = "👁 Gloss",
                         fontSize = 14.sp,
                         color =
-                            if (state.showInterlinear) colors.slateBlueAccent
+                            if (activeSession.showInterlinear) colors.slateBlueAccent
                             else colors.textPrimary,
                         fontWeight =
-                            if (state.showInterlinear) FontWeight.Bold else FontWeight.Normal,
+                            if (activeSession.showInterlinear) FontWeight.Bold
+                            else FontWeight.Normal,
                     )
                 }
 
                 Box(
                     modifier =
                         Modifier.weight(1f)
-                            .clickable { session.toggleTranslation() }
+                            .clickable { onToggleTranslation() }
                             .padding(vertical = 8.dp),
                     contentAlignment = Alignment.Center,
                 ) {
@@ -205,18 +209,17 @@ fun ReadingCanvasScreen(
                         text = "📝 Translate",
                         fontSize = 14.sp,
                         color =
-                            if (state.showTranslation) colors.slateBlueAccent
+                            if (activeSession.showTranslation) colors.slateBlueAccent
                             else colors.textPrimary,
                         fontWeight =
-                            if (state.showTranslation) FontWeight.Bold else FontWeight.Normal,
+                            if (activeSession.showTranslation) FontWeight.Bold
+                            else FontWeight.Normal,
                     )
                 }
 
                 Box(
                     modifier =
-                        Modifier.weight(1f)
-                            .clickable { session.nextSentence() }
-                            .padding(vertical = 8.dp),
+                        Modifier.weight(1f).clickable { onNextSentence() }.padding(vertical = 8.dp),
                     contentAlignment = Alignment.Center,
                 ) {
                     Text(
@@ -229,6 +232,38 @@ fun ReadingCanvasScreen(
             }
         }
     }
+}
+
+/** Legacy adapter for [ReadingCanvasScreen] taking a [ReaderSessionEngine]. */
+@Composable
+fun ReadingCanvasScreen(
+    session: ReaderSessionEngine,
+    onCloseSession: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val state = session.state
+    val activeUiState =
+        ActiveSessionUiState(
+            title = state.title,
+            source = state.source,
+            sentences = state.sentences,
+            currentSentenceIndex = state.currentSentenceIndex,
+            selectedTokenIndex = state.selectedTokenIndex,
+            activeInspection = state.activeInspection,
+            showInterlinear = state.showInterlinear,
+            showTranslation = state.showTranslation,
+            readerMode = state.readerMode,
+            isCompleted = state.isCompleted,
+        )
+    ReadingCanvasScreen(
+        activeSession = activeUiState,
+        onSelectToken = { session.selectToken(it) },
+        onToggleInterlinear = { session.toggleInterlinear() },
+        onToggleTranslation = { session.toggleTranslation() },
+        onNextSentence = { session.nextSentence() },
+        onCloseSession = onCloseSession,
+        modifier = modifier,
+    )
 }
 
 @Composable
