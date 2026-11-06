@@ -61,10 +61,10 @@
       "target_type": "aar",
       "licenses": []
     },
-    "androidx.annotation:annotation-experimental:1.4.1": {
-      "repo_name": "androidx_annotation__annotation_experimental__1_4_1",
-      "url": "https://maven.google.com/androidx/annotation/annotation-experimental/1.4.1/annotation-experimental-1.4.1.aar",
-      "sha256": "6bd4c7c7476f8260cd3bdbb81183583e93fc9f790c27dea7dc314181cbf87aa0",
+    "androidx.annotation:annotation-experimental:1.5.0": {
+      "repo_name": "androidx_annotation__annotation_experimental__1_5_0",
+      "url": "https://maven.google.com/androidx/annotation/annotation-experimental/1.5.0/annotation-experimental-1.5.0.aar",
+      "sha256": "02b0a4256618f85386c92e5cec166dc7f300820888a290227a3c0c65b82cbb36",
       "dependencies": [
         ":org_jetbrains_kotlin__kotlin_stdlib"
       ],
@@ -978,10 +978,10 @@
         }
       ]
     },
-    "androidx.lifecycle:lifecycle-livedata-core:2.6.1": {
-      "repo_name": "androidx_lifecycle__lifecycle_livedata_core__2_6_1",
-      "url": "https://maven.google.com/androidx/lifecycle/lifecycle-livedata-core/2.6.1/lifecycle-livedata-core-2.6.1.aar",
-      "sha256": "2256780a3cff4a1e57fbb3d442557c17dc363ab8af105bcaf5261d8e2d5db949",
+    "androidx.lifecycle:lifecycle-livedata-core:2.8.7": {
+      "repo_name": "androidx_lifecycle__lifecycle_livedata_core__2_8_7",
+      "url": "https://maven.google.com/androidx/lifecycle/lifecycle-livedata-core/2.8.7/lifecycle-livedata-core-2.8.7.aar",
+      "sha256": "d786e5e6f79b8fab026f09a2d4ae3de1d72875f7645a6b7be48f1d9ab384734b",
       "dependencies": [
         ":androidx_arch_core__core_common",
         ":androidx_arch_core__core_runtime",
@@ -1125,6 +1125,42 @@
       "target_type": "aar",
       "licenses": []
     },
+    "androidx.lifecycle:lifecycle-viewmodel-compose-android:2.8.7": {
+      "repo_name": "androidx_lifecycle__lifecycle_viewmodel_compose_android__2_8_7",
+      "url": "https://maven.google.com/androidx/lifecycle/lifecycle-viewmodel-compose-android/2.8.7/lifecycle-viewmodel-compose-android-2.8.7.aar",
+      "sha256": "072532de580b03628c212388c9ce2ff066731f28031fb75ebd8505446455e5d1",
+      "dependencies": [
+        ":androidx_annotation__annotation",
+        ":androidx_compose_runtime__runtime_android",
+        ":androidx_compose_ui__ui_android",
+        ":androidx_lifecycle__lifecycle_common",
+        ":androidx_lifecycle__lifecycle_viewmodel",
+        ":androidx_lifecycle__lifecycle_viewmodel_savedstate",
+        ":org_jetbrains_kotlin__kotlin_stdlib"
+      ],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "aar",
+      "licenses": []
+    },
+    "androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7": {
+      "repo_name": "androidx_lifecycle__lifecycle_viewmodel_compose__2_8_7",
+      "url": "https://maven.google.com/androidx/lifecycle/lifecycle-viewmodel-compose/2.8.7/lifecycle-viewmodel-compose-2.8.7.aar",
+      "sha256": "19495e449d8b09702b589a64d381951f3cfcc026169f4a2b4a479a957d117967",
+      "dependencies": [
+        ":androidx_annotation__annotation",
+        ":androidx_compose_runtime__runtime",
+        ":androidx_lifecycle__lifecycle_common",
+        ":androidx_lifecycle__lifecycle_viewmodel",
+        ":androidx_lifecycle__lifecycle_viewmodel_compose_android"
+      ],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "aar",
+      "licenses": []
+    },
     "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7": {
       "repo_name": "androidx_lifecycle__lifecycle_viewmodel_ktx__2_8_7",
       "url": "https://maven.google.com/androidx/lifecycle/lifecycle-viewmodel-ktx/2.8.7/lifecycle-viewmodel-ktx-2.8.7.aar",
@@ -1140,10 +1176,10 @@
       "target_type": "aar",
       "licenses": []
     },
-    "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.1": {
-      "repo_name": "androidx_lifecycle__lifecycle_viewmodel_savedstate__2_6_1",
-      "url": "https://maven.google.com/androidx/lifecycle/lifecycle-viewmodel-savedstate/2.6.1/lifecycle-viewmodel-savedstate-2.6.1.aar",
-      "sha256": "c82f89221adbe19df7c7adbab63f4ecc857fc746e3c9494256ab8fa5c20491b2",
+    "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.7": {
+      "repo_name": "androidx_lifecycle__lifecycle_viewmodel_savedstate__2_8_7",
+      "url": "https://maven.google.com/androidx/lifecycle/lifecycle-viewmodel-savedstate/2.8.7/lifecycle-viewmodel-savedstate-2.8.7.aar",
+      "sha256": "646f2a42d2884b02308fb19837089e2669835fe21ca6a5b60666d5eb94d081dd",
       "dependencies": [
         ":androidx_annotation__annotation",
         ":androidx_core__core_ktx",
@@ -1190,6 +1226,274 @@
       "target_type": "aar",
       "licenses": []
     },
+    "androidx.room:room-common-jvm:2.8.5": {
+      "repo_name": "androidx_room__room_common_jvm__2_8_5",
+      "url": "https://maven.google.com/androidx/room/room-common-jvm/2.8.5/room-common-jvm-2.8.5.jar",
+      "sha256": "dc7b4e1a75a790f29c97afd5516b8bf8002d9b6e83e295bc569b33566f3b1ec0",
+      "dependencies": [
+        ":androidx_annotation__annotation_jvm"
+      ],
+      "exports": [],
+      "runtime_deps": [
+        ":org_jetbrains_kotlin__kotlin_stdlib"
+      ],
+      "test_only": false,
+      "target_type": "jar",
+      "licenses": [
+        {
+          "name": "notice",
+          "url": ""
+        }
+      ]
+    },
+    "androidx.room:room-common:2.8.5": {
+      "repo_name": "androidx_room__room_common__2_8_5",
+      "url": "https://maven.google.com/androidx/room/room-common/2.8.5/room-common-2.8.5.jar",
+      "sha256": "408ff8461ddd90c591f2b38d535e5c262276d1c0115b0cdf65880413051b4305",
+      "dependencies": [
+        ":androidx_room__room_common_jvm",
+        ":org_jetbrains_kotlin__kotlin_stdlib"
+      ],
+      "exports": [
+        ":androidx_room__room_common_jvm",
+        ":org_jetbrains_kotlin__kotlin_stdlib"
+      ],
+      "runtime_deps": [
+        ":androidx_annotation__annotation"
+      ],
+      "test_only": false,
+      "target_type": "jar",
+      "licenses": [
+        {
+          "name": "notice",
+          "url": ""
+        }
+      ]
+    },
+    "androidx.room:room-compiler-processing:2.8.5": {
+      "repo_name": "androidx_room__room_compiler_processing__2_8_5",
+      "url": "https://maven.google.com/androidx/room/room-compiler-processing/2.8.5/room-compiler-processing-2.8.5.jar",
+      "sha256": "a4282eceb6720a712f15cff50747f160a7efe6ac3974e86d514c45e3f416085f",
+      "dependencies": [
+        ":com_google_devtools_ksp__symbol_processing_api",
+        ":com_squareup__javapoet",
+        ":com_squareup__kotlinpoet_javapoet",
+        ":com_squareup__kotlinpoet_jvm",
+        ":org_jetbrains_kotlin__kotlin_stdlib",
+        ":org_jspecify__jspecify"
+      ],
+      "exports": [],
+      "runtime_deps": [
+        ":com_google_auto__auto_common",
+        ":com_google_auto_value__auto_value_annotations",
+        ":com_google_guava__guava",
+        ":org_jetbrains_kotlin__kotlin_metadata_jvm"
+      ],
+      "test_only": false,
+      "target_type": "jar",
+      "licenses": [
+        {
+          "name": "notice",
+          "url": ""
+        }
+      ]
+    },
+    "androidx.room:room-compiler:2.8.5": {
+      "repo_name": "androidx_room__room_compiler__2_8_5",
+      "url": "https://maven.google.com/androidx/room/room-compiler/2.8.5/room-compiler-2.8.5.jar",
+      "sha256": "9c253ed45e1b0cbfde8a62ff0bd7a2405fb9099176e0f0f9d11a57135cce95bb",
+      "dependencies": [
+        ":com_google_devtools_ksp__symbol_processing_api",
+        ":com_squareup__javapoet",
+        ":com_squareup__kotlinpoet_javapoet",
+        ":com_squareup__kotlinpoet_jvm",
+        ":org_jetbrains_kotlin__kotlin_stdlib"
+      ],
+      "exports": [
+        ":com_google_devtools_ksp__symbol_processing_api",
+        ":com_squareup__javapoet",
+        ":com_squareup__kotlinpoet_javapoet",
+        ":com_squareup__kotlinpoet_jvm",
+        ":org_jetbrains_kotlin__kotlin_stdlib"
+      ],
+      "runtime_deps": [
+        ":androidx_room__room_common_jvm",
+        ":androidx_room__room_compiler_processing",
+        ":androidx_room__room_external_antlr",
+        ":androidx_room__room_migration_jvm",
+        ":com_google_auto__auto_common",
+        ":com_google_auto_value__auto_value_annotations",
+        ":com_intellij__annotations",
+        ":commons_codec__commons_codec",
+        ":org_xerial__sqlite_jdbc"
+      ],
+      "test_only": false,
+      "target_type": "processor",
+      "processor_classes": [
+        "androidx.room.RoomProcessor"
+      ],
+      "licenses": [
+        {
+          "name": "notice",
+          "url": ""
+        }
+      ]
+    },
+    "androidx.room:room-external-antlr:2.8.5": {
+      "repo_name": "androidx_room__room_external_antlr__2_8_5",
+      "url": "https://maven.google.com/androidx/room/room-external-antlr/2.8.5/room-external-antlr-2.8.5.jar",
+      "sha256": "6bf794bffe8de263826502511b4c7df0570312b6cc99312ca7fc6bdb0880ca1e",
+      "dependencies": [],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "jar",
+      "licenses": [
+        {
+          "name": "notice",
+          "url": ""
+        }
+      ]
+    },
+    "androidx.room:room-ktx:2.8.5": {
+      "repo_name": "androidx_room__room_ktx__2_8_5",
+      "url": "https://maven.google.com/androidx/room/room-ktx/2.8.5/room-ktx-2.8.5.aar",
+      "sha256": "9eddc00f8a23a169b7fbbcec72600f3580e15c92fc4fcdbf48fae6ee69247033",
+      "dependencies": [
+        ":androidx_room__room_common",
+        ":androidx_room__room_runtime",
+        ":org_jetbrains_kotlin__kotlin_stdlib",
+        ":org_jetbrains_kotlinx__kotlinx_coroutines_android"
+      ],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "aar",
+      "licenses": []
+    },
+    "androidx.room:room-migration-jvm:2.8.5": {
+      "repo_name": "androidx_room__room_migration_jvm__2_8_5",
+      "url": "https://maven.google.com/androidx/room/room-migration-jvm/2.8.5/room-migration-jvm-2.8.5.jar",
+      "sha256": "18e63f4ec289cf3f4545face849c6bbdd33eea9596eebe0b7293d49c00c511e2",
+      "dependencies": [],
+      "exports": [],
+      "runtime_deps": [
+        ":androidx_room__room_common_jvm",
+        ":org_jetbrains_kotlin__kotlin_stdlib",
+        ":org_jetbrains_kotlinx__kotlinx_serialization_json_jvm"
+      ],
+      "test_only": false,
+      "target_type": "jar",
+      "licenses": [
+        {
+          "name": "notice",
+          "url": ""
+        }
+      ]
+    },
+    "androidx.room:room-migration:2.8.5": {
+      "repo_name": "androidx_room__room_migration__2_8_5",
+      "url": "https://maven.google.com/androidx/room/room-migration/2.8.5/room-migration-2.8.5.jar",
+      "sha256": "8e52e9263dfb13104fb1e26add519f81f4074436c901c8b6cc7d0d457e02ef93",
+      "dependencies": [],
+      "exports": [],
+      "runtime_deps": [
+        ":androidx_room__room_common",
+        ":androidx_room__room_migration_jvm",
+        ":com_squareup_okio__okio",
+        ":org_jetbrains_kotlin__kotlin_stdlib",
+        ":org_jetbrains_kotlinx__kotlinx_serialization_json",
+        ":org_jetbrains_kotlinx__kotlinx_serialization_json_okio"
+      ],
+      "test_only": false,
+      "target_type": "jar",
+      "licenses": [
+        {
+          "name": "notice",
+          "url": ""
+        }
+      ]
+    },
+    "androidx.room:room-runtime-android:2.8.5": {
+      "repo_name": "androidx_room__room_runtime_android__2_8_5",
+      "url": "https://maven.google.com/androidx/room/room-runtime-android/2.8.5/room-runtime-android-2.8.5.aar",
+      "sha256": "ab6f951f6e7b63ed419eaf740b34dbe51560532f78289fd9c5dadabf46401dba",
+      "dependencies": [
+        ":androidx_annotation__annotation_experimental",
+        ":androidx_annotation__annotation_jvm",
+        ":androidx_arch_core__core_runtime",
+        ":androidx_collection__collection_jvm",
+        ":androidx_room__room_common_jvm",
+        ":androidx_sqlite__sqlite_android",
+        ":androidx_sqlite__sqlite_framework_android",
+        ":org_jetbrains_kotlin__kotlin_stdlib",
+        ":org_jetbrains_kotlinx__kotlinx_coroutines_android",
+        ":org_jspecify__jspecify"
+      ],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "aar",
+      "licenses": []
+    },
+    "androidx.room:room-runtime:2.8.5": {
+      "repo_name": "androidx_room__room_runtime__2_8_5",
+      "url": "https://maven.google.com/androidx/room/room-runtime/2.8.5/room-runtime-2.8.5.aar",
+      "sha256": "5bdd0e2af35a30412d0ab89ba6bd521b6fb91d8fcb072ac27d0e4fa625bfcc95",
+      "dependencies": [
+        ":androidx_annotation__annotation",
+        ":androidx_collection__collection",
+        ":androidx_room__room_common",
+        ":androidx_room__room_runtime_android",
+        ":androidx_sqlite__sqlite",
+        ":androidx_sqlite__sqlite_framework",
+        ":org_jetbrains_kotlin__kotlin_stdlib"
+      ],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "aar",
+      "licenses": []
+    },
+    "androidx.room:room-testing-android:2.8.5": {
+      "repo_name": "androidx_room__room_testing_android__2_8_5",
+      "url": "https://maven.google.com/androidx/room/room-testing-android/2.8.5/room-testing-android-2.8.5.aar",
+      "sha256": "af526928864cbe388da3317eed4d7d956bb339d716e317c94a373a6cff0ac89e",
+      "dependencies": [
+        ":androidx_arch_core__core_runtime",
+        ":androidx_room__room_common_jvm",
+        ":androidx_room__room_migration_jvm",
+        ":androidx_room__room_runtime_android",
+        ":androidx_sqlite__sqlite_android",
+        ":androidx_sqlite__sqlite_framework_android",
+        ":junit__junit",
+        ":org_jetbrains_kotlin__kotlin_stdlib"
+      ],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "aar",
+      "licenses": []
+    },
+    "androidx.room:room-testing:2.8.5": {
+      "repo_name": "androidx_room__room_testing__2_8_5",
+      "url": "https://maven.google.com/androidx/room/room-testing/2.8.5/room-testing-2.8.5.aar",
+      "sha256": "68048d27248a461a5c78d5ed29178b2da0787ce68b6b323f509e8ab6d304ba8f",
+      "dependencies": [
+        ":androidx_room__room_common",
+        ":androidx_room__room_migration",
+        ":androidx_room__room_runtime",
+        ":androidx_room__room_testing_android",
+        ":androidx_sqlite__sqlite",
+        ":com_squareup_okio__okio",
+        ":org_jetbrains_kotlin__kotlin_stdlib"
+      ],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "aar",
+      "licenses": []
+    },
     "androidx.savedstate:savedstate-ktx:1.2.1": {
       "repo_name": "androidx_savedstate__savedstate_ktx__1_2_1",
       "url": "https://maven.google.com/androidx/savedstate/savedstate-ktx/1.2.1/savedstate-ktx-1.2.1.aar",
@@ -1212,6 +1516,66 @@
         ":androidx_annotation__annotation",
         ":androidx_arch_core__core_common",
         ":androidx_lifecycle__lifecycle_common",
+        ":org_jetbrains_kotlin__kotlin_stdlib"
+      ],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "aar",
+      "licenses": []
+    },
+    "androidx.sqlite:sqlite-android:2.6.2": {
+      "repo_name": "androidx_sqlite__sqlite_android__2_6_2",
+      "url": "https://maven.google.com/androidx/sqlite/sqlite-android/2.6.2/sqlite-android-2.6.2.aar",
+      "sha256": "514f8de4f7bdba2fa8d748d2b22fdcdfb623bd3770a667bf0adc0ad259f03ed2",
+      "dependencies": [
+        ":androidx_annotation__annotation_jvm",
+        ":org_jetbrains_kotlin__kotlin_stdlib"
+      ],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "aar",
+      "licenses": []
+    },
+    "androidx.sqlite:sqlite-framework-android:2.6.2": {
+      "repo_name": "androidx_sqlite__sqlite_framework_android__2_6_2",
+      "url": "https://maven.google.com/androidx/sqlite/sqlite-framework-android/2.6.2/sqlite-framework-android-2.6.2.aar",
+      "sha256": "b19125c7fff34222e0f380361fc179ab214e4d82e1a50b0c068ca26c851a6231",
+      "dependencies": [
+        ":androidx_annotation__annotation_jvm",
+        ":androidx_sqlite__sqlite_android",
+        ":org_jetbrains_kotlin__kotlin_stdlib"
+      ],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "aar",
+      "licenses": []
+    },
+    "androidx.sqlite:sqlite-framework:2.6.2": {
+      "repo_name": "androidx_sqlite__sqlite_framework__2_6_2",
+      "url": "https://maven.google.com/androidx/sqlite/sqlite-framework/2.6.2/sqlite-framework-2.6.2.aar",
+      "sha256": "2ee94f32a637effbe3532419298ec681e4fe0774d5d96fa3d2402a7f59071291",
+      "dependencies": [
+        ":androidx_annotation__annotation",
+        ":androidx_sqlite__sqlite",
+        ":androidx_sqlite__sqlite_framework_android",
+        ":org_jetbrains_kotlin__kotlin_stdlib"
+      ],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "aar",
+      "licenses": []
+    },
+    "androidx.sqlite:sqlite:2.6.2": {
+      "repo_name": "androidx_sqlite__sqlite__2_6_2",
+      "url": "https://maven.google.com/androidx/sqlite/sqlite/2.6.2/sqlite-2.6.2.aar",
+      "sha256": "2dadc048dd87a0d3d15809c85f5bee32f597a4ccbb0ec88e287bea46336f3bb8",
+      "dependencies": [
+        ":androidx_annotation__annotation",
+        ":androidx_sqlite__sqlite_android",
         ":org_jetbrains_kotlin__kotlin_stdlib"
       ],
       "exports": [],
@@ -1261,10 +1625,273 @@
       "target_type": "aar",
       "licenses": []
     },
-    "com.google.guava:listenablefuture:1.0": {
-      "repo_name": "com_google_guava__listenablefuture__1_0",
-      "url": "https://repo1.maven.org/maven2/com/google/guava/listenablefuture/1.0/listenablefuture-1.0.jar",
-      "sha256": "e4ad7607e5c0477c6f890ef26a49cb8d1bb4dffb650bab4502afee64644e3069",
+    "com.google.auto.value:auto-value-annotations:1.6.3": {
+      "repo_name": "com_google_auto_value__auto_value_annotations__1_6_3",
+      "url": "https://repo1.maven.org/maven2/com/google/auto/value/auto-value-annotations/1.6.3/auto-value-annotations-1.6.3.jar",
+      "sha256": "0e951fee8c31f60270bc46553a8586001b7b93dbb12aec06373aa99a150392c0",
+      "dependencies": [],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "jar",
+      "licenses": [
+        {
+          "name": "notice",
+          "url": ""
+        }
+      ]
+    },
+    "com.google.auto:auto-common:1.2.1": {
+      "repo_name": "com_google_auto__auto_common__1_2_1",
+      "url": "https://repo1.maven.org/maven2/com/google/auto/auto-common/1.2.1/auto-common-1.2.1.jar",
+      "sha256": "f43f29fe2a6ebaf04b2598cdeec32a4e346d49a9404e990f5fc19c19f3a28d0e",
+      "dependencies": [
+        ":com_google_guava__guava"
+      ],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "jar",
+      "licenses": [
+        {
+          "name": "notice",
+          "url": ""
+        }
+      ]
+    },
+    "com.google.code.findbugs:jsr305:3.0.2": {
+      "repo_name": "com_google_code_findbugs__jsr305__3_0_2",
+      "url": "https://repo1.maven.org/maven2/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar",
+      "sha256": "766ad2a0783f2687962c8ad74ceecc38a28b9f72a2d085ee438b7813e928d0c7",
+      "dependencies": [],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "jar",
+      "licenses": [
+        {
+          "name": "notice",
+          "url": ""
+        }
+      ]
+    },
+    "com.google.devtools.ksp:symbol-processing-api:2.0.10-1.0.24": {
+      "repo_name": "com_google_devtools_ksp__symbol_processing_api__2_0_10_1_0_24",
+      "url": "https://repo1.maven.org/maven2/com/google/devtools/ksp/symbol-processing-api/2.0.10-1.0.24/symbol-processing-api-2.0.10-1.0.24.jar",
+      "sha256": "dd7dde070be54de66c7bdd4de04c43fb429e0c62bb132a6448cfa33653afb229",
+      "dependencies": [
+        ":org_jetbrains_kotlin__kotlin_stdlib"
+      ],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "jar",
+      "licenses": [
+        {
+          "name": "notice",
+          "url": ""
+        }
+      ]
+    },
+    "com.google.errorprone:error_prone_annotations:2.26.1": {
+      "repo_name": "com_google_errorprone__error_prone_annotations__2_26_1",
+      "url": "https://repo1.maven.org/maven2/com/google/errorprone/error_prone_annotations/2.26.1/error_prone_annotations-2.26.1.jar",
+      "sha256": "de25f2d9a2156529bd765f51d8efdfc0dfa7301e04efb9cc75b7f10cf5d0e0fb",
+      "dependencies": [],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "jar",
+      "licenses": [
+        {
+          "name": "notice",
+          "url": ""
+        }
+      ]
+    },
+    "com.google.guava:failureaccess:1.0.2": {
+      "repo_name": "com_google_guava__failureaccess__1_0_2",
+      "url": "https://repo1.maven.org/maven2/com/google/guava/failureaccess/1.0.2/failureaccess-1.0.2.jar",
+      "sha256": "8a8f81cf9b359e3f6dfa691a1e776985c061ef2f223c9b2c80753e1b458e8064",
+      "dependencies": [],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "jar",
+      "licenses": [
+        {
+          "name": "notice",
+          "url": ""
+        }
+      ]
+    },
+    "com.google.guava:guava:33.2.1-jre": {
+      "repo_name": "com_google_guava__guava__33_2_1_jre",
+      "url": "https://repo1.maven.org/maven2/com/google/guava/guava/33.2.1-jre/guava-33.2.1-jre.jar",
+      "sha256": "452b2d9787b7d366fa8cf5ed9a1c40404542d05effa7a598da03bbbbb76d9f31",
+      "dependencies": [
+        ":com_google_code_findbugs__jsr305",
+        ":com_google_errorprone__error_prone_annotations",
+        ":com_google_guava__failureaccess",
+        ":com_google_guava__listenablefuture",
+        ":com_google_j2objc__j2objc_annotations",
+        ":org_checkerframework__checker_qual"
+      ],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "jar",
+      "licenses": [
+        {
+          "name": "notice",
+          "url": ""
+        }
+      ]
+    },
+    "com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava": {
+      "repo_name": "com_google_guava__listenablefuture__9999_0_empty_to_avoid_conflict_with_guava",
+      "url": "https://repo1.maven.org/maven2/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar",
+      "sha256": "b372a037d4230aa57fbeffdef30fd6123f9c0c2db85d0aced00c91b974f33f99",
+      "dependencies": [],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "jar",
+      "licenses": [
+        {
+          "name": "notice",
+          "url": ""
+        }
+      ]
+    },
+    "com.google.j2objc:j2objc-annotations:3.0.0": {
+      "repo_name": "com_google_j2objc__j2objc_annotations__3_0_0",
+      "url": "https://repo1.maven.org/maven2/com/google/j2objc/j2objc-annotations/3.0.0/j2objc-annotations-3.0.0.jar",
+      "sha256": "88241573467ddca44ffd4d74aa04c2bbfd11bf7c17e0c342c94c9de7a70a7c64",
+      "dependencies": [],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "jar",
+      "licenses": [
+        {
+          "name": "notice",
+          "url": ""
+        }
+      ]
+    },
+    "com.intellij:annotations:12.0": {
+      "repo_name": "com_intellij__annotations__12_0",
+      "url": "https://repo1.maven.org/maven2/com/intellij/annotations/12.0/annotations-12.0.jar",
+      "sha256": "f8ab13b14be080fe2f617f90e55599760e4a1b4deeea5c595df63d0d6375ed6d",
+      "dependencies": [],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "jar",
+      "licenses": [
+        {
+          "name": "notice",
+          "url": ""
+        }
+      ]
+    },
+    "com.squareup.okio:okio-jvm:3.9.1": {
+      "repo_name": "com_squareup_okio__okio_jvm__3_9_1",
+      "url": "https://repo1.maven.org/maven2/com/squareup/okio/okio-jvm/3.9.1/okio-jvm-3.9.1.jar",
+      "sha256": "fe6fe91378f9bfa7b08c3864828ce418005cf28acca12e8847eb65c565c37500",
+      "dependencies": [
+        ":org_jetbrains_kotlin__kotlin_stdlib"
+      ],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "jar",
+      "licenses": [
+        {
+          "name": "notice",
+          "url": ""
+        }
+      ]
+    },
+    "com.squareup.okio:okio:3.9.1": {
+      "repo_name": "com_squareup_okio__okio__3_9_1",
+      "url": "https://repo1.maven.org/maven2/com/squareup/okio/okio/3.9.1/okio-3.9.1.jar",
+      "sha256": "99c8ebbc4995f29dd58b05d75583fcc8b957db21eeeb8c5d89733f0d34955897",
+      "dependencies": [
+        ":com_squareup_okio__okio_jvm"
+      ],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "jar",
+      "licenses": [
+        {
+          "name": "notice",
+          "url": ""
+        }
+      ]
+    },
+    "com.squareup:javapoet:1.13.0": {
+      "repo_name": "com_squareup__javapoet__1_13_0",
+      "url": "https://repo1.maven.org/maven2/com/squareup/javapoet/1.13.0/javapoet-1.13.0.jar",
+      "sha256": "4c7517e848a71b36d069d12bb3bf46a70fd4cda3105d822b0ed2e19c00b69291",
+      "dependencies": [],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "jar",
+      "licenses": [
+        {
+          "name": "notice",
+          "url": ""
+        }
+      ]
+    },
+    "com.squareup:kotlinpoet-javapoet:2.0.0": {
+      "repo_name": "com_squareup__kotlinpoet_javapoet__2_0_0",
+      "url": "https://repo1.maven.org/maven2/com/squareup/kotlinpoet-javapoet/2.0.0/kotlinpoet-javapoet-2.0.0.jar",
+      "sha256": "2929f3b9a8d739d0aea40bf3c7bd01fad3a7cd2d0fb56f2de248ebb9b46774a4",
+      "dependencies": [
+        ":com_squareup__javapoet",
+        ":com_squareup__kotlinpoet_jvm",
+        ":org_jetbrains_kotlin__kotlin_stdlib"
+      ],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "jar",
+      "licenses": [
+        {
+          "name": "notice",
+          "url": ""
+        }
+      ]
+    },
+    "com.squareup:kotlinpoet-jvm:2.0.0": {
+      "repo_name": "com_squareup__kotlinpoet_jvm__2_0_0",
+      "url": "https://repo1.maven.org/maven2/com/squareup/kotlinpoet-jvm/2.0.0/kotlinpoet-jvm-2.0.0.jar",
+      "sha256": "65e2d5e1c7844861d134635692791f7dbac808adb060da7329c18c4bd88d2acb",
+      "dependencies": [
+        ":org_jetbrains_kotlin__kotlin_stdlib"
+      ],
+      "exports": [],
+      "runtime_deps": [
+        ":org_jetbrains_kotlin__kotlin_reflect"
+      ],
+      "test_only": false,
+      "target_type": "jar",
+      "licenses": [
+        {
+          "name": "notice",
+          "url": ""
+        }
+      ]
+    },
+    "commons-codec:commons-codec:1.15": {
+      "repo_name": "commons_codec__commons_codec__1_15",
+      "url": "https://repo1.maven.org/maven2/commons-codec/commons-codec/1.15/commons-codec-1.15.jar",
+      "sha256": "b3e9f6d63a790109bf0d056611fbed1cf69055826defeb9894a71369d246ed63",
       "dependencies": [],
       "exports": [],
       "runtime_deps": [],
@@ -1821,6 +2448,22 @@
         }
       ]
     },
+    "org.checkerframework:checker-qual:3.42.0": {
+      "repo_name": "org_checkerframework__checker_qual__3_42_0",
+      "url": "https://repo1.maven.org/maven2/org/checkerframework/checker-qual/3.42.0/checker-qual-3.42.0.jar",
+      "sha256": "ccaedd33af0b7894d9f2f3b644f4d19e43928e32902e61ac4d10777830f5aac7",
+      "dependencies": [],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "jar",
+      "licenses": [
+        {
+          "name": "notice",
+          "url": ""
+        }
+      ]
+    },
     "org.hamcrest:hamcrest-core:1.3": {
       "repo_name": "org_hamcrest__hamcrest_core__1_3",
       "url": "https://repo1.maven.org/maven2/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar",
@@ -1917,6 +2560,24 @@
       "url": "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-daemon-embeddable/2.0.21/kotlin-daemon-embeddable-2.0.21.jar",
       "sha256": "b1a0a73c5022f8dd05a638c6b76b2bd7361818a1f3860ff2644133b1dd2bdb03",
       "dependencies": [],
+      "exports": [],
+      "runtime_deps": [],
+      "test_only": false,
+      "target_type": "jar",
+      "licenses": [
+        {
+          "name": "notice",
+          "url": ""
+        }
+      ]
+    },
+    "org.jetbrains.kotlin:kotlin-metadata-jvm:2.2.0": {
+      "repo_name": "org_jetbrains_kotlin__kotlin_metadata_jvm__2_2_0",
+      "url": "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-metadata-jvm/2.2.0/kotlin-metadata-jvm-2.2.0.jar",
+      "sha256": "501222ae7d63527e55f2e5e645f18d4eff2c19074c85b9bc055866e3ed2b17bf",
+      "dependencies": [
+        ":org_jetbrains_kotlin__kotlin_stdlib"
+      ],
       "exports": [],
       "runtime_deps": [],
       "test_only": false,
@@ -2139,6 +2800,28 @@
       ],
       "exports": [],
       "runtime_deps": [],
+      "test_only": false,
+      "target_type": "jar",
+      "licenses": [
+        {
+          "name": "notice",
+          "url": ""
+        }
+      ]
+    },
+    "org.jetbrains.kotlinx:kotlinx-serialization-json-okio-jvm:1.8.1": {
+      "repo_name": "org_jetbrains_kotlinx__kotlinx_serialization_json_okio_jvm__1_8_1",
+      "url": "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-json-okio-jvm/1.8.1/kotlinx-serialization-json-okio-jvm-1.8.1.jar",
+      "sha256": "a5b3460062f1393b83465d13a3d037d90399203af2479ae8be92152b2652e684",
+      "dependencies": [
+        ":org_jetbrains_kotlinx__kotlinx_serialization_core_jvm"
+      ],
+      "exports": [],
+      "runtime_deps": [
+        ":com_squareup_okio__okio_jvm",
+        ":org_jetbrains_kotlin__kotlin_stdlib",
+        ":org_jetbrains_kotlinx__kotlinx_serialization_json_jvm"
+      ],
       "test_only": false,
       "target_type": "jar",
       "licenses": [
