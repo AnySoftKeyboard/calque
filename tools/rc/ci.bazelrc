@@ -1,0 +1,6 @@
+# CI specific flags (Remote Execution & Minimal Downloads)
+build --remote_download_minimal
+build --remote_executor=grpcs://lb.bb.cloud-grpc.hermetiq.io
+build --remote_default_exec_properties=pool=sizeclass
+build --jobs=HOST_CPUS*8
+build --modify_execution_info=^Cpp.*=+no-remote,^Cc.*=+no-remote

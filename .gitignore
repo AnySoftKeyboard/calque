@@ -10,3 +10,7 @@ bazel-*
 # Build artifacts
 outputs/
 
+# secret Hermetiq credentials helper
+tools/hermetiq-credential-helper.*
+
+
