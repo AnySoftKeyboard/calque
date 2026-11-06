@@ -1,4 +1,4 @@
-# Hermetiq
+# Hermetiq Base Configuration (Remote Cache & BEP telemetry)
 build --bes_instance_name=75d5b5ec-949e-40ad-b7c8-5f368a7992a9
 build --bes_backend=grpcs://bep.cloud-grpc.hermetiq.io
 build --bes_results_url=https://dashboard.hermetiq.io/build/
@@ -21,11 +21,3 @@ build --remote_cache=grpcs://lb.bb.cloud-grpc.hermetiq.io
 build --remote_upload_local_results=false
 build --remote_cache_async
 build --remote_download_toplevel
-
-# Hermetiq remote exec
-build --remote_executor=grpcs://lb.bb.cloud-grpc.hermetiq.io
-build --remote_default_exec_properties=pool=sizeclass
-build --jobs=HOST_CPUS*8
-build --modify_execution_info=^Cpp.*=+no-remote,^Cc.*=+no-remote
-
-
