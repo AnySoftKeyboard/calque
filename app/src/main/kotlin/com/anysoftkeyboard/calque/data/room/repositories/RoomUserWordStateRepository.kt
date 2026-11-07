@@ -48,7 +48,7 @@ class RoomUserWordStateRepository(
     override fun recordEncounter(lemma: String, timestamp: Long) {
         val normalized = lemma.lowercase(Locale.ROOT).trim()
         if (normalized.isEmpty()) return
-        runBlocking(Dispatchers.IO) {
+        readModifyWrite {
             val existing = dao.getWordState(normalized)
             if (existing != null) {
                 dao.upsertWordState(
@@ -75,7 +75,7 @@ class RoomUserWordStateRepository(
     override fun setWordStatus(lemma: String, status: UserWordStatus, timestamp: Long) {
         val normalized = lemma.lowercase(Locale.ROOT).trim()
         if (normalized.isEmpty()) return
-        runBlocking(Dispatchers.IO) {
+        readModifyWrite {
             val existing = dao.getWordState(normalized)
             if (existing != null) {
                 dao.upsertWordState(
@@ -107,7 +107,7 @@ class RoomUserWordStateRepository(
     ) {
         val normalized = lemma.lowercase(Locale.ROOT).trim()
         if (normalized.isEmpty()) return
-        runBlocking(Dispatchers.IO) {
+        readModifyWrite {
             val existing = dao.getWordState(normalized)
             if (existing != null) {
                 dao.upsertWordState(
@@ -147,6 +147,17 @@ class RoomUserWordStateRepository(
         if (normalized.isEmpty()) return false
         return runBlocking(Dispatchers.IO) { dao.deleteWordState(normalized) > 0 }
     }
+
+    /**
+     * Runs a read-then-write sequence on [Dispatchers.IO] while holding [writeLock], so concurrent
+     * callers (for example a tap-triggered encounter and a star toggle) cannot lose each other's
+     * update.
+     */
+    private fun readModifyWrite(block: suspend () -> Unit) {
+        synchronized(writeLock) { runBlocking(Dispatchers.IO) { block() } }
+    }
+
+    private val writeLock = Any()
 
     private companion object {
         const val MAX_BATCH_CHUNK_SIZE = 400

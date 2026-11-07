@@ -356,5 +356,48 @@ class ReaderViewModelTest {
             advanceUntilIdle()
 
             assertEquals(ReaderTab.CURRICULUM, viewModel.uiState.value.currentTab)
+            assertNull(viewModel.uiState.value.activeSession)
+        }
+
+    @Test
+    fun onEvent_refreshCurriculum_doesNotLeaveActiveSession() =
+        runTest(testDispatcher) {
+            val container = createContainer()
+            val viewModel = ReaderViewModel(container, testDispatcher, testDispatcher)
+            advanceUntilIdle()
+            viewModel.onEvent(ReaderUiEvent.SelectLesson(sampleLesson))
+            advanceUntilIdle()
+
+            viewModel.onEvent(ReaderUiEvent.RefreshCurriculum)
+            advanceUntilIdle()
+
+            val state = viewModel.uiState.value
+            assertEquals(ReaderTab.ACTIVE_SESSION, state.currentTab)
+            assertNotNull(state.activeSession)
+            assertEquals(1, state.curriculumLessons.size)
+        }
+
+    @Test
+    fun onEvent_sentenceChangeWhileInspecting_dropsStaleInspection() =
+        runTest(testDispatcher) {
+            val container = createContainer()
+            val viewModel = ReaderViewModel(container, testDispatcher, testDispatcher)
+            advanceUntilIdle()
+            viewModel.onEvent(ReaderUiEvent.SelectLesson(sampleLesson))
+            advanceUntilIdle()
+            val hotelIndex =
+                viewModel.uiState.value.activeSession!!.currentSentence!!.tokens.indexOfFirst {
+                    it.text.trim() == "hotel"
+                }
+
+            // The inspection coroutine has been queued but not run yet.
+            viewModel.onEvent(ReaderUiEvent.SelectToken(hotelIndex))
+            viewModel.onEvent(ReaderUiEvent.NextSentence)
+            advanceUntilIdle()
+
+            val active = viewModel.uiState.value.activeSession!!
+            assertEquals(1, active.currentSentenceIndex)
+            assertNull(active.selectedTokenIndex)
+            assertNull(active.activeInspection)
         }
 }

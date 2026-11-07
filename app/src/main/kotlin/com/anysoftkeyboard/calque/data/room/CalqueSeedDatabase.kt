@@ -41,11 +41,5 @@ abstract class CalqueSeedDatabase : RoomDatabase() {
                 .fallbackToDestructiveMigration(true)
                 .build()
         }
-
-        fun inMemory(context: Context): CalqueSeedDatabase {
-            return Room.inMemoryDatabaseBuilder(context, CalqueSeedDatabase::class.java)
-                .allowMainThreadQueries()
-                .build()
-        }
     }
 }

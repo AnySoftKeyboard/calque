@@ -18,7 +18,7 @@ class RoomUserCustomTextRepository(
 
     override fun update(text: UserCustomText): Boolean {
         if (text.textId <= 0L) return false
-        return runBlocking(Dispatchers.IO) { dao.insert(UserCustomTextEntity.fromDomain(text)) > 0 }
+        return runBlocking(Dispatchers.IO) { dao.update(UserCustomTextEntity.fromDomain(text)) > 0 }
     }
 
     override fun getById(textId: Long): UserCustomText? {

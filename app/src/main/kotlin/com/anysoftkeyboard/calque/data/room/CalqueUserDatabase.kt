@@ -26,14 +26,9 @@ abstract class CalqueUserDatabase : RoomDatabase() {
 
     companion object {
         fun build(context: Context, databaseName: String = "user.db"): CalqueUserDatabase {
+            // Never fall back to destructive migration here: user.db holds the learner's vault and
+            // progress. Schema bumps must ship an explicit Migration.
             return Room.databaseBuilder(context, CalqueUserDatabase::class.java, databaseName)
-                .fallbackToDestructiveMigration(true)
-                .build()
-        }
-
-        fun inMemory(context: Context): CalqueUserDatabase {
-            return Room.inMemoryDatabaseBuilder(context, CalqueUserDatabase::class.java)
-                .allowMainThreadQueries()
                 .build()
         }
     }

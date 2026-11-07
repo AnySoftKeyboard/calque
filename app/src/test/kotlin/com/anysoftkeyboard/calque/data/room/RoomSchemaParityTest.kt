@@ -43,6 +43,10 @@ class RoomSchemaParityTest {
         val indices: Map<String, List<String>>,
     )
 
+    // Room's generated schema validation (`TableInfo`) treats every Kotlin non-null primary key as
+    // `NOT NULL` and compares the flag against `PRAGMA table_info`. A pre-packaged `seed.db` that
+    // declares `TEXT PRIMARY KEY` (notnull = 0) is therefore rejected at runtime, so the
+    // expectations below require `notNull = true` for every primary key column.
     private val seedEntitySchemas =
         listOf(
             EntitySchemaDefinition(
@@ -50,7 +54,7 @@ class RoomSchemaParityTest {
                 entityClass = DictionaryEntity::class.java,
                 columns =
                     mapOf(
-                        "surface_form" to TableColumnInfo("surface_form", "TEXT", false, true),
+                        "surface_form" to TableColumnInfo("surface_form", "TEXT", true, true),
                         "lemma" to TableColumnInfo("lemma", "TEXT", true, false),
                         "pos" to TableColumnInfo("pos", "TEXT", true, false),
                         "grammar_info" to TableColumnInfo("grammar_info", "TEXT", false, false),
@@ -66,7 +70,7 @@ class RoomSchemaParityTest {
                 entityClass = FalseCognateEntity::class.java,
                 columns =
                     mapOf(
-                        "surface_form" to TableColumnInfo("surface_form", "TEXT", false, true),
+                        "surface_form" to TableColumnInfo("surface_form", "TEXT", true, true),
                         "lemma" to TableColumnInfo("lemma", "TEXT", true, false),
                         "apparent_english" to
                             TableColumnInfo("apparent_english", "TEXT", true, false),
@@ -86,7 +90,7 @@ class RoomSchemaParityTest {
                 entityClass = CuratedLessonEntity::class.java,
                 columns =
                     mapOf(
-                        "lesson_id" to TableColumnInfo("lesson_id", "TEXT", false, true),
+                        "lesson_id" to TableColumnInfo("lesson_id", "TEXT", true, true),
                         "level" to TableColumnInfo("level", "INTEGER", true, false),
                         "sequence_order" to
                             TableColumnInfo("sequence_order", "INTEGER", true, false),
@@ -101,7 +105,7 @@ class RoomSchemaParityTest {
                 entityClass = CognateRuleEntity::class.java,
                 columns =
                     mapOf(
-                        "rule_id" to TableColumnInfo("rule_id", "TEXT", false, true),
+                        "rule_id" to TableColumnInfo("rule_id", "TEXT", true, true),
                         "english_suffix" to TableColumnInfo("english_suffix", "TEXT", true, false),
                         "spanish_suffix" to TableColumnInfo("spanish_suffix", "TEXT", true, false),
                         "gender_rule" to TableColumnInfo("gender_rule", "TEXT", false, false),
@@ -119,7 +123,7 @@ class RoomSchemaParityTest {
                 entityClass = UserWordStateEntity::class.java,
                 columns =
                     mapOf(
-                        "lemma" to TableColumnInfo("lemma", "TEXT", false, true),
+                        "lemma" to TableColumnInfo("lemma", "TEXT", true, true),
                         "status" to TableColumnInfo("status", "TEXT", true, false),
                         "starred" to TableColumnInfo("starred", "INTEGER", true, false),
                         "saved_context_sentence" to
@@ -136,7 +140,7 @@ class RoomSchemaParityTest {
                 entityClass = UserCustomTextEntity::class.java,
                 columns =
                     mapOf(
-                        "text_id" to TableColumnInfo("text_id", "INTEGER", false, true),
+                        "text_id" to TableColumnInfo("text_id", "INTEGER", true, true),
                         "title" to TableColumnInfo("title", "TEXT", true, false),
                         "original_spanish" to
                             TableColumnInfo("original_spanish", "TEXT", true, false),
@@ -178,13 +182,30 @@ class RoomSchemaParityTest {
     @Test
     fun packagedSeedAsset_schemaParityWithRoomEntities() {
         val assetFile = File("app/src/main/assets/databases/seed.db")
-        if (!assetFile.exists()) {
-            return
-        }
+        assertTrue("Expected packaged seed database at ${assetFile.path}", assetFile.exists())
 
         DriverManager.getConnection("jdbc:sqlite:${assetFile.absolutePath}").use { conn ->
             for (schema in seedEntitySchemas) {
                 assertSqliteMatchesEntitySchema(conn, schema)
+            }
+        }
+    }
+
+    @Test
+    fun packagedSeedAsset_userVersionMatchesRoomDatabaseVersion() {
+        val assetFile = File("app/src/main/assets/databases/seed.db")
+        assertTrue("Expected packaged seed database at ${assetFile.path}", assetFile.exists())
+
+        DriverManager.getConnection("jdbc:sqlite:${assetFile.absolutePath}").use { conn ->
+            conn.createStatement().use { stmt ->
+                stmt.executeQuery("PRAGMA user_version").use { rs ->
+                    assertTrue(rs.next())
+                    assertEquals(
+                        "seed.db user_version must equal CalqueSeedDatabase @Database(version)",
+                        EXPECTED_SEED_SCHEMA_VERSION,
+                        rs.getInt(1),
+                    )
+                }
             }
         }
     }
@@ -366,6 +387,10 @@ class RoomSchemaParityTest {
             }
         }
         return result
+    }
+
+    private companion object {
+        const val EXPECTED_SEED_SCHEMA_VERSION = 1
     }
 
     private fun camelToSnake(str: String): String {

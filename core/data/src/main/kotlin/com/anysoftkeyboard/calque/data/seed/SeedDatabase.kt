@@ -25,7 +25,7 @@ class SeedDatabase(
             listOf(
                 """
                 CREATE TABLE IF NOT EXISTS dictionary (
-                    surface_form TEXT PRIMARY KEY,
+                    surface_form TEXT NOT NULL PRIMARY KEY,
                     lemma TEXT NOT NULL,
                     pos TEXT NOT NULL,
                     grammar_info TEXT,
@@ -38,7 +38,7 @@ class SeedDatabase(
                 "CREATE INDEX IF NOT EXISTS idx_dictionary_lemma ON dictionary(lemma)",
                 """
                 CREATE TABLE IF NOT EXISTS false_cognates (
-                    surface_form TEXT PRIMARY KEY,
+                    surface_form TEXT NOT NULL PRIMARY KEY,
                     lemma TEXT NOT NULL,
                     apparent_english TEXT NOT NULL,
                     actual_english TEXT NOT NULL,
@@ -53,7 +53,7 @@ class SeedDatabase(
                 "CREATE INDEX IF NOT EXISTS idx_false_cognates_lemma ON false_cognates(lemma)",
                 """
                 CREATE TABLE IF NOT EXISTS curated_lessons (
-                    lesson_id TEXT PRIMARY KEY,
+                    lesson_id TEXT NOT NULL PRIMARY KEY,
                     level INTEGER NOT NULL,
                     sequence_order INTEGER NOT NULL,
                     title TEXT NOT NULL,
@@ -65,7 +65,7 @@ class SeedDatabase(
                 "CREATE INDEX IF NOT EXISTS idx_curated_lessons_level ON curated_lessons(level)",
                 """
                 CREATE TABLE IF NOT EXISTS cognate_rules (
-                    rule_id TEXT PRIMARY KEY,
+                    rule_id TEXT NOT NULL PRIMARY KEY,
                     english_suffix TEXT NOT NULL,
                     spanish_suffix TEXT NOT NULL,
                     gender_rule TEXT,

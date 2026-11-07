@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.anysoftkeyboard.calque.data.room.entities.UserCustomTextEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -21,6 +22,11 @@ interface UserCustomTextDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(text: UserCustomTextEntity): Long
+
+    /**
+     * Updates an existing row; returns the number of rows changed (0 when [text] does not exist).
+     */
+    @Update suspend fun update(text: UserCustomTextEntity): Int
 
     @Query("DELETE FROM user_custom_texts WHERE text_id = :textId")
     suspend fun delete(textId: Long): Int

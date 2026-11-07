@@ -10,6 +10,7 @@ import com.anysoftkeyboard.calque.reader.ReadingSource
 import com.anysoftkeyboard.calque.reader.TokenInspector
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -32,6 +33,9 @@ class ReaderViewModel(
 
     private val _uiState = MutableStateFlow(ReaderUiState(isLoading = true))
     val uiState: StateFlow<ReaderUiState> = _uiState.asStateFlow()
+
+    /** In-flight token inspection; cancelled whenever the selection or sentence changes. */
+    private var inspectionJob: Job? = null
 
     init {
         loadCurriculum()
@@ -64,7 +68,6 @@ class ReaderViewModel(
                 withContext(ioDispatcher) { appContainer.curatedLessonsRepository.getAll() }
             _uiState.update {
                 it.copy(
-                    currentTab = ReaderTab.CURRICULUM,
                     curriculumLessons = lessons,
                     isLoading = false,
                     errorMessage = null,
@@ -96,7 +99,7 @@ class ReaderViewModel(
         }
     }
 
-    fun startCuratedLessonById(lessonId: String): Boolean {
+    fun startCuratedLessonById(lessonId: String) {
         viewModelScope.launch {
             val lesson =
                 withContext(ioDispatcher) {
@@ -108,7 +111,6 @@ class ReaderViewModel(
                 _uiState.update { it.copy(errorMessage = "Lesson '$lessonId' not found.") }
             }
         }
-        return true
     }
 
     fun startRawText(title: String, content: String) {
@@ -135,10 +137,15 @@ class ReaderViewModel(
     }
 
     fun closeSession() {
+        inspectionJob?.cancel()
+        _uiState.update {
+            it.copy(currentTab = ReaderTab.CURRICULUM, activeSession = null, errorMessage = null)
+        }
         loadCurriculum()
     }
 
     fun nextSentence() {
+        inspectionJob?.cancel()
         _uiState.update { state ->
             val active = state.activeSession ?: return@update state
             val nextIdx = active.currentSentenceIndex + 1
@@ -162,6 +169,7 @@ class ReaderViewModel(
     }
 
     fun previousSentence() {
+        inspectionJob?.cancel()
         _uiState.update { state ->
             val active = state.activeSession ?: return@update state
             if (active.currentSentenceIndex > 0) {
@@ -181,6 +189,7 @@ class ReaderViewModel(
     }
 
     fun jumpToSentence(index: Int) {
+        inspectionJob?.cancel()
         _uiState.update { state ->
             val active = state.activeSession ?: return@update state
             if (index in active.sentences.indices) {
@@ -229,30 +238,33 @@ class ReaderViewModel(
         val sentence = active.currentSentence ?: return
         val token = sentence.tokens.getOrNull(tokenIndex) ?: return
 
-        viewModelScope.launch {
-            val inspection =
-                withContext(defaultDispatcher) {
-                    TokenInspector.inspectToken(
-                        tokenSpan = token,
-                        lookupProvider = appContainer.wordLookupProvider,
-                        cognateRulesRepository = appContainer.cognateRulesRepository,
-                        userWordStateRepository = appContainer.userWordStateRepository,
+        inspectionJob?.cancel()
+        inspectionJob =
+            viewModelScope.launch {
+                val inspection =
+                    withContext(defaultDispatcher) {
+                        TokenInspector.inspectToken(
+                            tokenSpan = token,
+                            lookupProvider = appContainer.wordLookupProvider,
+                            cognateRulesRepository = appContainer.cognateRulesRepository,
+                            userWordStateRepository = appContainer.userWordStateRepository,
+                        )
+                    }
+                _uiState.update { state ->
+                    val curr = state.activeSession ?: return@update state
+                    state.copy(
+                        activeSession =
+                            curr.copy(
+                                selectedTokenIndex = tokenIndex,
+                                activeInspection = inspection,
+                            ),
                     )
                 }
-            _uiState.update { state ->
-                val curr = state.activeSession ?: return@update state
-                state.copy(
-                    activeSession =
-                        curr.copy(
-                            selectedTokenIndex = tokenIndex,
-                            activeInspection = inspection,
-                        ),
-                )
             }
-        }
     }
 
     fun clearSelection() {
+        inspectionJob?.cancel()
         _uiState.update { state ->
             val active = state.activeSession ?: return@update state
             state.copy(

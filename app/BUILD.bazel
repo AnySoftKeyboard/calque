@@ -161,3 +161,44 @@ kt_android_local_test(
         "@maven//junit/junit",
     ],
 )
+
+kt_android_local_test(
+    name = "room_dictionary_repository_test",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/data/room/repositories/RoomDictionaryRepositoryTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.data.room.repositories.RoomDictionaryRepositoryTest",
+    deps = [
+        ":app_lib",
+        "//core/data",
+        "//core/linguistics",
+        "@maven//androidx/room/room-common",
+        "@maven//junit/junit",
+        "@maven//org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm",
+    ],
+)
+
+kt_android_local_test(
+    name = "room_user_word_state_repository_test",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/data/room/repositories/RoomUserWordStateRepositoryTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.data.room.repositories.RoomUserWordStateRepositoryTest",
+    deps = [
+        ":app_lib",
+        "//core/data",
+        "//core/linguistics",
+        "@maven//androidx/room/room-common",
+        "@maven//junit/junit",
+        "@maven//org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm",
+    ],
+)
+
+kt_android_local_test(
+    name = "room_user_custom_text_repository_test",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/data/room/repositories/RoomUserCustomTextRepositoryTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.data.room.repositories.RoomUserCustomTextRepositoryTest",
+    deps = [
+        ":app_lib",
+        "//core/data",
+        "@maven//androidx/room/room-common",
+        "@maven//junit/junit",
+        "@maven//org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm",
+    ],
+)
