@@ -67,6 +67,48 @@ bazelisk run //tools/preprocessor:preprocessor -- extract-sublex \
 `--limit` defaults to 25000. The output is read by `SublexReader` (the `--sublex` build option) and
 by the other extractors to decide which words are in scope.
 
+### `extract-kaikki`
+
+Streams the full Kaikki dump (plain or `.gz`) and writes the entries the app needs as a sorted,
+deterministic gzip of JSON lines, plus a metadata file with the provenance and counts. An entry
+is in scope when its word or one of its forms is in the rank file (the `extract-sublex` output).
+
+```
+bazelisk run //tools/preprocessor:preprocessor -- extract-kaikki \
+    --input /tmp/kaikki.org-dictionary-Spanish.jsonl \
+    --ranks data/subtlex/subtlex_esp_top25000.tsv \
+    --output data/kaikki/spanish_lemmas.jsonl.gz \
+    --source-last-modified "Fri, 30 Oct 2026 23:17:33 GMT" \
+    --source-etag '"6ae5258d-42bcda85"'
+```
+
+Optional: `--extra-words <file>` (one word per line, `#` comments) adds words that must resolve
+even when they are not in the rank file; `--metadata <path>` overrides the default
+`<output>.meta.json`. Take `--source-last-modified` and `--source-etag` from the response headers of
+the download (`curl -I`).
+
+What is kept:
+
+- **Lemma entries** with the parts of speech that occur in running text (verb, noun, adj, adv,
+  pron, det, article, prep, conj, num, contraction, intj, name, particle), single words only.
+  Per entry: `word`, `pos`, the first real gloss and the usable `forms` (form + tags). Kaikki's
+  field names are kept, so `KaikkiProcessor` reads the output like a dump.
+- **Dropped forms:** conjugation-table metadata (`es-conj`, `irregular`, ...), clitic-combined
+  forms (`absolverme`; resolved at runtime by `CliticDeconstructor`), multi-word forms and forms
+  equal to the lemma.
+- **Dropped entries:** form-of entries (`pies` = "plural of pie") because the lemma lists the
+  same forms; entries with several etymologies are merged (first gloss wins, forms united).
+- **Aliases:** Kaikki lists some very frequent words only as variants of another word (`tu`,
+  `muy`, `buen` = apocopic forms; `dame`, `dime` = imperative + clitic). An in-scope form-of
+  word that no kept lemma lists is kept as an alias with a `form_of` target, Kaikki's gloss and
+  tags, and its target lemma is pulled in. A target that is not a single word (the acronym
+  `ONU`) is kept as a standalone entry with its own gloss.
+
+On the 2026-10-30 dump with the top 25,000 SUBTLEX words this reads 814,137 lines in about 13
+seconds (two passes) and keeps 14,539 lemmas, 1,973 aliases and 197,279 forms: 17 MB of JSON,
+1.2 MB gzipped. 98.6% of the 25,000 words resolve (99.8% of the top 1,000); what is left is
+almost only proper names and abbreviations. The output is byte-identical across runs.
+
 ## Building `seed.db`
 
 ```

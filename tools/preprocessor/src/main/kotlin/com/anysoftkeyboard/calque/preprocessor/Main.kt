@@ -65,6 +65,9 @@ internal fun printUsageAndExit(message: String? = null) {
 
         Extract commands (see tools/preprocessor/README.md):
           extract-sublex --input <SUBTLEX-ESP.xlsx> --output <ranks.tsv> [--limit 25000]
+          extract-kaikki --input <kaikki.jsonl[.gz]> --ranks <ranks.tsv> --output <lemmas.jsonl.gz>
+                         [--extra-words <words.txt>] [--metadata <path>]
+                         [--source-last-modified <text>] [--source-etag <text>]
         """
             .trimIndent(),
     )

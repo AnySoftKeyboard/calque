@@ -52,3 +52,38 @@ kt_jvm_test(
         "@maven//junit/junit",
     ],
 )
+
+kt_jvm_test(
+    name = "kaikki_subset_extractor_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/preprocessor/KaikkiSubsetExtractorTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.preprocessor.KaikkiSubsetExtractorTest",
+    deps = [
+        ":preprocessor_lib",
+        "//core/linguistics",
+        "@maven//junit/junit",
+        "@maven//org/jetbrains/kotlinx/kotlinx-serialization-json-jvm",
+    ],
+)
+
+kt_jvm_test(
+    name = "deterministic_gzip_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/preprocessor/DeterministicGzipTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.preprocessor.DeterministicGzipTest",
+    deps = [
+        ":preprocessor_lib",
+        "@maven//junit/junit",
+    ],
+)
+
+kt_jvm_test(
+    name = "command_line_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/preprocessor/CommandLineTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.preprocessor.CommandLineTest",
+    deps = [
+        ":preprocessor_lib",
+        "@maven//junit/junit",
+    ],
+)
