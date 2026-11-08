@@ -100,16 +100,58 @@ the three gates (`//:format.check`, `build --config=lint //...`, `test //...`).
 ## 1. Data & ingestion (docs/INGESTION.md, docs/DATA.md)
 
 ### 1.1 Real seed data (highest impact)
-- [ ] Obtain and document inputs: Kaikki Spanish JSONL dump, SUBTLEX-ESP frequencies, Tatoeba
-      Spanish-English pairs. Add a `tools/preprocessor/README` (or `docs/` section) with download
-      URLs, licenses (CC BY-SA, CC BY 2.0) and the exact preprocessor command.
-- [ ] Run the preprocessor against the full corpora and regenerate
-      `app/src/main/assets/databases/seed.db` (currently the small hand-made seed).
-- [ ] Keep `PRAGMA user_version` aligned with `CalqueSeedDatabase` version when regenerating
-      (guarded by `RoomGeneratedSchemaValidationTest`).
-- [ ] Decide asset size budget; consider keeping the full `seed.db` out of git (LFS or release
-      artifact fetched by a Bazel rule) so the repo does not grow with every regeneration.
-- [ ] Add attribution/credits screen or `NOTICE` file for CC BY-SA / CC BY data.
+
+Decisions (agreed):
+- `seed.db` is generated, never checked in. It is the output of a Bazel target and the app and
+  the tests consume that output. The checked-in `app/src/main/assets/databases/seed.db` goes away.
+- The build is offline and reproducible: it downloads nothing. The raw corpora (Kaikki Spanish
+  dump, ~1.1 GB; SUBTLEX-ESP; Tatoeba exports) are fetched by hand only to run the extractors and
+  are never committed. The trimmed subsets the extractors produce are committed.
+- Extractors live in `tools/preprocessor` (manual, rare runs; not part of the Bazel build).
+- Kaikki subset = lemma entries only (no `form_of` / `alt_of` senses). Keep POS: verb, noun, adj,
+  adv, pron, det, article, prep, conj, num, contraction, intj, name, particle. Drop prefix, suffix,
+  character, symbol, phrase, proverb and multi-word entries. Per entry keep `word`, `pos`, first
+  non-empty gloss and `forms` (form + tags); drop clitic-combined forms (runtime
+  `CliticDeconstructor` handles them), multi-word forms and conjugation metadata items
+  (`source: conjugation` with `table-tags` / `inflection-template` / `class`). Same field names as
+  Kaikki so `KaikkiProcessor` reads both the subset and a full dump.
+- Lemma selection (frequency-gated, N = 25,000, set by a flag): keep a lemma if its best SUBTLEX
+  rank over the lemma and its forms is <= N; keep every POS entry of a selected word; add the
+  lemmas needed by the selected Tatoeba sentences, the curated lessons and the false-cognate
+  seeds, so every shipped lesson resolves with no unknown words.
+- Stored as `data/kaikki/spanish_lemmas.jsonl.gz`, sorted by word, deterministic (fixed gzip
+  mtime), plus a metadata file (dump date, source `Last-Modified` / ETag, N). Estimated ~10 MB
+  raw / ~1 MB gzipped from a 30 MB sample; re-measure on the full dump.
+- SUBTLEX-ESP is approved for use. Keep only the top-N ranks (< 1 MB). Tatoeba: keep a
+  pre-filtered set of candidate Spanish-English pairs with sentence ids (needed for CC BY
+  attribution).
+
+PR 1 - inputs, extractors, licensing:
+- [ ] `tools/preprocessor/README.md`: download URLs, input formats, licenses (Kaikki CC BY-SA 4.0,
+      Tatoeba CC BY 2.0 FR, SUBTLEX-ESP citation) and the exact extractor and preprocessor commands.
+- [ ] `NOTICE` + `data/kaikki/` note with attribution and the share-alike requirement for the
+      generated database; cite Ylonen's Wiktextract paper as Kaikki asks.
+- [ ] `extract-kaikki` mode: stream the full dump, apply the rules above, write the sorted gzip
+      subset + metadata. Unit tests with fixtures taken from real entries (form-of entry, lemma
+      with clitic-combined and metadata forms, multi-word entry, multi-POS word).
+- [ ] SUBTLEX extractor: top-N rank file consumable by `SublexReader`. Confirm the official
+      OSF file's column layout (it may be a spreadsheet) and convert.
+- [ ] Tatoeba extractor: join the `sentences` and `links` exports into candidate pairs with
+      sentence ids (streaming, no full-file loads); tests.
+
+PR 4 - generated `seed.db` (with the end-to-end test in 1.3):
+- [ ] Bazel target that builds `seed.db` from `data/seeds/*.json` and the checked-in subsets.
+- [ ] Remove the checked-in asset; repoint every `//app:seed_db_asset` use (`app/BUILD.bazel`,
+      `core/data/BUILD.bazel`) and the tests that read it (`PackagedSeedAssetTest`,
+      `RoomGeneratedSchemaValidationTest`) to the target output.
+- [ ] Keep `PRAGMA user_version` aligned with `CalqueSeedDatabase` (guarded by
+      `RoomGeneratedSchemaValidationTest`).
+
+PR 6 - real data (after PRs 1-4):
+- [ ] Run the extractors with N = 25,000 and commit the subsets and metadata; record the corpus
+      versions and commands in the README.
+- [ ] Measure the generated `seed.db` size and the APK impact; adjust N if needed.
+- [ ] Attribution/credits screen in the app for CC BY-SA / CC BY data (the `NOTICE` file is PR 1).
 
 ### 1.2 Pedagogical content (curated JSON seeds)
 - [ ] More level 1-2 micro-stories (3-6 sentences) and Tatoeba-bucketed sentences; only one story
@@ -120,20 +162,46 @@ the three gates (`//:format.check`, `build --config=lint //...`, `test //...`).
 - [ ] Expand `false_cognates_seed.json` (25 rows today); verify every lemma expands to all inflections.
 - [ ] Confirm the 8 core suffix bridges (`-tion`, `-ty`, `-ous`, `-ly`, ...) each have gender rule,
       spelling note and 5-10 examples (12 rules exist today).
-- [ ] Add data-validation tests/lint for the seed JSON files (required fields, unique ids,
-      sequence ordering, example counts).
+- [ ] (PR 5) Add data-validation tests/lint for the seed JSON files (required fields, unique ids,
+      sequence ordering, 5-10 examples per cognate rule, severity enum values, inclusive-language
+      check). Content items above are PR 7; propose the non-sentence lesson content schema in
+      DATA.md before building the Module 0.0 cards.
 
 ### 1.3 Preprocessor correctness (docs/INGESTION.md pseudocode)
+
+PR 2 - algorithm audit (parameterized tests, fixes where code differs from the spec):
 - [ ] Audit `KaikkiProcessor` against Step 1 (stream line by line, base lemma row + every inflected
-      form, `grammar_info` joined tags, SUBTLEX rank lookup).
+      form, `grammar_info` joined tags, SUBTLEX rank lookup). Known bugs found on real data:
+  - [ ] It reads every `forms` item as a surface form, so conjugation metadata (`es-conj`,
+        `irregular`, `o-ue alternation`) becomes bogus dictionary rows. Filter them, and skip
+        clitic-combined and multi-word forms.
+  - [ ] It imports `form_of` / `alt_of` entries as their own lemma (e.g. `pies` with the gloss
+        "plural of pie"). Skip them. Verify on the full dump that every form-of surface form is
+        covered by its lemma's `forms`; keep form-of entries as a fallback if gaps show up.
+  - [ ] Duplicate surface forms (`fue` = ser/ir, `como` = verb/adverb) overwrite each other via
+        `INSERT OR REPLACE`. Make the rule explicit: prefer the entry whose lemma equals the
+        surface form, then the lemma with the better frequency rank, then the first occurrence.
+  - [ ] Apply the POS keep-list; skip entries without a gloss; count and skip malformed lines
+        instead of aborting.
 - [ ] Audit `CognateDetector` against Step 2 (`SUFFIX_MAP`, accent stripping, Levenshtein <= 1,
       stem length >= 3, identical-word rule for length > 3).
-- [ ] Audit false-cognate expansion (Step 3) and `SentenceScorer` (Step 4: 4-14 word filter, score
-      formula, level thresholds 2.0 / 4.0 / 6.5, complex tense bonus).
+- [ ] Audit false-cognate expansion (Step 3: all inflections of each lemma; lemma missing from the
+      dictionary) and `SentenceScorer` (Step 4: 4-14 word filter, score formula, level thresholds
+      2.0 / 4.0 / 6.5 at their boundaries, +3.0 complex tense bonus).
+
+PR 3 - Tatoeba selection and packing:
+- [ ] Quality filters: dedupe, every word resolves in the dictionary, skip name-heavy sentences,
+      keep Tatoeba sentence ids in `content_json` for attribution.
+- [ ] Group accepted sentences into packs of 8-10 per level (~15-20 packs per level), using the
+      same multi-sentence lesson format as the curated lessons, so the curriculum list stays
+      readable.
+- [ ] Deterministic selection (stable tie-break) and numbering that continues after the
+      hand-curated lessons so `sequence_order` / `lesson_id` never collide.
+
+PR 4 - end-to-end (with the Bazel target in 1.1):
 - [ ] End-to-end preprocessor test that builds a tiny `seed.db` from fixture inputs and validates
-      it with Room's generated schema validation.
-- [ ] Bazel target/genrule to build `seed.db` reproducibly and a check that the checked-in asset
-      is up to date.
+      it with Room's generated schema validation (share the checks with
+      `RoomGeneratedSchemaValidationTest` where possible).
 
 ### 1.4 Runtime ingestion pipeline (Pipeline 2)
 - [~] `ReaderEnricher` + `SessionSentenceBuilder` batch-resolve words. Remaining:
@@ -323,7 +391,10 @@ Engines exist (see section 0); remaining spec gaps:
 
 ## 6. Suggested order (small PRs, stacked per AGENTS.md)
 
-1. Real seed data + docs for the pipeline (1.1, 1.3) - unblocks everything visual.
+1. Real seed data + docs for the pipeline (1.1, 1.3) - unblocks everything visual. PR order:
+   PR 1 (inputs/extractors/docs), PR 2 (algorithm audit), PR 3 (Tatoeba packs), PR 5 (seed JSON
+   validation, independent), PR 4 (generated `seed.db` target + end-to-end test), PR 6 (real
+   data); PR 7 (content expansion, 1.2) can run in parallel.
 2. Token markers + peek sheet completion + design tokens/fonts (4.3, 4.4, 4.9).
 3. Vault tab with Flow-backed ViewModel (4.7, 1.5) and encounter-count semantics.
 4. TTS service + Listen buttons (3.2).
