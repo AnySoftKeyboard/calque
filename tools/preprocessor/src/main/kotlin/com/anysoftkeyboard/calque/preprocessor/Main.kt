@@ -30,6 +30,19 @@ fun main(args: Array<String>) {
             curatedLessonsFile = resolveFile(options["--curated-lessons"]),
             tatoebaFile = resolveFile(options["--tatoeba"]),
             cognateRulesFile = resolveFile(options["--cognate-rules"]),
+            tatoebaPacks =
+                TatoebaPackConfig(
+                    packSize =
+                        options.positiveInt(
+                            "--tatoeba-pack-size",
+                            TatoebaPackConfig.DEFAULT_PACK_SIZE
+                        ),
+                    packsPerLevel =
+                        options.positiveInt(
+                            "--tatoeba-packs-per-level",
+                            TatoebaPackConfig.DEFAULT_PACKS_PER_LEVEL,
+                        ),
+                ),
         )
 
     println("Starting Calque Data Ingestion Pipeline...")
@@ -66,7 +79,9 @@ internal fun printUsageAndExit(message: String? = null) {
           --dictionary-seed <path>  Path to dictionary_seed.json
           --false-cognates <path>   Path to false_cognates_seed.json
           --curated-lessons <path>  Path to curated_lessons_seed.json
-          --tatoeba <path>          Path to Tatoeba Spanish-English TSV file
+          --tatoeba <path>          Tatoeba candidate pool written by extract-tatoeba (.tsv[.gz])
+          --tatoeba-pack-size <n>   Sentences per Tatoeba lesson (default 8)
+          --tatoeba-packs-per-level <n>  Most Tatoeba lessons per level (default 16)
           --cognate-rules <path>    Path to cognate_rules_seed.json
 
         Extract commands (see tools/preprocessor/README.md):

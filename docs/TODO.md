@@ -168,7 +168,8 @@ PR 6 - real data (after PRs 1-4):
       share-alike), which does not sit well with an Apache-2.0 app. Confirm it is acceptable for
       the distribution channel before committing SUBTLEX-derived ranks, or replace the source.
 - [ ] Run the extractors with N = 25,000 and commit the subsets and metadata; record the corpus
-      versions and commands in the README.
+      versions and commands in the README. Pass the false-cognate seed lemmas that the subset
+      misses (`constipado`, `actualmente`; the preprocessor warns about them) as `--extra-words`.
 - [ ] Measure the generated `seed.db` size and the APK impact; adjust N if needed. Measured
       early (PR 2b, top-25,000 ranks + 2026-10-30 subset): 20 MB uncompressed, 148,880 rows,
       66,476 of them without a rank (rare forms of ranked lemmas). Decide whether to drop
@@ -237,14 +238,22 @@ PR 2 - algorithm audit (parameterized tests, fixes where code differs from the s
       2.0 / 4.0 / 6.5 at their boundaries, +3.0 complex tense bonus, rare rank 1500/1501):
       `SentenceScorerBoundaryTest`. No deviation from the pseudocode was found.
 
-PR 3 - Tatoeba selection and packing:
-- [ ] Quality filters: dedupe, every word resolves in the dictionary, skip name-heavy sentences,
-      keep Tatoeba sentence ids in `content_json` for attribution.
-- [ ] Group accepted sentences into packs of 8-10 per level (~15-20 packs per level), using the
-      same multi-sentence lesson format as the curated lessons, so the curriculum list stays
-      readable.
-- [ ] Deterministic selection (stable tie-break) and numbering that continues after the
-      hand-curated lessons so `sequence_order` / `lesson_id` never collide.
+PR 3 - Tatoeba selection and packing (done):
+- [x] Quality filters: dedupe, no proper names (extractor), every word resolves in the
+      dictionary (builder), Tatoeba sentence ids kept in `content_json` for attribution.
+- [x] Group accepted sentences into lessons of 8 (`--tatoeba-pack-size`), at most 16 per level
+      (`--tatoeba-packs-per-level`), using the multi-sentence `{"sentences":[...]}` format of the
+      curated lessons. On the real data: 48 lessons, 384 sentences, 71 KB of JSON; score ranges
+      0.25-2.0 / 2.11-4.0 / 4.04-6.5 for levels 0 / 1 / 2.
+- [x] Deterministic selection (a fixed hash of the Tatoeba id), lessons ordered easiest first
+      within a level, ids `tatoeba_l<level>_<nnn>` and `sequence_order` continuing after the
+      curated lessons of the level.
+- [x] Fixed a bug found on the way: the old `TatoebaProcessor` wrote one flat object per lesson,
+      which `CuratedLesson.parseSentences()` reads as an empty lesson. A test now parses the
+      packs with the app's own parser.
+- [ ] Follow-up: the cognate flag is accurate on the samples checked (19% of base words), but
+      proper-noun glosses give false positives (`segura` = "Segura (river)", `vuelta` = "the
+      Vuelta a España"). Ignore glosses that start with a capital letter in `CognateDetector`.
 
 PR 4 - end-to-end (with the Bazel target in 1.1):
 - [ ] End-to-end preprocessor test that builds a tiny `seed.db` from fixture inputs and validates

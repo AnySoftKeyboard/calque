@@ -185,41 +185,6 @@ class PreprocessorTest {
     }
 
     @Test
-    fun tatoebaProcessor_scoresAndBucketsSentences() {
-        val inMemoryDb = SeedDatabase.open()
-        inMemoryDb.use { db ->
-            db.insertDictionaryBatch(
-                listOf(
-                    DictionaryRow("la", "la", "article", "base", "the", false, 2),
-                    DictionaryRow("música", "música", "noun", "base", "music", true, 200),
-                    DictionaryRow("es", "ser", "verb", "present", "is", false, 3),
-                    DictionaryRow(
-                        "fantástica",
-                        "fantástico",
-                        "adj",
-                        "base",
-                        "fantastic",
-                        true,
-                        300,
-                    ),
-                ),
-            )
-
-            val tatoebaContent =
-                """
-                La música es fantástica.	Music is fantastic.	Cognate Harmony	Adjective Agreement
-                Hola.	Hello.
-                """
-                    .trimIndent()
-
-            val lessonsCount =
-                TatoebaProcessor.processSentences(tatoebaContent.byteInputStream(), db)
-
-            assertEquals(1, lessonsCount)
-        }
-    }
-
-    @Test
     fun curatedLessonsSeed_isValidAndPopulatesProgressionLevels() {
         val seedFile = File("data/seeds/curated_lessons_seed.json")
         assertTrue("Expected seed file at ${seedFile.path}", seedFile.exists())
