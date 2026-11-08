@@ -16,6 +16,7 @@ seed_db(
     dictionary_seed = "//data/seeds:dictionary_seed.json",
     false_cognates = "//data/seeds:false_cognates_seed.json",
     kaikki = "//data/kaikki:spanish_lemmas.jsonl.gz",
+    reading_overrides = "//data/seeds:reading_overrides.json",
     sublex = "//data/subtlex:subtlex_esp_top25000.tsv",
     tatoeba = "//data/tatoeba:spa_eng_candidates.tsv.gz",
 )

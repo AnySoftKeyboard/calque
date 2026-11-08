@@ -286,6 +286,50 @@ class ReadingsTest {
         assertEquals(listOf("been"), db.glosses("estado"))
     }
 
+    @Test
+    fun finalize_dropsTheGenderCounterpartOfAnotherLemmaWhenTheSpellingIsALemmaItself() =
+        withDb { db ->
+            db.insertDictionaryBatchKeepingBest(
+                listOf(
+                    row("padre", "padre", "noun", "father", rank = 155),
+                    row("padre", "madre", "noun", "mother", rank = 155).inflected("masculine"),
+                    row("amigo", "amigo", "noun", "friend", rank = 164),
+                    row("amigo", "amigx", "noun", "neologism", rank = 164).inflected("masculine"),
+                )
+            )
+
+            db.finalizeReadings()
+
+            assertEquals(listOf("father"), db.glosses("padre"))
+            assertEquals(listOf("friend"), db.glosses("amigo"))
+        }
+
+    @Test
+    fun finalize_keepsAGenderFormWhenTheSpellingHasNoLemmaOfItsOwn() = withDb { db ->
+        db.insertDictionaryBatchKeepingBest(
+            listOf(row("amiga", "amigo", "noun", "female friend", rank = 300).inflected("feminine"))
+        )
+
+        db.finalizeReadings()
+
+        assertEquals(listOf("female friend"), db.glosses("amiga"))
+    }
+
+    @Test
+    fun finalize_keepsOtherInflectedReadingsOfALemmaSpelling() = withDb { db ->
+        db.insertDictionaryBatchKeepingBest(
+            listOf(
+                row("para", "para", "prep", "for", rank = 21),
+                row("para", "parar", "verb", "to stop", rank = 21)
+                    .inflected("imperative, singular"),
+            )
+        )
+
+        db.finalizeReadings()
+
+        assertEquals(listOf("for", "to stop"), db.glosses("para"))
+    }
+
     // ----- the overrides file -------------------------------------------------------------------
 
     @Test

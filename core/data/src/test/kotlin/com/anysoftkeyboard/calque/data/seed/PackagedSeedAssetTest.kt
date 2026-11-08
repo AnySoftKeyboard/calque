@@ -77,6 +77,86 @@ class PackagedSeedAssetTest {
     }
 
     @Test
+    fun dictionary_aSpellingWithSeveralReadingsKeepsThemAllWithTheIntendedOneFirst() =
+        withSeed { db ->
+            val dictRepo = SqliteDictionaryRepository(db.connection)
+
+            val padre = dictRepo.getBySurfaceForm("padre")!!
+            assertEquals("noun", padre.pos)
+            assertEquals("father, parent", padre.englishGloss)
+            assertTrue(
+                "padre keeps its adjective reading",
+                padre.alternatives.any { it.pos == "adj" }
+            )
+
+            val fue = dictRepo.getBySurfaceForm("fue")!!
+            assertEquals(setOf("ser", "ir"), fue.readings.map { it.lemma }.toSet())
+            assertEquals("ser", fue.lemma)
+
+            val vino = dictRepo.getBySurfaceForm("vino")!!
+            assertEquals("wine", vino.englishGloss.substringBefore(" ("))
+            assertTrue(vino.alternatives.any { it.lemma == "venir" })
+        }
+
+    @Test
+    fun dictionary_theHandCheckedPrimariesAreRight() = withSeed { db ->
+        // reading_overrides.json fixes the order of the most frequent ambiguous spellings.
+        val dictRepo = SqliteDictionaryRepository(db.connection)
+        val expected =
+            mapOf(
+                "amigo" to ("amigo" to "noun"),
+                "sí" to ("sí" to "particle"),
+                "sé" to ("saber" to "verb"),
+                "mira" to ("mirar" to "verb"),
+                "veces" to ("vez" to "noun"),
+                "creo" to ("creer" to "verb"),
+                "siento" to ("sentir" to "verb"),
+                "hombre" to ("hombre" to "noun"),
+                "nada" to ("nada" to "pron"),
+                "he" to ("haber" to "verb"),
+                "vamos" to ("ir" to "verb"),
+            )
+
+        for ((surface, lemmaAndPos) in expected) {
+            val entry = dictRepo.getBySurfaceForm(surface)!!
+            assertEquals("$surface", lemmaAndPos, entry.lemma to entry.pos)
+        }
+    }
+
+    @Test
+    fun dictionary_everySpellingHasExactlyOnePrimaryReadingAndGaplessOrder() = withSeed { db ->
+        val sql =
+            "SELECT surface_form FROM dictionary GROUP BY surface_form " +
+                "HAVING MIN(reading_order) <> 0 OR MAX(reading_order) <> COUNT(*) - 1 " +
+                "OR COUNT(DISTINCT reading_order) <> COUNT(*) LIMIT 5"
+        val broken = mutableListOf<String>()
+        db.connection.createStatement().use { statement ->
+            statement.executeQuery(sql).use { rs -> while (rs.next()) broken.add(rs.getString(1)) }
+        }
+
+        assertTrue("Spellings whose reading_order is not 0..n-1: $broken", broken.isEmpty())
+    }
+
+    @Test
+    fun dictionary_noProperNounOrGenderCounterpartCompetesWithACommonWord() = withSeed { db ->
+        // A proper noun is only noise when a common word shares its spelling ("jesús" and "OK"
+        // have nothing but capitalized lemmas, which is fine).
+        val sql =
+            "SELECT surface_form FROM dictionary d WHERE " +
+                "(grammar_info = 'proper noun' AND EXISTS (SELECT 1 FROM dictionary other " +
+                "WHERE other.surface_form = d.surface_form AND other.grammar_info <> 'proper noun')) " +
+                "OR (grammar_info IN ('masculine', 'feminine') AND surface_form <> lemma " +
+                "AND EXISTS (SELECT 1 FROM dictionary own WHERE own.surface_form = d.surface_form " +
+                "AND own.grammar_info = 'base')) LIMIT 5"
+        val noisy = mutableListOf<String>()
+        db.connection.createStatement().use { statement ->
+            statement.executeQuery(sql).use { rs -> while (rs.next()) noisy.add(rs.getString(1)) }
+        }
+
+        assertTrue("Noise readings next to a common word: $noisy", noisy.isEmpty())
+    }
+
+    @Test
     fun falseCognates_areExpandedAcrossInflections() = withSeed { db ->
         val fcRepo = SqliteFalseCognatesRepository(db.connection)
 
