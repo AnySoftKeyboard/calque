@@ -159,6 +159,31 @@ bazelisk run //tools/preprocessor:preprocessor -- --db /tmp/seed.db \
 
 Run without arguments to print every option.
 
+To build from the extracted subsets instead of only the curated seeds, add `--kaikki` (the
+`.jsonl.gz` subset, or a full dump) and `--sublex` (the rank TSV):
+
+```
+bazelisk run //tools/preprocessor:preprocessor -- --db /tmp/seed.db \
+    --kaikki data/kaikki/spanish_lemmas.jsonl.gz \
+    --sublex data/subtlex/subtlex_esp_top25000.tsv \
+    --dictionary-seed data/seeds/dictionary_seed.json \
+    --false-cognates data/seeds/false_cognates_seed.json \
+    --curated-lessons data/seeds/curated_lessons_seed.json \
+    --cognate-rules data/seeds/cognate_rules_seed.json
+```
+
+Rules worth knowing:
+
+- **Collisions:** `surface_form` is the primary key, so homographs (`fue` = *ser* / *ir*) compete
+  for one row. A base lemma row beats an inflected row, then the lower `frequency_rank` wins, then
+  the first row seen stays. The curated dictionary seed is applied last and always replaces.
+- **Frequency:** a row's rank is the better of its lemma's rank and its own, see INGESTION.md.
+- **Aliases** from the Kaikki subset (`tu`, `muy`, `dame`) become rows of their target lemma.
+- Malformed or unwanted Kaikki lines are counted and skipped, never fatal.
+
+With the 2026-10-30 subset and the top-25,000 ranks this takes about 1.5 seconds and produces
+148,880 dictionary rows (213,958 processed before collisions were resolved) in a 20 MB file.
+
 ## License notes
 
 - The code in this repository is Apache-2.0. The data is not: the generated `seed.db` and the

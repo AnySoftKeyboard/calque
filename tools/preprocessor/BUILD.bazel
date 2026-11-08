@@ -122,3 +122,16 @@ kt_jvm_test(
         "@maven//org/xerial/sqlite-jdbc",
     ],
 )
+
+kt_jvm_test(
+    name = "kaikki_processor_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/preprocessor/KaikkiProcessorTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.preprocessor.KaikkiProcessorTest",
+    deps = [
+        ":preprocessor_lib",
+        "//core/linguistics",
+        "@maven//junit/junit",
+        "@maven//org/xerial/sqlite-jdbc",
+    ],
+)

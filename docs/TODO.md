@@ -169,7 +169,10 @@ PR 6 - real data (after PRs 1-4):
       the distribution channel before committing SUBTLEX-derived ranks, or replace the source.
 - [ ] Run the extractors with N = 25,000 and commit the subsets and metadata; record the corpus
       versions and commands in the README.
-- [ ] Measure the generated `seed.db` size and the APK impact; adjust N if needed.
+- [ ] Measure the generated `seed.db` size and the APK impact; adjust N if needed. Measured
+      early (PR 2b, top-25,000 ranks + 2026-10-30 subset): 20 MB uncompressed, 148,880 rows,
+      66,476 of them without a rank (rare forms of ranked lemmas). Decide whether to drop
+      unranked inflections or lower N before this ships in the APK.
 - [ ] Attribution/credits screen in the app for CC BY-SA / CC BY data (the `NOTICE` file is PR 1).
 
 ### 1.2 Pedagogical content (curated JSON seeds)
@@ -189,17 +192,22 @@ PR 6 - real data (after PRs 1-4):
 ### 1.3 Preprocessor correctness (docs/INGESTION.md pseudocode)
 
 PR 2 - algorithm audit (parameterized tests, fixes where code differs from the spec):
-- [ ] Audit `KaikkiProcessor` against Step 1 (stream line by line, base lemma row + every inflected
-      form, `grammar_info` joined tags, SUBTLEX rank lookup). Known bugs found on real data:
-  - [ ] It reads every `forms` item as a surface form, so conjugation metadata (`es-conj`,
-        `irregular`, `o-ue alternation`) becomes bogus dictionary rows. Filter them, and skip
-        clitic-combined and multi-word forms (the committed subset is already clean, but the
-        processor must also be safe on a full dump).
-  - [ ] It imports `form_of` / `alt_of` entries as their own lemma (e.g. `pies` with the gloss
-        "plural of pie"). Skip them on a full dump, and read the subset's aliases correctly:
-        lemma = the `form_of` target (gloss from the target lemma when it is in the data, else
-        the alias's own gloss), `grammar_info` from the sense tags without meta tags such as
-        `form-of`; a standalone alias (no target, e.g. `ONU`) is its own lemma.
+- [x] Audit `KaikkiProcessor` against Step 1 (stream line by line, base lemma row + every inflected
+      form, `grammar_info` joined tags, SUBTLEX rank lookup). Bugs found on real data, fixed in
+      PR 2b: the processor now shares `KaikkiEntryParser` with the extractor, so a full dump and
+      the subset follow the same rules.
+  - [x] It read every `forms` item as a surface form, so conjugation metadata (`es-conj`,
+        `irregular`, `o-ue alternation`) became bogus dictionary rows. Metadata, clitic-combined
+        and multi-word forms are now skipped.
+  - [x] It imported `form_of` / `alt_of` entries as their own lemma (e.g. `pies` with the gloss
+        "plural of pie"). They are skipped, except aliases: lemma = the `form_of` target (gloss
+        from the target lemma when Kaikki cut it off after a colon), `grammar_info` from the
+        sense tags without `form-of`; an alias with no single-word target (`ONU`) is its own
+        lemma. Aliases resolve after the stream ends, so their order does not matter.
+  - [x] `frequency_rank` is now the better of the lemma's rank and the form's own rank. The
+        lemma rank (what the scoring thresholds were designed for) still decides for ordinary
+        forms; the form's own rank only wins for frequent variants listed separately (`tu`
+        31 vs `tuyo`, `muy` vs `mucho`).
   - [x] `SublexReader` treated any row whose word is `palabra` (a real, frequent Spanish word) as
         a header line: on the real data 24,999 of 25,000 words loaded and the rank column was
         reset. Now only the first line can be a header, and only when no other column is a
@@ -211,8 +219,8 @@ PR 2 - algorithm audit (parameterized tests, fixes where code differs from the s
         `INSERT OR REPLACE`. Now an upsert keeps the best row: base lemma row first, then the
         better frequency rank (missing loses), then the first one seen. The curated dictionary
         seed is applied after Kaikki and always replaces. Documented in INGESTION.md Step 1.
-  - [ ] Apply the POS keep-list; skip entries without a gloss; count and skip malformed lines
-        instead of aborting.
+  - [x] Apply the POS keep-list; skip entries without a gloss; count and skip malformed lines
+        instead of aborting (`KaikkiProcessor.processStreamWithStats` reports the counts).
 - [ ] Audit `CognateDetector` against Step 2 (`SUFFIX_MAP`, accent stripping, Levenshtein <= 1,
       stem length >= 3, identical-word rule for length > 3).
 - [ ] Audit false-cognate expansion (Step 3: all inflections of each lemma; lemma missing from the
