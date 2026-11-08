@@ -120,19 +120,6 @@ kt_android_local_test(
 )
 
 kt_android_local_test(
-    name = "reader_coordinator_test",
-    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/ui/reader/ReaderCoordinatorTest.kt"],
-    test_class = "com.anysoftkeyboard.calque.ui.reader.ReaderCoordinatorTest",
-    deps = [
-        ":app_lib",
-        "//core/data",
-        "//core/linguistics",
-        "//core/reader",
-        "@maven//junit/junit",
-    ],
-)
-
-kt_android_local_test(
     name = "reader_view_model_test",
     srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/ui/reader/ReaderViewModelTest.kt"],
     test_class = "com.anysoftkeyboard.calque.ui.reader.ReaderViewModelTest",

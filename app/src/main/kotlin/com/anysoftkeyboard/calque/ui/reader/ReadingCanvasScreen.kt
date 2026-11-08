@@ -29,7 +29,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.anysoftkeyboard.calque.linguistics.TokenSpan
-import com.anysoftkeyboard.calque.reader.ReaderSessionEngine
 import com.anysoftkeyboard.calque.ui.theme.CalqueTheme
 
 /** Interactive reading canvas rendering tokenized Spanish text and interlinear glosses. */
@@ -232,38 +231,6 @@ fun ReadingCanvasScreen(
             }
         }
     }
-}
-
-/** Legacy adapter for [ReadingCanvasScreen] taking a [ReaderSessionEngine]. */
-@Composable
-fun ReadingCanvasScreen(
-    session: ReaderSessionEngine,
-    onCloseSession: () -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    val state = session.state
-    val activeUiState =
-        ActiveSessionUiState(
-            title = state.title,
-            source = state.source,
-            sentences = state.sentences,
-            currentSentenceIndex = state.currentSentenceIndex,
-            selectedTokenIndex = state.selectedTokenIndex,
-            activeInspection = state.activeInspection,
-            showInterlinear = state.showInterlinear,
-            showTranslation = state.showTranslation,
-            readerMode = state.readerMode,
-            isCompleted = state.isCompleted,
-        )
-    ReadingCanvasScreen(
-        activeSession = activeUiState,
-        onSelectToken = { session.selectToken(it) },
-        onToggleInterlinear = { session.toggleInterlinear() },
-        onToggleTranslation = { session.toggleTranslation() },
-        onNextSentence = { session.nextSentence() },
-        onCloseSession = onCloseSession,
-        modifier = modifier,
-    )
 }
 
 @Composable
