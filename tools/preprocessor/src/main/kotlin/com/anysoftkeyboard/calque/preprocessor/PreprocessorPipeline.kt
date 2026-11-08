@@ -21,6 +21,7 @@ data class PipelineSummary(
     val falseCognateRows: Int,
     val curatedLessonRows: Int,
     val cognateRuleRows: Int,
+    val falseCognateLemmasWithoutDictionaryRows: List<String> = emptyList(),
 )
 
 /** Orchestrates Pipeline 1 build-time generation of seed.db as specified in docs/INGESTION.md. */
@@ -41,14 +42,15 @@ class PreprocessorPipeline(private val config: PipelineConfig) {
         val kaikkiCount = processKaikki(database, sublexFrequencies)
         val dictSeedCount = processDictionarySeed(database)
         val dictCount = dictSeedCount + kaikkiCount
-        val falseCognatesCount = processFalseCognates(database)
+        val falseCognates = processFalseCognates(database)
         val lessonsCount = processCuratedLessons(database) + processTatoeba(database)
         val rulesCount = processRules(database)
         database.optimize()
 
         return PipelineSummary(
             dictionaryRows = dictCount,
-            falseCognateRows = falseCognatesCount,
+            falseCognateRows = falseCognates.rows,
+            falseCognateLemmasWithoutDictionaryRows = falseCognates.lemmasWithoutDictionaryRows,
             curatedLessonRows = lessonsCount,
             cognateRuleRows = rulesCount,
         )
@@ -76,10 +78,10 @@ class PreprocessorPipeline(private val config: PipelineConfig) {
         }
     }
 
-    private fun processFalseCognates(database: SeedDatabase): Int {
+    private fun processFalseCognates(database: SeedDatabase): FalseCognateExpansion {
         val file = config.falseCognatesFile
-        if (file == null || !file.exists()) return 0
-        return FileInputStream(file).use { FalseCognatesExpander.expand(it, database) }
+        if (file == null || !file.exists()) return FalseCognateExpansion(0, emptyList())
+        return FileInputStream(file).use { FalseCognatesExpander.expandWithReport(it, database) }
     }
 
     private fun processCuratedLessons(database: SeedDatabase): Int {
