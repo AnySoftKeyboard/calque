@@ -56,6 +56,10 @@ fun main(args: Array<String>) {
 
     println("Pipeline completed successfully in ${elapsed}ms:")
     printSummary(summary)
+    if ("--strict-overrides" in args && summary.unmatchedReadingOverrides.isNotEmpty()) {
+        System.err.println("Error: reading overrides that match no reading (--strict-overrides)")
+        exitProcess(1)
+    }
 }
 
 private fun printSummary(summary: PipelineSummary) {
@@ -95,6 +99,7 @@ internal fun printUsageAndExit(message: String? = null) {
           --tatoeba-packs-per-level <n>  Most Tatoeba lessons per level (default 16)
           --cognate-rules <path>    Path to cognate_rules_seed.json
           --reading-overrides <path>  Path to reading_overrides.json (primary reading per spelling)
+          --strict-overrides        Fail when a reading override matches no stored reading
 
         Extract commands (see tools/preprocessor/README.md):
           extract-sublex --input <SUBTLEX-ESP.xlsx> --output <ranks.tsv> [--limit 25000]

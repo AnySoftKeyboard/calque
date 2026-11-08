@@ -1,0 +1,316 @@
+[
+  {
+    "surface_form": "yo",
+    "pos": "pron"
+  },
+  {
+    "surface_form": "nada",
+    "pos": "pron"
+  },
+  {
+    "surface_form": "nadie",
+    "pos": "pron"
+  },
+  {
+    "surface_form": "les",
+    "pos": "pron"
+  },
+  {
+    "surface_form": "ello",
+    "pos": "pron"
+  },
+  {
+    "surface_form": "algo",
+    "pos": "pron"
+  },
+  {
+    "surface_form": "tú",
+    "pos": "pron"
+  },
+  {
+    "surface_form": "contigo",
+    "pos": "pron"
+  },
+  {
+    "surface_form": "eso",
+    "pos": "pron",
+    "lemma": "esto"
+  },
+  {
+    "surface_form": "su",
+    "pos": "det"
+  },
+  {
+    "surface_form": "sus",
+    "pos": "det"
+  },
+  {
+    "surface_form": "sí",
+    "pos": "particle"
+  },
+  {
+    "surface_form": "pa",
+    "pos": "prep",
+    "lemma": "para"
+  },
+  {
+    "surface_form": "hasta",
+    "pos": "prep"
+  },
+  {
+    "surface_form": "ni",
+    "pos": "conj"
+  },
+  {
+    "surface_form": "dos",
+    "pos": "num"
+  },
+  {
+    "surface_form": "bien",
+    "pos": "adv"
+  },
+  {
+    "surface_form": "mal",
+    "pos": "adv"
+  },
+  {
+    "surface_form": "sólo",
+    "pos": "adv"
+  },
+  {
+    "surface_form": "sé",
+    "pos": "verb",
+    "lemma": "saber"
+  },
+  {
+    "surface_form": "sabes",
+    "pos": "verb",
+    "lemma": "saber"
+  },
+  {
+    "surface_form": "creo",
+    "pos": "verb",
+    "lemma": "creer"
+  },
+  {
+    "surface_form": "crees",
+    "pos": "verb",
+    "lemma": "creer"
+  },
+  {
+    "surface_form": "siento",
+    "pos": "verb",
+    "lemma": "sentir"
+  },
+  {
+    "surface_form": "sientes",
+    "pos": "verb",
+    "lemma": "sentir"
+  },
+  {
+    "surface_form": "siente",
+    "pos": "verb",
+    "lemma": "sentir"
+  },
+  {
+    "surface_form": "podemos",
+    "pos": "verb",
+    "lemma": "poder"
+  },
+  {
+    "surface_form": "ves",
+    "pos": "verb",
+    "lemma": "ver"
+  },
+  {
+    "surface_form": "ve",
+    "pos": "verb",
+    "lemma": "ver"
+  },
+  {
+    "surface_form": "viste",
+    "pos": "verb",
+    "lemma": "ver"
+  },
+  {
+    "surface_form": "ven",
+    "pos": "verb",
+    "lemma": "venir"
+  },
+  {
+    "surface_form": "vete",
+    "pos": "verb",
+    "lemma": "ir"
+  },
+  {
+    "surface_form": "vamos",
+    "pos": "verb",
+    "lemma": "ir"
+  },
+  {
+    "surface_form": "dije",
+    "pos": "verb",
+    "lemma": "decir"
+  },
+  {
+    "surface_form": "diga",
+    "pos": "verb",
+    "lemma": "decir"
+  },
+  {
+    "surface_form": "digo",
+    "pos": "verb",
+    "lemma": "decir"
+  },
+  {
+    "surface_form": "mira",
+    "pos": "verb",
+    "lemma": "mirar"
+  },
+  {
+    "surface_form": "habla",
+    "pos": "verb",
+    "lemma": "hablar"
+  },
+  {
+    "surface_form": "espera",
+    "pos": "verb",
+    "lemma": "esperar"
+  },
+  {
+    "surface_form": "pasa",
+    "pos": "verb",
+    "lemma": "pasar"
+  },
+  {
+    "surface_form": "haz",
+    "pos": "verb",
+    "lemma": "hacer"
+  },
+  {
+    "surface_form": "he",
+    "pos": "verb",
+    "lemma": "haber"
+  },
+  {
+    "surface_form": "anda",
+    "pos": "verb",
+    "lemma": "andar"
+  },
+  {
+    "surface_form": "deja",
+    "pos": "verb",
+    "lemma": "dejar"
+  },
+  {
+    "surface_form": "toma",
+    "pos": "verb",
+    "lemma": "tomar"
+  },
+  {
+    "surface_form": "escucha",
+    "pos": "verb",
+    "lemma": "escuchar"
+  },
+  {
+    "surface_form": "llama",
+    "pos": "verb",
+    "lemma": "llamar"
+  },
+  {
+    "surface_form": "cállate",
+    "pos": "verb",
+    "lemma": "callar"
+  },
+  {
+    "surface_form": "disculpe",
+    "pos": "verb",
+    "lemma": "disculpar"
+  },
+  {
+    "surface_form": "saber",
+    "pos": "verb",
+    "lemma": "saber"
+  },
+  {
+    "surface_form": "vivir",
+    "pos": "verb",
+    "lemma": "vivir"
+  },
+  {
+    "surface_form": "comer",
+    "pos": "verb",
+    "lemma": "comer"
+  },
+  {
+    "surface_form": "sentir",
+    "pos": "verb",
+    "lemma": "sentir"
+  },
+  {
+    "surface_form": "hombre",
+    "pos": "noun"
+  },
+  {
+    "surface_form": "señor",
+    "pos": "noun"
+  },
+  {
+    "surface_form": "noche",
+    "pos": "noun"
+  },
+  {
+    "surface_form": "padre",
+    "pos": "noun"
+  },
+  {
+    "surface_form": "amigo",
+    "pos": "noun"
+  },
+  {
+    "surface_form": "tipo",
+    "pos": "noun"
+  },
+  {
+    "surface_form": "verdad",
+    "pos": "noun"
+  },
+  {
+    "surface_form": "nombre",
+    "pos": "noun"
+  },
+  {
+    "surface_form": "amo",
+    "pos": "noun"
+  },
+  {
+    "surface_form": "punto",
+    "pos": "noun"
+  },
+  {
+    "surface_form": "cambio",
+    "pos": "noun"
+  },
+  {
+    "surface_form": "pueblo",
+    "pos": "noun"
+  },
+  {
+    "surface_form": "disculpa",
+    "pos": "noun"
+  },
+  {
+    "surface_form": "veces",
+    "pos": "noun",
+    "lemma": "vez"
+  },
+  {
+    "surface_form": "señores",
+    "pos": "noun",
+    "lemma": "señor"
+  },
+  {
+    "surface_form": "claro",
+    "pos": "adv"
+  }
+]

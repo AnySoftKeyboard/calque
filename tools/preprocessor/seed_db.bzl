@@ -45,7 +45,10 @@ def seed_db(
         ("--reading-overrides", reading_overrides),
     ]
     srcs = []
-    args = []
+
+    # An override that matches no reading is a typo or a word that left the dictionary: fail the
+    # build instead of silently shipping the wrong primary reading.
+    args = ["--strict-overrides"] if reading_overrides else []
     for flag, label in inputs:
         if label:
             srcs.append(label)

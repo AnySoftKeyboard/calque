@@ -188,6 +188,14 @@ private const val DELETE_COMPETING_PROPER_NOUNS_SQL =
         "AND EXISTS (SELECT 1 FROM dictionary other WHERE other.surface_form = " +
         "dictionary.surface_form AND other.grammar_info IS NOT '${DictionaryGrammar.PROPER_NOUN}')"
 
+// Kaikki lists the other gender of a word among its forms (`madre` lists `padre`, `aceituno` lists
+// `aceituna`). When the spelling is a lemma in its own right, that reading is noise next to it.
+private const val DELETE_GENDER_COUNTERPARTS_SQL =
+    "DELETE FROM dictionary WHERE surface_form <> lemma " +
+        "AND grammar_info IN ('masculine', 'feminine') " +
+        "AND EXISTS (SELECT 1 FROM dictionary own WHERE own.surface_form = " +
+        "dictionary.surface_form AND own.grammar_info = '${DictionaryGrammar.BASE}')"
+
 // Numbers the readings of each spelling: curated ones first (in the order they were curated), then
 // by the same rule READING_ORDER_SQL uses.
 private val NUMBER_READINGS_SQL =
@@ -202,14 +210,17 @@ private val NUMBER_READINGS_SQL =
 
 /**
  * Finishes the dictionary once every source has been inserted: proper nouns that share a spelling
- * with a common word are dropped (`Amigo`, a surname, is noise next to `amigo`), then the readings
- * of every spelling are numbered, curated readings first. Safe to call more than once.
+ * with a common word are dropped (`Amigo`, a surname, is noise next to `amigo`), so are readings
+ * that only say "the masculine / feminine of another lemma" for a spelling that is a lemma itself
+ * (`padre` as a form of `madre`), then the readings of every spelling are numbered, curated
+ * readings first. Safe to call more than once.
  */
 fun SeedDatabase.finalizeReadings() {
     DatabaseBinders.executeTransaction(connection) {
         connection.createStatement().use { statement ->
             statement.execute(CREATE_CURATED_SQL)
             statement.executeUpdate(DELETE_COMPETING_PROPER_NOUNS_SQL)
+            statement.executeUpdate(DELETE_GENDER_COUNTERPARTS_SQL)
             statement.executeUpdate(NUMBER_READINGS_SQL)
         }
     }

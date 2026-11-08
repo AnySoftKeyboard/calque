@@ -290,6 +290,36 @@ class SeedFilesValidationTest {
         }
     }
 
+    // ----- reading_overrides.json ---------------------------------------------------------------
+
+    @Test
+    fun readingOverrides_everyEntryNamesALowercaseSpellingAndAKnownPartOfSpeech() {
+        for (entry in load("reading_overrides.json")) {
+            val surface = entry.requireText("surface_form", "override")
+            val pos = entry.requireText("pos", surface)
+            assertEquals("$surface must be lowercase", surface.lowercase(), surface)
+            assertTrue("$surface must be a single word", surface.none { it.isWhitespace() })
+            assertTrue("$surface: unknown pos '$pos'", pos in KaikkiEntryParser.KEPT_POS)
+            entry.text("lemma")?.let { assertTrue("$surface: blank lemma", it.isNotBlank()) }
+        }
+    }
+
+    @Test
+    fun readingOverrides_aSpellingIsOverriddenOnlyOnceSoTheOrderCannotBeAmbiguous() {
+        val spellings =
+            load("reading_overrides.json").map { it.requireText("surface_form", "override") }
+
+        assertUnique("overridden spelling", spellings)
+    }
+
+    @Test
+    fun readingOverrides_theFileOnlyHasTheDocumentedKeys() {
+        val allowed = setOf("surface_form", "pos", "lemma")
+        for (entry in load("reading_overrides.json")) {
+            assertTrue("Unexpected keys in $entry", entry.keys.all { it in allowed })
+        }
+    }
+
     // ----- inclusive language (AGENTS.md "Naming") ----------------------------------------------
 
     private val disallowedTerms =
