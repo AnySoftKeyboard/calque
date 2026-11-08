@@ -108,20 +108,29 @@ Decisions (agreed):
   dump, ~1.1 GB; SUBTLEX-ESP; Tatoeba exports) are fetched by hand only to run the extractors and
   are never committed. The trimmed subsets the extractors produce are committed.
 - Extractors live in `tools/preprocessor` (manual, rare runs; not part of the Bazel build).
-- Kaikki subset = lemma entries only (no `form_of` / `alt_of` senses). Keep POS: verb, noun, adj,
+- Kaikki subset = lemma entries (no `form_of` / `alt_of` senses). Keep POS: verb, noun, adj,
   adv, pron, det, article, prep, conj, num, contraction, intj, name, particle. Drop prefix, suffix,
   character, symbol, phrase, proverb and multi-word entries. Per entry keep `word`, `pos`, first
   non-empty gloss and `forms` (form + tags); drop clitic-combined forms (runtime
   `CliticDeconstructor` handles them), multi-word forms and conjugation metadata items
   (`source: conjugation` with `table-tags` / `inflection-template` / `class`). Same field names as
-  Kaikki so `KaikkiProcessor` reads both the subset and a full dump.
+  Kaikki so `KaikkiProcessor` can read both the subset and a full dump.
+- Plus *aliases* (found on the real dump): 85% of the dump's lines are form-of entries and the
+  lemmas list almost all of those forms, but Kaikki lists very frequent words ONLY as variants:
+  `tu`, `muy`, `buen`, `algún`, `quizás` (apocopic / alternative forms) and short imperatives with
+  a clitic (`dame`, `dime`, `hazlo`). Dropping every form-of entry left 9% of the top 25,000
+  words unresolved, including ranks 31 and 43. So an in-scope form-of word that no kept lemma
+  lists is kept as an alias (`form_of` target + Kaikki's gloss and tags) and its target lemma is
+  pulled in. Coverage of the top 25,000 words: 98.6% (99.8% of the top 1,000); the rest is almost
+  all proper names and abbreviations. Aliases need a second pass over the dump (13 s total).
 - Lemma selection (frequency-gated, N = 25,000, set by a flag): keep a lemma if its best SUBTLEX
   rank over the lemma and its forms is <= N; keep every POS entry of a selected word; add the
   lemmas needed by the selected Tatoeba sentences, the curated lessons and the false-cognate
   seeds, so every shipped lesson resolves with no unknown words.
 - Stored as `data/kaikki/spanish_lemmas.jsonl.gz`, sorted by word, deterministic (fixed gzip
-  mtime), plus a metadata file (dump date, source `Last-Modified` / ETag, N). Estimated ~10 MB
-  raw / ~1 MB gzipped from a 30 MB sample; re-measure on the full dump.
+  mtime), plus a metadata file (dump date, source `Last-Modified` / ETag, N). Measured on the
+  2026-10-30 dump with N = 25,000: 14,539 lemmas + 1,973 aliases + 197,279 forms, 17 MB raw /
+  1.17 MB gzipped.
 - SUBTLEX-ESP is approved for use. Keep only the top-N ranks (< 1 MB). Tatoeba: keep a
   pre-filtered set of candidate Spanish-English pairs with sentence ids (needed for CC BY
   attribution).
@@ -131,9 +140,10 @@ PR 1 - inputs, extractors, licensing:
       Tatoeba CC BY 2.0 FR, SUBTLEX-ESP citation) and the exact extractor and preprocessor commands.
 - [x] `NOTICE` with attribution and the share-alike requirement for the generated database; cites
       Ylonen's Wiktextract paper as Kaikki asks. (A `data/kaikki/` note lands with the data in PR 6.)
-- [ ] `extract-kaikki` mode: stream the full dump, apply the rules above, write the sorted gzip
-      subset + metadata. Unit tests with fixtures taken from real entries (form-of entry, lemma
-      with clitic-combined and metadata forms, multi-word entry, multi-POS word).
+- [x] `extract-kaikki` mode: stream the full dump, apply the rules above, write the sorted gzip
+      subset + metadata (also reads `.gz` input and an optional `--extra-words` list). Unit tests
+      with fixtures taken from real entries (form-of entry, alias, lemma with clitic-combined and
+      metadata forms, multi-word entry, multi-POS word). Verified on the real dump.
 - [x] SUBTLEX extractor (`extract-sublex`): reads the official `SUBTLEX-ESP.xlsx` directly (no
       manual conversion; 3 side-by-side column groups) and writes the top-N rank TSV that
       `SublexReader` consumes. Verified on the real file: 25,000 words, ~450 KB, deterministic.
@@ -178,10 +188,20 @@ PR 2 - algorithm audit (parameterized tests, fixes where code differs from the s
       form, `grammar_info` joined tags, SUBTLEX rank lookup). Known bugs found on real data:
   - [ ] It reads every `forms` item as a surface form, so conjugation metadata (`es-conj`,
         `irregular`, `o-ue alternation`) becomes bogus dictionary rows. Filter them, and skip
-        clitic-combined and multi-word forms.
+        clitic-combined and multi-word forms (the committed subset is already clean, but the
+        processor must also be safe on a full dump).
   - [ ] It imports `form_of` / `alt_of` entries as their own lemma (e.g. `pies` with the gloss
-        "plural of pie"). Skip them. Verify on the full dump that every form-of surface form is
-        covered by its lemma's `forms`; keep form-of entries as a fallback if gaps show up.
+        "plural of pie"). Skip them on a full dump, and read the subset's aliases correctly:
+        lemma = the `form_of` target (gloss from the target lemma when it is in the data, else
+        the alias's own gloss), `grammar_info` from the sense tags without meta tags such as
+        `form-of`; a standalone alias (no target, e.g. `ONU`) is its own lemma.
+  - [ ] `SublexReader` treats any row whose word is `palabra` (a real, frequent Spanish word) as a
+        header line: observed on the real data, 24,999 of 25,000 words load, and by the code the
+        rank column is reset so later ranks fall back to line order. Only the first line may be
+        a header.
+  - [ ] The runtime clitic rule `length > suffix + 3` cannot resolve short imperatives such as
+        `dame` / `dime` / `dile` / `hazlo`; the aliases now cover the frequent ones, but decide
+        whether the rule should change (see 1.4).
   - [ ] Duplicate surface forms (`fue` = ser/ir, `como` = verb/adverb) overwrite each other via
         `INSERT OR REPLACE`. Make the rule explicit: prefer the entry whose lemma equals the
         surface form, then the lemma with the better frequency rank, then the first occurrence.
