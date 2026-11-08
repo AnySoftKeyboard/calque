@@ -221,11 +221,21 @@ PR 2 - algorithm audit (parameterized tests, fixes where code differs from the s
         seed is applied after Kaikki and always replaces. Documented in INGESTION.md Step 1.
   - [x] Apply the POS keep-list; skip entries without a gloss; count and skip malformed lines
         instead of aborting (`KaikkiProcessor.processStreamWithStats` reports the counts).
-- [ ] Audit `CognateDetector` against Step 2 (`SUFFIX_MAP`, accent stripping, Levenshtein <= 1,
-      stem length >= 3, identical-word rule for length > 3).
-- [ ] Audit false-cognate expansion (Step 3: all inflections of each lemma; lemma missing from the
-      dictionary) and `SentenceScorer` (Step 4: 4-14 word filter, score formula, level thresholds
-      2.0 / 4.0 / 6.5 at their boundaries, +3.0 complex tense bonus).
+- [x] Audit `CognateDetector` against Step 2 (`SUFFIX_MAP`, accent stripping, Levenshtein <= 1,
+      stem length >= 3, identical-word rule for length > 3): `CognateDetectorSpecTest` has one
+      real pair per rule and every threshold. The implementation is deliberately broader than the
+      pseudocode (more suffix pairs, any gloss word, 2-letter exact stems); documented in
+      INGESTION.md Step 2.
+- [x] Audit false-cognate expansion (Step 3: all inflections of each lemma; lemma missing from the
+      dictionary): `FalseCognatesExpanderTest`; the preprocessor now warns about seeds with no
+      dictionary rows. Two such seeds exist today (found by building from the real data):
+  - [ ] `constipado` has no dictionary rows (too rare for the top-25,000 subset): pass the seed
+        lemmas to the extractor's `--extra-words` (PR 6).
+  - [ ] `embarazada` is keyed by the feminine form, so only that form gets a card; rekey the
+        seed to the dictionary lemma `embarazado` (also covers `embarazados` / `embarazadas`).
+- [x] Audit `SentenceScorer` (Step 4: 4-14 word filter, score formula, level thresholds
+      2.0 / 4.0 / 6.5 at their boundaries, +3.0 complex tense bonus, rare rank 1500/1501):
+      `SentenceScorerBoundaryTest`. No deviation from the pseudocode was found.
 
 PR 3 - Tatoeba selection and packing:
 - [ ] Quality filters: dedupe, every word resolves in the dictionary, skip name-heavy sentences,

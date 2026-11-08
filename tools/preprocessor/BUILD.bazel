@@ -124,6 +124,19 @@ kt_jvm_test(
 )
 
 kt_jvm_test(
+    name = "false_cognates_expander_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/preprocessor/FalseCognatesExpanderTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.preprocessor.FalseCognatesExpanderTest",
+    deps = [
+        ":preprocessor_lib",
+        "//core/linguistics",
+        "@maven//junit/junit",
+        "@maven//org/xerial/sqlite-jdbc",
+    ],
+)
+
+kt_jvm_test(
     name = "kaikki_processor_test",
     size = "small",
     srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/preprocessor/KaikkiProcessorTest.kt"],

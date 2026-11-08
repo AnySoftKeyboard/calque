@@ -79,6 +79,12 @@ FUNCTION detect_cognate(spanish_word, english_gloss):
   RETURN FALSE
 ```
 
+**Implementation notes (audited against the pseudocode above).** `CognateDetector` follows the rule but is deliberately a little broader, and the tests (`CognateDetectorSpecTest`) pin each difference:
+- The suffix map has more pairs than the nine above: `osa`, `ica`, `cta`, `ble`, `ario`/`aria`, `ivo`/`iva`, `ido`/`ida`, `ura`, `or`, `ar`, `er`, `ir`, `izar`.
+- Every word of the gloss is tried (synonyms separated by `,` `;` `/`), not only the primary one, after dropping parenthetical notes and a leading `to` / `a` / `an` / `the`.
+- A stem that is exactly equal needs 2 letters (`ac` + `ción` / `ac` + `tion`), the fuzzy distance-1 rule needs 3. A 1-letter stem never matches.
+- Accents are stripped from the Spanish stem only.
+
 ### Step 3: False Cognate Inflection Expansion
 Takes the curated `false_cognates_seed.json` file (which defines lemmas and 4-Part Card metadata) and expands it across every matching inflection in the `dictionary` table.
 
@@ -92,6 +98,8 @@ FUNCTION expand_false_cognates(seed_json_file, db):
     FOR EACH surface IN matching_surfaces:
       db.insert_false_cognate(surface, seed)
 ```
+
+A seed whose `lemma` has no dictionary rows is still stored under its own lowercased form, and the preprocessor prints a warning naming it. Typical causes: the word is too rare for the dictionary subset (add it to the extractor's `--extra-words`), or the seed is keyed by an inflected form instead of the dictionary lemma (`embarazado`, not `embarazada`).
 
 ### Step 4: Sentence Scoring & Level Bucketing
 Scores bilingual sentences from Tatoeba to populate `curated_lessons`.

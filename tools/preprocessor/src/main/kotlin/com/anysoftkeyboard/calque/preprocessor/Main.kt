@@ -43,6 +43,12 @@ fun main(args: Array<String>) {
     println("Pipeline completed successfully in ${elapsed}ms:")
     println("  - Dictionary entries inserted: ${summary.dictionaryRows}")
     println("  - False cognate forms expanded: ${summary.falseCognateRows}")
+    if (summary.falseCognateLemmasWithoutDictionaryRows.isNotEmpty()) {
+        println(
+            "  - WARNING: false cognate lemmas with no dictionary rows (not expanded): " +
+                summary.falseCognateLemmasWithoutDictionaryRows.joinToString()
+        )
+    }
     println("  - Curated lesson sentences accepted: ${summary.curatedLessonRows}")
     println("  - Cognate transformer rules seeded: ${summary.cognateRuleRows}")
 }

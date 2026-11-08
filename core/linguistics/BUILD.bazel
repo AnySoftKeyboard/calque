@@ -62,3 +62,25 @@ kt_jvm_test(
         "@maven//junit/junit",
     ],
 )
+
+kt_jvm_test(
+    name = "cognate_detector_spec_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/linguistics/CognateDetectorSpecTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.linguistics.CognateDetectorSpecTest",
+    deps = [
+        ":linguistics",
+        "@maven//junit/junit",
+    ],
+)
+
+kt_jvm_test(
+    name = "sentence_scorer_boundary_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/linguistics/SentenceScorerBoundaryTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.linguistics.SentenceScorerBoundaryTest",
+    deps = [
+        ":linguistics",
+        "@maven//junit/junit",
+    ],
+)

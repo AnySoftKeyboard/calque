@@ -11,6 +11,18 @@ import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 
+/** Result of expanding the false cognate seeds. */
+data class FalseCognateExpansion(
+    val rows: Int,
+    /**
+     * Seed lemmas that have no dictionary rows. They are still stored under their own lemma form,
+     * but not under any inflection, which usually means the lemma is too rare for the dictionary
+     * subset, or that the seed is keyed by an inflected form instead of the dictionary lemma
+     * (`embarazada` instead of `embarazado`).
+     */
+    val lemmasWithoutDictionaryRows: List<String>,
+)
+
 /**
  * Expands curated false cognate seeds across all conjugated and inflected forms in the dictionary.
  *
@@ -23,12 +35,18 @@ object FalseCognatesExpander {
      *
      * @return Count of false cognate entries inserted.
      */
-    fun expand(inputStream: InputStream, database: SeedDatabase): Int {
+    fun expand(inputStream: InputStream, database: SeedDatabase): Int =
+        expandWithReport(inputStream, database).rows
+
+    /** Like [expand], but also reports the seeds that found no dictionary rows. */
+    fun expandWithReport(inputStream: InputStream, database: SeedDatabase): FalseCognateExpansion {
         val seeds = parseSeeds(inputStream)
         val rows = mutableListOf<FalseCognateRow>()
+        val withoutRows = mutableListOf<String>()
 
         for (seed in seeds) {
             val matchingSurfaces = database.querySurfacesForLemma(seed.lemma).toMutableSet()
+            if (matchingSurfaces.isEmpty()) withoutRows.add(seed.lemma)
             // Ensure the lowercased base lemma is always included
             matchingSurfaces.add(seed.lemma.lowercase(Locale.ROOT))
 
@@ -50,7 +68,7 @@ object FalseCognatesExpander {
         }
 
         database.insertFalseCognatesBatch(rows)
-        return rows.size
+        return FalseCognateExpansion(rows.size, withoutRows)
     }
 
     /** Parses the false cognates seed JSON stream into a list of [FalseCognateSeed] objects. */
