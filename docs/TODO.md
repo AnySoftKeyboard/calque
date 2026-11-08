@@ -185,9 +185,13 @@ PR 6 - real data (after PRs 1-4):
 - [ ] Expand `false_cognates_seed.json` (25 rows today); verify every lemma expands to all inflections.
 - [ ] Confirm the 8 core suffix bridges (`-tion`, `-ty`, `-ous`, `-ly`, ...) each have gender rule,
       spelling note and 5-10 examples (12 rules exist today).
-- [ ] (PR 5) Add data-validation tests/lint for the seed JSON files (required fields, unique ids,
-      sequence ordering, 5-10 examples per cognate rule, severity enum values, inclusive-language
-      check). Content items above are PR 7; propose the non-sentence lesson content schema in
+- [x] (PR 5) Data-validation tests for the seed JSON files (`SeedFilesValidationTest`): required
+      fields, unique ids and surface forms, lowercase surfaces, allowed parts of speech, lesson id
+      vs level, sequence ordering, one interlinear gloss entry per sentence word, example
+      suffixes per cognate rule, severity enum, inclusive language in the English text. Example
+      counts (5-10) and detector alignment were already tested in `PreprocessorTest`. The new
+      test found a real violation: `dummy auxiliary` in a grammar callout (now "helper verb").
+      Content items above are PR 7; propose the non-sentence lesson content schema in
       DATA.md before building the Module 0.0 cards.
 
 ### 1.3 Preprocessor correctness (docs/INGESTION.md pseudocode)
@@ -434,7 +438,9 @@ Engines exist (see section 0); remaining spec gaps:
 - [ ] Coverage reporting for `core/*`; target 80%+ of tests as fast JVM tests (CODING.md).
 - [ ] Detekt: review active rules vs Compose conventions (`LongParameterList` for composables,
       `TooManyFunctions` in ViewModels) and tune `detekt.yml` instead of adding suppressions.
-- [ ] Naming audit for inclusive language across code, fixtures and seed JSON (AGENTS.md).
+- [~] Naming audit for inclusive language across code, fixtures and seed JSON (AGENTS.md): a scan
+      of the repository found only the seed hit above (fixed), and `SeedFilesValidationTest` now
+      guards the seed JSON. Still open: an automated guard for code and test fixtures.
 - [ ] Startup performance: baseline profile, StrictMode in debug builds to catch main-thread disk
       access.
 - [ ] Release engineering: signing config, versioning, R8/proguard rules for Room and

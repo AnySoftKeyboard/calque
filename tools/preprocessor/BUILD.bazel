@@ -43,6 +43,20 @@ kt_jvm_test(
 )
 
 kt_jvm_test(
+    name = "seed_files_validation_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/preprocessor/SeedFilesValidationTest.kt"],
+    data = ["//data/seeds:seed_files"],
+    test_class = "com.anysoftkeyboard.calque.preprocessor.SeedFilesValidationTest",
+    deps = [
+        ":preprocessor_lib",
+        "//core/linguistics",
+        "@maven//junit/junit",
+        "@maven//org/jetbrains/kotlinx/kotlinx-serialization-json-jvm",
+    ],
+)
+
+kt_jvm_test(
     name = "sublex_extractor_test",
     size = "small",
     srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/preprocessor/SublexExtractorTest.kt"],
