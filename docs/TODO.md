@@ -129,13 +129,14 @@ Decisions (agreed):
 PR 1 - inputs, extractors, licensing:
 - [ ] `tools/preprocessor/README.md`: download URLs, input formats, licenses (Kaikki CC BY-SA 4.0,
       Tatoeba CC BY 2.0 FR, SUBTLEX-ESP citation) and the exact extractor and preprocessor commands.
-- [ ] `NOTICE` + `data/kaikki/` note with attribution and the share-alike requirement for the
-      generated database; cite Ylonen's Wiktextract paper as Kaikki asks.
+- [x] `NOTICE` with attribution and the share-alike requirement for the generated database; cites
+      Ylonen's Wiktextract paper as Kaikki asks. (A `data/kaikki/` note lands with the data in PR 6.)
 - [ ] `extract-kaikki` mode: stream the full dump, apply the rules above, write the sorted gzip
       subset + metadata. Unit tests with fixtures taken from real entries (form-of entry, lemma
       with clitic-combined and metadata forms, multi-word entry, multi-POS word).
-- [ ] SUBTLEX extractor: top-N rank file consumable by `SublexReader`. Confirm the official
-      OSF file's column layout (it may be a spreadsheet) and convert.
+- [x] SUBTLEX extractor (`extract-sublex`): reads the official `SUBTLEX-ESP.xlsx` directly (no
+      manual conversion; 3 side-by-side column groups) and writes the top-N rank TSV that
+      `SublexReader` consumes. Verified on the real file: 25,000 words, ~450 KB, deterministic.
 - [ ] Tatoeba extractor: join the `sentences` and `links` exports into candidate pairs with
       sentence ids (streaming, no full-file loads); tests.
 
@@ -148,6 +149,9 @@ PR 4 - generated `seed.db` (with the end-to-end test in 1.3):
       `RoomGeneratedSchemaValidationTest`).
 
 PR 6 - real data (after PRs 1-4):
+- [ ] Decide on the SUBTLEX-ESP license: the official file is CC BY-NC-SA 4.0 (non-commercial,
+      share-alike), which does not sit well with an Apache-2.0 app. Confirm it is acceptable for
+      the distribution channel before committing SUBTLEX-derived ranks, or replace the source.
 - [ ] Run the extractors with N = 25,000 and commit the subsets and metadata; record the corpus
       versions and commands in the README.
 - [ ] Measure the generated `seed.db` size and the APK impact; adjust N if needed.

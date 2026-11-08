@@ -1,0 +1,24 @@
+Calque
+Copyright the Calque authors. Source code is licensed under the Apache License 2.0 (see LICENSE).
+
+The data files below are NOT covered by the Apache License. They are third-party data, used and
+redistributed under their own licenses, and the generated seed database that is derived from them
+keeps those terms.
+
+Kaikki / Wiktionary (dictionary entries, inflected forms and glosses)
+  Data extracted from the English edition of Wiktionary by Wiktextract and published at
+  https://kaikki.org. Wiktionary content is licensed under the Creative Commons
+  Attribution-ShareAlike 4.0 License (https://creativecommons.org/licenses/by-sa/4.0/).
+  Tatu Ylonen: Wiktextract: Wiktionary as Machine-Readable Structured Data, Proceedings of the 13th
+  Conference on Language Resources and Evaluation (LREC), pp. 1317-1325, Marseille, 2022.
+
+Tatoeba (Spanish-English sentence pairs)
+  Sentences from the Tatoeba Project, https://tatoeba.org, contributed by its users and licensed
+  under Creative Commons Attribution 2.0 France (https://creativecommons.org/licenses/by/2.0/fr/).
+  Sentence ids are kept in the data so that each sentence can be traced to its Tatoeba page.
+
+SUBTLEX-ESP (word frequencies)
+  Cuetos, F., Glez-Nosti, M., Barbon, A. and Brysbaert, M. (2011). SUBTLEX-ESP: Spanish word
+  frequencies based on film subtitles. Psicologica, 32, 133-143. https://osf.io/xp6sz/
+  Licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0
+  (https://creativecommons.org/licenses/by-nc-sa/4.0/).
