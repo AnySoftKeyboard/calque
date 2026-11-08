@@ -28,11 +28,14 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
 import com.anysoftkeyboard.calque.R
 import com.anysoftkeyboard.calque.di.AppContainer
 import com.anysoftkeyboard.calque.ui.nav.NavDestination
-import com.anysoftkeyboard.calque.ui.reader.ReaderCoordinator
 import com.anysoftkeyboard.calque.ui.reader.ReaderScreen
+import com.anysoftkeyboard.calque.ui.reader.ReaderViewModel
 import com.anysoftkeyboard.calque.ui.theme.CalqueTheme
 
 /** Primary top-level navigation shell for Calque. */
@@ -43,7 +46,10 @@ fun CalqueApp(
 ) {
     val navManager = appContainer.navStateManager
     var currentDestination by remember { mutableStateOf(navManager.currentDestination) }
-    val readerCoordinator = remember { ReaderCoordinator(appContainer) }
+    // Owned by the ViewModelStore so reader state survives configuration changes and its scope
+    // is cancelled in onCleared().
+    val readerViewModel: ReaderViewModel =
+        viewModel(factory = viewModelFactory { initializer { ReaderViewModel(appContainer) } })
     val colors = CalqueTheme.colors
 
     DisposableEffect(navManager) {
@@ -69,7 +75,7 @@ fun CalqueApp(
         ) {
             when (currentDestination) {
                 NavDestination.READER -> {
-                    ReaderScreen(coordinator = readerCoordinator)
+                    ReaderScreen(viewModel = readerViewModel)
                 }
                 NavDestination.TOOLBOX -> {
                     PlaceholderScreen(

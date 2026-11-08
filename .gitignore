@@ -10,6 +10,9 @@ bazel-*
 # Build artifacts
 outputs/
 
+# Local scratch notes (not checked in)
+scratch/
+
 # secret Hermetiq credentials helper
 tools/hermetiq-credential-helper.*
 

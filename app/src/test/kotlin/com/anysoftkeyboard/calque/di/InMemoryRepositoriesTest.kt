@@ -115,6 +115,17 @@ class InMemoryRepositoriesTest {
     }
 
     @Test
+    fun testUserWordStateRepository_keepsSentenceFromFirstStar() {
+        val repo = InMemoryUserWordStateRepository()
+        repo.setStarred("hablar", true, "Primera oración.")
+        repo.setStarred("hablar", false)
+
+        repo.setStarred("hablar", true, "Segunda oración.")
+
+        assertEquals("Primera oración.", repo.getWordState("hablar")?.savedContextSentence)
+    }
+
+    @Test
     fun testUserCustomTextRepository() {
         val repo = InMemoryUserCustomTextRepository()
         val text =

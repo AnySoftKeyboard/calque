@@ -31,7 +31,11 @@ interface UserWordStateRepository {
         timestamp: Long = System.currentTimeMillis()
     )
 
-    /** Stars or unstars a word in the user's Vault, optionally attaching the context sentence. */
+    /**
+     * Stars or unstars a word in the user's Vault. The [contextSentence] records the sentence where
+     * the user *first* starred the word: once a sentence is saved it is never overwritten, by later
+     * stars, unstars or re-stars with a different sentence.
+     */
     fun setStarred(
         lemma: String,
         starred: Boolean,
@@ -201,7 +205,7 @@ class SqliteUserWordStateRepository(
             ) VALUES (?, ?, ?, ?, 1, ?)
             ON CONFLICT(lemma) DO UPDATE SET
                 starred = excluded.starred,
-                saved_context_sentence = COALESCE(excluded.saved_context_sentence, user_word_state.saved_context_sentence),
+                saved_context_sentence = COALESCE(user_word_state.saved_context_sentence, excluded.saved_context_sentence),
                 last_seen_timestamp = excluded.last_seen_timestamp
             """
                 .trimIndent()

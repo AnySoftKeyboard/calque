@@ -183,7 +183,7 @@ class InMemoryUserWordStateRepository : UserWordStateRepository {
         val updated =
             current?.copy(
                 starred = starred,
-                savedContextSentence = contextSentence ?: current.savedContextSentence,
+                savedContextSentence = current.savedContextSentence ?: contextSentence,
                 lastSeenTimestamp = timestamp,
             )
                 ?: UserWordState(

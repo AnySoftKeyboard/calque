@@ -1,6 +1,14 @@
 package com.anysoftkeyboard.calque.di
 
 import com.anysoftkeyboard.calque.data.CalqueWordLookupProvider
+import com.anysoftkeyboard.calque.data.room.CalqueSeedDatabase
+import com.anysoftkeyboard.calque.data.room.CalqueUserDatabase
+import com.anysoftkeyboard.calque.data.room.repositories.RoomCognateRulesRepository
+import com.anysoftkeyboard.calque.data.room.repositories.RoomCuratedLessonsRepository
+import com.anysoftkeyboard.calque.data.room.repositories.RoomDictionaryRepository
+import com.anysoftkeyboard.calque.data.room.repositories.RoomFalseCognatesRepository
+import com.anysoftkeyboard.calque.data.room.repositories.RoomUserCustomTextRepository
+import com.anysoftkeyboard.calque.data.room.repositories.RoomUserWordStateRepository
 import com.anysoftkeyboard.calque.data.seed.CognateRulesRepository
 import com.anysoftkeyboard.calque.data.seed.CuratedLessonsRepository
 import com.anysoftkeyboard.calque.data.seed.DictionaryRepository
@@ -25,35 +33,69 @@ import java.sql.Connection
 
 /** Default implementation of [AppContainer] managing database connections and engine lifecycle. */
 open class DefaultAppContainer(
+    override val seedRoomDatabase: CalqueSeedDatabase? = null,
+    override val userRoomDatabase: CalqueUserDatabase? = null,
     databaseDir: File? = null,
     assetProvider: ((String) -> InputStream?)? = null,
     seedConnectionSupplier: (() -> Connection)? = null,
     userConnectionSupplier: (() -> Connection)? = null,
     curatedLessons: CuratedLessonsRepository? = null,
+    dictionary: DictionaryRepository? = null,
+    falseCognates: FalseCognatesRepository? = null,
+    cognateRules: CognateRulesRepository? = null,
+    userWordState: UserWordStateRepository? = null,
+    userCustomTexts: UserCustomTextRepository? = null,
 ) : AppContainer {
 
     private val seedDatabase: SeedDatabase? =
-        initSeedDatabase(databaseDir, assetProvider, seedConnectionSupplier)
+        if (seedRoomDatabase == null) {
+            initSeedDatabase(databaseDir, assetProvider, seedConnectionSupplier)
+        } else {
+            null
+        }
 
-    private val userDatabase: UserDatabase? = initUserDatabase(databaseDir, userConnectionSupplier)
+    private val userDatabase: UserDatabase? =
+        if (userRoomDatabase == null) {
+            initUserDatabase(databaseDir, userConnectionSupplier)
+        } else {
+            null
+        }
 
     override val dictionaryRepository: DictionaryRepository =
-        seedDatabase?.dictionary ?: InMemoryDictionaryRepository()
+        dictionary
+            ?: seedRoomDatabase?.let { RoomDictionaryRepository(it.dictionaryDao()) }
+            ?: seedDatabase?.dictionary
+            ?: InMemoryDictionaryRepository()
 
     override val falseCognatesRepository: FalseCognatesRepository =
-        seedDatabase?.falseCognates ?: InMemoryFalseCognatesRepository()
+        falseCognates
+            ?: seedRoomDatabase?.let { RoomFalseCognatesRepository(it.falseCognatesDao()) }
+            ?: seedDatabase?.falseCognates
+            ?: InMemoryFalseCognatesRepository()
 
     override val curatedLessonsRepository: CuratedLessonsRepository =
-        curatedLessons ?: seedDatabase?.curatedLessons ?: InMemoryCuratedLessonsRepository()
+        curatedLessons
+            ?: seedRoomDatabase?.let { RoomCuratedLessonsRepository(it.curatedLessonsDao()) }
+            ?: seedDatabase?.curatedLessons
+            ?: InMemoryCuratedLessonsRepository()
 
     override val cognateRulesRepository: CognateRulesRepository =
-        seedDatabase?.cognateRules ?: InMemoryCognateRulesRepository()
+        cognateRules
+            ?: seedRoomDatabase?.let { RoomCognateRulesRepository(it.cognateRulesDao()) }
+            ?: seedDatabase?.cognateRules
+            ?: InMemoryCognateRulesRepository()
 
     override val userWordStateRepository: UserWordStateRepository =
-        userDatabase?.wordStates ?: InMemoryUserWordStateRepository()
+        userWordState
+            ?: userRoomDatabase?.let { RoomUserWordStateRepository(it.userWordStateDao()) }
+            ?: userDatabase?.wordStates
+            ?: InMemoryUserWordStateRepository()
 
     override val userCustomTextRepository: UserCustomTextRepository =
-        userDatabase?.customTexts ?: InMemoryUserCustomTextRepository()
+        userCustomTexts
+            ?: userRoomDatabase?.let { RoomUserCustomTextRepository(it.userCustomTextDao()) }
+            ?: userDatabase?.customTexts
+            ?: InMemoryUserCustomTextRepository()
 
     override val wordLookupProvider: WordLookupProvider =
         CalqueWordLookupProvider(

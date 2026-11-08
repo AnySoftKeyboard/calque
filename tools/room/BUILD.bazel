@@ -1,0 +1,19 @@
+load("@rules_java//java:defs.bzl", "java_plugin")
+load("@rules_kotlin//kotlin:core.bzl", "kt_kotlinc_options")
+
+package(default_visibility = ["//visibility:public"])
+
+java_plugin(
+    name = "room_compiler_plugin",
+    generates_api = True,
+    processor_class = "androidx.room.RoomProcessor",
+    deps = [
+        "@maven//androidx/room/room-compiler",
+    ],
+)
+
+kt_kotlinc_options(
+    name = "room_kotlinc_options",
+    api_version = "2.2",
+    language_version = "2.2",
+)

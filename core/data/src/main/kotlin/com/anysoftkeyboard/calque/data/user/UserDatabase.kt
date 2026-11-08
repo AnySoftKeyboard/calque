@@ -20,7 +20,7 @@ class UserDatabase(
             listOf(
                 """
                 CREATE TABLE IF NOT EXISTS user_word_state (
-                    lemma TEXT PRIMARY KEY,
+                    lemma TEXT NOT NULL PRIMARY KEY,
                     status TEXT NOT NULL,
                     starred INTEGER NOT NULL,
                     saved_context_sentence TEXT,
@@ -32,7 +32,7 @@ class UserDatabase(
                 "CREATE INDEX IF NOT EXISTS idx_user_word_state_status ON user_word_state(status)",
                 """
                 CREATE TABLE IF NOT EXISTS user_custom_texts (
-                    text_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    text_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
                     title TEXT NOT NULL,
                     original_spanish TEXT NOT NULL,
                     simplified_spanish TEXT,

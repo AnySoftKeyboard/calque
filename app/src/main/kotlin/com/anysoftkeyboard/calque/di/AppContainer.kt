@@ -36,6 +36,12 @@ interface AppContainer {
 
     val navStateManager: NavStateManager
 
+    val seedRoomDatabase: com.anysoftkeyboard.calque.data.room.CalqueSeedDatabase?
+        get() = null
+
+    val userRoomDatabase: com.anysoftkeyboard.calque.data.room.CalqueUserDatabase?
+        get() = null
+
     /** Creates a new active reading session for the specified [source]. */
     fun createReaderSession(source: ReadingSource): ReaderSessionEngine
 }

@@ -97,6 +97,35 @@ class UserWordStateRepositoryTest {
     }
 
     @Test
+    fun setStarred_keepsSentenceFromFirstStarAcrossRestars() {
+        val repo = database.wordStates
+        repo.setStarred("éxito", true, "Primera oración.", 1L)
+
+        // Re-starring from a different sentence must not replace the first one.
+        repo.setStarred("éxito", false, null, 2L)
+        repo.setStarred("éxito", true, "Segunda oración.", 3L)
+
+        val state = repo.getWordState("éxito")!!
+        assertTrue(state.starred)
+        assertEquals("Primera oración.", state.savedContextSentence)
+    }
+
+    @Test
+    fun setStarred_recordsSentenceWhenWordWasEncounteredButNeverStarred() {
+        val repo = database.wordStates
+        repo.recordEncounter("éxito", 1L)
+        assertNull(repo.getWordState("éxito")!!.savedContextSentence)
+
+        repo.setStarred("éxito", true, "Oración de la primera estrella.", 2L)
+
+        assertEquals(
+            "Oración de la primera estrella.",
+            repo.getWordState("éxito")!!.savedContextSentence,
+        )
+        assertEquals(1, repo.getWordState("éxito")!!.encounterCount)
+    }
+
+    @Test
     fun batchQueries_returnExpectedStatesAndStatuses() {
         database.wordStates.upsertWordState(
             UserWordState(

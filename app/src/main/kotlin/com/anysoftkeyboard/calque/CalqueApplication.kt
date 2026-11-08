@@ -1,9 +1,10 @@
 package com.anysoftkeyboard.calque
 
 import android.app.Application
+import com.anysoftkeyboard.calque.data.room.CalqueSeedDatabase
+import com.anysoftkeyboard.calque.data.room.CalqueUserDatabase
 import com.anysoftkeyboard.calque.di.AppContainer
 import com.anysoftkeyboard.calque.di.DefaultAppContainer
-import java.io.File
 
 /** Application class providing access to the shared [AppContainer]. */
 class CalqueApplication : Application() {
@@ -12,11 +13,12 @@ class CalqueApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        val dbDir = getDatabasePath("dummy.db").parentFile ?: File(filesDir, "databases")
+        val seedDb = CalqueSeedDatabase.build(this)
+        val userDb = CalqueUserDatabase.build(this)
         appContainer =
             DefaultAppContainer(
-                databaseDir = dbDir,
-                assetProvider = { path -> runCatching { assets.open(path) }.getOrNull() },
+                seedRoomDatabase = seedDb,
+                userRoomDatabase = userDb,
             )
     }
 }
