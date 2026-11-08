@@ -77,6 +77,7 @@ is in scope when its word or one of its forms is in the rank file (the `extract-
 bazelisk run //tools/preprocessor:preprocessor -- extract-kaikki \
     --input /tmp/kaikki.org-dictionary-Spanish.jsonl \
     --ranks data/subtlex/subtlex_esp_top25000.tsv \
+    --extra-words data/kaikki/extra_words.txt \
     --output data/kaikki/spanish_lemmas.jsonl.gz \
     --source-last-modified "Fri, 30 Oct 2026 23:17:33 GMT" \
     --source-etag '"6ae5258d-42bcda85"'
@@ -104,10 +105,28 @@ What is kept:
   tags, and its target lemma is pulled in. A target that is not a single word (the acronym
   `ONU`) is kept as a standalone entry with its own gloss.
 
-On the 2026-10-30 dump with the top 25,000 SUBTLEX words this reads 814,137 lines in about 13
-seconds (two passes) and keeps 14,539 lemmas, 1,973 aliases and 197,279 forms: 17 MB of JSON,
-1.2 MB gzipped. 98.6% of the 25,000 words resolve (99.8% of the top 1,000); what is left is
-almost only proper names and abbreviations. The output is byte-identical across runs.
+On the 2026-10-30 dump with the top 25,000 SUBTLEX words and the seed words this reads 814,137
+lines in about 13 seconds (two passes) and keeps 14,546 lemmas, 1,973 aliases and 197,526 forms:
+17 MB of JSON, 1.2 MB gzipped. 98.6% of the 25,000 words resolve (99.8% of the top 1,000); what
+is left is almost only proper names and abbreviations. The output is byte-identical across runs.
+
+### `extract-seed-words`
+
+Lists the words used by the curated seeds (every lesson sentence, every false-cognate lemma, real
+Spanish word and example, and the dictionary seed) so `extract-kaikki --extra-words` can include
+them even when they are not among the most frequent words. Without it, a false-cognate lemma such
+as `constipado` would have no dictionary row.
+
+```
+bazelisk run //tools/preprocessor:preprocessor -- extract-seed-words \
+    --curated-lessons data/seeds/curated_lessons_seed.json \
+    --false-cognates data/seeds/false_cognates_seed.json \
+    --dictionary-seed data/seeds/dictionary_seed.json \
+    --output data/kaikki/extra_words.txt
+```
+
+On the current seeds it lists 308 words, of which only 10 are not already in the top 25,000.
+Regenerate it whenever the seeds change.
 
 ### `extract-tatoeba`
 

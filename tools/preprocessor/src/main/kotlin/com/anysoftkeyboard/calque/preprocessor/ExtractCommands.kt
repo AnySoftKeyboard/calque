@@ -15,6 +15,7 @@ internal fun runExtractCommand(command: String, options: Map<String, String>) {
             "extract-sublex" -> extractSublex(options)
             "extract-kaikki" -> extractKaikki(options)
             "extract-tatoeba" -> extractTatoeba(options)
+            "extract-seed-words" -> extractSeedWords(options)
             else -> throw UsageException("Unknown command: $command")
         }
     } catch (e: UsageException) {
@@ -84,6 +85,21 @@ private fun extractTatoeba(options: Map<String, String>) {
     println("Read ${stats.spanishLinesRead} Spanish sentences: ${stats.candidates} candidates")
     println("Rejected: ${stats.rejections.entries.joinToString { "${it.key}=${it.value}" }}")
     println("Wrote ${stats.selected} pairs to ${output.path} (${output.length()} bytes)")
+}
+
+private fun extractSeedWords(options: Map<String, String>) {
+    val output = options.requireFile("--output")
+    val words =
+        options.requireFile("--curated-lessons").inputStream().use { lessons ->
+            options.requireFile("--false-cognates").inputStream().use { falseCognates ->
+                options.requireFile("--dictionary-seed").inputStream().use { dictionary ->
+                    SeedWordsExtractor.collect(lessons, falseCognates, dictionary)
+                }
+            }
+        }
+    output.parentFile?.mkdirs()
+    output.outputStream().buffered().use { SeedWordsExtractor.write(words, it) }
+    println("Wrote ${words.size} seed words to ${output.path}")
 }
 
 /** The words in the rank file, plus the optional extra word list. */

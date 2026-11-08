@@ -1,0 +1,20 @@
+{
+    "format": "tatoeba-candidates/1",
+    "source": "spa_sentences.tsv",
+    "sourceLastModified": "Sat, 07 Nov 2026 07:59:52 GMT",
+    "wantedWords": 25000,
+    "maxPairs": 20000,
+    "spanishLinesRead": 443166,
+    "rejected_malformed_line": 0,
+    "rejected_no_translation": 181305,
+    "rejected_too_long": 681,
+    "rejected_multiple_sentences": 7279,
+    "rejected_word_count": 41797,
+    "rejected_unsupported_token": 1720,
+    "rejected_proper_name": 26560,
+    "rejected_out_of_scope_word": 42724,
+    "rejected_duplicate": 0,
+    "rejected_missing_english_text": 39,
+    "candidates": 141061,
+    "selected": 20000
+}

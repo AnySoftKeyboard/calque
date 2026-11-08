@@ -161,25 +161,37 @@ PR 4 - generated `seed.db` (done; end-to-end test in 1.3):
       `app/src/main/assets/databases/seed.db`, the path Android and the tests already use, so
       `PackagedSeedAssetTest`, `RoomSchemaParityTest` and `RoomGeneratedSchemaValidationTest`
       run unchanged against the generated file, and the APK contains it. `android_binary` lists
-      the target explicitly (a `glob` only sees source files). Today it builds from the curated
-      seeds; PR 6 adds the `kaikki`, `sublex` and `tatoeba` inputs to that one rule.
+      the target explicitly (a `glob` only sees source files). PR 6 added the `kaikki`, `sublex`
+      and `tatoeba` inputs to that one rule.
 - [x] The checked-in binary asset is deleted and git-ignored so it cannot come back. The build is
       byte-for-byte reproducible, which is why no "is the checked-in file up to date" check is
       needed any more.
 - [x] `PRAGMA user_version` stays aligned with `CalqueSeedDatabase` (the preprocessor writes
       `ROOM_SCHEMA_VERSION`; `RoomGeneratedSchemaValidationTest` guards it on the generated file).
 
-PR 6 - real data (after PRs 1-4):
-- [ ] Decide on the SUBTLEX-ESP license: the official file is CC BY-NC-SA 4.0 (non-commercial,
-      share-alike), which does not sit well with an Apache-2.0 app. Confirm it is acceptable for
-      the distribution channel before committing SUBTLEX-derived ranks, or replace the source.
-- [ ] Run the extractors with N = 25,000 and commit the subsets and metadata; record the corpus
-      versions and commands in the README. Pass the false-cognate seed lemmas that the subset
-      misses (`constipado`, `actualmente`; the preprocessor warns about them) as `--extra-words`.
-- [ ] Measure the generated `seed.db` size and the APK impact; adjust N if needed. Measured
-      early (PR 2b, top-25,000 ranks + 2026-10-30 subset): 20 MB uncompressed, 148,880 rows,
-      66,476 of them without a rank (rare forms of ranked lemmas). Decide whether to drop
-      unranked inflections or lower N before this ships in the APK.
+PR 6 - real data (done, except the open decisions marked below):
+- [ ] **DECISION NEEDED - SUBTLEX-ESP license.** The official file is CC BY-NC-SA 4.0
+      (non-commercial, share-alike), which does not sit well with an Apache-2.0 app. It was
+      approved for use before the license was known to be NC. `data/subtlex/` is committed as
+      approved but is isolated (it holds the ranks and the SUBTLEX counts), and this whole PR can
+      be dropped without touching PRs 1-5. Confirm it is acceptable for the distribution channel
+      before merging or releasing, or replace the frequency source (the rest of the pipeline only
+      needs a `word, rank` file).
+- [x] Ran the extractors with N = 25,000 and committed the subsets and metadata (`data/`, with
+      a `data/README.md`): ranks 25,000 words (450 KB); Kaikki 14,546 lemmas + 1,973 aliases +
+      197,526 forms (1.2 MB gzipped, 98.6% of the ranked words resolve); Tatoeba 20,000 pairs
+      (750 KB). Source versions are in the `*.meta.json` files. New command `extract-seed-words`
+      generates `data/kaikki/extra_words.txt` (308 words, only 10 beyond the top 25,000) so the
+      words of the curated seeds always resolve; `constipado` now does.
+- [x] `//app:seed_db_asset` builds from the committed subsets: 3 s, 149,047 dictionary rows,
+      524 false-cognate rows, 56 lessons (8 hand-written + 48 Tatoeba), 12 rules. The Room schema
+      tests, the parity test and `PackagedSeedAssetTest` (updated for the real contents) pass on
+      it, and the APK ships it.
+- [ ] **DECISION NEEDED - size.** The generated `seed.db` is 20.3 MB (4.6 MB inside the APK;
+      the whole APK is 37 MB). About 66,000 of the 149,000 dictionary rows have no rank (rare
+      inflections of ranked lemmas). Options: keep them (best lookup coverage for pasted text),
+      drop unranked inflections (~halves the file, but rare forms stop resolving), or lower N.
+      Kept as is until decided.
 - [ ] Attribution/credits screen in the app for CC BY-SA / CC BY data (the `NOTICE` file is PR 1).
 
 ### 1.2 Pedagogical content (curated JSON seeds)
@@ -189,6 +201,12 @@ PR 6 - real data (after PRs 1-4):
       `-ic`/`-ico`) and the 5-vowel soundboard content (needs a lesson content schema for
       non-sentence cards).
 - [ ] Expand `false_cognates_seed.json` (25 rows today); verify every lemma expands to all inflections.
+      Building from the real data showed two inconsistencies to fix first: `embarazada` is keyed
+      by the feminine form in both the dictionary seed and the false-cognate seed (rekey to
+      `embarazado`), and the dictionary seed files `actualmente` under the lemma `actual` while
+      the false-cognate seed has its own `actualmente` card, so that card finds no rows (give
+      `actualmente` its own lemma, as Kaikki does). Then add a test that no seed lemma lacks
+      dictionary rows in the generated database.
 - [ ] Confirm the 8 core suffix bridges (`-tion`, `-ty`, `-ous`, `-ly`, ...) each have gender rule,
       spelling note and 5-10 examples (12 rules exist today).
 - [x] (PR 5) Data-validation tests for the seed JSON files (`SeedFilesValidationTest`): required

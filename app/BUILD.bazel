@@ -5,7 +5,9 @@ load("//tools/preprocessor:seed_db.bzl", "seed_db")
 package(default_visibility = ["//visibility:public"])
 
 # The pre-packaged seed database is generated, never checked in. It is written to the path Android
-# expects (and the tests read) so that nothing else has to know it is not a source file.
+# expects (and the tests read) so that nothing else has to know it is not a source file. The
+# inputs are the curated seeds plus the subsets extracted from Kaikki, SUBTLEX-ESP and Tatoeba
+# (see data/README.md); nothing is downloaded during the build.
 seed_db(
     name = "seed_db_asset",
     out = "src/main/assets/databases/seed.db",
@@ -13,6 +15,9 @@ seed_db(
     curated_lessons = "//data/seeds:curated_lessons_seed.json",
     dictionary_seed = "//data/seeds:dictionary_seed.json",
     false_cognates = "//data/seeds:false_cognates_seed.json",
+    kaikki = "//data/kaikki:spanish_lemmas.jsonl.gz",
+    sublex = "//data/subtlex:subtlex_esp_top25000.tsv",
+    tatoeba = "//data/tatoeba:spa_eng_candidates.tsv.gz",
 )
 
 kt_android_library(
