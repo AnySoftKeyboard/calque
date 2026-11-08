@@ -109,6 +109,44 @@ seconds (two passes) and keeps 14,539 lemmas, 1,973 aliases and 197,279 forms: 1
 1.2 MB gzipped. 98.6% of the 25,000 words resolve (99.8% of the top 1,000); what is left is
 almost only proper names and abbreviations. The output is byte-identical across runs.
 
+### `extract-tatoeba`
+
+Joins the three Tatoeba exports into a pool of single-sentence lesson candidates: Spanish sentence,
+its English translation, and both Tatoeba ids (CC BY needs each sentence to stay attributable).
+Decompress the `.bz2` downloads first (`bzip2 -dk`); `.gz` files are also accepted.
+
+```
+bazelisk run //tools/preprocessor:preprocessor -- extract-tatoeba \
+    --spanish /tmp/spa_sentences.tsv \
+    --english /tmp/eng_sentences.tsv \
+    --links /tmp/spa-eng_links.tsv \
+    --ranks data/subtlex/subtlex_esp_top25000.tsv \
+    --output data/tatoeba/spa_eng_candidates.tsv.gz \
+    --max-pairs 20000 \
+    --source-last-modified "Sat, 07 Nov 2026 07:59:52 GMT"
+```
+
+The output is a deterministic gzip of `spanishId<TAB>englishId<TAB>spanish<TAB>english` lines
+sorted by Spanish id, plus `<output>.meta.json` with the counts per rejection reason. A Spanish
+sentence is kept when it:
+
+- has an English translation (the lowest English id when there are several);
+- is one sentence of at most 200 characters with 4 to 14 words, counted like
+  `SentenceScorer` counts them;
+- has only plain words (no digits, hyphens or apostrophes) and no capitalized word after the
+  first, which removes proper names ("Tom", "Mary") and acronyms;
+- uses only words from the rank file, so every word resolves in the Kaikki subset built from
+  the same file;
+- is not a repeat of an earlier sentence (same text up to case, Unicode form and spacing).
+
+When more than `--max-pairs` candidates remain, a fixed hash of the sentence id picks which to
+keep, so the sample is unbiased with respect to length and difficulty and never changes between
+runs. Scoring and bucketing into levels happens later, at `seed.db` build time.
+
+On the 2026-11-07 export with the top 25,000 SUBTLEX words: 443,166 Spanish sentences, 181,305
+without a translation, 43,045 with an out-of-scope word, 41,797 outside 4-14 words, 26,560 with
+a proper name, 140,741 candidates, 20,000 selected (1.7 MB, 750 KB gzipped).
+
 ## Building `seed.db`
 
 ```

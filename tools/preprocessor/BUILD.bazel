@@ -87,3 +87,14 @@ kt_jvm_test(
         "@maven//junit/junit",
     ],
 )
+
+kt_jvm_test(
+    name = "tatoeba_candidate_extractor_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/preprocessor/TatoebaCandidateExtractorTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.preprocessor.TatoebaCandidateExtractorTest",
+    deps = [
+        ":preprocessor_lib",
+        "@maven//junit/junit",
+    ],
+)

@@ -136,7 +136,7 @@ Decisions (agreed):
   attribution).
 
 PR 1 - inputs, extractors, licensing:
-- [ ] `tools/preprocessor/README.md`: download URLs, input formats, licenses (Kaikki CC BY-SA 4.0,
+- [x] `tools/preprocessor/README.md`: download URLs, input formats, licenses (Kaikki CC BY-SA 4.0,
       Tatoeba CC BY 2.0 FR, SUBTLEX-ESP citation) and the exact extractor and preprocessor commands.
 - [x] `NOTICE` with attribution and the share-alike requirement for the generated database; cites
       Ylonen's Wiktextract paper as Kaikki asks. (A `data/kaikki/` note lands with the data in PR 6.)
@@ -147,8 +147,13 @@ PR 1 - inputs, extractors, licensing:
 - [x] SUBTLEX extractor (`extract-sublex`): reads the official `SUBTLEX-ESP.xlsx` directly (no
       manual conversion; 3 side-by-side column groups) and writes the top-N rank TSV that
       `SublexReader` consumes. Verified on the real file: 25,000 words, ~450 KB, deterministic.
-- [ ] Tatoeba extractor: join the `sentences` and `links` exports into candidate pairs with
-      sentence ids (streaming, no full-file loads); tests.
+- [x] Tatoeba extractor (`extract-tatoeba`): joins the per-language `sentences`, English
+      `sentences` and `links` exports into single-sentence candidates with both Tatoeba ids.
+      Filters: translation, 4-14 words, one sentence, plain words, no proper names, only words
+      from the rank file, dedupe; a fixed id hash samples down to `--max-pairs`. Verified on the
+      real export: 443,166 sentences -> 140,741 candidates -> 20,000 pairs (750 KB gzipped).
+      The pool is not scored or levelled: that is PR 3 (the old `TatoebaProcessor` still reads
+      the `es<TAB>en` format and must switch to this id-based pool).
 
 PR 4 - generated `seed.db` (with the end-to-end test in 1.3):
 - [ ] Bazel target that builds `seed.db` from `data/seeds/*.json` and the checked-in subsets.
