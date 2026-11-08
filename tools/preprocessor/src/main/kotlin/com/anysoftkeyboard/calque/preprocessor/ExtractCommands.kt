@@ -14,6 +14,7 @@ internal fun runExtractCommand(command: String, options: Map<String, String>) {
         when (command) {
             "extract-sublex" -> extractSublex(options)
             "extract-kaikki" -> extractKaikki(options)
+            "extract-tatoeba" -> extractTatoeba(options)
             else -> throw UsageException("Unknown command: $command")
         }
     } catch (e: UsageException) {
@@ -45,19 +46,8 @@ private fun extractKaikki(options: Map<String, String>) {
         resolveFile(options["--metadata"])
             ?: File(output.path.removeSuffix(".jsonl.gz") + ".meta.json")
 
-    val wanted =
-        ranks.inputStream().buffered().use { SublexReader.readFrequencies(it).keys }.toMutableSet()
-    resolveFile(options["--extra-words"])?.let { file ->
-        wanted.addAll(file.inputStream().use { KaikkiSubsetFiles.readWordList(it) })
-    }
-    val sourceInfo =
-        mapOf(
-                "source" to input.name,
-                "sourceLastModified" to options["--source-last-modified"],
-                "sourceEtag" to options["--source-etag"],
-            )
-            .filterValues { it != null }
-            .mapValues { it.value.orEmpty() }
+    val wanted = readWantedWords(ranks, resolveFile(options["--extra-words"]))
+    val sourceInfo = sourceInfo(options, input.name)
 
     println("Extracting lemmas from ${input.path} (${wanted.size} words in scope)...")
     val stats = KaikkiSubsetFiles.extractToFiles(input, wanted, output, metadata, sourceInfo)
@@ -70,3 +60,47 @@ private fun extractKaikki(options: Map<String, String>) {
     )
     println("Wrote ${output.path} (${output.length()} bytes) and ${metadata.path}")
 }
+
+private fun extractTatoeba(options: Map<String, String>) {
+    val inputs =
+        TatoebaInputs(
+            spanish = options.requireFile("--spanish"),
+            english = options.requireFile("--english"),
+            links = options.requireFile("--links"),
+        )
+    val output = options.requireFile("--output")
+    val metadata =
+        resolveFile(options["--metadata"])
+            ?: File(output.path.removeSuffix(".tsv.gz") + ".meta.json")
+    val maxPairs = options.positiveInt("--max-pairs", TatoebaCandidateExtractor.DEFAULT_MAX_PAIRS)
+    val wanted = readWantedWords(options.requireFile("--ranks"), null)
+    val sourceInfo = sourceInfo(options, inputs.spanish.name)
+
+    println("Selecting Tatoeba candidates (${wanted.size} words in scope, max $maxPairs)...")
+    val stats =
+        TatoebaCandidateFiles.extractToFiles(
+            TatoebaRun(inputs, wanted, maxPairs, output, metadata, sourceInfo)
+        )
+    println("Read ${stats.spanishLinesRead} Spanish sentences: ${stats.candidates} candidates")
+    println("Rejected: ${stats.rejections.entries.joinToString { "${it.key}=${it.value}" }}")
+    println("Wrote ${stats.selected} pairs to ${output.path} (${output.length()} bytes)")
+}
+
+/** The words in the rank file, plus the optional extra word list. */
+private fun readWantedWords(ranks: File, extraWords: File?): Set<String> {
+    val words =
+        ranks.inputStream().buffered().use { SublexReader.readFrequencies(it).keys }.toMutableSet()
+    extraWords?.let { file ->
+        words.addAll(file.inputStream().use { KaikkiSubsetFiles.readWordList(it) })
+    }
+    return words
+}
+
+/** Provenance recorded in the metadata files: the source name and optional HTTP headers. */
+private fun sourceInfo(options: Map<String, String>, sourceName: String): Map<String, String> =
+    listOfNotNull(
+            "source" to sourceName,
+            options["--source-last-modified"]?.let { "sourceLastModified" to it },
+            options["--source-etag"]?.let { "sourceEtag" to it },
+        )
+        .toMap()

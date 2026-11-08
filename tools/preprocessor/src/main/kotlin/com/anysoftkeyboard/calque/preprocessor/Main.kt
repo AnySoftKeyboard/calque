@@ -68,6 +68,10 @@ internal fun printUsageAndExit(message: String? = null) {
           extract-kaikki --input <kaikki.jsonl[.gz]> --ranks <ranks.tsv> --output <lemmas.jsonl.gz>
                          [--extra-words <words.txt>] [--metadata <path>]
                          [--source-last-modified <text>] [--source-etag <text>]
+          extract-tatoeba --spanish <spa_sentences.tsv> --english <eng_sentences.tsv>
+                          --links <spa-eng_links.tsv> --ranks <ranks.tsv>
+                          --output <pairs.tsv.gz> [--max-pairs 20000] [--metadata <path>]
+                          [--source-last-modified <text>]
         """
             .trimIndent(),
     )
