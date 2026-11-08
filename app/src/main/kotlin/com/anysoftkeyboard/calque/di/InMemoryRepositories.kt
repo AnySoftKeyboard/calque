@@ -17,12 +17,17 @@ import java.util.Locale
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicLong
 
-/** In-memory fallback implementation of [DictionaryRepository]. */
+/**
+ * In-memory fallback implementation of [DictionaryRepository]. Entries given for the same spelling
+ * are its readings: the first is the primary one, the rest its alternatives.
+ */
 class InMemoryDictionaryRepository(
     initialEntries: List<DictionaryEntry> = emptyList(),
 ) : DictionaryRepository {
     private val entriesBySurface =
-        initialEntries.associateBy { it.surfaceForm.lowercase(Locale.ROOT) }
+        initialEntries
+            .groupBy { it.surfaceForm.lowercase(Locale.ROOT) }
+            .mapValues { (_, readings) -> readings.first().copy(alternatives = readings.drop(1)) }
 
     override fun getBySurfaceForm(surfaceForm: String): DictionaryEntry? =
         entriesBySurface[surfaceForm.lowercase(Locale.ROOT).trim()]

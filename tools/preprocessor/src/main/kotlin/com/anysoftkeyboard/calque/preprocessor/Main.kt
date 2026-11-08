@@ -30,6 +30,7 @@ fun main(args: Array<String>) {
             curatedLessonsFile = resolveFile(options["--curated-lessons"]),
             tatoebaFile = resolveFile(options["--tatoeba"]),
             cognateRulesFile = resolveFile(options["--cognate-rules"]),
+            readingOverridesFile = resolveFile(options["--reading-overrides"]),
             tatoebaPacks =
                 TatoebaPackConfig(
                     packSize =
@@ -54,7 +55,17 @@ fun main(args: Array<String>) {
     val elapsed = System.currentTimeMillis() - startTime
 
     println("Pipeline completed successfully in ${elapsed}ms:")
-    println("  - Dictionary entries inserted: ${summary.dictionaryRows}")
+    printSummary(summary)
+}
+
+private fun printSummary(summary: PipelineSummary) {
+    println("  - Dictionary readings stored: ${summary.dictionaryRows}")
+    println("  - Spellings with several readings: ${summary.ambiguousSpellings}")
+    if (summary.unmatchedReadingOverrides.isNotEmpty()) {
+        println(
+            "  - WARNING: reading overrides matching no reading: ${summary.unmatchedReadingOverrides}"
+        )
+    }
     println("  - False cognate forms expanded: ${summary.falseCognateRows}")
     if (summary.falseCognateLemmasWithoutDictionaryRows.isNotEmpty()) {
         println(
@@ -83,6 +94,7 @@ internal fun printUsageAndExit(message: String? = null) {
           --tatoeba-pack-size <n>   Sentences per Tatoeba lesson (default 8)
           --tatoeba-packs-per-level <n>  Most Tatoeba lessons per level (default 16)
           --cognate-rules <path>    Path to cognate_rules_seed.json
+          --reading-overrides <path>  Path to reading_overrides.json (primary reading per spelling)
 
         Extract commands (see tools/preprocessor/README.md):
           extract-sublex --input <SUBTLEX-ESP.xlsx> --output <ranks.tsv> [--limit 25000]

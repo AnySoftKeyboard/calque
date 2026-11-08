@@ -10,6 +10,7 @@ def seed_db(
         kaikki = None,
         sublex = None,
         tatoeba = None,
+        reading_overrides = None,
         extra_args = [],
         **kwargs):
     """Generates `seed.db` with the preprocessor from checked-in inputs.
@@ -29,6 +30,7 @@ def seed_db(
       kaikki: Optional label of the Kaikki lemma subset (.jsonl.gz).
       sublex: Optional label of the SUBTLEX-ESP rank file (.tsv).
       tatoeba: Optional label of the Tatoeba candidate pool (.tsv.gz).
+      reading_overrides: Optional label of reading_overrides.json (primary reading per spelling).
       extra_args: Extra command line arguments for the preprocessor.
       **kwargs: Passed to the underlying genrule (e.g. visibility).
     """
@@ -40,6 +42,7 @@ def seed_db(
         ("--kaikki", kaikki),
         ("--sublex", sublex),
         ("--tatoeba", tatoeba),
+        ("--reading-overrides", reading_overrides),
     ]
     srcs = []
     args = []

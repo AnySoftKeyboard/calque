@@ -25,13 +25,15 @@ class SeedDatabase(
             listOf(
                 """
                 CREATE TABLE IF NOT EXISTS dictionary (
-                    surface_form TEXT NOT NULL PRIMARY KEY,
+                    surface_form TEXT NOT NULL,
                     lemma TEXT NOT NULL,
                     pos TEXT NOT NULL,
                     grammar_info TEXT,
                     english_gloss TEXT NOT NULL,
                     is_cognate INTEGER NOT NULL,
-                    frequency_rank INTEGER
+                    frequency_rank INTEGER,
+                    reading_order INTEGER NOT NULL,
+                    PRIMARY KEY (surface_form, lemma, pos)
                 )
                 """
                     .trimIndent(),

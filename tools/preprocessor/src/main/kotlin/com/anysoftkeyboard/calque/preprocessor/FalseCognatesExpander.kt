@@ -41,7 +41,9 @@ object FalseCognatesExpander {
     /** Like [expand], but also reports the seeds that found no dictionary rows. */
     fun expandWithReport(inputStream: InputStream, database: SeedDatabase): FalseCognateExpansion {
         val seeds = parseSeeds(inputStream)
-        val rows = mutableListOf<FalseCognateRow>()
+        // One card per spelling: when two seeds claim the same spelling (fue = ser / ir) the seed
+        // of the spelling's primary reading wins, otherwise the first seed keeps it.
+        val rows = LinkedHashMap<String, FalseCognateRow>()
         val withoutRows = mutableListOf<String>()
 
         for (seed in seeds) {
@@ -51,25 +53,30 @@ object FalseCognatesExpander {
             matchingSurfaces.add(seed.lemma.lowercase(Locale.ROOT))
 
             for (surface in matchingSurfaces) {
-                rows.add(
-                    FalseCognateRow(
-                        surfaceForm = surface,
-                        lemma = seed.lemma,
-                        apparentEnglish = seed.apparentEnglish,
-                        actualEnglish = seed.actualEnglish,
-                        realSpanishForApparent = seed.realSpanishForApparent,
-                        severity = seed.severity,
-                        disambiguationTip = seed.disambiguationTip,
-                        exampleEs = seed.exampleEs,
-                        exampleEn = seed.exampleEn,
-                    ),
-                )
+                val row = cardFor(surface, seed)
+                val existing = rows[surface]
+                if (existing == null || database.queryDictionaryRow(surface)?.lemma == seed.lemma) {
+                    rows[surface] = row
+                }
             }
         }
 
-        database.insertFalseCognatesBatch(rows)
+        database.insertFalseCognatesBatch(rows.values)
         return FalseCognateExpansion(rows.size, withoutRows)
     }
+
+    private fun cardFor(surface: String, seed: FalseCognateSeed) =
+        FalseCognateRow(
+            surfaceForm = surface,
+            lemma = seed.lemma,
+            apparentEnglish = seed.apparentEnglish,
+            actualEnglish = seed.actualEnglish,
+            realSpanishForApparent = seed.realSpanishForApparent,
+            severity = seed.severity,
+            disambiguationTip = seed.disambiguationTip,
+            exampleEs = seed.exampleEs,
+            exampleEn = seed.exampleEn,
+        )
 
     /** Parses the false cognates seed JSON stream into a list of [FalseCognateSeed] objects. */
     fun parseSeeds(inputStream: InputStream): List<FalseCognateSeed> {

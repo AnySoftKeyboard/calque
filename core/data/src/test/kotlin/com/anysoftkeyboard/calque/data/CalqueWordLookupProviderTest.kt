@@ -45,8 +45,8 @@ class CalqueWordLookupProviderTest {
         // Insert dictionary entry for 'hotel'
         val dictSql =
             """
-            INSERT INTO dictionary (surface_form, lemma, pos, grammar_info, english_gloss, is_cognate, frequency_rank)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO dictionary (surface_form, lemma, pos, grammar_info, english_gloss, is_cognate, frequency_rank, reading_order)
+            VALUES (?, ?, ?, ?, ?, ?, ?, 0)
             """
                 .trimIndent()
         seedDb.connection.prepareStatement(dictSql).use { stmt ->

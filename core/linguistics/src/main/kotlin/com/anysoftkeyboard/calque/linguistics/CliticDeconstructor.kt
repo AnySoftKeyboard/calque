@@ -87,11 +87,12 @@ object CliticDeconstructor {
         val strippedStem = normalized.substring(0, stemLength)
         val unaccentedStem = stripWrittenAccent(strippedStem)
 
+        // The root may be a spelling with several readings ("dame" is also a noun); any verb
+        // reading of it will do, not only the primary one.
         val rootEntry =
-            lookupProvider.lookupSingleWord(unaccentedStem)
-                ?: lookupProvider.lookupSingleWord(strippedStem)
-
-        if (rootEntry == null || !isVerb(rootEntry.pos)) return null
+            listOf(unaccentedStem, strippedStem).distinct().firstNotNullOfOrNull { stem ->
+                lookupProvider.lookupSingleWord(stem)?.readings?.firstOrNull { isVerb(it.pos) }
+            } ?: return null
 
         val pronounParts = splitPronounSuffix(suffix)
         val combinedGloss = buildCombinedGloss(rootEntry.englishGloss, pronounParts)

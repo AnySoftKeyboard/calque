@@ -54,14 +54,16 @@ class RoomSchemaParityTest {
                 entityClass = DictionaryEntity::class.java,
                 columns =
                     mapOf(
+                        // The key is (surface_form, lemma, pos): one row per reading.
                         "surface_form" to TableColumnInfo("surface_form", "TEXT", true, true),
-                        "lemma" to TableColumnInfo("lemma", "TEXT", true, false),
-                        "pos" to TableColumnInfo("pos", "TEXT", true, false),
+                        "lemma" to TableColumnInfo("lemma", "TEXT", true, true),
+                        "pos" to TableColumnInfo("pos", "TEXT", true, true),
                         "grammar_info" to TableColumnInfo("grammar_info", "TEXT", false, false),
                         "english_gloss" to TableColumnInfo("english_gloss", "TEXT", true, false),
                         "is_cognate" to TableColumnInfo("is_cognate", "INTEGER", true, false),
                         "frequency_rank" to
                             TableColumnInfo("frequency_rank", "INTEGER", false, false),
+                        "reading_order" to TableColumnInfo("reading_order", "INTEGER", true, false),
                     ),
                 indices = mapOf("idx_dictionary_lemma" to listOf("lemma")),
             ),
@@ -217,8 +219,8 @@ class RoomSchemaParityTest {
 
             val sql =
                 """
-                INSERT INTO dictionary (surface_form, lemma, pos, grammar_info, english_gloss, is_cognate, frequency_rank)
-                VALUES ('perro', 'perro', 'noun', 'masculine', 'dog', 0, 150)
+                INSERT INTO dictionary (surface_form, lemma, pos, grammar_info, english_gloss, is_cognate, frequency_rank, reading_order)
+                VALUES ('perro', 'perro', 'noun', 'masculine', 'dog', 0, 150, 0)
                 """
                     .trimIndent()
             db.connection.createStatement().use { it.execute(sql) }
@@ -238,6 +240,7 @@ class RoomSchemaParityTest {
                     englishGloss = entry.englishGloss,
                     isCognate = if (entry.isCognate) 1 else 0,
                     frequencyRank = entry.frequencyRank,
+                    readingOrder = 0,
                 )
             assertEquals("perro", entity.surfaceForm)
             assertEquals("dog", entity.englishGloss)
@@ -390,7 +393,7 @@ class RoomSchemaParityTest {
     }
 
     private companion object {
-        const val EXPECTED_SEED_SCHEMA_VERSION = 1
+        const val EXPECTED_SEED_SCHEMA_VERSION = 2
     }
 
     private fun camelToSnake(str: String): String {
