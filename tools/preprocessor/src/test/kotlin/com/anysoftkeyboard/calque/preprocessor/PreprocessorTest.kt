@@ -127,7 +127,7 @@ class PreprocessorTest {
         assertTrue("Expected seed file at ${seedFile.path}", seedFile.exists())
 
         val seeds = FileInputStream(seedFile).use { FalseCognatesExpander.parseSeeds(it) }
-        assertEquals(25, seeds.size)
+        assertTrue("Expected at least the original 25 seeds, found ${seeds.size}", seeds.size >= 25)
 
         val lemmas = seeds.map { it.lemma }.toSet()
         assertEquals(seeds.size, lemmas.size)
@@ -171,11 +171,14 @@ class PreprocessorTest {
 
             val expandedCount =
                 FileInputStream(seedFile).use { stream -> FalseCognatesExpander.expand(stream, db) }
-            // 25 base lemmas + 2 inflected dictionary forms ("soporta", "carpetas") = 27 rows
-            assertEquals(27, expandedCount)
+            // One row per seed lemma (its base form) + 2 inflected dictionary forms ("soporta",
+            // "carpetas"); the seeds lemmas are unique so no row is overwritten.
+            val seedCount =
+                FileInputStream(seedFile).use { FalseCognatesExpander.parseSeeds(it) }.size
+            assertEquals(seedCount + 2, expandedCount)
 
             val storedRows = db.queryFalseCognates()
-            assertEquals(27, storedRows.size)
+            assertEquals(seedCount + 2, storedRows.size)
             val surfaceMap = storedRows.associateBy { it.surfaceForm }
             assertEquals("soportar", surfaceMap["soporta"]?.lemma)
             assertEquals("carpeta", surfaceMap["carpetas"]?.lemma)
@@ -405,7 +408,7 @@ class PreprocessorTest {
 
         assertTrue(dbFile.exists())
         assertTrue(summary.dictionaryRows >= 100)
-        // 25 base lemmas + "carpetas" plural from Kaikki/dictionary = at least 26 rows
+        // One row per seed lemma (at least the original 25) + "carpetas" from the Kaikki sample.
         assertTrue(summary.falseCognateRows >= 26)
         assertEquals(8, summary.curatedLessonRows)
         assertEquals(12, summary.cognateRuleRows)
