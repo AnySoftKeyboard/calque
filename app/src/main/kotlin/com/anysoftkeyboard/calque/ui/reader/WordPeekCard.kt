@@ -21,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.anysoftkeyboard.calque.linguistics.FalseCognateEntry
+import com.anysoftkeyboard.calque.reader.AlternativeReadingsLabel
 import com.anysoftkeyboard.calque.reader.TokenInspection
 import com.anysoftkeyboard.calque.ui.theme.CalqueTheme
 
@@ -104,6 +105,18 @@ fun WordPeekCard(
                 fontWeight = FontWeight.Bold,
                 color = colors.textPrimary,
             )
+
+            // Other readings of the same spelling (padre: noun, but also an informal adjective)
+            val alsoText =
+                AlternativeReadingsLabel.of(inspection.alternativeReadings, inspection.lemma)
+            if (alsoText != null) {
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    text = "Also: $alsoText",
+                    fontSize = 12.sp,
+                    color = colors.textSecondary,
+                )
+            }
 
             // False Cognate Trap Section
             val trap = inspection.falseCognateTrap
