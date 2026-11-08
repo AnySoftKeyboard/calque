@@ -109,6 +109,28 @@ class RoomUserWordStateRepositoryTest {
     }
 
     @Test
+    fun setStarred_keepsSentenceFromFirstStarAcrossRestars() {
+        repo.setStarred("casa", true, "Primera oración.", 1L)
+        repo.setStarred("casa", false, null, 2L)
+
+        repo.setStarred("casa", true, "Segunda oración.", 3L)
+
+        val state = repo.getWordState("casa")
+        assertTrue(state?.starred == true)
+        assertEquals("Primera oración.", state?.savedContextSentence)
+    }
+
+    @Test
+    fun setStarred_recordsSentenceWhenWordWasEncounteredButNeverStarred() {
+        repo.recordEncounter("casa", 1L)
+        assertNull(repo.getWordState("casa")?.savedContextSentence)
+
+        repo.setStarred("casa", true, "Mi casa es tu casa.", 2L)
+
+        assertEquals("Mi casa es tu casa.", repo.getWordState("casa")?.savedContextSentence)
+    }
+
+    @Test
     fun blankLemmaIsIgnored() {
         repo.recordEncounter("  ", 1L)
         repo.setWordStatus("", UserWordStatus.MASTERED, 1L)

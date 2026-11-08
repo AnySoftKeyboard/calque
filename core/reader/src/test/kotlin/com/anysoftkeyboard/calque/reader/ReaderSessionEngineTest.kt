@@ -333,7 +333,7 @@ class ReaderSessionEngineTest {
             vault[lemma] =
                 existing?.copy(
                     starred = starred,
-                    savedContextSentence = contextSentence ?: existing.savedContextSentence,
+                    savedContextSentence = existing.savedContextSentence ?: contextSentence,
                     lastSeenTimestamp = timestamp,
                 )
                     ?: UserWordState(

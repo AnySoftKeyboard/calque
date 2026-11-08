@@ -113,7 +113,7 @@ class RoomUserWordStateRepository(
                 dao.upsertWordState(
                     existing.copy(
                         starred = if (starred) 1 else 0,
-                        savedContextSentence = contextSentence ?: existing.savedContextSentence,
+                        savedContextSentence = existing.savedContextSentence ?: contextSentence,
                         lastSeenTimestamp = timestamp,
                     )
                 )
