@@ -16,14 +16,17 @@ Calque relies on a two-part local SQLite database managed by Room:
 ## Database Tables
 
 ### 1. `dictionary` (Seed Table)
-Maps every lowercased Spanish surface form (including conjugated verbs and plurals) directly to its root lemma and grammatical role.
-- `surface_form` (Text, Primary Key): Exact lowercase word as it appears in text (e.g., `hablábamos`).
-- `lemma` (Text, Indexed): Base dictionary form (e.g., `hablar`).
-- `pos` (Text): Part of speech (`verb`, `noun`, `adj`, `adv`, `pron`, `prep`, `conj`).
+Maps every lowercased Spanish surface form (including conjugated verbs and plurals) directly to its root lemma and grammatical role. A spelling can have several *readings* (`padre` is a noun and an informal adjective, `vino` is a noun and a form of `venir`, `fue` is a form of `ser` and of `ir`); there is one row per reading and the table is at schema version 2.
+- `surface_form` (Text, Primary Key part 1): Exact lowercase word as it appears in text (e.g., `hablábamos`).
+- `lemma` (Text, Primary Key part 2, Indexed): Base dictionary form (e.g., `hablar`).
+- `pos` (Text, Primary Key part 3): Part of speech (`verb`, `noun`, `adj`, `adv`, `pron`, `prep`, `conj`).
+- `reading_order` (Integer): Position of this reading among the readings of the spelling, numbered `0..n-1` without gaps. `0` is the primary reading, the one shown first; the rest are alternatives, best first. The order is a build-time decision (see INGESTION.md), so the app never ranks readings itself.
 - `grammar_info` (Text, Nullable): Concise morphological tag (e.g., `1st pl. imperfect`, `fem. plural`).
 - `english_gloss` (Text): Concise English meaning in context.
 - `is_cognate` (Boolean/Integer): `1` if the word shares a transparent Latin/English root.
 - `frequency_rank` (Integer, Nullable): Rank from SUBTLEX-ESP (lower number = more common).
+
+Lookups by spelling return the primary reading with the others attached as `DictionaryEntry.alternatives`; `TokenInspection.alternativeReadings` carries them to the peek card, which shows an "Also:" line. Searches by prefix return only primary readings.
 
 ### 2. `false_cognates` (Seed Table)
 Stores the "4-Part Card" structure for every surface form of known Spanish-English false friends.

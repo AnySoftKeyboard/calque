@@ -169,21 +169,20 @@ PR 4 - generated `seed.db` (done; end-to-end test in 1.3):
       `ROOM_SCHEMA_VERSION`; `RoomGeneratedSchemaValidationTest` guards it on the generated file).
 
 PR 6 - real data (done, except the open decisions marked below):
-- [ ] **DECISION NEEDED - SUBTLEX-ESP license.** The official file is CC BY-NC-SA 4.0
-      (non-commercial, share-alike), which does not sit well with an Apache-2.0 app. It was
-      approved for use before the license was known to be NC. `data/subtlex/` is committed as
-      approved but is isolated (it holds the ranks and the SUBTLEX counts), and this whole PR can
-      be dropped without touching PRs 1-5. Confirm it is acceptable for the distribution channel
-      before merging or releasing, or replace the frequency source (the rest of the pipeline only
-      needs a `word, rank` file).
+- [x] **Decided - SUBTLEX-ESP license.** The official file is CC BY-NC-SA 4.0 (non-commercial,
+      share-alike). Accepted: the app is open source (Apache-2.0 code) and is not sold. The code
+      stays Apache-2.0; the generated `seed.db` and `data/subtlex/` carry the data licenses, and
+      anyone redistributing a build inherits the non-commercial and share-alike terms (stated in
+      `NOTICE`). The credits screen (below) must say so. The pipeline only needs a `word, rank`
+      file, so the source can still be swapped if the distribution plan changes.
 - [x] Ran the extractors with N = 25,000 and committed the subsets and metadata (`data/`, with
       a `data/README.md`): ranks 25,000 words (450 KB); Kaikki 14,546 lemmas + 1,973 aliases +
       197,526 forms (1.2 MB gzipped, 98.6% of the ranked words resolve); Tatoeba 20,000 pairs
       (750 KB). Source versions are in the `*.meta.json` files. New command `extract-seed-words`
       generates `data/kaikki/extra_words.txt` (308 words, only 10 beyond the top 25,000) so the
       words of the curated seeds always resolve; `constipado` now does.
-- [x] `//app:seed_db_asset` builds from the committed subsets: 3 s, 148,972 dictionary rows,
-      525 false-cognate rows, 56 lessons (8 hand-written + 48 Tatoeba), 12 rules. The Room schema
+- [x] `//app:seed_db_asset` builds from the committed subsets: 3 s, 160,019 dictionary readings,
+      676 false-cognate rows, 60 lessons (12 hand-written + 48 Tatoeba), 12 rules. The Room schema
       tests, the parity test and `PackagedSeedAssetTest` (updated for the real contents) pass on
       it, and the APK ships it.
 - [x] **Bug found by the guard tests after building from the real data, and fixed:** the
@@ -193,20 +192,31 @@ PR 6 - real data (done, except the open decisions marked below):
       noun now loses to any common-word row (`grammar_info = "proper noun"`, no cognate flag,
       no forms); 0 capitalized lemma rows win a common word now and 404 survive where nothing
       competes. `PackagedSeedAssetTest` pins `amigo`, `bueno`, `grande`, `claro`, `estado`, ...
-- [ ] **Open problem - one part of speech per spelling.** `surface_form` is the primary key, so
-      a spelling with several lemma entries keeps one, chosen by input order (alphabetical by
-      part of speech). Checked on 45 common words with a hand-made answer key: alphabetical
-      order gives the intended entry for 28 (62%), a fixed part-of-speech preference 29, most
-      senses first 32 (71%). Examples still wrong: `amigo` = interjection "Said when realizing
-      something" (the noun entry is missing from the data), `padre` / `señor` = informal
-      adjectives, `claro` = noun. No cheap rule is good enough, so none was added. Real fixes:
-      one row per (spelling, part of speech) or a second table of alternatives, and/or
-      curated overrides in `dictionary_seed.json` for the few hundred most frequent words.
-- [ ] **DECISION NEEDED - size.** The generated `seed.db` is 20.3 MB (4.6 MB inside the APK;
-      the whole APK is 37 MB). About 66,000 of the 149,000 dictionary rows have no rank (rare
-      inflections of ranked lemmas). Options: keep them (best lookup coverage for pasted text),
-      drop unranked inflections (~halves the file, but rare forms stop resolving), or lower N.
-      Kept as is until decided.
+- [x] **One part of speech per spelling - fixed (option 2: store every reading).** `surface_form`
+      was the primary key, so a spelling with several readings kept one. Measured: 23% of the
+      25,000 most frequent spellings (about half of all running text) have more than one part of
+      speech, and no cheap rule picks the right one (62-71% on a hand-made key). Now the key is
+      (`surface_form`, `lemma`, `pos`), `reading_order` numbers the readings (0 = primary),
+      `DictionaryEntry.alternatives` and `TokenInspection.alternativeReadings` carry the others,
+      the peek card shows an "Also:" line, schema version 2. 160,019 readings of 149,038
+      spellings; 9,882 spellings have several readings (up to 8). `reading_overrides.json` (69
+      entries) fixes the primary of the common words the automatic order got wrong; the build
+      fails when an override stops matching. Noise dropped: proper nouns next to a common word,
+      and the other gender of a word listed among its forms (`padre` as a form of `madre`).
+      Details in INGESTION.md "Readings".
+  - [ ] Follow-up: choose the reading from the sentence (an article before the word suggests a
+        noun, a subject pronoun a verb). The alternatives are stored, so this needs no data
+        change. Today `vino` is always *wine*, with "Also: verb (venir)" on the card.
+  - [ ] Follow-up: extend `reading_overrides.json` beyond the 900 most frequent words, and fix
+        the missing noun entry for `amigo` in the Kaikki data if it matters (the override uses
+        the noun that does exist).
+  - [ ] Follow-up: `vault` / `user_word_state` are keyed by lemma; with alternatives, decide
+        whether starring a word should star the primary lemma only (today) or ask which reading.
+- [x] **Decided - size.** Up to 40 MB is acceptable, so everything is kept: the rare unranked
+      inflections (about 66,000 rows) give the best lookup coverage for pasted text. The
+      generated `seed.db` is now 23.9 MB (20.3 MB before the readings were stored, +3.6 MB for
+      the ~11,000 extra rows). Budget left: about 16 MB. If a later change needs it, the first
+      lever is dropping unranked inflections of rare lemmas.
 - [ ] Attribution/credits screen in the app for CC BY-SA / CC BY data (the `NOTICE` file is PR 1).
 
 ### 1.2 Pedagogical content (curated JSON seeds)
@@ -509,10 +519,10 @@ Engines exist (see section 0); remaining spec gaps:
 
 1. Real seed data + docs for the pipeline (1.1, 1.3) - unblocks everything visual. Done as a stack
    of 14 PRs (extractors, collision rules, Kaikki processor, audits, Tatoeba lessons, seed
-   validation, generated `seed.db`, real data, fixes found on it, content). Open: the SUBTLEX
-   license, the `seed.db` size, one part of speech per spelling, native review of the content,
-   and sections 1.4 / 1.5 (runtime ingestion and persistence follow-ups), which were not part
-   of this batch.
+   validation, generated `seed.db`, real data, fixes found on it, content) plus the readings
+   change (schema v2). Decided: SUBTLEX-ESP stays, up to 40 MB is fine. Open: choosing the
+   reading from the sentence, native review of the content, the credits screen, and sections
+   1.4 / 1.5 (runtime ingestion and persistence follow-ups), which were not part of this batch.
 2. Token markers + peek sheet completion + design tokens/fonts (4.3, 4.4, 4.9).
 3. Vault tab with Flow-backed ViewModel (4.7, 1.5) and encounter-count semantics.
 4. TTS service + Listen buttons (3.2).

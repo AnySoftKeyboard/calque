@@ -38,6 +38,18 @@ kt_jvm_test(
 )
 
 kt_jvm_test(
+    name = "alternative_readings_label_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/reader/AlternativeReadingsLabelTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.reader.AlternativeReadingsLabelTest",
+    deps = [
+        ":reader",
+        "//core/linguistics",
+        "@maven//junit/junit",
+    ],
+)
+
+kt_jvm_test(
     name = "reader_session_engine_test",
     size = "small",
     srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/reader/ReaderSessionEngineTest.kt"],

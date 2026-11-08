@@ -36,6 +36,7 @@ Displays either a single focus sentence (Level 0) or a short multi-sentence pass
    - Slides up a half-height bottom sheet while keeping the sentence visible above.
    - Displays the exact surface word, `[🔊]` slow/normal audio button, and `[⭐ Save to Vault]` toggle.
    - **If Standard Word/Verb**: Shows dictionary lemma, part of speech, tense/person breakdown, and contextual English meaning.
+   - **If the spelling has other readings** (`padre` is a noun and an informal adjective; `fue` is a form of *ser* and of *ir*): an `Also: adjective: cool, acceptable • verb (padrar): to sire` line lists up to three of them under the meaning, so a learner never sees only the wrong one.
    - **If False Cognate**: Renders the amber **4-Part Card** (`word ≠ lookalike`, actual meaning, how to say the lookalike in Spanish, and the mnemonic tip).
    - **If Compound Verb with Clitics**: Shows the exploded pronoun blocks (`diciendo` + `me` + `lo`).
    - **Deep-Link Footer**: A pill button at the bottom of the sheet (`[Open in Tense Shifter →]` or `[Open in Number Odometer →]`) jumps directly to the relevant Toolbox sandbox pre-loaded with that word.

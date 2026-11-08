@@ -210,11 +210,16 @@ bazelisk run //tools/preprocessor:preprocessor -- --db /tmp/seed.db \
 
 Rules worth knowing:
 
-- **Collisions:** `surface_form` is the primary key, so homographs (`fue` = *ser* / *ir*) compete
-  for one row. A lemma row beats an inflected row, which beats a proper noun (a capitalized lemma
-  such as the surname `Amigo`, which must never hide `amigo`); then the lower `frequency_rank`
-  wins, then the first row seen stays. The curated dictionary seed is applied last and always
-  replaces. Only one part of speech per spelling can be stored, see INGESTION.md.
+- **Readings:** a spelling can have several readings (`padre` = noun and informal adjective,
+  `fue` = *ser* and *ir*). All are stored, one row per (spelling, lemma, part of speech), and
+  `reading_order` numbers them from 0 (the primary). Two rows with the same key compete: a lemma
+  row beats an inflected row, which beats a proper noun (a capitalized lemma such as the surname
+  `Amigo`); then the lower `frequency_rank`; then the first row seen. The curated dictionary seed
+  replaces the row with the same key and becomes primary. See INGESTION.md.
+- **Reading overrides:** `--reading-overrides data/seeds/reading_overrides.json` promotes an
+  existing reading for the spellings where the automatic order is wrong (`amigo`, `sé`, `mira`).
+  With `--strict-overrides`, which the Bazel rule sets, an override that matches nothing fails the
+  build. To fix a wrong primary, add `{"surface_form", "pos", "lemma"?}` to the file.
 - **Frequency:** a row's rank is the better of its lemma's rank and its own, see INGESTION.md.
 - **Aliases** from the Kaikki subset (`tu`, `muy`, `dame`) become rows of their target lemma.
 - Malformed or unwanted Kaikki lines are counted and skipped, never fatal.
