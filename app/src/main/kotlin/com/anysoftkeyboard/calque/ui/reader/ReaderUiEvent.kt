@@ -36,6 +36,12 @@ sealed interface ReaderUiEvent {
     /** Toggles the interlinear literal gloss scaffolding. */
     data object ToggleInterlinear : ReaderUiEvent
 
+    /**
+     * Press-and-hold "Hold for Calque" mirror: while [held] is true the interlinear glosses and the
+     * natural translation are revealed; releasing hides them immediately.
+     */
+    data class SetMirrorHeld(val held: Boolean) : ReaderUiEvent
+
     /** Toggles visibility of the natural English translation. */
     data object ToggleTranslation : ReaderUiEvent
 

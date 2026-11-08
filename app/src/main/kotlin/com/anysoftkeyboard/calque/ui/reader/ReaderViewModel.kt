@@ -54,6 +54,7 @@ class ReaderViewModel(
             is ReaderUiEvent.ClearSelection -> clearSelection()
             is ReaderUiEvent.ToggleInterlinear -> toggleInterlinear()
             is ReaderUiEvent.ToggleTranslation -> toggleTranslation()
+            is ReaderUiEvent.SetMirrorHeld -> setMirrorHeld(event.held)
             is ReaderUiEvent.ToggleStarred -> toggleStarred(event.lemma)
             is ReaderUiEvent.UpdateWordStatus -> updateWordStatus(event.lemma, event.status)
             is ReaderUiEvent.CloseSession -> closeSession()
@@ -226,6 +227,14 @@ class ReaderViewModel(
         _uiState.update { state ->
             val active = state.activeSession ?: return@update state
             state.copy(activeSession = active.copy(showTranslation = !active.showTranslation))
+        }
+    }
+
+    fun setMirrorHeld(held: Boolean) {
+        _uiState.update { state ->
+            val active = state.activeSession ?: return@update state
+            if (active.isMirrorHeld == held) return@update state
+            state.copy(activeSession = active.copy(isMirrorHeld = held))
         }
     }
 

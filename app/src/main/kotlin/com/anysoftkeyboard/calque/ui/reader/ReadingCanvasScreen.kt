@@ -2,6 +2,7 @@ package com.anysoftkeyboard.calque.ui.reader
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,6 +25,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -39,6 +41,7 @@ fun ReadingCanvasScreen(
     onSelectToken: (Int) -> Unit,
     onToggleInterlinear: () -> Unit,
     onToggleTranslation: () -> Unit,
+    onMirrorHeldChange: (Boolean) -> Unit,
     onNextSentence: () -> Unit,
     onCloseSession: () -> Unit,
     modifier: Modifier = Modifier,
@@ -100,7 +103,7 @@ fun ReadingCanvasScreen(
                             TokenItem(
                                 token = token,
                                 isSelected = i == activeSession.selectedTokenIndex,
-                                showGloss = activeSession.showInterlinear,
+                                showGloss = activeSession.isGlossVisible,
                                 onClick = { onSelectToken(i) },
                             )
                         }
@@ -109,7 +112,7 @@ fun ReadingCanvasScreen(
 
                 // Natural Translation Card
                 val translation = currentSentence.translationEn
-                if (activeSession.showTranslation && translation != null) {
+                if (activeSession.isTranslationVisible && translation != null) {
                     Spacer(modifier = Modifier.height(12.dp))
                     Card(
                         modifier = Modifier.fillMaxWidth(),
@@ -213,6 +216,35 @@ fun ReadingCanvasScreen(
                         fontWeight =
                             if (activeSession.showTranslation) FontWeight.Bold
                             else FontWeight.Normal,
+                    )
+                }
+
+                Box(
+                    modifier =
+                        Modifier.weight(1f)
+                            .pointerInput(Unit) {
+                                detectTapGestures(
+                                    onPress = {
+                                        onMirrorHeldChange(true)
+                                        try {
+                                            tryAwaitRelease()
+                                        } finally {
+                                            onMirrorHeldChange(false)
+                                        }
+                                    },
+                                )
+                            }
+                            .padding(vertical = 8.dp),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text(
+                        text = "🪞 Hold for Calque",
+                        fontSize = 14.sp,
+                        color =
+                            if (activeSession.isMirrorHeld) colors.slateBlueAccent
+                            else colors.textPrimary,
+                        fontWeight =
+                            if (activeSession.isMirrorHeld) FontWeight.Bold else FontWeight.Normal,
                     )
                 }
 

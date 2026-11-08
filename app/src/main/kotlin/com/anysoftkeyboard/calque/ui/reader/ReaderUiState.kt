@@ -24,11 +24,24 @@ data class ActiveSessionUiState(
     val activeInspection: TokenInspection? = null,
     val showInterlinear: Boolean = false,
     val showTranslation: Boolean = false,
+    val isMirrorHeld: Boolean = false,
     val readerMode: ReaderMode = ReaderMode.SENTENCE_FOCUS,
     val isCompleted: Boolean = false,
 ) {
     val currentSentence: EnrichedSentence?
         get() = sentences.getOrNull(currentSentenceIndex)
+
+    /**
+     * Whether interlinear glosses are visible: pinned by the toggle or while the mirror is held.
+     */
+    val isGlossVisible: Boolean
+        get() = showInterlinear || isMirrorHeld
+
+    /**
+     * Whether the natural translation is visible: pinned by the toggle or while the mirror is held.
+     */
+    val isTranslationVisible: Boolean
+        get() = showTranslation || isMirrorHeld
 }
 
 /** Immutable MVI UI state for the Reader screen. */

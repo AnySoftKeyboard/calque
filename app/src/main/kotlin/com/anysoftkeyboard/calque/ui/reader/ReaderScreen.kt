@@ -54,6 +54,7 @@ fun ReaderScreen(
                         onToggleTranslation = {
                             viewModel.onEvent(ReaderUiEvent.ToggleTranslation)
                         },
+                        onMirrorHeldChange = { viewModel.onEvent(ReaderUiEvent.SetMirrorHeld(it)) },
                         onNextSentence = { viewModel.onEvent(ReaderUiEvent.NextSentence) },
                         onCloseSession = { viewModel.onEvent(ReaderUiEvent.CloseSession) },
                         modifier = Modifier.fillMaxSize(),

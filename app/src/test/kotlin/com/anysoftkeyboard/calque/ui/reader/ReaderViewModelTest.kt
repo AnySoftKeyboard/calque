@@ -263,6 +263,63 @@ class ReaderViewModelTest {
         }
 
     @Test
+    fun onEvent_setMirrorHeld_revealsGlossAndTranslationOnlyWhileHeld() =
+        runTest(testDispatcher) {
+            val container = createContainer()
+            val viewModel = ReaderViewModel(container, testDispatcher, testDispatcher)
+            advanceUntilIdle()
+            viewModel.onEvent(ReaderUiEvent.SelectLesson(sampleLesson))
+            advanceUntilIdle()
+
+            val initial = viewModel.uiState.value.activeSession!!
+            assertFalse(initial.isGlossVisible)
+            assertFalse(initial.isTranslationVisible)
+
+            viewModel.onEvent(ReaderUiEvent.SetMirrorHeld(true))
+            val held = viewModel.uiState.value.activeSession!!
+            assertTrue(held.isMirrorHeld)
+            assertTrue(held.isGlossVisible)
+            assertTrue(held.isTranslationVisible)
+            // Holding must not flip the pinned toggles.
+            assertFalse(held.showInterlinear)
+            assertFalse(held.showTranslation)
+
+            viewModel.onEvent(ReaderUiEvent.SetMirrorHeld(false))
+            val released = viewModel.uiState.value.activeSession!!
+            assertFalse(released.isMirrorHeld)
+            assertFalse(released.isGlossVisible)
+            assertFalse(released.isTranslationVisible)
+        }
+
+    @Test
+    fun onEvent_setMirrorHeld_keepsPinnedGlossVisibleAfterRelease() =
+        runTest(testDispatcher) {
+            val container = createContainer()
+            val viewModel = ReaderViewModel(container, testDispatcher, testDispatcher)
+            advanceUntilIdle()
+            viewModel.onEvent(ReaderUiEvent.SelectLesson(sampleLesson))
+            advanceUntilIdle()
+            viewModel.onEvent(ReaderUiEvent.ToggleInterlinear)
+
+            viewModel.onEvent(ReaderUiEvent.SetMirrorHeld(true))
+            viewModel.onEvent(ReaderUiEvent.SetMirrorHeld(false))
+
+            assertTrue(viewModel.uiState.value.activeSession!!.isGlossVisible)
+        }
+
+    @Test
+    fun onEvent_setMirrorHeld_withoutSessionIsIgnored() =
+        runTest(testDispatcher) {
+            val container = createContainer()
+            val viewModel = ReaderViewModel(container, testDispatcher, testDispatcher)
+            advanceUntilIdle()
+
+            viewModel.onEvent(ReaderUiEvent.SetMirrorHeld(true))
+
+            assertNull(viewModel.uiState.value.activeSession)
+        }
+
+    @Test
     fun onEvent_tokenSelectionAndInspection() =
         runTest(testDispatcher) {
             val container = createContainer()
