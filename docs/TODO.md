@@ -222,7 +222,13 @@ PR 6 - real data (done, except the open decisions marked below):
       under the lemma `actual` while the false-cognate seed has its own card (now its own
       lemma). Guard tests on the generated database: every false-cognate row matches a
       dictionary row of the same lemma, and every lemma expands to all of its dictionary forms.
-- [ ] Expand `false_cognates_seed.json` (25 rows today).
+- [x] `false_cognates_seed.json` grew from 25 to 38 lemmas (`ropa`, `vaso`, `colegio`, `idioma`,
+      `contestar`, `decepcionar`, `disgusto`, `casualidad`, `firma`, `gripe`, `arena`, `sano`,
+      `mayor`); they expand to 664 cards across all forms in the generated database, and the guard
+      tests (structure, lemma-vs-dictionary, complete expansion) pass. Only 6 of their words were
+      beyond the top 25,000 and came in through `extra_words.txt`.
+- [ ] More false cognates are welcome (candidates not yet added: `argumento`, `exquisito`,
+      `ignorar`, `atender`, `conferencia`, `bizarro`, `injuria`); each needs a native check.
 - [ ] Confirm the 8 core suffix bridges (`-tion`, `-ty`, `-ous`, `-ly`, ...) each have gender rule,
       spelling note and 5-10 examples (12 rules exist today).
 - [x] (PR 5) Data-validation tests for the seed JSON files (`SeedFilesValidationTest`): required

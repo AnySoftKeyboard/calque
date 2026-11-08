@@ -3,14 +3,14 @@
     "source": "kaikki.org-dictionary-Spanish.jsonl",
     "sourceEtag": "\"6ae5258d-42bcda85\"",
     "sourceLastModified": "Fri, 30 Oct 2026 23:17:33 GMT",
-    "wantedWords": 25010,
+    "wantedWords": 25016,
     "linesRead": 814137,
     "malformedLines": 0,
     "formOfEntriesSkipped": 689533,
     "excludedEntriesSkipped": 23813,
-    "outOfScopeEntriesSkipped": 85591,
+    "outOfScopeEntriesSkipped": 85586,
     "duplicateEntriesMerged": 654,
-    "entries": 14546,
+    "entries": 14551,
     "aliases": 1973,
-    "forms": 197526
+    "forms": 197610
 }

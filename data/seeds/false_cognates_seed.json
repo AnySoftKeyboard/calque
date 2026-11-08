@@ -248,5 +248,135 @@
     "disambiguation_tip": "You introducir a key into a lock or a password into a form, but you presentar a friend to another person.",
     "example_es": "Introduzca su contraseña para continuar.",
     "example_en": "Enter your password to continue."
+  },
+  {
+    "lemma": "ropa",
+    "apparent_english": "rope",
+    "actual_english": "clothes / clothing",
+    "real_spanish_for_apparent": "cuerda / soga",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "Ropa is what you wear; the rope you climb or tie things with is a cuerda.",
+    "example_es": "Guardo la ropa de invierno en el armario.",
+    "example_en": "I keep the winter clothes in the closet."
+  },
+  {
+    "lemma": "vaso",
+    "apparent_english": "vase",
+    "actual_english": "(drinking) glass / tumbler",
+    "real_spanish_for_apparent": "jarrón / florero",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "A vaso holds your water; flowers go in a jarrón or a florero.",
+    "example_es": "Necesito un vaso de agua, por favor.",
+    "example_en": "I need a glass of water, please."
+  },
+  {
+    "lemma": "colegio",
+    "apparent_english": "college",
+    "actual_english": "school (primary or secondary)",
+    "real_spanish_for_apparent": "universidad / facultad",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "Children go to the colegio; students go to the universidad. Say you study at la universidad, not en el colegio.",
+    "example_es": "Mis hijos van al colegio en autobús.",
+    "example_en": "My kids go to school by bus."
+  },
+  {
+    "lemma": "idioma",
+    "apparent_english": "idiom",
+    "actual_english": "language",
+    "real_spanish_for_apparent": "modismo / expresión idiomática",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "An idioma is a whole language, like el idioma español; a fixed phrase such as 'kick the bucket' is a modismo.",
+    "example_es": "Estoy aprendiendo un idioma nuevo.",
+    "example_en": "I am learning a new language."
+  },
+  {
+    "lemma": "contestar",
+    "apparent_english": "to contest",
+    "actual_english": "to answer / reply",
+    "real_spanish_for_apparent": "impugnar / disputar",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "Contestar is simply to answer a question or the phone; to contest a decision or a result is impugnar.",
+    "example_es": "¿Puedes contestar el teléfono, por favor?",
+    "example_en": "Can you answer the phone, please?"
+  },
+  {
+    "lemma": "decepcionar",
+    "apparent_english": "to deceive",
+    "actual_english": "to disappoint / let down",
+    "real_spanish_for_apparent": "engañar",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "Decepcionar means to let someone down; to deceive or trick someone is engañar.",
+    "example_es": "La película me decepcionó mucho.",
+    "example_en": "The movie disappointed me a lot."
+  },
+  {
+    "lemma": "disgusto",
+    "apparent_english": "disgust",
+    "actual_english": "upset / displeasure / annoyance",
+    "real_spanish_for_apparent": "asco",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "A disgusto is an upset or a quarrel; the revulsion you feel at something rotten is asco.",
+    "example_es": "Su decisión nos causó un gran disgusto.",
+    "example_en": "Her decision caused us great displeasure."
+  },
+  {
+    "lemma": "casualidad",
+    "apparent_english": "casualty",
+    "actual_english": "coincidence / chance",
+    "real_spanish_for_apparent": "víctima / baja",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "Por casualidad means 'by chance'. A casualty of war or of an accident is a víctima.",
+    "example_es": "Nos encontramos por casualidad en el aeropuerto.",
+    "example_en": "We met by chance at the airport."
+  },
+  {
+    "lemma": "firma",
+    "apparent_english": "firm (company)",
+    "actual_english": "signature",
+    "real_spanish_for_apparent": "empresa / compañía",
+    "severity": "MILD_NUANCE",
+    "disambiguation_tip": "Firma is mostly a signature. It can mean a business firm in formal writing, but empresa is the everyday word.",
+    "example_es": "Necesito tu firma en este documento.",
+    "example_en": "I need your signature on this document."
+  },
+  {
+    "lemma": "gripe",
+    "apparent_english": "grip",
+    "actual_english": "flu",
+    "real_spanish_for_apparent": "agarre / asimiento",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "Tener la gripe means to have the flu; a firm hold on something is un agarre.",
+    "example_es": "Mi hermano tiene la gripe y no puede venir.",
+    "example_en": "My brother has the flu and cannot come."
+  },
+  {
+    "lemma": "arena",
+    "apparent_english": "arena",
+    "actual_english": "sand",
+    "real_spanish_for_apparent": "estadio / pabellón",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "Arena is the sand on the beach; a sports arena is an estadio or a pabellón.",
+    "example_es": "Los niños juegan con la arena en la playa.",
+    "example_en": "The children play with the sand on the beach."
+  },
+  {
+    "lemma": "sano",
+    "apparent_english": "sane",
+    "actual_english": "healthy",
+    "real_spanish_for_apparent": "cuerdo",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "Sano means healthy in body or habits; someone sane in mind is cuerdo.",
+    "example_es": "Comer fruta es sano para todos.",
+    "example_en": "Eating fruit is healthy for everyone."
+  },
+  {
+    "lemma": "mayor",
+    "apparent_english": "mayor",
+    "actual_english": "older / greater / elderly",
+    "real_spanish_for_apparent": "alcalde / alcaldesa",
+    "severity": "HIGH_RISK",
+    "disambiguation_tip": "Mayor compares age or size, as in mi hermano mayor; the mayor of a town is the alcalde.",
+    "example_es": "Mi hermano mayor vive en Sevilla.",
+    "example_en": "My older brother lives in Seville."
   }
 ]
