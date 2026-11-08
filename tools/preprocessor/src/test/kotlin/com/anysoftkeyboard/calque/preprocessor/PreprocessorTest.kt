@@ -197,10 +197,13 @@ class PreprocessorTest {
                 FileInputStream(seedFile).use { stream ->
                     CuratedLessonsProcessor.processLessons(stream, db)
                 }
-            assertEquals(8, insertedCount)
+            assertTrue(
+                "Expected the 12 hand-written lessons, found $insertedCount",
+                insertedCount >= 12
+            )
 
             val lessons = db.queryCuratedLessons()
-            assertEquals(8, lessons.size)
+            assertEquals(insertedCount, lessons.size)
             assertEquals(setOf(0, 1, 2), lessons.map { it.level }.toSet())
 
             val sentenceZeroLesson = lessons.first { it.lessonId == "lvl0_00_cognate_unlock" }
@@ -410,7 +413,7 @@ class PreprocessorTest {
         assertTrue(summary.dictionaryRows >= 100)
         // One row per seed lemma (at least the original 25) + "carpetas" from the Kaikki sample.
         assertTrue(summary.falseCognateRows >= 26)
-        assertEquals(8, summary.curatedLessonRows)
+        assertTrue(summary.curatedLessonRows >= 12)
         assertEquals(12, summary.cognateRuleRows)
 
         tempDir.deleteRecursively()

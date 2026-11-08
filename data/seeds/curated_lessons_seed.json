@@ -270,6 +270,168 @@
     }
   },
   {
+    "lesson_id": "lvl1_02_la_cena_de_mi_hermana",
+    "level": 1,
+    "sequence_order": 2,
+    "title": "La Cena de mi Hermana",
+    "target_concept": "Read a connected present-tense micro-story with the false cognates mayor, sopa, vaso and gripe, and the clitic 'me' before the verb.",
+    "content": {
+      "sentences": [
+        {
+          "sentence_es": "Mi hermana mayor prepara una sopa caliente para la cena.",
+          "translation_en": "My older sister prepares a hot soup for dinner.",
+          "interlinear_gloss": [
+            { "es": "Mi", "en": "my" },
+            { "es": "hermana", "en": "sister" },
+            { "es": "mayor", "en": "older" },
+            { "es": "prepara", "en": "prepares" },
+            { "es": "una", "en": "a" },
+            { "es": "sopa", "en": "soup" },
+            { "es": "caliente", "en": "hot" },
+            { "es": "para", "en": "for" },
+            { "es": "la", "en": "the" },
+            { "es": "cena", "en": "dinner" }
+          ],
+          "grammar_callout": "Trap alert: 'mayor' after a family word means older, not the mayor of a town. The adjective follows the noun: 'hermana mayor'."
+        },
+        {
+          "sentence_es": "Ella pone un vaso de agua fría al lado de cada plato.",
+          "translation_en": "She puts a glass of cold water next to each plate.",
+          "interlinear_gloss": [
+            { "es": "Ella", "en": "she" },
+            { "es": "pone", "en": "puts" },
+            { "es": "un", "en": "a" },
+            { "es": "vaso", "en": "glass" },
+            { "es": "de", "en": "of" },
+            { "es": "agua", "en": "water" },
+            { "es": "fría", "en": "cold" },
+            { "es": "al", "en": "at the" },
+            { "es": "lado", "en": "side" },
+            { "es": "de", "en": "of" },
+            { "es": "cada", "en": "each" },
+            { "es": "plato", "en": "plate" }
+          ],
+          "grammar_callout": "Trap alert: 'vaso' is a drinking glass, never a flower vase. 'Al lado de' (literally 'at the side of') means next to."
+        },
+        {
+          "sentence_es": "Yo tengo la gripe, así que no puedo comer mucho.",
+          "translation_en": "I have the flu, so I cannot eat much.",
+          "interlinear_gloss": [
+            { "es": "Yo", "en": "I" },
+            { "es": "tengo", "en": "have" },
+            { "es": "la", "en": "the" },
+            { "es": "gripe", "en": "flu" },
+            { "es": "así", "en": "so" },
+            { "es": "que", "en": "that" },
+            { "es": "no", "en": "not" },
+            { "es": "puedo", "en": "I can" },
+            { "es": "comer", "en": "eat" },
+            { "es": "mucho", "en": "much" }
+          ],
+          "grammar_callout": "Trap alert: 'gripe' is the flu, not a grip. Spanish keeps the article: 'tengo la gripe'."
+        },
+        {
+          "sentence_es": "Mi hermana me trae té y me dice que descanse.",
+          "translation_en": "My sister brings me tea and tells me to rest.",
+          "interlinear_gloss": [
+            { "es": "Mi", "en": "my" },
+            { "es": "hermana", "en": "sister" },
+            { "es": "me", "en": "to me" },
+            { "es": "trae", "en": "brings" },
+            { "es": "té", "en": "tea" },
+            { "es": "y", "en": "and" },
+            { "es": "me", "en": "to me" },
+            { "es": "dice", "en": "tells" },
+            { "es": "que", "en": "that" },
+            { "es": "descanse", "en": "I rest" }
+          ],
+          "grammar_callout": "The clitic 'me' jumps in front of the conjugated verb: 'me trae', 'me dice'. After a verb of telling someone what to do ('me dice que'), Spanish uses the subjunctive: 'descanse' is literally 'that I rest'."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_id": "lvl1_03_un_dia_en_el_colegio",
+    "level": 1,
+    "sequence_order": 3,
+    "title": "Un Día en el Colegio",
+    "target_concept": "Read a connected present-tense micro-story with the false cognates colegio, idioma, contestar and casualidad, and the clitics 'le' and 'lo'.",
+    "content": {
+      "sentences": [
+        {
+          "sentence_es": "Todos los días Pablo asiste al colegio en autobús.",
+          "translation_en": "Every day Pablo attends school by bus.",
+          "interlinear_gloss": [
+            { "es": "Todos", "en": "all" },
+            { "es": "los", "en": "the" },
+            { "es": "días", "en": "days" },
+            { "es": "Pablo", "en": "Pablo" },
+            { "es": "asiste", "en": "attends" },
+            { "es": "al", "en": "to the" },
+            { "es": "colegio", "en": "school" },
+            { "es": "en", "en": "by" },
+            { "es": "autobús", "en": "bus" }
+          ],
+          "grammar_callout": "Trap alert: 'asistir a' means to attend, not to assist, and 'colegio' is a school for children, not a college. 'Todos los días' (literally 'all the days') means every day."
+        },
+        {
+          "sentence_es": "Su idioma favorito es el inglés, pero también estudia francés.",
+          "translation_en": "His favorite language is English, but he also studies French.",
+          "interlinear_gloss": [
+            { "es": "Su", "en": "his" },
+            { "es": "idioma", "en": "language" },
+            { "es": "favorito", "en": "favorite" },
+            { "es": "es", "en": "is" },
+            { "es": "el", "en": "the" },
+            { "es": "inglés", "en": "English" },
+            { "es": "pero", "en": "but" },
+            { "es": "también", "en": "also" },
+            { "es": "estudia", "en": "studies" },
+            { "es": "francés", "en": "French" }
+          ],
+          "grammar_callout": "Trap alert: 'idioma' is a whole language, not an idiom. Spanish does not capitalize language names: 'inglés', 'francés'."
+        },
+        {
+          "sentence_es": "La profesora le hace una pregunta difícil y él no sabe contestar.",
+          "translation_en": "The teacher asks him a difficult question and he does not know how to answer.",
+          "interlinear_gloss": [
+            { "es": "La", "en": "the" },
+            { "es": "profesora", "en": "teacher" },
+            { "es": "le", "en": "to him" },
+            { "es": "hace", "en": "makes" },
+            { "es": "una", "en": "a" },
+            { "es": "pregunta", "en": "question" },
+            { "es": "difícil", "en": "difficult" },
+            { "es": "y", "en": "and" },
+            { "es": "él", "en": "he" },
+            { "es": "no", "en": "not" },
+            { "es": "sabe", "en": "knows how to" },
+            { "es": "contestar", "en": "answer" }
+          ],
+          "grammar_callout": "Trap alert: 'contestar' means to answer, never to contest. 'Hacer una pregunta' (literally 'make a question') is how Spanish says to ask a question, and 'le' marks who is asked."
+        },
+        {
+          "sentence_es": "Por casualidad, su amigo Luis conoce la respuesta y lo ayuda.",
+          "translation_en": "By chance, his friend Luis knows the answer and helps him.",
+          "interlinear_gloss": [
+            { "es": "Por", "en": "by" },
+            { "es": "casualidad", "en": "chance" },
+            { "es": "su", "en": "his" },
+            { "es": "amigo", "en": "friend" },
+            { "es": "Luis", "en": "Luis" },
+            { "es": "conoce", "en": "knows" },
+            { "es": "la", "en": "the" },
+            { "es": "respuesta", "en": "answer" },
+            { "es": "y", "en": "and" },
+            { "es": "lo", "en": "him" },
+            { "es": "ayuda", "en": "helps" }
+          ],
+          "grammar_callout": "Trap alert: 'casualidad' is chance or coincidence, not a casualty. The clitic 'lo' (him) stands before the verb: 'lo ayuda'."
+        }
+      ]
+    }
+  },
+  {
     "lesson_id": "lvl2_01_el_misterio_de_la_libreria",
     "level": 2,
     "sequence_order": 1,
@@ -329,6 +491,168 @@
             { "es": "extraordinario", "en": "extraordinary" }
           ],
           "grammar_callout": "Trap alert: 'lectura' means 'reading' (not lecture), and 'familiar' as an adjective means 'related to family' (not just well-known)."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_id": "lvl2_02_el_viaje_inesperado",
+    "level": 2,
+    "sequence_order": 2,
+    "title": "El Viaje Inesperado",
+    "target_concept": "Follow a short past-tense story where the imperfecto sets the scene and the pretérito moves it forward.",
+    "content": {
+      "sentences": [
+        {
+          "sentence_es": "Hacía mucho frío cuando Andrés llegó a la estación de tren.",
+          "translation_en": "It was very cold when Andrés arrived at the train station.",
+          "interlinear_gloss": [
+            { "es": "Hacía", "en": "it was" },
+            { "es": "mucho", "en": "very" },
+            { "es": "frío", "en": "cold" },
+            { "es": "cuando", "en": "when" },
+            { "es": "Andrés", "en": "Andrés" },
+            { "es": "llegó", "en": "arrived" },
+            { "es": "a", "en": "at" },
+            { "es": "la", "en": "the" },
+            { "es": "estación", "en": "station" },
+            { "es": "de", "en": "of" },
+            { "es": "tren", "en": "train" }
+          ],
+          "grammar_callout": "'Hacía' (imperfecto) describes the weather as a background state, while 'llegó' (pretérito) is the single completed arrival. Spanish says 'hace frío' (it makes cold) where English says 'it is cold'."
+        },
+        {
+          "sentence_es": "Quería comprar un billete, pero la máquina no funcionaba.",
+          "translation_en": "He wanted to buy a ticket, but the machine was not working.",
+          "interlinear_gloss": [
+            { "es": "Quería", "en": "he wanted" },
+            { "es": "comprar", "en": "to buy" },
+            { "es": "un", "en": "a" },
+            { "es": "billete", "en": "ticket" },
+            { "es": "pero", "en": "but" },
+            { "es": "la", "en": "the" },
+            { "es": "máquina", "en": "machine" },
+            { "es": "no", "en": "not" },
+            { "es": "funcionaba", "en": "was working" }
+          ],
+          "grammar_callout": "'Quería' and 'funcionaba' are both imperfecto: ongoing states (a wish, a broken machine) rather than events. 'Billete' is a ticket in Spain; Latin America often says 'boleto'."
+        },
+        {
+          "sentence_es": "Entonces una mujer mayor le dio unas monedas y él pudo pagar.",
+          "translation_en": "Then an older woman gave him some coins and he was able to pay.",
+          "interlinear_gloss": [
+            { "es": "Entonces", "en": "then" },
+            { "es": "una", "en": "a" },
+            { "es": "mujer", "en": "woman" },
+            { "es": "mayor", "en": "older" },
+            { "es": "le", "en": "to him" },
+            { "es": "dio", "en": "gave" },
+            { "es": "unas", "en": "some" },
+            { "es": "monedas", "en": "coins" },
+            { "es": "y", "en": "and" },
+            { "es": "él", "en": "he" },
+            { "es": "pudo", "en": "was able to" },
+            { "es": "pagar", "en": "pay" }
+          ],
+          "grammar_callout": "'Dio' and 'pudo' are pretérito: single events in the story. 'Pudo' means he managed to. Trap alert: 'mayor' is older here, not a town mayor."
+        },
+        {
+          "sentence_es": "Mientras esperaba el tren, decidió llamar a su familia.",
+          "translation_en": "While he waited for the train, he decided to call his family.",
+          "interlinear_gloss": [
+            { "es": "Mientras", "en": "while" },
+            { "es": "esperaba", "en": "he was waiting for" },
+            { "es": "el", "en": "the" },
+            { "es": "tren", "en": "train" },
+            { "es": "decidió", "en": "he decided" },
+            { "es": "llamar", "en": "to call" },
+            { "es": "a", "en": "to" },
+            { "es": "su", "en": "his" },
+            { "es": "familia", "en": "family" }
+          ],
+          "grammar_callout": "'Esperaba' (imperfecto) is the action in progress and 'decidió' (pretérito) is the new event that happens during it. Spanish 'esperar' already means 'wait for', so there is no word for 'for'."
+        }
+      ]
+    }
+  },
+  {
+    "lesson_id": "lvl2_03_la_fiesta_de_cumpleanos",
+    "level": 2,
+    "sequence_order": 3,
+    "title": "La Fiesta de Cumpleaños",
+    "target_concept": "Contrast habits in the past (imperfecto) with one-off events (pretérito) in a story with a surprise.",
+    "content": {
+      "sentences": [
+        {
+          "sentence_es": "Cuando éramos niños, mi madre preparaba una fiesta enorme cada año.",
+          "translation_en": "When we were children, my mother used to prepare a huge party every year.",
+          "interlinear_gloss": [
+            { "es": "Cuando", "en": "when" },
+            { "es": "éramos", "en": "we were" },
+            { "es": "niños", "en": "children" },
+            { "es": "mi", "en": "my" },
+            { "es": "madre", "en": "mother" },
+            { "es": "preparaba", "en": "used to prepare" },
+            { "es": "una", "en": "a" },
+            { "es": "fiesta", "en": "party" },
+            { "es": "enorme", "en": "huge" },
+            { "es": "cada", "en": "each" },
+            { "es": "año", "en": "year" }
+          ],
+          "grammar_callout": "'Éramos' and 'preparaba' are imperfecto: a habit or repeated situation in the past, which English often renders with 'used to'. 'Cada' (each, every) never changes: 'cada año'."
+        },
+        {
+          "sentence_es": "Ese año, sin embargo, la tarta se cayó al suelo.",
+          "translation_en": "That year, however, the cake fell on the floor.",
+          "interlinear_gloss": [
+            { "es": "Ese", "en": "that" },
+            { "es": "año", "en": "year" },
+            { "es": "sin", "en": "without" },
+            { "es": "embargo", "en": "obstacle" },
+            { "es": "la", "en": "the" },
+            { "es": "tarta", "en": "cake" },
+            { "es": "se", "en": "itself" },
+            { "es": "cayó", "en": "fell" },
+            { "es": "al", "en": "to the" },
+            { "es": "suelo", "en": "floor" }
+          ],
+          "grammar_callout": "'Se cayó' (pretérito of 'caerse') is a single accident: the habit is over. 'Sin embargo' is a fixed phrase meaning however, even though its words literally say 'without obstacle'."
+        },
+        {
+          "sentence_es": "Todos nos reímos, aunque mi madre estaba muy triste.",
+          "translation_en": "We all laughed, although my mother was very sad.",
+          "interlinear_gloss": [
+            { "es": "Todos", "en": "all" },
+            { "es": "nos", "en": "ourselves" },
+            { "es": "reímos", "en": "laughed" },
+            { "es": "aunque", "en": "although" },
+            { "es": "mi", "en": "my" },
+            { "es": "madre", "en": "mother" },
+            { "es": "estaba", "en": "was" },
+            { "es": "muy", "en": "very" },
+            { "es": "triste", "en": "sad" }
+          ],
+          "grammar_callout": "'Nos reímos' is pretérito (a moment of laughter), while 'estaba' is imperfecto: her sadness is the ongoing state behind it. 'Reírse' (to laugh) always takes the reflexive 'nos/se'."
+        },
+        {
+          "sentence_es": "Esa noche mi padre compró otra y la fiesta continuó hasta la madrugada.",
+          "translation_en": "That night my father bought another one and the party went on until dawn.",
+          "interlinear_gloss": [
+            { "es": "Esa", "en": "that" },
+            { "es": "noche", "en": "night" },
+            { "es": "mi", "en": "my" },
+            { "es": "padre", "en": "father" },
+            { "es": "compró", "en": "bought" },
+            { "es": "otra", "en": "another" },
+            { "es": "y", "en": "and" },
+            { "es": "la", "en": "the" },
+            { "es": "fiesta", "en": "party" },
+            { "es": "continuó", "en": "continued" },
+            { "es": "hasta", "en": "until" },
+            { "es": "la", "en": "the" },
+            { "es": "madrugada", "en": "dawn" }
+          ],
+          "grammar_callout": "'Otra' stands for 'otra tarta': Spanish drops a noun that was just mentioned. 'Compró' and 'continuó' are both pretérito, a chain of completed events that closes the story."
         }
       ]
     }

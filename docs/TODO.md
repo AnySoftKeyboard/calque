@@ -211,8 +211,13 @@ PR 6 - real data (done, except the open decisions marked below):
 - [ ] Attribution/credits screen in the app for CC BY-SA / CC BY data (the `NOTICE` file is PR 1).
 
 ### 1.2 Pedagogical content (curated JSON seeds)
-- [ ] More level 1-2 micro-stories (3-6 sentences) and Tatoeba-bucketed sentences; only one story
-      per level exists today.
+- [x] Tatoeba-bucketed sentences: 48 generated lessons (PR 3). Micro-stories: level 1 and level 2
+      each went from 1 to 3 stories of 3-4 sentences (`La Cena de mi Hermana`, `Un Día en el
+      Colegio`, `El Viaje Inesperado`, `La Fiesta de Cumpleaños`), with hand-written interlinear
+      glosses and callouts that reuse the false cognates. They were written without a native
+      review, so a native check is still wanted. `PackagedSeedAssetTest` now also checks that every
+      word of the hand-written lessons resolves in the dictionary.
+- [ ] More micro-stories: three per level is still thin for a curriculum.
 - [ ] Module 0.0 "You Already Know 3,000 Words": 3 swipe cards (`-tion`/`-cion`, `-al`/`-al`,
       `-ic`/`-ico`) and the 5-vowel soundboard content (needs a lesson content schema for
       non-sentence cards).

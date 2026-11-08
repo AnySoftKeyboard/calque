@@ -137,7 +137,7 @@ class PackagedSeedAssetTest {
         val lessons = SqliteCuratedLessonsRepository(db.connection).getAll()
         val tatoeba = lessons.filter { it.lessonId.startsWith("tatoeba_") }
 
-        assertEquals("Should contain the 8 hand-written lessons", 8, lessons.size - tatoeba.size)
+        assertTrue("Should contain the hand-written lessons", lessons.size - tatoeba.size >= 12)
         assertTrue("Should contain generated Tatoeba lessons", tatoeba.isNotEmpty())
         assertEquals(setOf(0, 1, 2), lessons.map { it.level }.toSet())
         assertEquals(
@@ -160,6 +160,32 @@ class PackagedSeedAssetTest {
                 sequences.toSet().size
             )
         }
+    }
+
+    @Test
+    fun handWrittenLessons_everyWordResolvesInTheDictionary() = withSeed { db ->
+        // The reader looks every tapped word up; a hand-written lesson with a word that is not in
+        // the dictionary would show an empty peek card. extra_words.txt (extract-seed-words) is
+        // what guarantees this, so it must be regenerated when a lesson changes.
+        val dictRepo = SqliteDictionaryRepository(db.connection)
+        val word = Regex("""\p{L}+""")
+        val lessons = SqliteCuratedLessonsRepository(db.connection).getAll()
+
+        val unresolved =
+            lessons
+                .filterNot { it.lessonId.startsWith("tatoeba_") }
+                .flatMap { lesson ->
+                    lesson.parseSentences().flatMap { sentence ->
+                        word.findAll(sentence.sentenceEs).map { it.value.lowercase() }.toList()
+                    }
+                }
+                .distinct()
+                .filter { dictRepo.getBySurfaceForm(it) == null }
+
+        assertTrue(
+            "Words of hand-written lessons missing from the dictionary: $unresolved",
+            unresolved.isEmpty()
+        )
     }
 
     @Test
