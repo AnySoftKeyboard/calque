@@ -1,0 +1,7 @@
+package(default_visibility = ["//visibility:public"])
+
+exports_files([
+    "extra_words.txt",
+    "spanish_lemmas.jsonl.gz",
+    "spanish_lemmas.meta.json",
+])

@@ -1,0 +1,6 @@
+package(default_visibility = ["//visibility:public"])
+
+exports_files([
+    "spa_eng_candidates.meta.json",
+    "spa_eng_candidates.tsv.gz",
+])

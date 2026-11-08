@@ -43,6 +43,18 @@ kt_jvm_test(
 )
 
 kt_jvm_test(
+    name = "seed_words_extractor_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/preprocessor/SeedWordsExtractorTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.preprocessor.SeedWordsExtractorTest",
+    deps = [
+        ":preprocessor_lib",
+        "//core/linguistics",
+        "@maven//junit/junit",
+    ],
+)
+
+kt_jvm_test(
     name = "end_to_end_pipeline_test",
     size = "medium",
     srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/preprocessor/EndToEndPipelineTest.kt"],

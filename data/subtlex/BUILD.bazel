@@ -1,0 +1,5 @@
+package(default_visibility = ["//visibility:public"])
+
+exports_files([
+    "subtlex_esp_top25000.tsv",
+])

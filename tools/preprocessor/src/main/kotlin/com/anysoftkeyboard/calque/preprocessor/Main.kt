@@ -93,6 +93,8 @@ internal fun printUsageAndExit(message: String? = null) {
                           --links <spa-eng_links.tsv> --ranks <ranks.tsv>
                           --output <pairs.tsv.gz> [--max-pairs 20000] [--metadata <path>]
                           [--source-last-modified <text>]
+          extract-seed-words --curated-lessons <path> --false-cognates <path>
+                             --dictionary-seed <path> --output <words.txt>
         """
             .trimIndent(),
     )
