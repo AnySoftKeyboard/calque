@@ -2,7 +2,7 @@
 
 ## Overview
 Calque relies on a two-part local SQLite database managed by Room:
-1. **Pre-packaged Read-Only Seed Tables**: Built offline during compilation and shipped in `assets/databases/seed.db`. Provides $O(1)$ morphological lookups, cognate flags, false-friend alerts, and progressive reading lessons.
+1. **Pre-packaged Read-Only Seed Tables**: Built offline during compilation and shipped in `assets/databases/seed.db`. Provides $O(1)$ morphological lookups, cognate flags, false-friend alerts, and progressive reading lessons. The file is *generated* by the Bazel target `//app:seed_db_asset` from checked-in inputs (see `tools/preprocessor/README.md`); it is not stored in git and the build is reproducible.
 2. **Mutable User State Tables**: Tracks the learner's vocabulary mastery, reading progress, saved words, and dynamically cached AI analyses.
 
 ## External Data Sources (Offline Seed Inputs)

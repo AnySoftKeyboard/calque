@@ -1,15 +1,18 @@
 load("@rules_android//rules:rules.bzl", "android_binary")
 load("@rules_kotlin//kotlin:android.bzl", "kt_android_library", "kt_android_local_test")
+load("//tools/preprocessor:seed_db.bzl", "seed_db")
 
 package(default_visibility = ["//visibility:public"])
 
-exports_files([
-    "src/main/assets/databases/seed.db",
-])
-
-filegroup(
+# The pre-packaged seed database is generated, never checked in. It is written to the path Android
+# expects (and the tests read) so that nothing else has to know it is not a source file.
+seed_db(
     name = "seed_db_asset",
-    srcs = ["src/main/assets/databases/seed.db"],
+    out = "src/main/assets/databases/seed.db",
+    cognate_rules = "//data/seeds:cognate_rules_seed.json",
+    curated_lessons = "//data/seeds:curated_lessons_seed.json",
+    dictionary_seed = "//data/seeds:dictionary_seed.json",
+    false_cognates = "//data/seeds:false_cognates_seed.json",
 )
 
 kt_android_library(
@@ -45,7 +48,7 @@ kt_android_library(
 
 android_binary(
     name = "app",
-    assets = glob(["src/main/assets/**"]),
+    assets = [":seed_db_asset"],
     assets_dir = "src/main/assets",
     custom_package = "com.anysoftkeyboard.calque",
     manifest = "src/main/AndroidManifest.xml",

@@ -147,7 +147,23 @@ On the 2026-11-07 export with the top 25,000 SUBTLEX words: 443,166 Spanish sent
 without a translation, 43,045 with an out-of-scope word, 41,797 outside 4-14 words, 26,560 with
 a proper name, 140,741 candidates, 20,000 selected (1.7 MB, 750 KB gzipped).
 
-## Building `seed.db`
+## How the app gets `seed.db`
+
+`seed.db` is generated, not stored in git. The Bazel target `//app:seed_db_asset` (macro `seed_db` in
+[`seed_db.bzl`](seed_db.bzl)) runs this tool on files from the repository only, writes
+`app/src/main/assets/databases/seed.db` in `bazel-bin`, and the APK, the Room schema tests and
+`PackagedSeedAssetTest` all read that file:
+
+```
+bazelisk build //app:seed_db_asset      # just the database
+bazelisk build //app:app                # the APK, which contains assets/databases/seed.db
+```
+
+The output is byte-for-byte reproducible, so a changed hash always means changed inputs. To add the
+extracted subsets to the build, pass `kaikki`, `sublex` and `tatoeba` to the `seed_db` rule in
+`app/BUILD.bazel`.
+
+## Building `seed.db` by hand
 
 ```
 bazelisk run //tools/preprocessor:preprocessor -- --db /tmp/seed.db \
