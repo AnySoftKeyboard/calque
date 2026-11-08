@@ -155,13 +155,19 @@ PR 1 - inputs, extractors, licensing:
       The pool is not scored or levelled: that is PR 3 (the old `TatoebaProcessor` still reads
       the `es<TAB>en` format and must switch to this id-based pool).
 
-PR 4 - generated `seed.db` (with the end-to-end test in 1.3):
-- [ ] Bazel target that builds `seed.db` from `data/seeds/*.json` and the checked-in subsets.
-- [ ] Remove the checked-in asset; repoint every `//app:seed_db_asset` use (`app/BUILD.bazel`,
-      `core/data/BUILD.bazel`) and the tests that read it (`PackagedSeedAssetTest`,
-      `RoomGeneratedSchemaValidationTest`) to the target output.
-- [ ] Keep `PRAGMA user_version` aligned with `CalqueSeedDatabase` (guarded by
-      `RoomGeneratedSchemaValidationTest`).
+PR 4 - generated `seed.db` (done; end-to-end test in 1.3):
+- [x] Bazel macro `seed_db` (`tools/preprocessor/seed_db.bzl`) runs the preprocessor in a genrule
+      from checked-in files only. `//app:seed_db_asset` is now generated at
+      `app/src/main/assets/databases/seed.db`, the path Android and the tests already use, so
+      `PackagedSeedAssetTest`, `RoomSchemaParityTest` and `RoomGeneratedSchemaValidationTest`
+      run unchanged against the generated file, and the APK contains it. `android_binary` lists
+      the target explicitly (a `glob` only sees source files). Today it builds from the curated
+      seeds; PR 6 adds the `kaikki`, `sublex` and `tatoeba` inputs to that one rule.
+- [x] The checked-in binary asset is deleted and git-ignored so it cannot come back. The build is
+      byte-for-byte reproducible, which is why no "is the checked-in file up to date" check is
+      needed any more.
+- [x] `PRAGMA user_version` stays aligned with `CalqueSeedDatabase` (the preprocessor writes
+      `ROOM_SCHEMA_VERSION`; `RoomGeneratedSchemaValidationTest` guards it on the generated file).
 
 PR 6 - real data (after PRs 1-4):
 - [ ] Decide on the SUBTLEX-ESP license: the official file is CC BY-NC-SA 4.0 (non-commercial,
@@ -259,10 +265,13 @@ PR 3 - Tatoeba selection and packing (done):
       proper-noun glosses give false positives (`segura` = "Segura (river)", `vuelta` = "the
       Vuelta a España"). Ignore glosses that start with a capital letter in `CognateDetector`.
 
-PR 4 - end-to-end (with the Bazel target in 1.1):
-- [ ] End-to-end preprocessor test that builds a tiny `seed.db` from fixture inputs and validates
-      it with Room's generated schema validation (share the checks with
-      `RoomGeneratedSchemaValidationTest` where possible).
+PR 4 - end-to-end (done):
+- [x] `EndToEndPipelineTest` runs the whole chain on small fixtures (SUBTLEX counts -> ranks,
+      Kaikki dump -> subset, Tatoeba exports -> pool, subsets + seeds -> `seed.db`) and checks the
+      dictionary rows, the false-cognate expansion, the lesson numbering, `user_version`,
+      `integrity_check`, NOT NULL primary keys and that two runs give identical bytes. Room's own
+      validation is not duplicated in the pure-JVM tool: it runs on the generated asset in
+      `//app:room_generated_schema_validation_test`, which is the same file the APK ships.
 
 ### 1.4 Runtime ingestion pipeline (Pipeline 2)
 - [~] `ReaderEnricher` + `SessionSentenceBuilder` batch-resolve words. Remaining:
