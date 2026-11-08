@@ -36,8 +36,10 @@ class PreprocessorPipeline(private val config: PipelineConfig) {
     /** Executes the pipeline stages on an already opened [SeedDatabase]. */
     fun executeWithDatabase(database: SeedDatabase): PipelineSummary {
         val sublexFrequencies = loadSublexFrequencies()
-        val dictSeedCount = processDictionarySeed(database)
+        // Kaikki first: it keeps the best row per surface form. The curated dictionary seed then
+        // replaces whatever Kaikki produced for the same word, so hand-written rows always win.
         val kaikkiCount = processKaikki(database, sublexFrequencies)
+        val dictSeedCount = processDictionarySeed(database)
         val dictCount = dictSeedCount + kaikkiCount
         val falseCognatesCount = processFalseCognates(database)
         val lessonsCount = processCuratedLessons(database) + processTatoeba(database)
@@ -69,7 +71,7 @@ class PreprocessorPipeline(private val config: PipelineConfig) {
     private fun processKaikki(database: SeedDatabase, sublexFrequencies: Map<String, Int>): Long {
         val file = config.kaikkiFile
         if (file == null || !file.exists()) return 0L
-        return FileInputStream(file).use {
+        return file.openMaybeGzip().use {
             KaikkiProcessor.processStream(it, sublexFrequencies, database)
         }
     }

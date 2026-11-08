@@ -30,11 +30,11 @@ object SublexReader {
                 .map { it.trim() }
                 .filter { it.isNotEmpty() && !it.startsWith("#") }
 
-        for (line in validLines) {
+        for ((index, line) in validLines.withIndex()) {
             val parts = line.split(DELIMITER_REGEX)
             val firstCol = parts.firstOrNull().orEmpty().trim().lowercase(Locale.ROOT)
 
-            if (isHeader(firstCol)) {
+            if (index == 0 && isHeader(firstCol, parts)) {
                 rankColumnIndex = parts.indexOfFirst { it.trim().equals("rank", ignoreCase = true) }
             } else if (firstCol.isNotEmpty()) {
                 lineRank++
@@ -59,7 +59,13 @@ object SublexReader {
         }
     }
 
-    private fun isHeader(candidate: String): Boolean {
-        return candidate == "word" || candidate == "spelling" || candidate == "palabra"
+    /**
+     * Only the first line can be a header, and only when none of its other columns is a number.
+     * `palabra` is a header name but also a frequent Spanish word, so a data row such as
+     * `palabra<TAB>1305` must not be mistaken for one.
+     */
+    private fun isHeader(candidate: String, parts: List<String>): Boolean {
+        val isHeaderName = candidate == "word" || candidate == "spelling" || candidate == "palabra"
+        return isHeaderName && parts.drop(1).none { it.trim().toIntOrNull() != null }
     }
 }

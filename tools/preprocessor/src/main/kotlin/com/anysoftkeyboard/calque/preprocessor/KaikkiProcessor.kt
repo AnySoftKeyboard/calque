@@ -43,14 +43,14 @@ object KaikkiProcessor {
             batch.addAll(rows)
 
             if (batch.size >= batchSize) {
-                database.insertDictionaryBatch(batch)
+                database.insertDictionaryBatchKeepingBest(batch)
                 insertedRows += batch.size
                 batch.clear()
             }
         }
 
         if (batch.isNotEmpty()) {
-            database.insertDictionaryBatch(batch)
+            database.insertDictionaryBatchKeepingBest(batch)
             insertedRows += batch.size
             batch.clear()
         }
@@ -79,7 +79,7 @@ object KaikkiProcessor {
                 surfaceForm = normalizedLemma,
                 lemma = lemma,
                 pos = pos,
-                grammarInfo = "base",
+                grammarInfo = DictionaryGrammar.BASE,
                 englishGloss = primaryGloss,
                 isCognate = isCognate,
                 frequencyRank = freqRank,

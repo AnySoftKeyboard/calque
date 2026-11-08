@@ -19,26 +19,12 @@ class SeedDatabase(internal val connection: Connection) : AutoCloseable {
         DatabaseBinders.createTables(connection)
     }
 
-    /** Inserts a batch of dictionary rows inside a single transaction. */
+    /**
+     * Inserts a batch of dictionary rows inside a single transaction. A row replaces any existing
+     * row for the same surface form, so this is for curated data that must always win.
+     */
     fun insertDictionaryBatch(entries: Collection<DictionaryRow>) {
-        if (entries.isEmpty()) return
-        val sql =
-            """
-            INSERT OR REPLACE INTO dictionary (
-                surface_form, lemma, pos, grammar_info, english_gloss, is_cognate, frequency_rank
-            ) VALUES (?, ?, ?, ?, ?, ?, ?)
-            """
-                .trimIndent()
-
-        DatabaseBinders.executeTransaction(connection) {
-            connection.prepareStatement(sql).use { pstmt ->
-                for (entry in entries) {
-                    DatabaseBinders.bindDictionaryRow(pstmt, entry)
-                    pstmt.addBatch()
-                }
-                pstmt.executeBatch()
-            }
-        }
+        executeDictionaryBatch(entries, REPLACE_DICTIONARY_SQL)
     }
 
     /** Queries all surface forms registered for a given lemma. */
