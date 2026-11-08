@@ -160,12 +160,13 @@ bazelisk run //tools/preprocessor:preprocessor -- --db /tmp/seed.db \
 Run without arguments to print every option.
 
 To build from the extracted subsets instead of only the curated seeds, add `--kaikki` (the
-`.jsonl.gz` subset, or a full dump) and `--sublex` (the rank TSV):
+`.jsonl.gz` subset, or a full dump), `--sublex` (the rank TSV) and `--tatoeba` (the candidate pool):
 
 ```
 bazelisk run //tools/preprocessor:preprocessor -- --db /tmp/seed.db \
     --kaikki data/kaikki/spanish_lemmas.jsonl.gz \
     --sublex data/subtlex/subtlex_esp_top25000.tsv \
+    --tatoeba data/tatoeba/spa_eng_candidates.tsv.gz \
     --dictionary-seed data/seeds/dictionary_seed.json \
     --false-cognates data/seeds/false_cognates_seed.json \
     --curated-lessons data/seeds/curated_lessons_seed.json \
@@ -180,6 +181,13 @@ Rules worth knowing:
 - **Frequency:** a row's rank is the better of its lemma's rank and its own, see INGESTION.md.
 - **Aliases** from the Kaikki subset (`tu`, `muy`, `dame`) become rows of their target lemma.
 - Malformed or unwanted Kaikki lines are counted and skipped, never fatal.
+- **Tatoeba lessons:** with `--tatoeba <pool.tsv.gz>` (the `extract-tatoeba` output) each sentence
+  is scored with `SentenceScorer` against the dictionary built so far; sentences with a word the
+  dictionary does not know are skipped. Per level, `--tatoeba-packs-per-level` (default 16) times
+  `--tatoeba-pack-size` (default 8) sentences are picked by a fixed hash of the Tatoeba id,
+  ordered from easiest to hardest and cut into lessons `tatoeba_l<level>_<nnn>` in the same
+  `{"sentences":[...]}` format as the curated lessons, each sentence keeping its two Tatoeba ids.
+  Their `sequence_order` continues after the curated lessons of the level.
 
 With the 2026-10-30 subset and the top-25,000 ranks this takes about 1.5 seconds and produces
 148,880 dictionary rows (213,958 processed before collisions were resolved) in a 20 MB file.

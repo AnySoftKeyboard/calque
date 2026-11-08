@@ -128,6 +128,8 @@ FUNCTION score_sentence(spanish_sentence, db):
 
 ---
 
+**Packing.** Tatoeba sentences are not stored one per lesson. The candidates (already filtered to single sentences made of words from the frequency list) are scored as above against the dictionary; a sentence with a word the dictionary does not know is skipped so that every shipped word resolves. Per level a fixed number of sentences is picked with a fixed hash of the Tatoeba id (an unbiased, reproducible sample), ordered from easiest to hardest and cut into lessons of 8, so the lessons of a level get harder as the learner goes on. A lesson's `content_json` is `{"sentences":[{"sentence_es", "translation_en", "tatoeba_spanish_id", "tatoeba_english_id", "score"}]}`; the interlinear gloss is generated at runtime, and the ids keep every sentence attributable (CC BY).
+
 ## Pipeline 2: On-Device Runtime Text Ingestion
 
 When a user opens a lesson or pastes custom Spanish text, the app runs this pipeline to produce interactive `TokenSpan` objects in under 15ms.

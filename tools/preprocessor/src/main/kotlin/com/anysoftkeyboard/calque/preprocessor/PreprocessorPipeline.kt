@@ -11,8 +11,10 @@ data class PipelineConfig(
     val dictionarySeedFile: File? = null,
     val falseCognatesFile: File? = null,
     val curatedLessonsFile: File? = null,
+    /** The pool written by `extract-tatoeba` (plain or `.gz`). */
     val tatoebaFile: File? = null,
     val cognateRulesFile: File? = null,
+    val tatoebaPacks: TatoebaPackConfig = TatoebaPackConfig(),
 )
 
 /** Summary of records populated during the pipeline execution. */
@@ -93,7 +95,9 @@ class PreprocessorPipeline(private val config: PipelineConfig) {
     private fun processTatoeba(database: SeedDatabase): Int {
         val file = config.tatoebaFile
         if (file == null || !file.exists()) return 0
-        return FileInputStream(file).use { TatoebaProcessor.processSentences(it, database) }
+        return file.openMaybeGzip().use {
+            TatoebaProcessor.processSentences(it, database, config.tatoebaPacks)
+        }
     }
 
     private fun processRules(database: SeedDatabase): Int {

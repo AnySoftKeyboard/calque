@@ -225,21 +225,6 @@ object TatoebaCandidateExtractor {
         if (pairs.size <= maxPairs) {
             pairs
         } else {
-            pairs.sortedBy { mix(it.spanishId) }.take(maxPairs).sortedBy { it.spanishId }
+            pairs.sortedBy { StableHash.of(it.spanishId) }.take(maxPairs).sortedBy { it.spanishId }
         }
-
-    /** SplitMix64 finalizer: a fixed, well-distributed hash so the sample never changes. */
-    private fun mix(id: Long): Long {
-        var z = id + GOLDEN_GAMMA
-        z = (z xor (z ushr SHIFT_1)) * MULTIPLIER_1
-        z = (z xor (z ushr SHIFT_2)) * MULTIPLIER_2
-        return z xor (z ushr SHIFT_3)
-    }
-
-    private const val GOLDEN_GAMMA = -0x61c8864680b583ebL
-    private const val MULTIPLIER_1 = -0x40a7b892e31b1a47L
-    private const val MULTIPLIER_2 = -0x6b2fb644ecceee15L
-    private const val SHIFT_1 = 30
-    private const val SHIFT_2 = 27
-    private const val SHIFT_3 = 31
 }
