@@ -98,3 +98,27 @@ kt_jvm_test(
         "@maven//junit/junit",
     ],
 )
+
+kt_jvm_test(
+    name = "sublex_reader_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/preprocessor/SublexReaderTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.preprocessor.SublexReaderTest",
+    deps = [
+        ":preprocessor_lib",
+        "@maven//junit/junit",
+    ],
+)
+
+kt_jvm_test(
+    name = "dictionary_collision_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/preprocessor/DictionaryCollisionTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.preprocessor.DictionaryCollisionTest",
+    deps = [
+        ":preprocessor_lib",
+        "//core/linguistics",
+        "@maven//junit/junit",
+        "@maven//org/xerial/sqlite-jdbc",
+    ],
+)

@@ -200,16 +200,17 @@ PR 2 - algorithm audit (parameterized tests, fixes where code differs from the s
         lemma = the `form_of` target (gloss from the target lemma when it is in the data, else
         the alias's own gloss), `grammar_info` from the sense tags without meta tags such as
         `form-of`; a standalone alias (no target, e.g. `ONU`) is its own lemma.
-  - [ ] `SublexReader` treats any row whose word is `palabra` (a real, frequent Spanish word) as a
-        header line: observed on the real data, 24,999 of 25,000 words load, and by the code the
-        rank column is reset so later ranks fall back to line order. Only the first line may be
-        a header.
+  - [x] `SublexReader` treated any row whose word is `palabra` (a real, frequent Spanish word) as
+        a header line: on the real data 24,999 of 25,000 words loaded and the rank column was
+        reset. Now only the first line can be a header, and only when no other column is a
+        number.
   - [ ] The runtime clitic rule `length > suffix + 3` cannot resolve short imperatives such as
         `dame` / `dime` / `dile` / `hazlo`; the aliases now cover the frequent ones, but decide
         whether the rule should change (see 1.4).
-  - [ ] Duplicate surface forms (`fue` = ser/ir, `como` = verb/adverb) overwrite each other via
-        `INSERT OR REPLACE`. Make the rule explicit: prefer the entry whose lemma equals the
-        surface form, then the lemma with the better frequency rank, then the first occurrence.
+  - [x] Duplicate surface forms (`fue` = ser/ir, `como` = verb/adverb) overwrote each other via
+        `INSERT OR REPLACE`. Now an upsert keeps the best row: base lemma row first, then the
+        better frequency rank (missing loses), then the first one seen. The curated dictionary
+        seed is applied after Kaikki and always replaces. Documented in INGESTION.md Step 1.
   - [ ] Apply the POS keep-list; skip entries without a gloss; count and skip malformed lines
         instead of aborting.
 - [ ] Audit `CognateDetector` against Step 2 (`SUFFIX_MAP`, accent stripping, Levenshtein <= 1,

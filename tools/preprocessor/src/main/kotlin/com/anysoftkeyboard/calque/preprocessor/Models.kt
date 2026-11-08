@@ -1,5 +1,11 @@
 package com.anysoftkeyboard.calque.preprocessor
 
+/** Conventions for the `grammar_info` column of the dictionary table. */
+object DictionaryGrammar {
+    /** Marks the row of a lemma itself (its surface form is the lemma), see INGESTION.md Step 1. */
+    const val BASE = "base"
+}
+
 /** Model for the dictionary seed table. */
 data class DictionaryRow(
     val surfaceForm: String,

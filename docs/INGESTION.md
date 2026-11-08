@@ -46,6 +46,8 @@ FUNCTION process_kaikki_stream(jsonl_file, sublex_frequencies, db):
       )
 ```
 
+**Surface-form collisions.** `surface_form` is the primary key, so words that are several things at once (`fue` is *ser* and *ir*, `como` is an adverb and a form of *comer*) compete for one row. The builder keeps the best row: a base lemma row (`grammar_info = "base"`) beats an inflected row; otherwise the lower `frequency_rank` wins, and a missing rank loses to any rank; on a tie the row seen first stays. The curated `dictionary_seed.json` is applied after Kaikki and always replaces the Kaikki row for the same word.
+
 ### Step 2: Algorithmic Cognate Detection
 Identifies whether a Spanish word and its English definition share a transparent root.
 
