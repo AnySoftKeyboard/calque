@@ -5,7 +5,13 @@ import kotlin.system.exitProcess
 
 /** CLI binary entry point for the Calque seed.db build-time preprocessor. */
 fun main(args: Array<String>) {
-    val options = parseCommandLineArgs(args)
+    val command = args.firstOrNull()
+    if (command != null && !command.startsWith("--")) {
+        runExtractCommand(command, parseCommandLineArgs(args.drop(1)))
+        return
+    }
+
+    val options = parseCommandLineArgs(args.toList())
 
     val rawDbPath = options["--db"]
     if (rawDbPath == null) {
@@ -41,12 +47,14 @@ fun main(args: Array<String>) {
     println("  - Cognate transformer rules seeded: ${summary.cognateRuleRows}")
 }
 
-private fun printUsageAndExit() {
+internal fun printUsageAndExit(message: String? = null) {
+    if (message != null) System.err.println("Error: $message\n")
     System.err.println(
         """
         Usage: preprocessor --db <output-path-to-seed.db> [options]
+               preprocessor <extract-command> [options]
 
-        Options:
+        Build options:
           --kaikki <path>           Path to Kaikki Spanish JSONL dump
           --sublex <path>           Path to SUBTLEX-ESP frequency file
           --dictionary-seed <path>  Path to dictionary_seed.json
@@ -54,31 +62,11 @@ private fun printUsageAndExit() {
           --curated-lessons <path>  Path to curated_lessons_seed.json
           --tatoeba <path>          Path to Tatoeba Spanish-English TSV file
           --cognate-rules <path>    Path to cognate_rules_seed.json
+
+        Extract commands (see tools/preprocessor/README.md):
+          extract-sublex --input <SUBTLEX-ESP.xlsx> --output <ranks.tsv> [--limit 25000]
         """
             .trimIndent(),
     )
     exitProcess(1)
-}
-
-private fun resolveFile(path: String?): File? {
-    if (path == null) return null
-    val file = File(path)
-    if (file.isAbsolute) return file
-    val workingDir = System.getenv("BUILD_WORKING_DIRECTORY")
-    return if (workingDir != null) File(workingDir, path) else file
-}
-
-private fun parseCommandLineArgs(args: Array<String>): Map<String, String> {
-    val options = mutableMapOf<String, String>()
-    var i = 0
-    while (i < args.size) {
-        val arg = args[i]
-        if (arg.startsWith("--") && i + 1 < args.size && !args[i + 1].startsWith("--")) {
-            options[arg] = args[i + 1]
-            i += 2
-        } else {
-            i++
-        }
-    }
-    return options
 }

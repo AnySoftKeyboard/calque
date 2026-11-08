@@ -25,7 +25,7 @@ kt_jvm_binary(
 kt_jvm_test(
     name = "preprocessor_test",
     size = "small",
-    srcs = glob(["src/test/kotlin/**/*.kt"]),
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/preprocessor/PreprocessorTest.kt"],
     data = [
         "//data/seeds:cognate_rules_seed.json",
         "//data/seeds:curated_lessons_seed.json",
@@ -39,5 +39,16 @@ kt_jvm_test(
         "@maven//junit/junit",
         "@maven//org/jetbrains/kotlinx/kotlinx-serialization-json-jvm",
         "@maven//org/xerial/sqlite-jdbc",
+    ],
+)
+
+kt_jvm_test(
+    name = "sublex_extractor_test",
+    size = "small",
+    srcs = ["src/test/kotlin/com/anysoftkeyboard/calque/preprocessor/SublexExtractorTest.kt"],
+    test_class = "com.anysoftkeyboard.calque.preprocessor.SublexExtractorTest",
+    deps = [
+        ":preprocessor_lib",
+        "@maven//junit/junit",
     ],
 )
