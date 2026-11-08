@@ -48,6 +48,35 @@ class PackagedSeedAssetTest {
     }
 
     @Test
+    fun dictionary_commonWordsAreNotHiddenByProperNouns() = withSeed { db ->
+        // Kaikki also has "Amigo" (a surname), "Bueno", "Largo"...; they must never win the row of
+        // the lowercase word.
+        val dictRepo = SqliteDictionaryRepository(db.connection)
+        val words =
+            listOf(
+                "amigo",
+                "bueno",
+                "grande",
+                "claro",
+                "año",
+                "estado",
+                "amor",
+                "vuelta",
+                "segura",
+                "largo"
+            )
+
+        for (word in words) {
+            val entry = dictRepo.getBySurfaceForm(word)
+            assertNotNull("'$word' must be in the dictionary", entry)
+            assertTrue(
+                "'$word' resolved to the proper noun '${entry?.lemma}'",
+                entry?.lemma?.first()?.isLowerCase() == true
+            )
+        }
+    }
+
+    @Test
     fun falseCognates_areExpandedAcrossInflections() = withSeed { db ->
         val fcRepo = SqliteFalseCognatesRepository(db.connection)
 
@@ -59,6 +88,48 @@ class PackagedSeedAssetTest {
         val carpetasPlural = fcRepo.getBySurfaceForm("carpetas")
         assertNotNull("False cognates should expand inflections like 'carpetas'", carpetasPlural)
         assertEquals("carpeta", carpetasPlural?.lemma)
+    }
+
+    @Test
+    fun falseCognateRows_everyOneMatchesADictionaryRowOfTheSameLemma() = withSeed { db ->
+        // A false cognate card is only reachable when the reader finds the word in the dictionary
+        // under the same lemma. A seed keyed by an inflected form ("embarazada" instead of
+        // "embarazado"), or by a lemma the dictionary files under another one, breaks that.
+        val sql =
+            "SELECT f.surface_form, f.lemma, d.lemma FROM false_cognates f " +
+                "LEFT JOIN dictionary d ON d.surface_form = f.surface_form " +
+                "WHERE d.lemma IS NULL OR d.lemma <> f.lemma"
+        val mismatches = mutableListOf<String>()
+        db.connection.createStatement().use { statement ->
+            statement.executeQuery(sql).use { rs ->
+                while (rs.next()) mismatches.add(
+                    "${rs.getString(1)}: card ${rs.getString(2)}, dictionary ${rs.getString(3)}"
+                )
+            }
+        }
+
+        assertTrue(
+            "False cognate rows without a matching dictionary row: $mismatches",
+            mismatches.isEmpty()
+        )
+    }
+
+    @Test
+    fun falseCognateSeeds_everyLemmaExpandsToItsFormsNotJustItself() = withSeed { db ->
+        val sql =
+            "SELECT f.lemma, COUNT(*) AS cards, " +
+                "(SELECT COUNT(*) FROM dictionary d WHERE d.lemma = f.lemma) AS forms " +
+                "FROM false_cognates f GROUP BY f.lemma HAVING cards < forms"
+        val incomplete = mutableListOf<String>()
+        db.connection.createStatement().use { statement ->
+            statement.executeQuery(sql).use { rs ->
+                while (rs.next()) incomplete.add(
+                    "${rs.getString(1)} (${rs.getInt(2)} of ${rs.getInt(3)} forms)"
+                )
+            }
+        }
+
+        assertTrue("Lemmas that miss some of their forms: $incomplete", incomplete.isEmpty())
     }
 
     @Test

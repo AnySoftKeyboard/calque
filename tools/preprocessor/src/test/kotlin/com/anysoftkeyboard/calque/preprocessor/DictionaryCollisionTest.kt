@@ -152,6 +152,63 @@ class DictionaryCollisionTest {
         }
     }
 
+    private fun proper(surface: String, lemma: String, gloss: String, rank: Int? = null) =
+        row(surface, lemma, gloss, rank, DictionaryGrammar.PROPER_NOUN).copy(pos = "name")
+
+    @Test
+    fun keepingBest_aProperNounLosesToTheCommonWordInAnyOrderEvenWithABetterRank() {
+        for (properFirst in listOf(true, false)) {
+            SeedDatabase.open().use { db ->
+                val name = proper("amigo", "Amigo", "a surname", rank = 1)
+                val word = base("amigo", "friend", rank = 900, pos = "noun")
+
+                val inserts = if (properFirst) listOf(name, word) else listOf(word, name)
+                inserts.forEach { db.insertDictionaryBatchKeepingBest(listOf(it)) }
+
+                assertEquals("properFirst=$properFirst", "friend", db.glossOf("amigo"))
+            }
+        }
+    }
+
+    @Test
+    fun keepingBest_aProperNounLosesToAnInflectedFormToo() {
+        SeedDatabase.open().use { db ->
+            db.insertDictionaryBatchKeepingBest(
+                listOf(
+                    proper("estado", "Estado", "state", rank = 194),
+                    row("estado", "estar", "been", rank = 900)
+                )
+            )
+
+            assertEquals("been", db.glossOf("estado"))
+        }
+    }
+
+    @Test
+    fun keepingBest_aProperNounIsKeptWhenItIsTheOnlyRow() {
+        SeedDatabase.open().use { db ->
+            db.insertDictionaryBatchKeepingBest(
+                listOf(proper("madrid", "Madrid", "Madrid", rank = 800))
+            )
+
+            assertEquals("Madrid", db.queryDictionaryRow("madrid")!!.lemma)
+        }
+    }
+
+    @Test
+    fun keepingBest_twoProperNounsFollowTheRankRule() {
+        SeedDatabase.open().use { db ->
+            db.insertDictionaryBatchKeepingBest(
+                listOf(
+                    proper("luz", "Luz", "first", rank = 900),
+                    proper("luz", "LUZ", "second", rank = 100)
+                )
+            )
+
+            assertEquals("second", db.glossOf("luz"))
+        }
+    }
+
     @Test
     fun plainInsert_alwaysReplacesSoCuratedRowsWin() {
         SeedDatabase.open().use { db ->

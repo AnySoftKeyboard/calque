@@ -4,6 +4,16 @@ package com.anysoftkeyboard.calque.preprocessor
 object DictionaryGrammar {
     /** Marks the row of a lemma itself (its surface form is the lemma), see INGESTION.md Step 1. */
     const val BASE = "base"
+
+    /**
+     * Marks the row of a capitalized lemma: a name such as `Amigo` (a surname) or `Largo`. Surface
+     * forms are lowercased, so such a row competes with the common word (`amigo`, `largo`) for the
+     * same primary key and always loses to it.
+     */
+    const val PROPER_NOUN = "proper noun"
+
+    /** True when [word] starts with an upper-case letter, which makes it a proper noun. */
+    fun isProperNoun(word: String): Boolean = word.firstOrNull()?.isUpperCase() == true
 }
 
 /** Model for the dictionary seed table. */
