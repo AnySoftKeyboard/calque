@@ -1477,7 +1477,7 @@
   },
   {
     "surface_form": "embarazada",
-    "lemma": "embarazada",
+    "lemma": "embarazado",
     "pos": "adj",
     "grammar_info": "fem. sing.",
     "english_gloss": "pregnant",
@@ -1486,9 +1486,9 @@
   },
   {
     "surface_form": "actualmente",
-    "lemma": "actual",
+    "lemma": "actualmente",
     "pos": "adv",
-    "grammar_info": null,
+    "grammar_info": "base",
     "english_gloss": "currently",
     "is_cognate": false,
     "frequency_rank": 505

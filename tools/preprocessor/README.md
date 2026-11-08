@@ -211,8 +211,10 @@ bazelisk run //tools/preprocessor:preprocessor -- --db /tmp/seed.db \
 Rules worth knowing:
 
 - **Collisions:** `surface_form` is the primary key, so homographs (`fue` = *ser* / *ir*) compete
-  for one row. A base lemma row beats an inflected row, then the lower `frequency_rank` wins, then
-  the first row seen stays. The curated dictionary seed is applied last and always replaces.
+  for one row. A lemma row beats an inflected row, which beats a proper noun (a capitalized lemma
+  such as the surname `Amigo`, which must never hide `amigo`); then the lower `frequency_rank`
+  wins, then the first row seen stays. The curated dictionary seed is applied last and always
+  replaces. Only one part of speech per spelling can be stored, see INGESTION.md.
 - **Frequency:** a row's rank is the better of its lemma's rank and its own, see INGESTION.md.
 - **Aliases** from the Kaikki subset (`tu`, `muy`, `dame`) become rows of their target lemma.
 - Malformed or unwanted Kaikki lines are counted and skipped, never fatal.

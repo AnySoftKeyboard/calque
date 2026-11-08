@@ -131,7 +131,7 @@ class PreprocessorTest {
 
         val lemmas = seeds.map { it.lemma }.toSet()
         assertEquals(seeds.size, lemmas.size)
-        val coreLemmas = setOf("éxito", "carpeta", "embarazada", "soportar", "realizar")
+        val coreLemmas = setOf("éxito", "carpeta", "embarazado", "soportar", "realizar")
         assertTrue(lemmas.containsAll(coreLemmas))
 
         val validSeverities = setOf("HIGH_RISK", "MILD_NUANCE")

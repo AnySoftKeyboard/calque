@@ -219,7 +219,7 @@ class KaikkiProcessorTest {
     }
 
     @Test
-    fun alias_aVariantWithNoTargetIsItsOwnBaseLemma() {
+    fun alias_aCapitalizedVariantWithNoTargetIsAProperNounOfItsOwn() {
         val onu =
             """{"word":"ONU","pos":"name","senses":[{"glosses":["acronym of Organización de las Naciones Unidas"],""" +
                 """"form_of":[{"word":"Organización de las Naciones Unidas"}]}]}"""
@@ -227,8 +227,74 @@ class KaikkiProcessorTest {
         process(onu, ranks = mapOf("onu" to 3000)) { db, _ ->
             val row = db.queryDictionaryRow("onu")!!
             assertEquals("ONU", row.lemma)
-            assertEquals(DictionaryGrammar.BASE, row.grammarInfo)
+            assertEquals(DictionaryGrammar.PROPER_NOUN, row.grammarInfo)
             assertEquals("acronym of Organización de las Naciones Unidas", row.englishGloss)
+        }
+    }
+
+    @Test
+    fun alias_aLowercaseVariantWithNoTargetIsItsOwnBaseLemma() {
+        val line =
+            """{"word":"cia","pos":"noun","senses":[{"glosses":["acronym of central"],""" +
+                """"form_of":[{"word":"Agencia Central de Inteligencia"}]}]}"""
+
+        process(line, ranks = mapOf("cia" to 4000)) { db, _ ->
+            assertEquals(DictionaryGrammar.BASE, db.queryDictionaryRow("cia")!!.grammarInfo)
+        }
+    }
+
+    // ----- proper nouns -------------------------------------------------------------------------
+
+    // Real shapes: Kaikki has "Amigo" (a surname) and "amigo" (friend) as separate entries, and the
+    // surface form is lowercased, so they compete for the row of "amigo".
+    private val amigoSurname =
+        """{"word":"Amigo","pos":"name","senses":[{"glosses":["a surname"]}],""" +
+            """"forms":[{"form":"Amigos","tags":["plural"]}]}"""
+
+    private val amigoWord =
+        """{"word":"amigo","pos":"noun","senses":[{"glosses":["friend"]}],""" +
+            """"forms":[{"form":"amigos","tags":["plural"]}]}"""
+
+    @Test
+    fun properNoun_neverHidesTheCommonWordWhicheverComesFirst() {
+        for (lines in listOf(listOf(amigoSurname, amigoWord), listOf(amigoWord, amigoSurname))) {
+            process(*lines.toTypedArray(), ranks = mapOf("amigo" to 164)) { db, _ ->
+                val row = db.queryDictionaryRow("amigo")!!
+                assertEquals("amigo", row.lemma)
+                assertEquals("friend", row.englishGloss)
+                assertEquals(DictionaryGrammar.BASE, row.grammarInfo)
+            }
+        }
+    }
+
+    @Test
+    fun properNoun_aloneIsKeptMarkedAsAProperNounAndNotAsACognate() {
+        val madrid = """{"word":"Madrid","pos":"name","senses":[{"glosses":["Madrid"]}]}"""
+
+        process(madrid, ranks = mapOf("madrid" to 800)) { db, _ ->
+            val row = db.queryDictionaryRow("madrid")!!
+            assertEquals("Madrid", row.lemma)
+            assertEquals(DictionaryGrammar.PROPER_NOUN, row.grammarInfo)
+            assertEquals(false, row.isCognate)
+            assertEquals(800, row.frequencyRank)
+        }
+    }
+
+    @Test
+    fun properNoun_formsAreNotListed() {
+        process(amigoSurname) { db, _ -> assertNull(db.queryDictionaryRow("amigos")) }
+    }
+
+    @Test
+    fun properNoun_doesNotHideAnInflectedFormOfACommonWord() {
+        // "Estado" the name must lose against "estado", the participle of estar.
+        val estadoName = """{"word":"Estado","pos":"name","senses":[{"glosses":["state"]}]}"""
+        val estar =
+            """{"word":"estar","pos":"verb","senses":[{"glosses":["to be"]}],""" +
+                """"forms":[{"form":"estado","tags":["participle"]}]}"""
+
+        process(estadoName, estar, ranks = mapOf("estado" to 194, "estar" to 20)) { db, _ ->
+            assertEquals("estar", db.queryDictionaryRow("estado")!!.lemma)
         }
     }
 

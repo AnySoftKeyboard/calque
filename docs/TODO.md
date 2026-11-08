@@ -183,10 +183,26 @@ PR 6 - real data (done, except the open decisions marked below):
       (750 KB). Source versions are in the `*.meta.json` files. New command `extract-seed-words`
       generates `data/kaikki/extra_words.txt` (308 words, only 10 beyond the top 25,000) so the
       words of the curated seeds always resolve; `constipado` now does.
-- [x] `//app:seed_db_asset` builds from the committed subsets: 3 s, 149,047 dictionary rows,
-      524 false-cognate rows, 56 lessons (8 hand-written + 48 Tatoeba), 12 rules. The Room schema
+- [x] `//app:seed_db_asset` builds from the committed subsets: 3 s, 148,972 dictionary rows,
+      525 false-cognate rows, 56 lessons (8 hand-written + 48 Tatoeba), 12 rules. The Room schema
       tests, the parity test and `PackagedSeedAssetTest` (updated for the real contents) pass on
       it, and the APK ships it.
+- [x] **Bug found by the guard tests after building from the real data, and fixed:** the
+      capitalized Kaikki entries (`Amigo` a surname, `Bueno`, `Claro`, `Gracias` a town) won the
+      row of the common word because surface forms are lowercased and uppercase sorts first, so
+      167 of the 3,000 most frequent words resolved to a name (`amigo` = "a surname"). A proper
+      noun now loses to any common-word row (`grammar_info = "proper noun"`, no cognate flag,
+      no forms); 0 capitalized lemma rows win a common word now and 404 survive where nothing
+      competes. `PackagedSeedAssetTest` pins `amigo`, `bueno`, `grande`, `claro`, `estado`, ...
+- [ ] **Open problem - one part of speech per spelling.** `surface_form` is the primary key, so
+      a spelling with several lemma entries keeps one, chosen by input order (alphabetical by
+      part of speech). Checked on 45 common words with a hand-made answer key: alphabetical
+      order gives the intended entry for 28 (62%), a fixed part-of-speech preference 29, most
+      senses first 32 (71%). Examples still wrong: `amigo` = interjection "Said when realizing
+      something" (the noun entry is missing from the data), `padre` / `señor` = informal
+      adjectives, `claro` = noun. No cheap rule is good enough, so none was added. Real fixes:
+      one row per (spelling, part of speech) or a second table of alternatives, and/or
+      curated overrides in `dictionary_seed.json` for the few hundred most frequent words.
 - [ ] **DECISION NEEDED - size.** The generated `seed.db` is 20.3 MB (4.6 MB inside the APK;
       the whole APK is 37 MB). About 66,000 of the 149,000 dictionary rows have no rank (rare
       inflections of ranked lemmas). Options: keep them (best lookup coverage for pasted text),
@@ -200,13 +216,13 @@ PR 6 - real data (done, except the open decisions marked below):
 - [ ] Module 0.0 "You Already Know 3,000 Words": 3 swipe cards (`-tion`/`-cion`, `-al`/`-al`,
       `-ic`/`-ico`) and the 5-vowel soundboard content (needs a lesson content schema for
       non-sentence cards).
-- [ ] Expand `false_cognates_seed.json` (25 rows today); verify every lemma expands to all inflections.
-      Building from the real data showed two inconsistencies to fix first: `embarazada` is keyed
-      by the feminine form in both the dictionary seed and the false-cognate seed (rekey to
-      `embarazado`), and the dictionary seed files `actualmente` under the lemma `actual` while
-      the false-cognate seed has its own `actualmente` card, so that card finds no rows (give
-      `actualmente` its own lemma, as Kaikki does). Then add a test that no seed lemma lacks
-      dictionary rows in the generated database.
+- [x] Two seed inconsistencies found by building from the real data are fixed: `embarazada` was
+      keyed by the feminine form in the dictionary and the false-cognate seeds (now the lemma
+      `embarazado`, which expands to all four forms), and the dictionary seed filed `actualmente`
+      under the lemma `actual` while the false-cognate seed has its own card (now its own
+      lemma). Guard tests on the generated database: every false-cognate row matches a
+      dictionary row of the same lemma, and every lemma expands to all of its dictionary forms.
+- [ ] Expand `false_cognates_seed.json` (25 rows today).
 - [ ] Confirm the 8 core suffix bridges (`-tion`, `-ty`, `-ous`, `-ly`, ...) each have gender rule,
       spelling note and 5-10 examples (12 rules exist today).
 - [x] (PR 5) Data-validation tests for the seed JSON files (`SeedFilesValidationTest`): required

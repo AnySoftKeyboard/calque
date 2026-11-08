@@ -13,18 +13,22 @@ internal const val DICTIONARY_COLUMNS =
 internal const val REPLACE_DICTIONARY_SQL =
     "INSERT OR REPLACE INTO dictionary ($DICTIONARY_COLUMNS) VALUES (?, ?, ?, ?, ?, ?, ?)"
 
-// SQLite's IS yields 0 or 1 even for a NULL grammar_info. MAX_RANK stands in for a missing
-// frequency_rank so that a missing rank loses to any real rank.
+// MAX_RANK stands in for a missing frequency_rank so that a missing rank loses to any real rank.
 private const val MAX_RANK = Int.MAX_VALUE
-private const val IS_BASE = "grammar_info IS '${DictionaryGrammar.BASE}'"
 
-private const val KEEP_BEST_DICTIONARY_SQL =
+// Row priority: a lemma row (2) beats an inflected row (1), which beats a proper noun (0). A NULL
+// grammar_info falls to the ELSE branch.
+private fun priority(table: String) =
+    "CASE $table.grammar_info WHEN '${DictionaryGrammar.BASE}' THEN 2 " +
+        "WHEN '${DictionaryGrammar.PROPER_NOUN}' THEN 0 ELSE 1 END"
+
+private val KEEP_BEST_DICTIONARY_SQL =
     "INSERT INTO dictionary ($DICTIONARY_COLUMNS) VALUES (?, ?, ?, ?, ?, ?, ?) " +
         "ON CONFLICT(surface_form) DO UPDATE SET lemma = excluded.lemma, pos = excluded.pos, " +
         "grammar_info = excluded.grammar_info, english_gloss = excluded.english_gloss, " +
         "is_cognate = excluded.is_cognate, frequency_rank = excluded.frequency_rank " +
-        "WHERE (excluded.$IS_BASE) > (dictionary.$IS_BASE) " +
-        "OR ((excluded.$IS_BASE) = (dictionary.$IS_BASE) " +
+        "WHERE (${priority("excluded")}) > (${priority("dictionary")}) " +
+        "OR ((${priority("excluded")}) = (${priority("dictionary")}) " +
         "AND COALESCE(excluded.frequency_rank, $MAX_RANK) < " +
         "COALESCE(dictionary.frequency_rank, $MAX_RANK))"
 
@@ -47,7 +51,8 @@ internal fun SeedDatabase.executeDictionaryBatch(entries: Collection<DictionaryR
  * Inserts a batch of dictionary rows, keeping the better row when a surface form already exists
  * (also within the batch). `surface_form` is the primary key, so homographs such as `fue` (ser /
  * ir) or `como` (adverb / verb of comer) compete for one row; the rule is:
- * 1. a base lemma row (`grammar_info` = [DictionaryGrammar.BASE]) beats an inflected one;
+ * 1. a lemma row (`grammar_info` = [DictionaryGrammar.BASE]) beats an inflected row, which beats a
+ *    proper noun ([DictionaryGrammar.PROPER_NOUN]): `Amigo` (a surname) must never hide `amigo`;
  * 2. otherwise the lower `frequency_rank` wins, and a missing rank loses to any rank;
  * 3. on a tie the row inserted first stays, so the result follows the input order.
  */

@@ -16,32 +16,40 @@ data class LemmaInfo(val gloss: String, val isCognate: Boolean)
  */
 internal class KaikkiRowBuilder(private val ranks: Map<String, Int>) {
 
-    /** The base row of [entry] followed by one row per form. */
+    /**
+     * The base row of [entry] followed by one row per form. A capitalized lemma is a proper noun:
+     * its row is marked [DictionaryGrammar.PROPER_NOUN] so that it never hides the common word with
+     * the same lowercase spelling, it is not flagged as a cognate, and its forms are not listed.
+     */
     fun lemmaRows(entry: SubsetEntry): List<DictionaryRow> {
         val lemmaRank = rankOf(entry.word)
-        val isCognate = CognateDetector.detectCognate(entry.word, entry.gloss)
+        val isProper = DictionaryGrammar.isProperNoun(entry.word)
+        val isCognate = !isProper && CognateDetector.detectCognate(entry.word, entry.gloss)
         val base =
             DictionaryRow(
                 surfaceForm = normalize(entry.word),
                 lemma = entry.word,
                 pos = entry.pos,
-                grammarInfo = DictionaryGrammar.BASE,
+                grammarInfo =
+                    if (isProper) DictionaryGrammar.PROPER_NOUN else DictionaryGrammar.BASE,
                 englishGloss = entry.gloss,
                 isCognate = isCognate,
                 frequencyRank = lemmaRank,
             )
         val forms =
-            entry.forms.map { form ->
-                DictionaryRow(
-                    surfaceForm = normalize(form.form),
-                    lemma = entry.word,
-                    pos = entry.pos,
-                    grammarInfo = form.tags.takeIf { it.isNotEmpty() }?.joinToString(", "),
-                    englishGloss = entry.gloss,
-                    isCognate = isCognate,
-                    frequencyRank = best(lemmaRank, rankOf(form.form)),
-                )
-            }
+            entry.forms
+                .filterNot { isProper }
+                .map { form ->
+                    DictionaryRow(
+                        surfaceForm = normalize(form.form),
+                        lemma = entry.word,
+                        pos = entry.pos,
+                        grammarInfo = form.tags.takeIf { it.isNotEmpty() }?.joinToString(", "),
+                        englishGloss = entry.gloss,
+                        isCognate = isCognate,
+                        frequencyRank = best(lemmaRank, rankOf(form.form)),
+                    )
+                }
         return listOf(base) + forms
     }
 
@@ -60,7 +68,11 @@ internal class KaikkiRowBuilder(private val ranks: Map<String, Int>) {
             pos = alias.pos,
             grammarInfo =
                 if (alias.formOf == null) {
-                    DictionaryGrammar.BASE
+                    if (DictionaryGrammar.isProperNoun(alias.word)) {
+                        DictionaryGrammar.PROPER_NOUN
+                    } else {
+                        DictionaryGrammar.BASE
+                    }
                 } else {
                     alias.tags
                         .filterNot { it in DERIVATIVE_TAGS }
