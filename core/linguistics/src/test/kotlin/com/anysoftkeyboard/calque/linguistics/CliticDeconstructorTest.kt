@@ -110,4 +110,56 @@ class CliticDeconstructorTest {
         val result = CliticDeconstructor.deconstruct("árbol", provider)
         assertNull(result)
     }
+
+    private fun reading(pos: String, lemma: String, gloss: String) =
+        DictionaryEntry("mira", lemma, pos, null, gloss, false, 100)
+
+    @Test
+    fun deconstruct_usesAVerbReadingOfARootWhosePrimaryReadingIsNotAVerb() {
+        // "mira" is primarily a noun (a sight) but also the imperative of mirar.
+        val root =
+            reading("noun", "mira", "sight")
+                .copy(alternatives = listOf(reading("verb", "mirar", "look")))
+        val result =
+            CliticDeconstructor.deconstruct("míralo", FakeLookupProvider(mapOf("mira" to root)))
+
+        assertNotNull(result)
+        assertEquals("mirar", result?.rootLemma)
+        assertEquals("look + [lo]", result?.combinedEnglishGloss)
+        assertEquals("verb", result?.rootEntry?.pos)
+        assertEquals(listOf("lo"), result?.attachedPronouns)
+    }
+
+    @Test
+    fun deconstruct_aRootWithOnlyNonVerbReadingsIsNotDeconstructed() {
+        val root =
+            reading("noun", "mira", "sight")
+                .copy(alternatives = listOf(reading("adj", "mira", "watchful")))
+
+        assertNull(
+            CliticDeconstructor.deconstruct("míralo", FakeLookupProvider(mapOf("mira" to root)))
+        )
+    }
+
+    @Test
+    fun deconstruct_prefersThePrimaryReadingWhenItIsAlreadyAVerb() {
+        val root =
+            reading("verb", "mirar", "look")
+                .copy(alternatives = listOf(reading("verb", "mirarse", "look at oneself")))
+
+        val result =
+            CliticDeconstructor.deconstruct("míralo", FakeLookupProvider(mapOf("mira" to root)))
+
+        assertEquals("mirar", result?.rootLemma)
+    }
+
+    @Test
+    fun dictionaryEntry_readingsListThePrimaryFirstWithoutNestingAlternatives() {
+        val primary = reading("noun", "mira", "sight")
+        val alternative = reading("verb", "mirar", "look")
+        val entry = primary.copy(alternatives = listOf(alternative))
+
+        assertEquals(listOf(primary, alternative), entry.readings)
+        assertEquals(listOf(primary), primary.readings)
+    }
 }

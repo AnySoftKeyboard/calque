@@ -81,29 +81,46 @@ class DictionaryCollisionTest {
     }
 
     @Test
-    fun keepingBest_aTieKeepsTheRowThatWasInsertedFirst() {
+    fun keepingBest_aTieIsDecidedByPartOfSpeechNotByInsertionOrder() {
+        val conj = base("como", "as", rank = 50, pos = "conj")
+        val adv = base("como", "like", rank = 50, pos = "adv")
+        for (rows in listOf(listOf(conj, adv), listOf(adv, conj))) {
+            SeedDatabase.open().use { db ->
+                rows.forEach { db.insertDictionaryBatchKeepingBest(listOf(it)) }
+
+                assertEquals("like", db.glossOf("como"))
+            }
+        }
+    }
+
+    @Test
+    fun keepingBest_aSecondRowForTheSameKeyWithTheSameRankKeepsTheFirst() {
         SeedDatabase.open().use { db ->
-            db.insertDictionaryBatchKeepingBest(listOf(base("como", "as", rank = 50, pos = "conj")))
+            db.insertDictionaryBatchKeepingBest(listOf(base("sol", "sun", rank = 80, pos = "noun")))
             db.insertDictionaryBatchKeepingBest(
-                listOf(base("como", "like", rank = 50, pos = "adv"))
+                listOf(base("sol", "sunlight", rank = 80, pos = "noun"))
             )
 
-            assertEquals("as", db.glossOf("como"))
+            assertEquals("sun", db.glossOf("sol"))
+            assertEquals(1, db.rowCount())
         }
     }
 
     @Test
-    fun keepingBest_aTieBetweenTwoUnrankedRowsKeepsTheFirst() {
-        SeedDatabase.open().use { db ->
-            db.insertDictionaryBatchKeepingBest(listOf(row("x", "a", "first")))
-            db.insertDictionaryBatchKeepingBest(listOf(row("x", "b", "second")))
+    fun keepingBest_aTieBetweenTwoUnrankedRowsIsDecidedByLemmaInAnyOrder() {
+        for (lemmas in listOf(listOf("a", "b"), listOf("b", "a"))) {
+            SeedDatabase.open().use { db ->
+                lemmas.forEach {
+                    db.insertDictionaryBatchKeepingBest(listOf(row("x", it, "gloss $it")))
+                }
 
-            assertEquals("first", db.glossOf("x"))
+                assertEquals("gloss a", db.glossOf("x"))
+            }
         }
     }
 
     @Test
-    fun keepingBest_resolvesConflictsInsideOneBatch() {
+    fun keepingBest_keepsOneRowPerReadingAndResolvesConflictsInsideOneBatch() {
         SeedDatabase.open().use { db ->
             db.insertDictionaryBatchKeepingBest(
                 listOf(
@@ -115,13 +132,18 @@ class DictionaryCollisionTest {
                 )
             )
 
-            assertEquals("fue (base)", db.glossOf("fue"))
-            assertEquals(1, db.rowCount())
+            // Three readings: the base row, then ser (rank 1), then ir (rank 700, the better of
+            // two).
+            assertEquals(
+                listOf("fue (base)", "also was", "walked"),
+                db.queryDictionaryRows("fue").map { it.englishGloss },
+            )
+            assertEquals(3, db.rowCount())
         }
     }
 
     @Test
-    fun keepingBest_replacesEveryColumnOfTheLosingRow() {
+    fun keepingBest_keepsEveryReadingAndTheBetterOneIsPrimary() {
         SeedDatabase.open().use { db ->
             db.insertDictionaryBatchKeepingBest(listOf(row("fue", "ir", "went", rank = 900)))
             db.insertDictionaryBatchKeepingBest(
@@ -136,7 +158,8 @@ class DictionaryCollisionTest {
             assertEquals(true, info?.isCognate)
             assertNull(info?.grammar)
             assertEquals(listOf("fue"), db.querySurfacesForLemma("ser"))
-            assertEquals(emptyList<String>(), db.querySurfacesForLemma("ir"))
+            assertEquals(listOf("fue"), db.querySurfacesForLemma("ir"))
+            assertEquals(2, db.rowCount())
         }
     }
 

@@ -218,7 +218,8 @@ class RoomGeneratedSchemaValidationTest {
 
     @Test
     fun delegatesDeclareExpectedSchemaVersionAndDistinctIdentityHashes() {
-        assertEquals(1, seedDelegate().version)
+        // Seed v2: the dictionary keeps every reading of a spelling.
+        assertEquals(2, seedDelegate().version)
         assertEquals(1, userDelegate().version)
         assertTrue(seedDelegate().identityHash != userDelegate().identityHash)
     }

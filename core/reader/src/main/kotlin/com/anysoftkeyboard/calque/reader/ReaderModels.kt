@@ -3,6 +3,7 @@ package com.anysoftkeyboard.calque.reader
 import com.anysoftkeyboard.calque.data.models.CuratedLesson
 import com.anysoftkeyboard.calque.data.models.InterlinearGlossToken
 import com.anysoftkeyboard.calque.data.models.UserCustomText
+import com.anysoftkeyboard.calque.linguistics.DictionaryEntry
 import com.anysoftkeyboard.calque.linguistics.FalseCognateEntry
 import com.anysoftkeyboard.calque.linguistics.TokenSpan
 import com.anysoftkeyboard.calque.linguistics.UserWordStatus
@@ -45,6 +46,8 @@ data class TokenInspection(
     val lemma: String,
     val pos: String?,
     val englishGloss: String?,
+    /** The other readings of the tapped spelling (`padre`: noun and informal adjective). */
+    val alternativeReadings: List<DictionaryEntry> = emptyList(),
     val cognateRuleNote: String? = null,
     val falseCognateTrap: FalseCognateEntry? = null,
     val cliticSurgery: CliticSurgeryResult? = null,

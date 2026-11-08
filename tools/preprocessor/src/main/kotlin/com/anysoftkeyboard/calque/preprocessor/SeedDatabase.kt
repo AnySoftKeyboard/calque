@@ -21,15 +21,15 @@ class SeedDatabase(internal val connection: Connection) : AutoCloseable {
 
     /**
      * Inserts a batch of dictionary rows inside a single transaction. A row replaces any existing
-     * row for the same surface form, so this is for curated data that must always win.
+     * row with the same (surface form, lemma, part of speech) key.
      */
     fun insertDictionaryBatch(entries: Collection<DictionaryRow>) {
         executeDictionaryBatch(entries, REPLACE_DICTIONARY_SQL)
     }
 
-    /** Queries all surface forms registered for a given lemma. */
+    /** Queries all surface forms registered for a given lemma, in any of its readings. */
     fun querySurfacesForLemma(lemma: String): List<String> {
-        val sql = "SELECT surface_form FROM dictionary WHERE lemma = ?"
+        val sql = "SELECT DISTINCT surface_form FROM dictionary WHERE lemma = ?"
         val surfaces = mutableListOf<String>()
         connection.prepareStatement(sql).use { pstmt ->
             pstmt.setString(PARAM_QUERY_LEMMA, lemma)
@@ -42,10 +42,11 @@ class SeedDatabase(internal val connection: Connection) : AutoCloseable {
         return surfaces
     }
 
-    /** Looks up word properties from the dictionary table for sentence scoring. */
+    /** Looks up the primary reading's properties from the dictionary table for scoring. */
     fun lookupWord(surfaceForm: String): ScoredWordInfo? {
         val sql =
-            "SELECT is_cognate, frequency_rank, grammar_info FROM dictionary WHERE surface_form = ? LIMIT 1"
+            "SELECT is_cognate, frequency_rank, grammar_info FROM dictionary " +
+                "WHERE surface_form = ? ORDER BY $READING_ORDER_SQL LIMIT 1"
         connection.prepareStatement(sql).use { pstmt ->
             pstmt.setString(PARAM_LOOKUP_SURFACE, surfaceForm)
             pstmt.executeQuery().use { rs ->
@@ -196,7 +197,24 @@ class SeedDatabase(internal val connection: Connection) : AutoCloseable {
          * Room schema version of `CalqueSeedDatabase`. Room's `createFromAsset` expects the
          * packaged file to carry the matching `PRAGMA user_version`.
          */
-        const val ROOM_SCHEMA_VERSION = 1
+        const val ROOM_SCHEMA_VERSION = 2
+
+        // One row per reading of a spelling; reading_order 0 is the primary reading.
+        internal val CREATE_DICTIONARY_SQL =
+            """
+            CREATE TABLE IF NOT EXISTS dictionary (
+                surface_form TEXT NOT NULL,
+                lemma TEXT NOT NULL,
+                pos TEXT NOT NULL,
+                grammar_info TEXT,
+                english_gloss TEXT NOT NULL,
+                is_cognate INTEGER NOT NULL,
+                frequency_rank INTEGER,
+                reading_order INTEGER NOT NULL,
+                PRIMARY KEY (surface_form, lemma, pos)
+            )
+            """
+                .trimIndent()
 
         private const val PARAM_QUERY_LEMMA = 1
         private const val PARAM_LOOKUP_SURFACE = 1
@@ -259,17 +277,7 @@ internal object DatabaseBinders {
     fun createTables(connection: Connection) {
         val statements =
             listOf(
-                """
-                CREATE TABLE IF NOT EXISTS dictionary (
-                    surface_form TEXT NOT NULL PRIMARY KEY,
-                    lemma TEXT NOT NULL,
-                    pos TEXT NOT NULL,
-                    grammar_info TEXT,
-                    english_gloss TEXT NOT NULL,
-                    is_cognate INTEGER NOT NULL,
-                    frequency_rank INTEGER
-                )
-                """,
+                SeedDatabase.CREATE_DICTIONARY_SQL,
                 "CREATE INDEX IF NOT EXISTS idx_dictionary_lemma ON dictionary(lemma)",
                 """
                 CREATE TABLE IF NOT EXISTS false_cognates (

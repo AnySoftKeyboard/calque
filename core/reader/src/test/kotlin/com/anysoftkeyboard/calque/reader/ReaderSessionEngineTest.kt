@@ -177,6 +177,65 @@ class ReaderSessionEngineTest {
     }
 
     @Test
+    fun selectToken_exposesTheOtherReadingsOfTheTappedSpelling() {
+        val padre =
+            DictionaryEntry(
+                surfaceForm = "padre",
+                lemma = "padre",
+                pos = "noun",
+                grammarInfo = null,
+                englishGloss = "father",
+                isCognate = false,
+                frequencyRank = 155,
+                alternatives =
+                    listOf(
+                        DictionaryEntry("padre", "padre", "adj", null, "cool", false, 155),
+                    ),
+            )
+        val provider =
+            object : WordLookupProvider by fakeLookupProvider {
+                override fun batchLookupDictionary(words: Set<String>) =
+                    fakeLookupProvider.batchLookupDictionary(words) +
+                        words.filter { it == "padre" }.associateWith { padre }
+            }
+        val engine =
+            ReaderSessionEngine(
+                source =
+                    ReadingSource.CustomText(
+                        UserCustomText(title = "T", originalSpanish = "El padre duerme.")
+                    ),
+                lookupProvider = provider,
+                cognateRulesRepository = fakeRulesRepo,
+                userWordStateRepository = fakeUserStateRepo,
+            )
+
+        engine.selectToken(2)
+
+        val inspection = engine.state.activeInspection!!
+        assertEquals("father", inspection.englishGloss)
+        assertEquals(listOf("cool"), inspection.alternativeReadings.map { it.englishGloss })
+        assertEquals(listOf("adj"), inspection.alternativeReadings.map { it.pos })
+    }
+
+    @Test
+    fun selectToken_aSpellingWithOneReadingHasNoAlternativeReadings() {
+        val engine =
+            ReaderSessionEngine(
+                source =
+                    ReadingSource.CustomText(
+                        UserCustomText(title = "T", originalSpanish = "El gato duerme.")
+                    ),
+                lookupProvider = fakeLookupProvider,
+                cognateRulesRepository = fakeRulesRepo,
+                userWordStateRepository = fakeUserStateRepo,
+            )
+
+        engine.selectToken(2)
+
+        assertTrue(engine.state.activeInspection!!.alternativeReadings.isEmpty())
+    }
+
+    @Test
     fun selectToken_inspectsAndRecordsEncounter() {
         val customText =
             UserCustomText(

@@ -13,23 +13,28 @@ class RoomDictionaryRepositoryTest {
 
     private class FakeDictionaryDao(entities: List<DictionaryEntity> = emptyList()) :
         DictionaryDao {
-        private val bySurface = entities.associateBy { it.surfaceForm }
+        // Kept in the order given, not sorted, so the repository must order the readings itself.
+        private val rows = entities
         val batchSizes = mutableListOf<Int>()
         var lastPrefix: String? = null
         var prefixQueries = 0
 
-        override suspend fun getBySurfaceForm(surfaceForm: String) = bySurface[surfaceForm]
+        override suspend fun getBySurfaceForm(surfaceForm: String) =
+            rows.filter { it.surfaceForm == surfaceForm }.minByOrNull { it.readingOrder }
+
+        override suspend fun getReadingsBySurfaceForm(surfaceForm: String) =
+            rows.filter { it.surfaceForm == surfaceForm }
 
         override suspend fun getBySurfaceForms(surfaceForms: List<String>): List<DictionaryEntity> {
             batchSizes.add(surfaceForms.size)
-            return surfaceForms.mapNotNull { bySurface[it] }
+            return rows.filter { it.surfaceForm in surfaceForms }
         }
 
         override suspend fun getSurfacesForLemma(lemma: String) =
-            bySurface.values.filter { it.lemma == lemma }.map { it.surfaceForm }.sorted()
+            rows.filter { it.lemma == lemma }.map { it.surfaceForm }.distinct().sorted()
 
         override suspend fun getEntriesForLemma(lemma: String) =
-            bySurface.values.filter { it.lemma == lemma }.sortedBy { it.surfaceForm }
+            rows.filter { it.lemma == lemma }.sortedBy { it.surfaceForm }
 
         override suspend fun searchByPrefix(prefix: String, limit: Int): List<DictionaryEntity> {
             lastPrefix = prefix
@@ -38,15 +43,69 @@ class RoomDictionaryRepositoryTest {
         }
 
         override fun getBySurfaceFormFlow(surfaceForm: String): Flow<DictionaryEntity?> =
-            flowOf(bySurface[surfaceForm])
+            flowOf(rows.filter { it.surfaceForm == surfaceForm }.minByOrNull { it.readingOrder })
 
         override suspend fun insertAll(entries: List<DictionaryEntity>) = Unit
 
-        override suspend fun count() = bySurface.size
+        override suspend fun count() = rows.size
     }
 
-    private fun entity(surface: String, lemma: String = surface) =
-        DictionaryEntity(surface, lemma, "noun", null, "gloss of $surface", 1, 10)
+    private fun entity(
+        surface: String,
+        lemma: String = surface,
+        pos: String = "noun",
+        order: Int = 0,
+    ) = DictionaryEntity(surface, lemma, pos, null, "gloss of $surface $pos", 1, 10, order)
+
+    @Test
+    fun getBySurfaceForm_returnsThePrimaryReadingAndTheOthersAsAlternativesWhateverTheDaoOrder() {
+        val dao =
+            FakeDictionaryDao(
+                listOf(
+                    entity("padre", pos = "verb", order = 2),
+                    entity("padre", pos = "noun", order = 0),
+                    entity("padre", pos = "adj", order = 1),
+                )
+            )
+        val repo = RoomDictionaryRepository(dao)
+
+        val entry = repo.getBySurfaceForm("Padre")!!
+
+        assertEquals("noun", entry.pos)
+        assertEquals(listOf("adj", "verb"), entry.alternatives.map { it.pos })
+        assertTrue(entry.alternatives.all { it.alternatives.isEmpty() })
+    }
+
+    @Test
+    fun getBySurfaceForms_groupsReadingsPerSpelling() {
+        val dao =
+            FakeDictionaryDao(
+                listOf(
+                    entity("fue", "ir", "verb", order = 1),
+                    entity("hotel"),
+                    entity("fue", "ser", "verb", order = 0),
+                )
+            )
+        val repo = RoomDictionaryRepository(dao)
+
+        val result = repo.getBySurfaceForms(listOf("fue", "hotel"))
+
+        assertEquals("ser", result.getValue("fue").lemma)
+        assertEquals(listOf("ir"), result.getValue("fue").alternatives.map { it.lemma })
+        assertTrue(result.getValue("hotel").alternatives.isEmpty())
+    }
+
+    @Test
+    fun getSurfacesForLemma_listsASpellingOnceWhenTheLemmaHasSeveralReadingsOfIt() {
+        val dao =
+            FakeDictionaryDao(
+                listOf(entity("padre", pos = "noun"), entity("padre", pos = "adj", order = 1))
+            )
+        val repo = RoomDictionaryRepository(dao)
+
+        assertEquals(listOf("padre"), repo.getSurfacesForLemma("padre"))
+        assertEquals(2, repo.getEntriesForLemma("padre").size)
+    }
 
     @Test
     fun getBySurfaceForm_normalizesCaseAndWhitespace() {

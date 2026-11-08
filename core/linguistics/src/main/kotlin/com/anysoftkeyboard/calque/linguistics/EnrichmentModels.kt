@@ -7,7 +7,13 @@ enum class UserWordStatus {
     MASTERED,
 }
 
-/** Read-only dictionary entry retrieved for a word form. */
+/**
+ * Read-only dictionary entry retrieved for a word form.
+ *
+ * A spelling can have several readings (`padre` is a noun and an informal adjective, `fue` is a
+ * form of *ser* and of *ir*). The entry is the primary reading; [alternatives] are the other
+ * readings of the same spelling, best first, and have no alternatives of their own.
+ */
 data class DictionaryEntry(
     val surfaceForm: String,
     val lemma: String,
@@ -16,7 +22,12 @@ data class DictionaryEntry(
     val englishGloss: String,
     val isCognate: Boolean,
     val frequencyRank: Int?,
-)
+    val alternatives: List<DictionaryEntry> = emptyList(),
+) {
+    /** Every reading of the spelling, the primary one first. */
+    val readings: List<DictionaryEntry>
+        get() = listOf(copy(alternatives = emptyList())) + alternatives
+}
 
 /** 4-part false cognate trap entry. */
 data class FalseCognateEntry(

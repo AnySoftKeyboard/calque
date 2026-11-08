@@ -23,7 +23,7 @@ object DictionarySeedProcessor {
      */
     fun processDictionarySeed(inputStream: InputStream, database: SeedDatabase): Int {
         val rows = parseDictionary(inputStream)
-        database.insertDictionaryBatch(rows)
+        database.insertCuratedDictionaryBatch(rows)
         return rows.size
     }
 

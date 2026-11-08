@@ -92,13 +92,14 @@ class PackagedSeedAssetTest {
 
     @Test
     fun falseCognateRows_everyOneMatchesADictionaryRowOfTheSameLemma() = withSeed { db ->
-        // A false cognate card is only reachable when the reader finds the word in the dictionary
-        // under the same lemma. A seed keyed by an inflected form ("embarazada" instead of
-        // "embarazado"), or by a lemma the dictionary files under another one, breaks that.
+        // A false cognate card belongs to a word the dictionary knows under the same lemma, in
+        // any of its readings ("fue" is a form of ser and of ir). A seed keyed by an inflected
+        // form ("embarazada" instead of "embarazado"), or by a lemma the dictionary files under
+        // another one, breaks that.
         val sql =
-            "SELECT f.surface_form, f.lemma, d.lemma FROM false_cognates f " +
-                "LEFT JOIN dictionary d ON d.surface_form = f.surface_form " +
-                "WHERE d.lemma IS NULL OR d.lemma <> f.lemma"
+            "SELECT f.surface_form, f.lemma, '' FROM false_cognates f WHERE NOT EXISTS " +
+                "(SELECT 1 FROM dictionary d WHERE d.surface_form = f.surface_form " +
+                "AND d.lemma = f.lemma)"
         val mismatches = mutableListOf<String>()
         db.connection.createStatement().use { statement ->
             statement.executeQuery(sql).use { rs ->
@@ -118,7 +119,8 @@ class PackagedSeedAssetTest {
     fun falseCognateSeeds_everyLemmaExpandsToItsFormsNotJustItself() = withSeed { db ->
         val sql =
             "SELECT f.lemma, COUNT(*) AS cards, " +
-                "(SELECT COUNT(*) FROM dictionary d WHERE d.lemma = f.lemma) AS forms " +
+                "(SELECT COUNT(DISTINCT d.surface_form) FROM dictionary d " +
+                "WHERE d.lemma = f.lemma) AS forms " +
                 "FROM false_cognates f GROUP BY f.lemma HAVING cards < forms"
         val incomplete = mutableListOf<String>()
         db.connection.createStatement().use { statement ->

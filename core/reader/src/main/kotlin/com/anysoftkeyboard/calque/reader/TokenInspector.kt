@@ -45,6 +45,7 @@ object TokenInspector {
             lemma = lemma,
             pos = tokenSpan.dictionaryEntry?.pos,
             englishGloss = tokenSpan.dictionaryEntry?.englishGloss,
+            alternativeReadings = tokenSpan.dictionaryEntry?.alternatives.orEmpty(),
             cognateRuleNote = cognateRuleNote,
             falseCognateTrap = tokenSpan.falseCognateEntry,
             cliticSurgery = cliticSurgery,

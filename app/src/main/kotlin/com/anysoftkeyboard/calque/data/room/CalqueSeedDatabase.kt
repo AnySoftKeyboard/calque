@@ -22,7 +22,9 @@ import com.anysoftkeyboard.calque.data.room.entities.FalseCognateEntity
             CuratedLessonEntity::class,
             CognateRuleEntity::class,
         ],
-    version = 1,
+    // Version 2: the dictionary keeps every reading of a spelling (see DictionaryEntity). The seed
+    // is read-only, so the destructive fallback below simply copies the new asset over the old.
+    version = 2,
     exportSchema = false,
 )
 abstract class CalqueSeedDatabase : RoomDatabase() {
