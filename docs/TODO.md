@@ -128,12 +128,12 @@ Decisions (agreed):
   lemmas needed by the selected Tatoeba sentences, the curated lessons and the false-cognate
   seeds, so every shipped lesson resolves with no unknown words.
 - Stored as `data/kaikki/spanish_lemmas.jsonl.gz`, sorted by word, deterministic (fixed gzip
-  mtime), plus a metadata file (dump date, source `Last-Modified` / ETag, N). Measured on the
-  2026-10-30 dump with N = 25,000: 14,539 lemmas + 1,973 aliases + 197,279 forms, 17 MB raw /
-  1.17 MB gzipped.
-- SUBTLEX-ESP is approved for use. Keep only the top-N ranks (< 1 MB). Tatoeba: keep a
-  pre-filtered set of candidate Spanish-English pairs with sentence ids (needed for CC BY
-  attribution).
+  mtime), plus a metadata file (dump date, source `Last-Modified` / ETag, N). Committed
+  (2026-10-30 dump, N = 25,000, plus the words of the curated seeds): 14,551 lemmas + 1,973
+  aliases + 197,610 forms, 17 MB raw / 1.17 MB gzipped.
+- SUBTLEX-ESP is approved for use (but its license turned out to be non-commercial, see the open
+  decision under PR 6). Keep only the top-N ranks (< 1 MB). Tatoeba: keep a pre-filtered set of
+  candidate Spanish-English pairs with sentence ids (needed for CC BY attribution).
 
 PR 1 - inputs, extractors, licensing:
 - [x] `tools/preprocessor/README.md`: download URLs, input formats, licenses (Kaikki CC BY-SA 4.0,
@@ -152,8 +152,7 @@ PR 1 - inputs, extractors, licensing:
       Filters: translation, 4-14 words, one sentence, plain words, no proper names, only words
       from the rank file, dedupe; a fixed id hash samples down to `--max-pairs`. Verified on the
       real export: 443,166 sentences -> 140,741 candidates -> 20,000 pairs (750 KB gzipped).
-      The pool is not scored or levelled: that is PR 3 (the old `TatoebaProcessor` still reads
-      the `es<TAB>en` format and must switch to this id-based pool).
+      The pool is not scored or levelled; `TatoebaProcessor` does that at build time (PR 3).
 
 PR 4 - generated `seed.db` (done; end-to-end test in 1.3):
 - [x] Bazel macro `seed_db` (`tools/preprocessor/seed_db.bzl`) runs the preprocessor in a genrule
@@ -211,8 +210,13 @@ PR 6 - real data (done, except the open decisions marked below):
 - [ ] Attribution/credits screen in the app for CC BY-SA / CC BY data (the `NOTICE` file is PR 1).
 
 ### 1.2 Pedagogical content (curated JSON seeds)
-- [ ] More level 1-2 micro-stories (3-6 sentences) and Tatoeba-bucketed sentences; only one story
-      per level exists today.
+- [x] Tatoeba-bucketed sentences: 48 generated lessons (PR 3). Micro-stories: level 1 and level 2
+      each went from 1 to 3 stories of 3-4 sentences (`La Cena de mi Hermana`, `Un Día en el
+      Colegio`, `El Viaje Inesperado`, `La Fiesta de Cumpleaños`), with hand-written interlinear
+      glosses and callouts that reuse the false cognates. They were written without a native
+      review, so a native check is still wanted. `PackagedSeedAssetTest` now also checks that every
+      word of the hand-written lessons resolves in the dictionary.
+- [ ] More micro-stories: three per level is still thin for a curriculum.
 - [ ] Module 0.0 "You Already Know 3,000 Words": 3 swipe cards (`-tion`/`-cion`, `-al`/`-al`,
       `-ic`/`-ico`) and the 5-vowel soundboard content (needs a lesson content schema for
       non-sentence cards).
@@ -503,10 +507,12 @@ Engines exist (see section 0); remaining spec gaps:
 
 ## 6. Suggested order (small PRs, stacked per AGENTS.md)
 
-1. Real seed data + docs for the pipeline (1.1, 1.3) - unblocks everything visual. PR order:
-   PR 1 (inputs/extractors/docs), PR 2 (algorithm audit), PR 3 (Tatoeba packs), PR 5 (seed JSON
-   validation, independent), PR 4 (generated `seed.db` target + end-to-end test), PR 6 (real
-   data); PR 7 (content expansion, 1.2) can run in parallel.
+1. Real seed data + docs for the pipeline (1.1, 1.3) - unblocks everything visual. Done as a stack
+   of 14 PRs (extractors, collision rules, Kaikki processor, audits, Tatoeba lessons, seed
+   validation, generated `seed.db`, real data, fixes found on it, content). Open: the SUBTLEX
+   license, the `seed.db` size, one part of speech per spelling, native review of the content,
+   and sections 1.4 / 1.5 (runtime ingestion and persistence follow-ups), which were not part
+   of this batch.
 2. Token markers + peek sheet completion + design tokens/fonts (4.3, 4.4, 4.9).
 3. Vault tab with Flow-backed ViewModel (4.7, 1.5) and encounter-count semantics.
 4. TTS service + Listen buttons (3.2).
