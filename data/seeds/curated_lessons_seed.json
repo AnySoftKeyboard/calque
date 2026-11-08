@@ -124,7 +124,7 @@
             { "es": "funciona", "en": "functions / works" },
             { "es": "correctamente", "en": "correctly" }
           ],
-          "grammar_callout": "Spanish has no dummy auxiliary like 'does'. Simply put 'no' immediately before the action verb."
+          "grammar_callout": "Spanish has no helper verb like 'does'. Simply put 'no' immediately before the action verb."
         },
         {
           "sentence_es": "¿Necesita el equipo más información?",
